@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="YouEduca — Plataforma de Educação Corporativa da YouRH. Desenvolva sua equipe, reduza turnover e aumente produtividade com +400 cursos e sua própria Universidade Corporativa." />
+
+  <!-- OG -->
+  <meta property="og:title" content="YouEduca — Treinamento Corporativo que gera resultado real" />
+  <meta property="og:description" content="+450K usuários ativos, 88% de conclusão de cursos. Veja o YouEduca funcionando." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <title>YouEduca — Plataforma de Educação Corporativa | by YouRH</title>
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ================================================
+     HEADER
+================================================= -->
+<header id="header" role="banner">
+  <div class="header-inner">
+
+    <a href="#hero" class="logo" aria-label="YouEduca — início">
+      <span class="logo-name">YouEduca</span>
+      <span class="logo-tagline">by YouRH</span>
+    </a>
+
+    <nav class="header-nav" aria-label="Navegação principal">
+      <a href="https://yourh.com.br" target="_blank" rel="noopener noreferrer" class="header-link">
+        Conheça a YouRH
+      </a>
+      <a href="#demo-form" class="btn btn-purple">
+        Solicitar Demonstração
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+
+<!-- ================================================
+     HERO
+================================================= -->
+<section id="hero" aria-label="Apresentação YouEduca">
+  <div class="hero-inner">
+
+    <!-- Copy -->
+    <div class="hero-copy fade-in">
+
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        Plataforma de Educação Corporativa
+      </div>
+
+      <h1 class="hero-h1">
+        Sua equipe parou<br />
+        de <span class="gradient-text">crescer.</span><br />
+        Seu negócio também.
+      </h1>
+
+      <p class="hero-sub">
+        O YouEduca transforma treinamento corporativo em resultado real.
+        Desenvolva pessoas, reduza turnover e aumente produtividade
+        com +400 cursos e sua própria Universidade Corporativa.
+      </p>
+
+      <!-- Trust strip -->
+      <div class="hero-trust">
+        <div class="hero-trust-avatars" aria-hidden="true">
+          <span class="hero-trust-avatar">A</span>
+          <span class="hero-trust-avatar">R</span>
+          <span class="hero-trust-avatar">M</span>
+          <span class="hero-trust-avatar">+</span>
+        </div>
+        <div class="hero-stars" aria-hidden="true">★★★★★</div>
+        <span><strong>400+ empresas</strong> já confiam no YouEduca</span>
+      </div>
+
+      <ul class="hero-bullets" aria-label="Diferenciais">
+        <li class="hero-bullet">
+          <span class="bullet-icon">
+            <svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5l3 3L10 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          100% White Label — sua marca na plataforma
+        </li>
+        <li class="hero-bullet">
+          <span class="bullet-icon">
+            <svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5l3 3L10 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          +400 cursos prontos + upload dos seus próprios
+        </li>
+        <li class="hero-bullet">
+          <span class="bullet-icon">
+            <svg viewBox="0 0 11 9" fill="none"><path d="M1 4.5l3 3L10 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Integrado ao ciclo de avaliação de desempenho
+        </li>
+      </ul>
+
+    </div><!-- /hero-copy -->
+
+    <!-- Form card -->
+    <div class="hero-form-card fade-in" id="demo-form-wrapper" style="transition-delay:.18s">
+
+      <!-- Success state -->
+      <div id="form-success" class="form-success" role="alert" aria-live="polite">
+        <div class="success-ring">
+          <svg viewBox="0 0 32 32" fill="none"><path d="M7 16l6.5 6.5L25 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="success-title">Recebemos sua solicitação!</p>
+        <p class="success-body">
+          Um especialista YouEduca vai entrar em contato em breve.
+          Fique de olho no seu e-mail.
+        </p>
+      </div>
+
+      <!-- Form body -->
+      <div id="form-body">
+        <div class="form-card-badge">Demo gratuita · Sem compromisso</div>
+        <h2 class="form-card-title">Veja o YouEduca funcionando</h2>
+        <p class="form-card-sub">Preencha e um especialista entra em contato</p>
+
+        <form
+          id="demo-form"
+          action="SEU_ENDPOINT_AQUI"
+          method="POST"
+          novalidate
+          aria-label="Formulário de demonstração"
+        >
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="full-name">Nome completo *</label>
+              <input type="text" id="full-name" name="full_name"
+                placeholder="João Silva" autocomplete="name" required aria-required="true" />
+              <span class="error-msg" role="alert">Informe seu nome (mínimo 3 caracteres).</span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail corporativo *</label>
+              <input type="email" id="email" name="email"
+                placeholder="joao@empresa.com.br" autocomplete="email" required aria-required="true" />
+              <span class="error-msg" role="alert">Informe um e-mail válido.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="ddd">Telefone com DDD *</label>
+              <div class="form-phone-row">
+                <input type="tel" id="ddd" name="ddd"
+                  placeholder="54" maxlength="2" inputmode="numeric"
+                  autocomplete="tel-area-code" required aria-label="DDD" aria-required="true" />
+                <input type="tel" id="phone" name="phone"
+                  placeholder="99999-9999" inputmode="numeric"
+                  autocomplete="tel-local" required aria-label="Telefone" aria-required="true" />
+              </div>
+              <span class="error-msg" role="alert">Telefone inválido.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="company">Nome da empresa *</label>
+              <input type="text" id="company" name="company"
+                placeholder="Empresa S.A." autocomplete="organization" required aria-required="true" />
+              <span class="error-msg" role="alert">Informe o nome da empresa.</span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="employees">Nº de funcionários *</label>
+                <select id="employees" name="employees" required aria-required="true">
+                  <option value="" disabled selected>Selecione...</option>
+                  <option value="ate-50">Até 50</option>
+                  <option value="51-200">51 a 200</option>
+                  <option value="201-500">201 a 500</option>
+                  <option value="acima-500">Acima de 500</option>
+                </select>
+                <span class="error-msg" role="alert">Selecione uma opção.</span>
+              </div>
+              <div class="form-group">
+                <label for="role">Seu cargo *</label>
+                <select id="role" name="role" required aria-required="true">
+                  <option value="" disabled selected>Selecione...</option>
+                  <option value="dono-diretor">Dono / Diretor</option>
+                  <option value="gerente">Gerente / Coord.</option>
+                  <option value="rh">Analista de RH</option>
+                  <option value="outro">Outro</option>
+                </select>
+                <span class="error-msg" role="alert">Selecione seu cargo.</span>
+              </div>
+            </div>
+
+            <div class="form-checkbox">
+              <input type="checkbox" id="privacy" name="privacy" />
+              <label for="privacy">
+                Concordo com a
+                <a href="https://yourh.com.br/privacidade" target="_blank" rel="noopener">Política de Privacidade</a>
+                da YouRH
+              </label>
+            </div>
+
+            <button type="submit" class="form-submit-btn">
+              Quero ver o YouEduca agora →
+            </button>
+
+          </div>
+        </form>
+      </div><!-- /#form-body -->
+
+    </div><!-- /.hero-form-card -->
+
+  </div><!-- /.hero-inner -->
+</section>
+
+
+<!-- ================================================
+     SOCIAL PROOF BAR
+================================================= -->
+<section id="social-proof" aria-label="Números da plataforma">
+  <div class="proof-inner">
+
+    <div class="proof-item fade-in">
+      <span class="proof-number" data-counter="88" data-suffix="%">88%</span>
+      <span class="proof-label">Taxa de conclusão dos cursos</span>
+    </div>
+
+    <div class="proof-item fade-in" style="transition-delay:.08s">
+      <span class="proof-number" data-counter="472" data-suffix="K">472K</span>
+      <span class="proof-label">Certificados emitidos</span>
+    </div>
+
+    <div class="proof-item fade-in" style="transition-delay:.16s">
+      <span class="proof-number" data-counter="450" data-suffix="K">450K</span>
+      <span class="proof-label">Usuários ativos na plataforma</span>
+    </div>
+
+    <div class="proof-item fade-in" style="transition-delay:.24s">
+      <span class="proof-number" data-counter="889" data-suffix="K">889K</span>
+      <span class="proof-label">Horas de curso realizadas</span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================
+     MARQUEE — CLIENTES
+================================================= -->
+<section id="marquee-section" aria-label="Clientes YouEduca">
+  <p class="marquee-label">Mais de 400 empresas já usam o YouEduca</p>
+  <div class="marquee-wrapper" aria-hidden="true">
+    <div class="marquee-track">
+      <!-- Set 1 -->
+      <span class="marquee-item">Botafogo</span>
+      <span class="marquee-item">Dufrio</span>
+      <span class="marquee-item">Metasa</span>
+      <span class="marquee-item">Zaffari</span>
+      <span class="marquee-item">Stok Center</span>
+      <span class="marquee-item">Afubra</span>
+      <span class="marquee-item">Jumil</span>
+      <span class="marquee-item">Pittol</span>
+      <span class="marquee-item">Unifas</span>
+      <!-- Set 2 — idêntico para loop infinito -->
+      <span class="marquee-item">Botafogo</span>
+      <span class="marquee-item">Dufrio</span>
+      <span class="marquee-item">Metasa</span>
+      <span class="marquee-item">Zaffari</span>
+      <span class="marquee-item">Stok Center</span>
+      <span class="marquee-item">Afubra</span>
+      <span class="marquee-item">Jumil</span>
+      <span class="marquee-item">Pittol</span>
+      <span class="marquee-item">Unifas</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================
+     COMPARATIVO ANTES / DEPOIS
+================================================= -->
+<section id="comparison" aria-labelledby="comparison-headline">
+  <div class="container">
+
+    <header class="comparison-header fade-in">
+      <span class="section-eyebrow">Antes vs. Depois</span>
+      <h2 class="section-h2" id="comparison-headline">
+        O que muda com o <span class="gradient-text">YouEduca</span>
+      </h2>
+      <p class="section-sub">
+        A diferença entre uma equipe que cresce e uma que estagna está
+        na qualidade do treinamento que ela recebe.
+      </p>
+    </header>
+
+    <div class="comparison-grid fade-in">
+
+      <!-- ANTES -->
+      <div class="comparison-col before">
+        <div class="comparison-col-header">
+          <div class="comparison-col-icon">😓</div>
+          <span class="comparison-col-title">Sem YouEduca</span>
+        </div>
+        <ul class="comparison-list">
+          <li class="comparison-item">
+            <span class="comparison-icon">✕</span>
+            Treinamentos dispersos em PDFs, planilhas e grupos de WhatsApp
+          </li>
+          <li class="comparison-item">
+            <span class="comparison-icon">✕</span>
+            Alta rotatividade sem causa clara — e custo de reposição alto
+          </li>
+          <li class="comparison-item">
+            <span class="comparison-icon">✕</span>
+            RH sobrecarregado gerenciando tudo manualmente
+          </li>
+          <li class="comparison-item">
+            <span class="comparison-icon">✕</span>
+            Decisões de T&D baseadas em feeling, sem dados reais
+          </li>
+          <li class="comparison-item">
+            <span class="comparison-icon">✕</span>
+            Time despreparado para mudanças e demandas do mercado
+          </li>
+        </ul>
+      </div>
+
+      <!-- Divider -->
+      <div class="comparison-divider" aria-hidden="true">
+        <span class="vs-badge">VS</span>
+      </div>
+
+      <!-- DEPOIS -->
+      <div class="comparison-col after">
+        <div class="comparison-col-header">
+          <div class="comparison-col-icon">🚀</div>
+          <span class="comparison-col-title">Com YouEduca</span>
+        </div>
+        <ul class="comparison-list">
+          <li class="comparison-item">
+            <span class="comparison-icon">✓</span>
+            Trilhas estruturadas por cargo, com dashboard em tempo real
+          </li>
+          <li class="comparison-item">
+            <span class="comparison-icon">✓</span>
+            Colaboradores engajados com perspectiva real de crescimento
+          </li>
+          <li class="comparison-item">
+            <span class="comparison-icon">✓</span>
+            Tudo automatizado: notificações, certificados e relatórios
+          </li>
+          <li class="comparison-item">
+            <span class="comparison-icon">✓</span>
+            Dados de evolução por colaborador para embasar cada decisão
+          </li>
+          <li class="comparison-item">
+            <span class="comparison-icon">✓</span>
+            Equipe sempre atualizada com +400 cursos prontos e customizáveis
+          </li>
+        </ul>
+      </div>
+
+    </div><!-- /.comparison-grid -->
+
+  </div>
+</section>
+
+
+<!-- ================================================
+     SOLUÇÃO
+================================================= -->
+<section id="solution" aria-labelledby="solution-headline">
+  <div class="container">
+
+    <header class="comparison-header fade-in">
+      <span class="section-eyebrow">Como funciona</span>
+      <h2 class="section-h2" id="solution-headline">
+        YouEduca: do treinamento<br />ao resultado
+      </h2>
+      <p class="section-sub">
+        Uma plataforma completa que conecta o desenvolvimento da sua equipe
+        diretamente aos objetivos do seu negócio.
+      </p>
+    </header>
+
+    <div class="solution-grid">
+
+      <article class="solution-card fade-in">
+        <div class="solution-icon-wrap" aria-hidden="true">🎯</div>
+        <h3 class="solution-title">Desenvolva sem burocracia</h3>
+        <p class="solution-desc">
+          +400 cursos prontos e trilhas personalizadas por cargo. Seu RH
+          configura em horas, não em semanas — e a equipe começa a aprender
+          no dia seguinte à implantação.
+        </p>
+      </article>
+
+      <article class="solution-card fade-in" style="transition-delay:.10s">
+        <div class="solution-icon-wrap" aria-hidden="true">📊</div>
+        <h3 class="solution-title">Treinamento que gera dados</h3>
+        <p class="solution-desc">
+          Dashboards em tempo real mostram quem está evoluindo e quem
+          precisa de atenção. Decisões de T&D baseadas em dados, não em
+          feeling. ROI visível para a diretoria.
+        </p>
+      </article>
+
+      <article class="solution-card fade-in" style="transition-delay:.20s">
+        <div class="solution-icon-wrap" aria-hidden="true">🔗</div>
+        <h3 class="solution-title">Integrado ao desempenho</h3>
+        <p class="solution-desc">
+          A avaliação de desempenho indica automaticamente os cursos certos
+          para cada colaborador. Fecha o ciclo de desenvolvimento: avalia,
+          prescreve e acompanha.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================
+     FUNCIONALIDADES — BENTO GRID
+================================================= -->
+<section id="features" aria-labelledby="features-headline">
+  <div class="container">
+
+    <header class="comparison-header fade-in">
+      <span class="section-eyebrow green">Funcionalidades</span>
+      <h2 class="section-h2" id="features-headline">
+        Tudo que você precisa para criar<br />uma cultura de aprendizado
+      </h2>
+      <p class="section-sub">
+        Cada funcionalidade pensada para gerar resultado real de negócio,
+        não apenas "ter o recurso".
+      </p>
+    </header>
+
+    <!-- Bento Grid: 4 colunas -->
+    <!-- Row 1: [span-3 featured] [span-1] -->
+    <!-- Row 2: [span-1] [span-2 featured] [span-1] -->
+    <!-- Row 3: [span-2 featured] [span-1] [span-1] -->
+    <div class="bento-grid">
+
+      <!-- Row 1 -->
+      <article class="bento-card featured span-3 fade-in" aria-label="Universidade Corporativa">
+        <div class="bento-decoration"></div>
+        <span class="bento-icon" aria-hidden="true">🏛️</span>
+        <h3 class="bento-title">Universidade Corporativa</h3>
+        <p class="bento-desc">
+          Crie a universidade da sua empresa em minutos. +400 cursos prontos
+          para ativar hoje em liderança, técnico e comportamental — ou faça
+          upload dos seus próprios conteúdos. Tudo com a sua marca.
+        </p>
+        <span class="bento-tag purple">+400 cursos inclusos</span>
+      </article>
+
+      <article class="bento-card span-1 fade-in" style="transition-delay:.10s" aria-label="Gamificação">
+        <span class="bento-icon" aria-hidden="true">🏆</span>
+        <h3 class="bento-title">Gamificação</h3>
+        <p class="bento-desc">Ranking, pontos e conquistas que transformam o aprendizado em engajamento real.</p>
+      </article>
+
+      <!-- Row 2 -->
+      <article class="bento-card span-1 fade-in" aria-label="Trilhas de Aprendizagem">
+        <span class="bento-icon" aria-hidden="true">🗺️</span>
+        <h3 class="bento-title">Trilhas de Aprendizagem</h3>
+        <p class="bento-desc">Cada cargo com seu próprio caminho de desenvolvimento. Personalizado e escalável.</p>
+      </article>
+
+      <article class="bento-card accent span-2 fade-in" style="transition-delay:.10s" aria-label="Dashboards em tempo real">
+        <div class="bento-decoration"></div>
+        <span class="bento-icon" aria-hidden="true">📈</span>
+        <h3 class="bento-title">Dashboards em Tempo Real</h3>
+        <p class="bento-desc">
+          Visibilidade total do progresso de cada colaborador. Identifique
+          quem está evoluindo e quem precisa de atenção — antes que vire problema.
+        </p>
+        <span class="bento-tag green">Dados para decisão</span>
+      </article>
+
+      <article class="bento-card span-1 fade-in" style="transition-delay:.20s" aria-label="White Label">
+        <span class="bento-icon" aria-hidden="true">🔒</span>
+        <h3 class="bento-title">White Label 100%</h3>
+        <p class="bento-desc">Sua marca, seu domínio, sua cultura. A plataforma parece que foi feita pela sua empresa.</p>
+      </article>
+
+      <!-- Row 3 -->
+      <article class="bento-card featured span-2 fade-in" aria-label="Soft e Hard Skills">
+        <div class="bento-decoration"></div>
+        <span class="bento-icon" aria-hidden="true">🎓</span>
+        <h3 class="bento-title">Soft e Hard Skills</h3>
+        <p class="bento-desc">
+          Liderança, comunicação, técnico e comportamental — tudo em um só
+          lugar. Desenvolva as competências que o seu negócio realmente precisa.
+        </p>
+        <span class="bento-tag purple">Competências estratégicas</span>
+      </article>
+
+      <article class="bento-card span-1 fade-in" style="transition-delay:.10s" aria-label="Certificados Automáticos">
+        <span class="bento-icon" aria-hidden="true">📜</span>
+        <h3 class="bento-title">Certificados Automáticos</h3>
+        <p class="bento-desc">Employer branding sem trabalho extra. Emitidos e enviados automaticamente.</p>
+      </article>
+
+      <article class="bento-card span-1 fade-in" style="transition-delay:.20s" aria-label="Controle de NRs">
+        <span class="bento-icon" aria-hidden="true">✅</span>
+        <h3 class="bento-title">Controle de NRs</h3>
+        <p class="bento-desc">Conformidade legal sem planilha. Rastreie treinamentos obrigatórios com facilidade.</p>
+      </article>
+
+    </div><!-- /.bento-grid -->
+
+  </div>
+</section>
+
+
+<!-- ================================================
+     DEPOIMENTO
+================================================= -->
+<section id="testimonial" aria-label="Depoimento de cliente">
+  <div class="testimonial-inner fade-in">
+
+    <div class="testimonial-stars" aria-label="5 estrelas">
+      ★★★★★
+    </div>
+
+    <blockquote class="testimonial-quote">
+      "O YouEduca nos ajudou a reduzir o turnover em
+      <em>34% em apenas 8 meses.</em>
+      A visibilidade sobre quem está evoluindo e quem precisa de atenção
+      mudou completamente a forma como nossa liderança age."
+    </blockquote>
+
+    <div class="testimonial-author">
+      <div class="testimonial-avatar" aria-hidden="true">PR</div>
+      <div class="testimonial-name">
+        <strong>Paulo R.</strong>
+        <span>Diretor de Operações · Setor Industrial · 420 colaboradores</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================
+     CTA FINAL
+================================================= -->
+<section id="cta-final" aria-labelledby="cta-headline">
+  <div class="cta-card fade-in">
+    <span class="cta-label">Pronto para começar?</span>
+    <h2 class="cta-h2" id="cta-headline">
+      Seu concorrente já está<br />
+      desenvolvendo a equipe dele.
+    </h2>
+    <p class="cta-sub">
+      Não deixe o treinamento ser o gargalo do seu crescimento.
+    </p>
+    <div class="cta-actions">
+      <a href="#demo-form" class="btn btn-purple-lg">
+        Solicitar demonstração gratuita →
+      </a>
+    </div>
+    <p class="cta-note">Sem compromisso · Especialista entra em contato em até 24h</p>
+  </div>
+</section>
+
+
+<!-- ================================================
+     FOOTER
+================================================= -->
+<footer id="footer" role="contentinfo">
+
+  <div class="footer-grid">
+
+    <!-- Brand -->
+    <div>
+      <div>
+        <span class="footer-logo-name">YouEduca</span>
+        <span class="footer-logo-tag">by YouRH</span>
+      </div>
+      <p class="footer-desc">
+        Mais que um LMS — uma plataforma completa de desenvolvimento de pessoas
+        integrada ao ecossistema YouRH.
+      </p>
+    </div>
+
+    <!-- Links -->
+    <nav aria-label="Links do rodapé">
+      <p class="footer-col-title">Links</p>
+      <ul class="footer-links">
+        <li><a href="https://yourh.com.br" target="_blank" rel="noopener noreferrer">Home YouRH</a></li>
+        <li><a href="https://yourh.com.br/solucoes" target="_blank" rel="noopener noreferrer">Soluções</a></li>
+        <li><a href="https://yourh.com.br/privacidade" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
+      </ul>
+    </nav>
+
+    <!-- Addresses -->
+    <div>
+      <p class="footer-col-title">Endereços</p>
+      <div class="footer-addresses">
+        <address class="footer-address">
+          <span class="footer-city">Passo Fundo — RS</span>
+          <span class="footer-addr">Rua Moron, 979, Sala 1307<br />Centro · CEP 99010-080</span>
+        </address>
+        <address class="footer-address">
+          <span class="footer-city">Balneário Camboriú — SC</span>
+          <span class="footer-addr">Av. do Estado, 2405, Sala 1208<br />Centro · CEP 88331-000</span>
+        </address>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-legal">
+      YOURH DESENVOLVIMENTO E TREINAMENTO LTDA &nbsp;·&nbsp; CNPJ 29.067.310/0001-05
+      &nbsp;·&nbsp; Todos os direitos reservados © 2025
+    </p>
+  </div>
+
+</footer>
+
+
+<script src="js/main.js"></script>
+</body>
+</html>
