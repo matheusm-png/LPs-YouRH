@@ -11,6 +11,10 @@
    BASE
    ============================================================ */
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font-body);
   font-size: var(--text-base);
@@ -18,6 +22,7 @@ body {
   color: var(--color-text);
   background-color: var(--color-cream);
   line-height: var(--leading-normal);
+  overflow-x: clip;
 }
 
 /* ── Container ───────────────────────────────────────────────── */
@@ -2068,6 +2073,421 @@ section {
 
 .footer__link:hover {
   color: var(--color-green);
+}
+
+/* ============================================================
+   SECTION: CALCULADORA DE MULTAS NR-1
+   ============================================================ */
+
+.section-calculator {
+  background: var(--color-white);
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  margin-top: var(--space-12);
+}
+
+@media (min-width: 900px) {
+  .calc-grid {
+    grid-template-columns: 1fr 360px;
+    align-items: start;
+  }
+}
+
+/* ── Cards de input ─────────────────────────────────────── */
+
+.calc-card {
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.calc-card:last-child {
+  margin-bottom: 0;
+}
+
+.calc-card__title {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.calc-card__title::before {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 2px;
+  background: var(--color-error);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+/* ── Slider ─────────────────────────────────────────────── */
+
+.calc-field-label {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+  display: block;
+}
+
+.calc-range-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.calc-range-wrap input[type="range"] {
+  flex: 1;
+  -webkit-appearance: none;
+  height: 4px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  outline: none;
+  cursor: pointer;
+}
+
+.calc-range-wrap input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-error);
+  border: 3px solid var(--color-white);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.calc-range-wrap input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.calc-range-val {
+  font-family: var(--font-headline);
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+  min-width: 36px;
+  text-align: right;
+}
+
+/* ── Pills ──────────────────────────────────────────────── */
+
+.calc-pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.calc-pill {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.calc-pill:hover {
+  border-color: var(--color-purple);
+  color: var(--color-purple);
+}
+
+.calc-pill.is-active {
+  background: var(--color-purple-light);
+  border-color: var(--color-purple);
+  color: var(--color-purple);
+  font-weight: var(--weight-semibold);
+}
+
+/* ── Lista de infrações ─────────────────────────────────── */
+
+.calc-infraction-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.calc-infraction {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.calc-infraction:hover {
+  border-color: rgba(211,47,47,0.30);
+  background: rgba(211,47,47,0.03);
+}
+
+.calc-infraction.is-selected {
+  background: rgba(211,47,47,0.06);
+  border-color: rgba(211,47,47,0.40);
+}
+
+.calc-infraction__check {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-border);
+  background: var(--color-white);
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.calc-infraction.is-selected .calc-infraction__check {
+  background: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.calc-infraction__check-svg {
+  display: none;
+}
+
+.calc-infraction.is-selected .calc-infraction__check-svg {
+  display: block;
+}
+
+.calc-infraction__body {
+  flex: 1;
+}
+
+.calc-infraction__name {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text);
+  margin-bottom: 3px;
+  line-height: var(--leading-snug);
+}
+
+.calc-infraction__meta {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  display: flex;
+  gap: var(--space-3);
+}
+
+.calc-infraction__gravity {
+  color: #C84B00;
+  font-weight: var(--weight-medium);
+}
+
+/* ── Painel de resultado ─────────────────────────────────── */
+
+.calc-result-panel {
+  position: sticky;
+  top: calc(var(--urgency-height) + var(--header-height) + 24px);
+}
+
+@media (max-width: 899px) {
+  .calc-result-panel {
+    order: -1;
+    position: static;
+  }
+}
+
+.calc-result-card {
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-7);
+  box-shadow: var(--shadow-md);
+}
+
+.calc-result-label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.calc-result-total {
+  font-family: var(--font-headline);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-extrabold);
+  line-height: 1.1;
+  margin-bottom: var(--space-2);
+  transition: color var(--transition-normal);
+  word-break: break-word;
+}
+
+.calc-result-total.is-safe     { color: var(--color-green-dark); }
+.calc-result-total.is-low      { color: #E65100; }
+.calc-result-total.is-high     { color: var(--color-error); }
+.calc-result-total.is-critical { color: #9B1A1A; }
+
+.calc-result-nivel {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  display: inline-block;
+  margin-bottom: var(--space-6);
+  transition: all var(--transition-normal);
+}
+
+.calc-result-nivel.is-safe     { background: var(--color-green-light);  color: var(--color-green-dark); }
+.calc-result-nivel.is-low      { background: #FFF3E0; color: #E65100; }
+.calc-result-nivel.is-medium   { background: #FBE9E7; color: #BF360C; }
+.calc-result-nivel.is-high     { background: #FFEBEE; color: #C62828; }
+.calc-result-nivel.is-critical { background: #B71C1C; color: #FFCDD2; }
+
+.calc-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.calc-metric-box {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+}
+
+.calc-metric-box__label {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-1);
+  letter-spacing: 0.04em;
+}
+
+.calc-metric-box__val {
+  font-family: var(--font-headline);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+}
+
+/* ── Barra de exposição ao risco ─────────────────────────── */
+
+.calc-risk-bar {
+  margin-bottom: var(--space-5);
+}
+
+.calc-risk-bar__head {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.calc-risk-bar__track {
+  height: 6px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.calc-risk-bar__fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--color-error);
+  transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+  width: 0%;
+}
+
+/* ── Breakdown ───────────────────────────────────────────── */
+
+.calc-breakdown {
+  margin-bottom: var(--space-5);
+}
+
+.calc-breakdown__title {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+  font-weight: var(--weight-semibold);
+}
+
+.calc-breakdown__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-xs);
+}
+
+.calc-breakdown__item:last-child {
+  border-bottom: none;
+}
+
+.calc-breakdown__name {
+  color: var(--color-text);
+  flex: 1;
+  margin-right: var(--space-2);
+}
+
+.calc-breakdown__val {
+  font-family: var(--font-headline);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.calc-breakdown__empty {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ── Alerta reincidência ─────────────────────────────────── */
+
+.calc-reincidence-alert {
+  background: #FFEBEE;
+  border: 1px solid rgba(211,47,47,0.25);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-xs);
+  color: #C62828;
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-4);
+  display: none;
+}
+
+/* ── Disclaimer ──────────────────────────────────────────── */
+
+.calc-disclaimer {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  line-height: var(--leading-loose);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
 }
 
 /* ============================================================

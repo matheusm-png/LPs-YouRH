@@ -130,8 +130,9 @@
 
         <nav class="nav" aria-label="Navegação principal">
           <a href="#problemas"  class="nav__link">O problema</a>
-          <a href="#checklist"  class="nav__link">Diagnóstico</a>
-          <a href="#solucao"    class="nav__link">Solução</a>
+          <a href="#checklist"   class="nav__link">Diagnóstico</a>
+          <a href="#calculadora" class="nav__link">Calculadora</a>
+          <a href="#solucao"     class="nav__link">Solução</a>
           <a href="#faq"        class="nav__link">FAQ</a>
         </nav>
 
@@ -451,7 +452,7 @@
     </section>
 
     <!-- ============================================================
-         5. SEÇÃO CUSTO — "O que está em jogo"
+         4. SEÇÃO CUSTO — "O que está em jogo"
          ============================================================ -->
     <section class="section-cost" id="custo" aria-labelledby="cost-title">
       <div class="container">
@@ -502,6 +503,216 @@
               A reputação como empregador afeta diretamente atração de talentos e contratos.
             </p>
           </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. CALCULADORA DE MULTAS NR-1
+         ============================================================ -->
+    <section class="section-calculator" id="calculadora" aria-labelledby="calculator-title">
+      <div class="container">
+
+        <div class="section-header section-header--center animate-on-scroll">
+          <span class="section-label">Simulador de multa NR-1</span>
+          <h2 class="section-title" id="calculator-title">
+            Quanto sua empresa pode<br>ser multada pela NR-1?
+          </h2>
+          <p class="section-subtitle">
+            Selecione as não conformidades identificadas e veja uma estimativa baseada nos critérios da NR-28.
+            Gratuito e sem cadastro.
+          </p>
+        </div>
+
+        <div class="calc-grid animate-on-scroll">
+
+          <!-- ── Coluna esquerda: inputs ── -->
+          <div class="calc-inputs">
+
+            <div class="calc-card">
+              <p class="calc-card__title">Porte da empresa</p>
+              <span class="calc-field-label">Número de funcionários</span>
+              <div class="calc-range-wrap">
+                <input type="range" id="calc-employees" min="1" max="1000" value="50" step="1" aria-label="Número de funcionários" />
+                <span class="calc-range-val" id="calc-emp-val">50</span>
+              </div>
+              <span class="calc-field-label">Classificação NR-28</span>
+              <div class="calc-pill-group" id="calc-size-group" role="group" aria-label="Porte da empresa">
+                <button class="calc-pill is-active" data-size="micro"   data-mult="1.0">Micro · até 19</button>
+                <button class="calc-pill"           data-size="pequena" data-mult="1.4">Pequena · 20–99</button>
+                <button class="calc-pill"           data-size="media"   data-mult="2.0">Média · 100–499</button>
+                <button class="calc-pill"           data-size="grande"  data-mult="3.0">Grande · 500+</button>
+              </div>
+            </div>
+
+            <div class="calc-card">
+              <p class="calc-card__title">Não conformidades identificadas</p>
+              <div class="calc-infraction-list" role="group" aria-label="Infrações NR-1">
+
+                <div class="calc-infraction" data-base="3000" data-gravity="I3" data-label="PGR desatualizado / inexistente" onclick="calcToggleInfraction(this)" role="checkbox" aria-checked="false" tabindex="0">
+                  <div class="calc-infraction__check">
+                    <svg class="calc-infraction__check-svg" width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="calc-infraction__body">
+                    <div class="calc-infraction__name">PGR desatualizado ou inexistente</div>
+                    <div class="calc-infraction__meta">
+                      <span class="calc-infraction__gravity">Gravidade I3</span>
+                      <span>Base R$ 3.000</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="calc-infraction" data-base="4000" data-gravity="I3" data-label="Sem identificação de riscos psicossociais" onclick="calcToggleInfraction(this)" role="checkbox" aria-checked="false" tabindex="0">
+                  <div class="calc-infraction__check">
+                    <svg class="calc-infraction__check-svg" width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="calc-infraction__body">
+                    <div class="calc-infraction__name">Ausência de identificação de riscos psicossociais</div>
+                    <div class="calc-infraction__meta">
+                      <span class="calc-infraction__gravity">Gravidade I3</span>
+                      <span>Base R$ 4.000</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="calc-infraction" data-base="5000" data-gravity="I4" data-label="Sem plano de ação para saúde mental" onclick="calcToggleInfraction(this)" role="checkbox" aria-checked="false" tabindex="0">
+                  <div class="calc-infraction__check">
+                    <svg class="calc-infraction__check-svg" width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="calc-infraction__body">
+                    <div class="calc-infraction__name">Sem plano de ação para saúde mental</div>
+                    <div class="calc-infraction__meta">
+                      <span class="calc-infraction__gravity">Gravidade I4</span>
+                      <span>Base R$ 5.000</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="calc-infraction" data-base="3500" data-gravity="I3" data-label="Lideranças sem treinamento obrigatório" onclick="calcToggleInfraction(this)" role="checkbox" aria-checked="false" tabindex="0">
+                  <div class="calc-infraction__check">
+                    <svg class="calc-infraction__check-svg" width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="calc-infraction__body">
+                    <div class="calc-infraction__name">Lideranças sem treinamento sobre riscos psicossociais</div>
+                    <div class="calc-infraction__meta">
+                      <span class="calc-infraction__gravity">Gravidade I3</span>
+                      <span>Base R$ 3.500</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="calc-infraction" data-base="4500" data-gravity="I4" data-label="Sem monitoramento contínuo de riscos" onclick="calcToggleInfraction(this)" role="checkbox" aria-checked="false" tabindex="0">
+                  <div class="calc-infraction__check">
+                    <svg class="calc-infraction__check-svg" width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="calc-infraction__body">
+                    <div class="calc-infraction__name">Ausência de monitoramento contínuo de riscos</div>
+                    <div class="calc-infraction__meta">
+                      <span class="calc-infraction__gravity">Gravidade I4</span>
+                      <span>Base R$ 4.500</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="calc-infraction" data-base="6000" data-gravity="I4+" data-label="Reincidência em não conformidades anteriores" onclick="calcToggleInfraction(this)" role="checkbox" aria-checked="false" tabindex="0">
+                  <div class="calc-infraction__check">
+                    <svg class="calc-infraction__check-svg" width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="calc-infraction__body">
+                    <div class="calc-infraction__name">Reincidência em não conformidades anteriores</div>
+                    <div class="calc-infraction__meta">
+                      <span class="calc-infraction__gravity">Gravidade I4 + agravante</span>
+                      <span>Base R$ 6.000</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="calc-card">
+              <p class="calc-card__title">Histórico de autuações</p>
+              <span class="calc-field-label">Sua empresa já foi notificada ou multada pelo Ministério do Trabalho?</span>
+              <div class="calc-pill-group" id="calc-reincidence-group" role="group" aria-label="Histórico de autuações">
+                <button class="calc-pill is-active" data-reincidence="1.0">Não · primeira vez</button>
+                <button class="calc-pill"           data-reincidence="1.5">Sim · 1 ocorrência</button>
+                <button class="calc-pill"           data-reincidence="2.5">Sim · reincidente grave</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ── Coluna direita: resultado ── -->
+          <aside class="calc-result-panel" aria-label="Estimativa de multa">
+            <div class="calc-result-card">
+
+              <p class="calc-result-label">Estimativa de multa</p>
+              <p class="calc-result-total is-safe" id="calc-r-total">R$ 0</p>
+              <span class="calc-result-nivel is-safe" id="calc-r-nivel">Selecione infrações</span>
+
+              <div class="calc-metrics-grid">
+                <div class="calc-metric-box">
+                  <div class="calc-metric-box__label">Infrações</div>
+                  <div class="calc-metric-box__val" id="calc-r-infracoes">0</div>
+                </div>
+                <div class="calc-metric-box">
+                  <div class="calc-metric-box__label">Base total</div>
+                  <div class="calc-metric-box__val" id="calc-r-base">R$ 0</div>
+                </div>
+                <div class="calc-metric-box">
+                  <div class="calc-metric-box__label">Fator porte</div>
+                  <div class="calc-metric-box__val" id="calc-r-fator">1,0×</div>
+                </div>
+                <div class="calc-metric-box">
+                  <div class="calc-metric-box__label">Fator reincidência</div>
+                  <div class="calc-metric-box__val" id="calc-r-reincidence">1,0×</div>
+                </div>
+              </div>
+
+              <div class="calc-risk-bar">
+                <div class="calc-risk-bar__head">
+                  <span>Exposição ao risco</span>
+                  <span id="calc-r-pct">0%</span>
+                </div>
+                <div class="calc-risk-bar__track">
+                  <div class="calc-risk-bar__fill" id="calc-r-bar"></div>
+                </div>
+              </div>
+
+              <div class="calc-breakdown">
+                <p class="calc-breakdown__title">Detalhamento</p>
+                <div id="calc-breakdown-list">
+                  <p class="calc-breakdown__empty">Nenhuma infração selecionada.</p>
+                </div>
+              </div>
+
+              <div class="calc-reincidence-alert" id="calc-reincidence-alert">
+                Atenção: o histórico de autuações pode levar o auditor a classificar o caso como má-fé ou resistência, aumentando significativamente o valor final da penalidade.
+              </div>
+
+              <a href="#form" class="btn btn--primary btn--full">
+                Quero me adequar antes do prazo →
+              </a>
+
+              <p class="calc-disclaimer">
+                Estimativa orientativa baseada nos critérios da NR-28. Os valores reais variam conforme o enquadramento do auditor fiscal, CNAE da empresa e demais circunstâncias específicas. Esta ferramenta não substitui consultoria jurídica ou de segurança do trabalho.
+              </p>
+
+            </div>
+          </aside>
 
         </div>
       </div>
@@ -1183,6 +1394,134 @@
 
     </div>
   </footer>
+
+  <!-- Calculadora NR-1 -->
+  <script>
+    (function () {
+      var CALC_MAX = (3000 + 4000 + 5000 + 3500 + 4500 + 6000) * 3.0 * 2.5;
+      var calcMult = 1.0;
+      var calcReincidence = 1.0;
+
+      function calcFmt(n) {
+        return 'R$\u00a0' + Math.round(n).toLocaleString('pt-BR');
+      }
+
+      // Slider de funcionários
+      var empSlider = document.getElementById('calc-employees');
+      var empVal    = document.getElementById('calc-emp-val');
+
+      empSlider.addEventListener('input', function () {
+        var v = parseInt(this.value);
+        empVal.textContent = v;
+        if      (v <= 19)  calcActivateSize('micro',   1.0);
+        else if (v <= 99)  calcActivateSize('pequena', 1.4);
+        else if (v <= 499) calcActivateSize('media',   2.0);
+        else               calcActivateSize('grande',  3.0);
+        calcUpdate();
+      });
+
+      function calcActivateSize(size, mult) {
+        calcMult = mult;
+        document.querySelectorAll('#calc-size-group .calc-pill').forEach(function (b) {
+          b.classList.toggle('is-active', b.dataset.size === size);
+        });
+      }
+
+      document.querySelectorAll('#calc-size-group .calc-pill').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          calcMult = parseFloat(this.dataset.mult);
+          document.querySelectorAll('#calc-size-group .calc-pill').forEach(function (b) { b.classList.remove('is-active'); });
+          this.classList.add('is-active');
+          var empMap = { micro: 10, pequena: 50, media: 200, grande: 700 };
+          empSlider.value = empMap[this.dataset.size];
+          empVal.textContent = empMap[this.dataset.size];
+          calcUpdate();
+        });
+      });
+
+      // Reincidência
+      document.querySelectorAll('#calc-reincidence-group .calc-pill').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          calcReincidence = parseFloat(this.dataset.reincidence);
+          document.querySelectorAll('#calc-reincidence-group .calc-pill').forEach(function (b) { b.classList.remove('is-active'); });
+          this.classList.add('is-active');
+          document.getElementById('calc-reincidence-alert').style.display = calcReincidence > 1 ? 'block' : 'none';
+          calcUpdate();
+        });
+      });
+
+      // Infrações — acessibilidade por teclado
+      document.querySelectorAll('.calc-infraction').forEach(function (el) {
+        el.addEventListener('keydown', function (e) {
+          if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); calcToggleInfraction(this); }
+        });
+      });
+
+      // Cálculo
+      function calcUpdate() {
+        var selected = Array.from(document.querySelectorAll('.calc-infraction.is-selected'));
+        var base = 0;
+        selected.forEach(function (el) { base += parseInt(el.dataset.base); });
+
+        var total = Math.round(base * calcMult * calcReincidence);
+        var pct   = Math.min(100, Math.round((total / CALC_MAX) * 100));
+
+        var totalEl = document.getElementById('calc-r-total');
+        totalEl.textContent = calcFmt(total);
+        totalEl.className = 'calc-result-total ' + calcRiskClass(total);
+
+        var nivelEl = document.getElementById('calc-r-nivel');
+        var risco = calcRiskLabel(total, selected.length);
+        nivelEl.textContent = risco.label;
+        nivelEl.className = 'calc-result-nivel ' + risco.cls;
+
+        document.getElementById('calc-r-infracoes').textContent = selected.length;
+        document.getElementById('calc-r-base').textContent = calcFmt(base);
+        document.getElementById('calc-r-fator').textContent = calcMult.toFixed(1).replace('.', ',') + '\u00d7';
+        document.getElementById('calc-r-reincidence').textContent = calcReincidence.toFixed(1).replace('.', ',') + '\u00d7';
+
+        document.getElementById('calc-r-bar').style.width = pct + '%';
+        document.getElementById('calc-r-pct').textContent = pct + '%';
+
+        var listEl = document.getElementById('calc-breakdown-list');
+        if (selected.length === 0) {
+          listEl.innerHTML = '<p class="calc-breakdown__empty">Nenhuma infração selecionada.</p>';
+        } else {
+          listEl.innerHTML = selected.map(function (el) {
+            var itemBase  = parseInt(el.dataset.base);
+            var itemTotal = Math.round(itemBase * calcMult * calcReincidence);
+            return '<div class="calc-breakdown__item">' +
+              '<span class="calc-breakdown__name">' + el.dataset.label + '</span>' +
+              '<span class="calc-breakdown__val">' + calcFmt(itemTotal) + '</span>' +
+              '</div>';
+          }).join('');
+        }
+      }
+
+      function calcRiskClass(total) {
+        if (total === 0)    return 'is-safe';
+        if (total <= 10000) return 'is-low';
+        return 'is-high';
+      }
+
+      function calcRiskLabel(total, count) {
+        if (count === 0)    return { label: 'Sem infrações selecionadas', cls: 'is-safe' };
+        if (total <= 8000)  return { label: 'Risco baixo',    cls: 'is-low' };
+        if (total <= 25000) return { label: 'Risco moderado', cls: 'is-medium' };
+        if (total <= 60000) return { label: 'Risco alto',     cls: 'is-high' };
+        return                     { label: 'Risco crítico',  cls: 'is-critical' };
+      }
+
+      calcUpdate();
+
+      // Expõe a função de toggle para o onclick inline
+      window.calcToggleInfraction = function (el) {
+        el.classList.toggle('is-selected');
+        el.setAttribute('aria-checked', el.classList.contains('is-selected'));
+        calcUpdate();
+      };
+    })();
+  </script>
 
   <!-- Scripts -->
   <script src="js/countdown.js" defer></script>
