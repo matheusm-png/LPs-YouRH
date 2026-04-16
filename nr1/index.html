@@ -199,7 +199,7 @@
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M8 1L10 5.5H15L11 8.5L12.5 13L8 10.5L3.5 13L5 8.5L1 5.5H6L8 1Z" fill="currentColor"/>
               </svg>
-              +450 treinamentos disponíveis
+              +550 treinamentos disponíveis
             </div>
             <div class="hero__trust-item">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -640,6 +640,20 @@
                   </div>
                 </div>
 
+                <div class="calc-infraction calc-infraction--none" id="calc-none-infraction" data-base="0" data-gravity="" data-label="" onclick="calcToggleNone(this)" role="checkbox" aria-checked="false" tabindex="0">
+                  <div class="calc-infraction__check">
+                    <svg class="calc-infraction__check-svg" width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="calc-infraction__body">
+                    <div class="calc-infraction__name" style="color:var(--color-gray-400,#888);">Nenhuma das opções acima — empresa em conformidade</div>
+                    <div class="calc-infraction__meta">
+                      <span style="color:#6ab04c;">Sem não conformidades identificadas</span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -747,7 +761,7 @@
             </div>
             <h3 class="solution-card__title">Trilha NR-1 com certificação rastreável</h3>
             <p class="solution-card__desc">
-              +450 treinamentos de desenvolvimento humano e organizacional, com trilha específica
+              +550 treinamentos de desenvolvimento humano e organizacional, com trilha específica
               NR-1 disponível desde março/2026. Módulos de saúde mental e riscos psicossociais
               incluídos. Certificação automática e rastreabilidade completa para auditorias.
             </p>
@@ -811,7 +825,7 @@
             </div>
             <h3 class="solution-card__title">Monitoramento contínuo com dados auditáveis</h3>
             <p class="solution-card__desc">
-              Monitoramento contínuo de indicadores: eNPS, absenteísmo e clima por área.
+              Monitoramento contínuo de indicadores de clima e engajamento por área.
               Dados que alimentam o PGR com evidências reais, rastreáveis e prontas para
               qualquer auditoria do Ministério do Trabalho.
             </p>
@@ -822,7 +836,7 @@
               </li>
               <li class="solution-card__feature">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                Indicadores de absenteísmo e turnover
+                Pesquisa de clima segmentada por equipe
               </li>
               <li class="solution-card__feature">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -852,7 +866,7 @@
 
           <div class="proof-item animate-on-scroll delay-100" role="listitem">
             <div class="proof-item__number">
-              <span data-count="450">450</span><span class="proof-item__suffix">+</span>
+              <span data-count="550">550</span><span class="proof-item__suffix">+</span>
             </div>
             <p class="proof-item__label">treinamentos de desenvolvimento humano e organizacional</p>
           </div>
@@ -969,8 +983,8 @@
             <div class="content-card__body">
               <span class="content-card__tag content-card__tag--webinar">Webinar gratuito</span>
               <h3 class="content-card__title">NR-1 entra em vigor em 26 de maio. 3 encontros para você implementar antes do prazo.</h3>
-              <p class="content-card__desc">Série prática para RH, DP e gestores estruturarem treinamentos, documentarem capacitações e alinharem tudo do GRO ao PGR.</p>
-              <span class="content-card__cta content-card__cta--green">Garantir minha vaga
+              <p class="content-card__desc">Série prática para RH, DP e gestores estruturarem treinamentos, documentarem capacitações e alinharem tudo do GRO ao PGR. Já disponível no YouTube para inscritos.</p>
+              <span class="content-card__cta content-card__cta--green">Acesse agora
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
             </div>
@@ -1459,7 +1473,8 @@
 
       // Cálculo
       function calcUpdate() {
-        var selected = Array.from(document.querySelectorAll('.calc-infraction.is-selected'));
+        var noneSelected = document.getElementById('calc-none-infraction').classList.contains('is-selected');
+        var selected = Array.from(document.querySelectorAll('.calc-infraction:not(.calc-infraction--none).is-selected'));
         var base = 0;
         selected.forEach(function (el) { base += parseInt(el.dataset.base); });
 
@@ -1471,7 +1486,7 @@
         totalEl.className = 'calc-result-total ' + calcRiskClass(total);
 
         var nivelEl = document.getElementById('calc-r-nivel');
-        var risco = calcRiskLabel(total, selected.length);
+        var risco = calcRiskLabel(total, selected.length, noneSelected);
         nivelEl.textContent = risco.label;
         nivelEl.className = 'calc-result-nivel ' + risco.cls;
 
@@ -1504,8 +1519,9 @@
         return 'is-high';
       }
 
-      function calcRiskLabel(total, count) {
-        if (count === 0)    return { label: 'Sem infrações selecionadas', cls: 'is-safe' };
+      function calcRiskLabel(total, count, noneSelected) {
+        if (noneSelected)   return { label: 'Empresa em conformidade', cls: 'is-safe' };
+        if (count === 0)    return { label: 'Selecione infrações',     cls: 'is-safe' };
         if (total <= 8000)  return { label: 'Risco baixo',    cls: 'is-low' };
         if (total <= 25000) return { label: 'Risco moderado', cls: 'is-medium' };
         if (total <= 60000) return { label: 'Risco alto',     cls: 'is-high' };
@@ -1514,10 +1530,28 @@
 
       calcUpdate();
 
-      // Expõe a função de toggle para o onclick inline
+      // Expõe as funções de toggle para o onclick inline
       window.calcToggleInfraction = function (el) {
         el.classList.toggle('is-selected');
         el.setAttribute('aria-checked', el.classList.contains('is-selected'));
+        // deselect "none" quando uma infração real é marcada
+        if (el.classList.contains('is-selected')) {
+          var noneEl = document.getElementById('calc-none-infraction');
+          noneEl.classList.remove('is-selected');
+          noneEl.setAttribute('aria-checked', 'false');
+        }
+        calcUpdate();
+      };
+
+      window.calcToggleNone = function (el) {
+        var wasSelected = el.classList.contains('is-selected');
+        // desmarca todas as infrações reais
+        document.querySelectorAll('.calc-infraction:not(.calc-infraction--none)').forEach(function (item) {
+          item.classList.remove('is-selected');
+          item.setAttribute('aria-checked', 'false');
+        });
+        el.classList.toggle('is-selected', !wasSelected);
+        el.setAttribute('aria-checked', String(!wasSelected));
         calcUpdate();
       };
     })();
