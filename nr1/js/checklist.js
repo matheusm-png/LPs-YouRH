@@ -187,7 +187,10 @@
     resultEl.classList.add('checklist-result--' + level.type, 'is-visible');
 
     if (titleEl) titleEl.textContent = level.title;
-    if (ctaEl)   { ctaEl.textContent = level.cta; ctaEl.href = '#form'; }
+    if (ctaEl) {
+      ctaEl.textContent = level.cta;
+      ctaEl.href = '#form';
+    }
 
     // Gaps específicos
     if (gapsEl) {
@@ -206,10 +209,28 @@
     });
   }
 
+  function bindCtaPopup() {
+    var ctaEl = document.getElementById('checklist-result-cta');
+    if (!ctaEl) return;
+    ctaEl.addEventListener('click', function (e) {
+      var total = allCheckboxes().length || 10;
+      var checked = Array.from(allCheckboxes()).filter(function (cb) { return cb.checked; }).length;
+      if (checked === 0) return; // resultado ainda não visível
+      e.preventDefault();
+      var level = getRiskLevel(checked);
+      window.YouRHPopup && window.YouRHPopup.open('diagnostico', {
+        nivel_risco:   level ? level.type : '',
+        total_marcado: checked,
+        total_itens:   total,
+      });
+    });
+  }
+
   function init() {
     var checklistEl = document.getElementById('checklist');
     if (!checklistEl) return;
     bindCheckboxes();
+    bindCtaPopup();
     updateProgress(0);
   }
 

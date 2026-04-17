@@ -717,7 +717,7 @@
                 Atenção: o histórico de autuações pode levar o auditor a classificar o caso como má-fé ou resistência, aumentando significativamente o valor final da penalidade.
               </div>
 
-              <a href="#form" class="btn btn--primary btn--full">
+              <a href="#form" class="btn btn--primary btn--full" id="calc-cta-btn">
                 Quero me adequar antes do prazo →
               </a>
 
@@ -1557,11 +1557,69 @@
     })();
   </script>
 
+  <!-- POPUP DE OBRIGADO -->
+  <div id="obrigado-modal" class="omodal" hidden aria-hidden="true" aria-modal="true" role="dialog" aria-labelledby="omodal-title" tabindex="-1">
+    <div class="omodal__dialog" tabindex="-1">
+
+      <button class="omodal-close" aria-label="Fechar">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="omodal-icon" aria-hidden="true">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+          <path d="M8 20l9 9 15-15" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <span class="omodal-badge">
+        <svg width="8" height="8" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="3" fill="currentColor"/></svg>
+        <span class="omodal-badge-text">Concluído</span>
+      </span>
+
+      <h2 class="omodal-title" id="omodal-title">Obrigado!</h2>
+      <p class="omodal-desc">Um especialista YouRH vai entrar em contato em breve.</p>
+
+      <div class="omodal-divider" aria-hidden="true"></div>
+
+      <div class="omodal-steps" aria-label="Próximos passos"></div>
+
+      <a href="#form" class="btn btn--primary btn--full omodal-cta">Falar com especialista</a>
+
+    </div>
+  </div>
+  <!-- FIM POPUP DE OBRIGADO -->
+
   <!-- Scripts -->
+  <script src="js/popup.js" defer></script>
   <script src="js/countdown.js" defer></script>
   <script src="js/checklist.js" defer></script>
   <script src="js/form.js" defer></script>
   <script src="js/main.js" defer></script>
+
+  <!-- Evento: CTA da calculadora abre popup -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var calcCta = document.getElementById('calc-cta-btn');
+      if (calcCta) {
+        calcCta.addEventListener('click', function (e) {
+          var selected = document.querySelectorAll('.calc-infraction:not(.calc-infraction--none).is-selected');
+          var noneSelected = document.getElementById('calc-none-infraction').classList.contains('is-selected');
+          if (selected.length > 0 || noneSelected) {
+            e.preventDefault();
+            var totalEl = document.getElementById('calc-r-total');
+            var nivelEl = document.getElementById('calc-r-nivel');
+            window.YouRHPopup && window.YouRHPopup.open('calculadora', {
+              total_estimado: totalEl ? totalEl.textContent : '',
+              nivel_risco:    nivelEl ? nivelEl.textContent : '',
+              num_infracoes:  selected.length,
+            });
+          }
+        });
+      }
+    });
+  </script>
 
 </body>
 </html>

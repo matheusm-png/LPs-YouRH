@@ -16,7 +16,6 @@
     return params.get('utm_source') || params.get('utm_medium') || 'Direto';
   }
 
-  var OBRIGADO_URL = 'https://lp.yourh.com.br/nr1/obrigado.html';
 
   // ── VALIDADORES ─────────────────────────────────────────────────
   var validators = {
@@ -146,7 +145,7 @@
 
   // ── GTM + META PIXEL ─────────────────────────────────────────────
   function fireEvents(data) {
-    // GTM: evento lead_form_submit disparado aqui
+    // GTM: evento lead_form_submit
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event:               'lead_form_submit',
@@ -155,8 +154,10 @@
       numero_funcionarios: data.funcionarios,
     });
 
-    // Meta Pixel: Lead NÃO disparado aqui — disparado no obrigado.html via PageView
-    // Isso evita duplo disparo. O obrigado.html é a fonte de verdade do evento Lead.
+    // Meta Pixel: Lead — disparado aqui pois não há mais redirect para obrigado.html
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead');
+    }
 
     // Evento customizado para outras integrações
     window.dispatchEvent(new CustomEvent('lead_form_submit', {
@@ -248,7 +249,13 @@
         .then(function (res) {
           if (res.ok || res.status === 200 || res.status === 201) {
             fireEvents(data);
-            window.location.href = OBRIGADO_URL;
+            window.YouRHPopup && window.YouRHPopup.open('formulario', {
+              cargo:               data.cargo,
+              empresa:             data.empresa,
+              numero_funcionarios: data.funcionarios,
+            });
+            hideLoading(submitBtn);
+            form.reset();
           } else {
             throw new Error('Status ' + res.status);
           }
