@@ -90,6 +90,15 @@
       border-radius: 16px;
       padding: 20px 16px 16px;
       text-align: center;
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease;
+      will-change: transform;
+    }
+    .tool-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 36px rgba(0,0,0,0.09);
+    }
+    .tool-box--result:hover {
+      box-shadow: 0 14px 36px rgba(198, 40, 40, 0.13);
     }
     .tool-box__eyebrow {
       font-size: 10px;
@@ -131,8 +140,8 @@
       gap: 4px;
     }
     .tool-connector__x {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       background: #FFCDD2;
       border-radius: 50%;
       display: flex;
@@ -141,21 +150,42 @@
       color: #C62828;
       font-size: 9px;
       font-weight: 800;
+      animation: errorPulse 2.4s ease-in-out infinite;
+      flex-shrink: 0;
     }
+    .tool-connector:nth-child(2) .tool-connector__x { animation-delay: 0s; }
+    .tool-connector:nth-child(4) .tool-connector__x { animation-delay: 0.8s; }
+    .tool-connector:nth-child(6) .tool-connector__x { animation-delay: 1.6s; }
     .tool-connector__line {
-      width: 100%;
+      flex: 1;
       height: 1px;
-      background: var(--color-border);
+      background: linear-gradient(90deg, transparent, var(--color-border), transparent);
     }
     .rotina-callout {
       background: var(--color-cream);
       border-radius: 16px;
-      border-left: 4px solid #FF6B6B;
+      border-left: 4px solid transparent;
+      background-image: linear-gradient(var(--color-cream), var(--color-cream)),
+                        linear-gradient(180deg, #FF6B6B, #FF4444, #FF6B6B);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
       padding: 20px 24px;
       font-size: 15px;
       color: var(--color-text-muted);
       font-style: italic;
       line-height: 1.6;
+      position: relative;
+      overflow: hidden;
+    }
+    .rotina-callout::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #FF6B6B 0%, #FF4444 50%, #FF6B6B 100%);
+      background-size: 100% 200%;
+      animation: gradientShift 3s ease infinite;
+      border-radius: 4px 0 0 4px;
     }
     .rotina-callout strong {
       color: var(--color-text);
@@ -176,6 +206,13 @@
       border-radius: 20px;
       padding: 24px 20px 20px;
       margin: 0;
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+      will-change: transform;
+    }
+    .checklist-stage:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(61, 0, 140, 0.09);
+      border-color: rgba(61, 0, 140, 0.22);
     }
     .checklist-stage legend {
       font-family: var(--font-headline);
@@ -192,8 +229,8 @@
     }
     .stage-num {
       flex-shrink: 0;
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       background: var(--color-purple);
       color: white;
       border-radius: 50%;
@@ -202,6 +239,12 @@
       justify-content: center;
       font-size: 11px;
       font-weight: 700;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+      box-shadow: 0 2px 8px rgba(61, 0, 140, 0.25);
+    }
+    .checklist-stage:hover .stage-num {
+      transform: scale(1.18);
+      box-shadow: 0 4px 16px rgba(61, 0, 140, 0.4);
     }
     .pipeline-arrow {
       display: flex;
@@ -209,9 +252,15 @@
       align-items: center;
       justify-content: flex-start;
       padding-top: 52px;
-      gap: 4px;
+      gap: 6px;
       color: var(--color-green);
     }
+    .pipeline-arrow svg path {
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: flowDash 1.6s ease-in-out infinite;
+    }
+    .pipeline-arrow:nth-of-type(2) svg path { animation-delay: 0.4s; }
     .pipeline-arrow__label {
       font-size: 9px;
       font-weight: 700;
@@ -221,6 +270,7 @@
       text-align: center;
       line-height: 1.3;
       white-space: nowrap;
+      opacity: 0.85;
     }
 
     @media (max-width: 900px) {
@@ -269,14 +319,25 @@
     .comp-col {
       border-radius: 24px;
       padding: 32px 28px;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+      will-change: transform;
     }
     .comp-col--before {
       background: #FFF5F5;
       border: 1.5px solid #FFCDD2;
     }
+    .comp-col--before:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(198, 40, 40, 0.08);
+    }
     .comp-col--after {
       background: #E8FFF2;
       border: 1.5px solid #A5D6A7;
+      animation: borderGlow 3.5s ease-in-out infinite;
+    }
+    .comp-col--after:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(0, 200, 83, 0.18) !important;
     }
     .comp-col__header {
       display: flex;
@@ -300,14 +361,6 @@
       flex-direction: column;
       gap: 14px;
     }
-    .comp-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--color-text-muted);
-      line-height: 1.5;
-    }
     .comp-item__icon {
       flex-shrink: 0;
       width: 20px;
@@ -322,6 +375,33 @@
     }
     .comp-item__icon--x   { background: #FFCDD2; color: #C62828; }
     .comp-item__icon--ok  { background: var(--color-green); color: white; }
+    .comp-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+      transition: transform 0.2s ease;
+    }
+    .comp-item:hover {
+      transform: translateX(3px);
+    }
+    .comp-col--before .comp-item:hover {
+      transform: translateX(-3px);
+    }
+    .comp-item__icon--ok {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .comp-item:hover .comp-item__icon--ok {
+      transform: scale(1.25);
+    }
+    .comp-item__icon--x {
+      transition: transform 0.2s ease;
+    }
+    .comp-item:hover .comp-item__icon--x {
+      animation: shake 0.35s ease;
+    }
     .comp-vs {
       display: flex;
       align-items: flex-start;
@@ -329,8 +409,8 @@
       padding-top: 80px;
     }
     .vs-circle {
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       background: var(--color-purple);
       color: white;
       border-radius: 50%;
@@ -340,6 +420,12 @@
       font-family: var(--font-headline);
       font-size: 12px;
       font-weight: 800;
+      box-shadow: 0 0 0 6px rgba(61, 0, 140, 0.12), 0 4px 20px rgba(61, 0, 140, 0.3);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .comparison-wrap:hover .vs-circle {
+      transform: scale(1.12) rotate(6deg);
+      box-shadow: 0 0 0 10px rgba(61, 0, 140, 0.1), 0 8px 30px rgba(61, 0, 140, 0.35);
     }
     @media (max-width: 768px) {
       .comparison-wrap { grid-template-columns: 1fr; gap: 16px; }
@@ -485,6 +571,203 @@
     .testimonial-name span {
       font-size: 12px;
       color: rgba(255,255,255,0.55);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       REDESIGN: CHECKLIST — dark glass
+       ══════════════════════════════════════════════════════ */
+
+    .section-checklist {
+      background: #0D0A20 !important;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-checklist::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 45% at 8% 65%, rgba(61,0,140,0.4) 0%, transparent 100%),
+        radial-gradient(ellipse 40% 40% at 92% 15%, rgba(0,200,83,0.08) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .section-checklist .container { position: relative; z-index: 1; }
+    .section-checklist .section-label {
+      background: rgba(0,200,83,0.12) !important;
+      color: #4ADE80 !important;
+      border-color: rgba(0,200,83,0.28) !important;
+    }
+    .section-checklist .section-title  { color: #ffffff !important; }
+    .section-checklist .section-subtitle { color: rgba(255,255,255,0.52) !important; }
+    .section-checklist .checklist-wrapper {
+      background: rgba(255,255,255,0.04) !important;
+      border: 1px solid rgba(255,255,255,0.08) !important;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.07) !important;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .section-checklist .checklist-stage {
+      background: rgba(255,255,255,0.04) !important;
+      border-color: rgba(255,255,255,0.1) !important;
+    }
+    .section-checklist .checklist-stage:hover {
+      background: rgba(255,255,255,0.075) !important;
+      border-color: rgba(255,255,255,0.2) !important;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.45) !important;
+    }
+    .section-checklist .checklist-stage legend {
+      color: rgba(255,255,255,0.92) !important;
+      border-bottom-color: rgba(255,255,255,0.08) !important;
+    }
+    .section-checklist .checklist-item:hover {
+      background: rgba(255,255,255,0.05) !important;
+    }
+    .section-checklist .checklist-item__box {
+      border-color: rgba(255,255,255,0.22) !important;
+      background: rgba(255,255,255,0.05) !important;
+    }
+    .section-checklist .checklist-item__text { color: rgba(255,255,255,0.68) !important; }
+    .section-checklist .checklist-item__text strong { color: rgba(255,255,255,0.95) !important; }
+    .section-checklist .checklist-item.is-checked .checklist-item__text { color: rgba(255,255,255,0.35) !important; }
+    .section-checklist .checklist-progress { border-top-color: rgba(255,255,255,0.08) !important; }
+    .section-checklist .checklist-progress__label { color: rgba(255,255,255,0.45) !important; }
+    .section-checklist .checklist-progress__count { color: #4ADE80 !important; }
+    .section-checklist .checklist-progress__bar { background: rgba(255,255,255,0.1) !important; }
+    .section-checklist .stage-num {
+      box-shadow: 0 2px 14px rgba(61,0,140,0.7), 0 0 0 3px rgba(61,0,140,0.25) !important;
+    }
+    .section-checklist .pipeline-arrow { color: #4ADE80 !important; }
+    .section-checklist .pipeline-arrow__label { color: #4ADE80 !important; opacity: 0.8 !important; }
+    /* Result card on dark */
+    .section-checklist .checklist-result {
+      background: rgba(255,255,255,0.06) !important;
+      border-color: rgba(255,255,255,0.12) !important;
+    }
+    .section-checklist .checklist-result__title,
+    .section-checklist .checklist-result__desc { color: rgba(255,255,255,0.85) !important; }
+
+    /* ══════════════════════════════════════════════════════
+       REDESIGN: COMPARISON — editorial split
+       ══════════════════════════════════════════════════════ */
+
+    .comparison-wrap {
+      grid-template-columns: 1fr 64px 1.08fr !important;
+      align-items: stretch !important;
+    }
+    /* "Before" — broken red world with diagonal pattern */
+    .comp-col--before {
+      background: #F9EDED !important;
+      border: none !important;
+      box-shadow: inset 0 0 0 1px rgba(198,40,40,0.12) !important;
+      position: relative;
+      overflow: hidden;
+    }
+    .comp-col--before::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent 0px, transparent 20px,
+        rgba(198,40,40,0.04) 20px, rgba(198,40,40,0.04) 21px
+      );
+      pointer-events: none;
+      border-radius: inherit;
+    }
+    .comp-col--before .comp-col__header {
+      border-bottom-color: rgba(198,40,40,0.1) !important;
+    }
+    /* "After" — clean green world */
+    .comp-col--after {
+      background: #EAF8F1 !important;
+      border: 1.5px solid rgba(0,200,83,0.32) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        inset 0 -1px 0 rgba(0,200,83,0.08),
+        0 0 0 0 rgba(0,200,83,0.1) !important;
+    }
+    /* Bigger list items in comparison */
+    .comp-item {
+      font-size: 15px !important;
+      gap: 12px !important;
+      line-height: 1.55 !important;
+    }
+    .comp-item__icon {
+      width: 22px !important;
+      height: 22px !important;
+      font-size: 11px !important;
+      margin-top: 2px !important;
+    }
+    .comp-col__title { font-size: 19px !important; }
+    /* VS upgrade */
+    .comp-vs { padding-top: 92px !important; }
+    .vs-circle {
+      width: 52px !important;
+      height: 52px !important;
+      font-size: 13px !important;
+      box-shadow:
+        0 0 0 8px rgba(61,0,140,0.1),
+        0 0 0 16px rgba(61,0,140,0.05),
+        0 8px 28px rgba(61,0,140,0.4) !important;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       REDESIGN: SOLUTION — pipeline timeline
+       ══════════════════════════════════════════════════════ */
+
+    .journey-connector {
+      position: relative;
+    }
+    /* Glowing line behind each connector arrow */
+    .journey-connector::before {
+      content: '';
+      position: absolute;
+      top: calc(56px + 10px);
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg,
+        rgba(61,0,140,0.25),
+        rgba(0,200,83,0.8),
+        rgba(61,0,140,0.25)
+      );
+      border-radius: 2px;
+      box-shadow: 0 0 8px rgba(0,200,83,0.4);
+    }
+    .journey-connector svg {
+      position: relative;
+      z-index: 1;
+      background: var(--color-cream);
+      padding: 2px;
+      border-radius: 4px;
+    }
+    /* Solution cards — richer shadow depth */
+    .solution-card {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.04) !important;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease !important;
+    }
+    .solution-card:hover {
+      transform: translateY(-8px) !important;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.14), 0 4px 12px rgba(0,0,0,0.06) !important;
+    }
+    .solution-card--featured {
+      box-shadow: 0 8px 40px rgba(61,0,140,0.35), 0 2px 8px rgba(61,0,140,0.2) !important;
+    }
+    .solution-card--featured:hover {
+      box-shadow: 0 28px 72px rgba(61,0,140,0.45), 0 4px 16px rgba(61,0,140,0.25) !important;
+    }
+
+    @media (max-width: 900px) {
+      .journey-connector::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      .comparison-wrap {
+        grid-template-columns: 1fr !important;
+        align-items: start !important;
+        gap: 16px !important;
+      }
+      .comp-vs { display: none; }
     }
   </style>
 
@@ -676,46 +959,46 @@
         </div>
 
         <!-- Diagrama visual das ferramentas desconectadas -->
-        <div class="tools-flow-wrap animate-on-scroll" role="img" aria-label="Diagrama mostrando quatro ferramentas desconectadas: R&S, AVD, T&D e planilha de resultados">
+        <div class="tools-flow-wrap" role="img" aria-label="Diagrama mostrando quatro ferramentas desconectadas: R&S, AVD, T&D e planilha de resultados">
           <div class="tools-flow">
 
-            <div class="tool-box">
+            <div class="tool-box animate-on-scroll delay-100">
               <span class="tool-box__eyebrow">Ferramenta A</span>
               <p class="tool-box__title">Recrutamento &amp; Seleção</p>
               <p class="tool-box__desc">Vagas, triagem, entrevistas e propostas. Login número 1.</p>
             </div>
 
-            <div class="tool-connector" aria-hidden="true">
+            <div class="tool-connector animate-on-scroll delay-200" aria-hidden="true">
               <div class="tool-connector__line"></div>
               <div class="tool-connector__x">✕</div>
               <div class="tool-connector__line"></div>
             </div>
 
-            <div class="tool-box">
+            <div class="tool-box animate-on-scroll delay-250">
               <span class="tool-box__eyebrow">Ferramenta B</span>
               <p class="tool-box__title">Avaliação de Desempenho</p>
               <p class="tool-box__desc">Ciclos, metas e feedbacks. Login número 2.</p>
             </div>
 
-            <div class="tool-connector" aria-hidden="true">
+            <div class="tool-connector animate-on-scroll delay-300" aria-hidden="true">
               <div class="tool-connector__line"></div>
               <div class="tool-connector__x">✕</div>
               <div class="tool-connector__line"></div>
             </div>
 
-            <div class="tool-box">
+            <div class="tool-box animate-on-scroll delay-400">
               <span class="tool-box__eyebrow">Ferramenta C</span>
               <p class="tool-box__title">Treinamento &amp; Desenvolvimento</p>
               <p class="tool-box__desc">Cursos, trilhas e certificados. Login número 3.</p>
             </div>
 
-            <div class="tool-connector" aria-hidden="true">
+            <div class="tool-connector animate-on-scroll delay-500" aria-hidden="true">
               <div class="tool-connector__line"></div>
               <div class="tool-connector__x">✕</div>
               <div class="tool-connector__line"></div>
             </div>
 
-            <div class="tool-box tool-box--result">
+            <div class="tool-box tool-box--result animate-on-scroll delay-600">
               <span class="tool-box__eyebrow">E então...</span>
               <p class="tool-box__title">A planilha de resultados</p>
               <p class="tool-box__desc">Para copiar tudo e tentar enxergar o colaborador completo.</p>
@@ -754,7 +1037,7 @@
             <div class="checklist-pipeline">
 
               <!-- Estágio 1: R&S -->
-              <fieldset class="checklist-group checklist-stage" data-group="grupo1">
+              <fieldset class="checklist-group checklist-stage animate-on-scroll from-left delay-100" data-group="grupo1">
                 <legend class="checklist-group__title">
                   <span class="stage-num" aria-hidden="true">01</span>
                   Recrutamento &amp; Seleção
@@ -792,7 +1075,7 @@
               </fieldset>
 
               <!-- Conector R&S → AVD -->
-              <div class="pipeline-arrow" aria-hidden="true">
+              <div class="pipeline-arrow animate-on-scroll delay-200" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -800,7 +1083,7 @@
               </div>
 
               <!-- Estágio 2: AVD -->
-              <fieldset class="checklist-group checklist-stage" data-group="grupo2">
+              <fieldset class="checklist-group checklist-stage animate-on-scroll delay-300" data-group="grupo2">
                 <legend class="checklist-group__title">
                   <span class="stage-num" aria-hidden="true">02</span>
                   Avaliação de Desempenho
@@ -838,7 +1121,7 @@
               </fieldset>
 
               <!-- Conector AVD → T&D -->
-              <div class="pipeline-arrow" aria-hidden="true">
+              <div class="pipeline-arrow animate-on-scroll delay-400" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -846,7 +1129,7 @@
               </div>
 
               <!-- Estágio 3: T&D -->
-              <fieldset class="checklist-group checklist-stage" data-group="grupo3">
+              <fieldset class="checklist-group checklist-stage animate-on-scroll from-right delay-500" data-group="grupo3">
                 <legend class="checklist-group__title">
                   <span class="stage-num" aria-hidden="true">03</span>
                   Treinamento &amp; Desenvolvimento
@@ -934,9 +1217,9 @@
           </p>
         </div>
 
-        <div class="comparison-wrap animate-on-scroll">
+        <div class="comparison-wrap">
 
-          <div class="comp-col comp-col--before">
+          <div class="comp-col comp-col--before animate-on-scroll from-left">
             <div class="comp-col__header">
               <span style="font-size:22px;" aria-hidden="true">😓</span>
               <span class="comp-col__title">Gestão fragmentada</span>
@@ -965,11 +1248,11 @@
             </ul>
           </div>
 
-          <div class="comp-vs" aria-hidden="true">
+          <div class="comp-vs animate-on-scroll delay-200" aria-hidden="true">
             <div class="vs-circle">VS</div>
           </div>
 
-          <div class="comp-col comp-col--after">
+          <div class="comp-col comp-col--after animate-on-scroll from-right delay-100">
             <div class="comp-col__header">
               <span style="font-size:22px;" aria-hidden="true">🚀</span>
               <span class="comp-col__title">YouRH 360°</span>

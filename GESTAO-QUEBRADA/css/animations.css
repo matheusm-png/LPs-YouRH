@@ -86,6 +86,51 @@
   50%       { transform: translateY(-8px); }
 }
 
+@keyframes bounceIn {
+  0%   { opacity: 0; transform: scale(0.4) rotate(-8deg); }
+  60%  { opacity: 1; transform: scale(1.1) rotate(2deg); }
+  80%  { transform: scale(0.95) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes popIn {
+  0%   { opacity: 0; transform: scale(0); }
+  60%  { transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes errorPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(198, 40, 40, 0); }
+  50%       { box-shadow: 0 0 0 6px rgba(198, 40, 40, 0.18); }
+}
+
+@keyframes flowDash {
+  0%   { stroke-dashoffset: 48; opacity: 0.35; }
+  50%  { opacity: 1; }
+  100% { stroke-dashoffset: -48; opacity: 0.35; }
+}
+
+@keyframes borderGlow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(0, 200, 83, 0.05), 0 1px 3px rgba(0,0,0,0.04); }
+  50%       { box-shadow: 0 8px 48px rgba(0, 200, 83, 0.18), 0 1px 3px rgba(0,0,0,0.04); }
+}
+
+@keyframes vsEntrance {
+  0%   { opacity: 0; transform: scale(0) rotate(-180deg); }
+  65%  { transform: scale(1.18) rotate(8deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes shimmerSweep {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes connectorPop {
+  0%   { opacity: 0; transform: scaleX(0); }
+  100% { opacity: 1; transform: scaleX(1); }
+}
+
 /* ── Estado inicial para animações por scroll ────────────────── */
 
 .animate-on-scroll {
