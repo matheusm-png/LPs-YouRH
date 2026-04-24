@@ -635,10 +635,9 @@
       var tb = document.getElementById('calc-body');
       tb.innerHTML = '';
       document.getElementById('calc-year').textContent = S.year;
-      var acum = 0, thi = 0, thf = 0, thm = 0, hmN = 0, td = 0, any = false;
+      var thi = 0, thf = 0, thm = 0, hmN = 0, td = 0, any = false;
 
       mon.forEach(function (m, i) {
-        acum += m.tx;
         thi += m.hi; thf += m.hf; td += m.desl;
         if (m.hm > 0) { thm += m.hm; hmN++; }
         if (m.hi > 0 || m.hf > 0 || m.desl > 0) any = true;
@@ -666,15 +665,16 @@
     /* ── Render dashboard ───────────────────────────────────── */
     function renderDash(mon) {
       var ar = areas(), mot = motivos();
-      var acum = 0, td = 0, thm = 0, hmN = 0, any = false;
+      var td = 0, thm = 0, hmN = 0, any = false;
       mon.forEach(function (m) {
-        acum += m.tx; td += m.desl;
+        td += m.desl;
         if (m.hm > 0) { thm += m.hm; hmN++; }
         if (m.hi > 0 || m.desl > 0) any = true;
       });
       var ahm = hmN > 0 ? thm / hmN : 0;
+      var ttx = ahm > 0 ? td / ahm : 0;
 
-      document.getElementById('k-taxa').textContent = any ? pct(acum) : '—';
+      document.getElementById('k-taxa').textContent = any ? pct(ttx) : '—';
       document.getElementById('k-desl').textContent = any ? td : '—';
       document.getElementById('k-hm').textContent   = any ? n1(ahm) : '—';
 
@@ -682,8 +682,8 @@
       var ksub = document.getElementById('k-status-sub');
       ks.className = 'kpi__badge';
       if (!any) { ks.textContent = '—'; ks.classList.add('s-empty'); ksub.textContent = 'sem dados'; }
-      else if (acum < 0.10) { ks.textContent = 'Saudável'; ks.classList.add('s-ok'); ksub.textContent = 'Abaixo de 10%'; }
-      else if (acum < 0.20) { ks.textContent = 'Atenção';  ks.classList.add('s-warn'); ksub.textContent = 'Entre 10% e 20%'; }
+      else if (ttx < 0.10) { ks.textContent = 'Saudável'; ks.classList.add('s-ok'); ksub.textContent = 'Abaixo de 10%'; }
+      else if (ttx < 0.20) { ks.textContent = 'Atenção';  ks.classList.add('s-warn'); ksub.textContent = 'Entre 10% e 20%'; }
       else { ks.textContent = 'Crítico'; ks.classList.add('s-crit'); ksub.textContent = 'Acima de 20%'; }
 
       /* Monthly bars */
@@ -735,8 +735,8 @@
       if (!any) {
         cards.push({ t: 'i', lbl: 'Como usar', title: 'Cadastre seus colaboradores', body: 'Vá até a aba Base de Dados e cadastre sua equipe para gerar os insights automáticos.' });
       } else {
-        if (acum >= 0.20) cards.push({ t: 'd', lbl: 'Alerta Crítico', title: 'Turnover acima de 20%', body: 'Sua taxa está em nível crítico. Isso gera custos elevados de contratação, perda de conhecimento e queda de produtividade. Implemente um plano de retenção urgente.' });
-        else if (acum >= 0.10) cards.push({ t: 'w', lbl: 'Atenção', title: 'Turnover entre 10% e 20%', body: 'Zona de atenção. Antes de virar problema estrutural, invista em pesquisas de clima, 1:1s com líderes e revisão de benefícios.' });
+        if (ttx >= 0.20) cards.push({ t: 'd', lbl: 'Alerta Crítico', title: 'Turnover acima de 20%', body: 'Sua taxa está em nível crítico. Isso gera custos elevados de contratação, perda de conhecimento e queda de produtividade. Implemente um plano de retenção urgente.' });
+        else if (ttx >= 0.10) cards.push({ t: 'w', lbl: 'Atenção', title: 'Turnover entre 10% e 20%', body: 'Zona de atenção. Antes de virar problema estrutural, invista em pesquisas de clima, 1:1s com líderes e revisão de benefícios.' });
         else cards.push({ t: 'g', lbl: 'Resultado Positivo', title: 'Turnover saudável (abaixo de 10%)', body: 'Parabéns! Mantenha o monitoramento mensal e continue investindo em cultura e desenvolvimento.' });
 
         if (ar.length) {
