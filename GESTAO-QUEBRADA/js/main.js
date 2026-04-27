@@ -11,6 +11,11 @@
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: 'pageview' });
 
+  // Performance: Mostrar elementos ocultos para evitar FOUC
+  document.querySelectorAll('.no-fouc').forEach(function(el) { el.classList.remove('no-fouc'); });
+  var hiddenGeos = document.querySelectorAll('.glass-crack-overlay, .hero__geo');
+  hiddenGeos.forEach(function(el) { el.style.visibility = 'visible'; });
+
   // ── INTERSECTION OBSERVER — Animações de scroll ───────────────
 
   function initScrollAnimations() {
