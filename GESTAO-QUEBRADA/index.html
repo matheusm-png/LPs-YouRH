@@ -35,8 +35,9 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
 
-  <!-- Estilos base — NÃO ALTERAR -->
-  <link rel="stylesheet" href="css/main.css" />
+  <!-- Bundle consolidado de CSS -->
+  <link rel="preload" as="style" href="css/bundle.css" />
+  <link rel="stylesheet" href="css/bundle.css" />
 
   <!-- Estilos específicos desta LP -->
   <style>
@@ -784,12 +785,16 @@
        INTEGRAÇÕES DE RASTREAMENTO — ver GUIA_IA.md para detalhes
        ═══════════════════════════════════════════════════════════════ -->
 
-  <!-- Google Tag Manager — ID fixo YouRH, NÃO ALTERAR -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-NC7RBWD');</script>
+  <!-- Google Tag Manager — Carregamento otimizado -->
+  <script>
+    window.addEventListener('load', function() {
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NC7RBWD');
+    });
+  </script>
 
 </head>
 <body>
@@ -805,7 +810,7 @@
     <div class="container">
       <div class="header__inner">
         <a href="#hero" class="logo" aria-label="YouRH - página inicial">
-          <img src="assets/logo-dark.svg" alt="YouRH" width="187" height="32" />
+          <img src="assets/logo-dark.svg" alt="YouRH" width="187" height="32" fetchpriority="high" />
         </a>
         <nav class="nav" aria-label="Navegação principal">
           <a href="#problema"   class="nav__link">O problema</a>

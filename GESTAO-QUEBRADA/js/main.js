@@ -221,22 +221,33 @@
     function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
 
     function render(p) {
-      overlay.style.opacity = p > 0 ? 1 : 0;
-      if (p <= 0) return;
+      // Usar opacidade apenas se necessário
+      if (p <= 0) {
+        if (overlay.style.opacity !== '0') overlay.style.opacity = '0';
+        return;
+      }
+      if (overlay.style.opacity !== '1') overlay.style.opacity = '1';
 
       if (impact) {
         var ip = Math.min(1, p * 5);
-        impact.style.opacity = ip < 0.6 ? ip / 0.6 : Math.max(0, 1 - (ip - 0.6) / 0.4);
+        var impactOpacity = ip < 0.6 ? ip / 0.6 : Math.max(0, 1 - (ip - 0.6) / 0.4);
+        impact.style.opacity = impactOpacity;
       }
 
-      lines.forEach(function (line) {
-        var d  = line._delay;
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
+        var d = line._len_data_delay || parseFloat(line.getAttribute('data-delay') || 0);
+        line._len_data_delay = d; // Cache do delay
+
         var lp = d >= 1 ? 0 : Math.max(0, Math.min(1, (p - d) / (1 - d)));
-        line.style.strokeDashoffset = line._len * (1 - easeOut(lp));
-      });
+        var offset = line._len * (1 - easeOut(lp));
+        line.style.strokeDashoffset = offset;
+      }
 
       var sp = Math.max(0, Math.min(1, (p - 0.45) / 0.55));
-      shards.forEach(function (s) { s.style.opacity = sp; });
+      for (var j = 0; j < shards.length; j++) {
+        shards[j].style.opacity = sp;
+      }
     }
 
     function lockScroll() {
