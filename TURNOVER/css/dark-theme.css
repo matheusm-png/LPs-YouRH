@@ -273,6 +273,14 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-green);
 }
 
+.gaps-group__label {
+  color: #1A1A1A;
+}
+
+.gaps-item {
+  color: #3A3A4A;
+}
+
 /* ── Section Conteúdo ─────────────────────────────────────── */
 
 .section-content {
