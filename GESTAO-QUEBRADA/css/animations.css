@@ -105,9 +105,9 @@
 }
 
 @keyframes flowDash {
-  0%   { stroke-dashoffset: 48; opacity: 0.35; }
+  0%   { stroke-dashoffset: 26; opacity: 0.35; }
   50%  { opacity: 1; }
-  100% { stroke-dashoffset: -48; opacity: 0.35; }
+  100% { stroke-dashoffset: -26; opacity: 0.35; }
 }
 
 @keyframes borderGlow {

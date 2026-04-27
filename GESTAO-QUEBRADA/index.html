@@ -256,8 +256,8 @@
       color: var(--color-green);
     }
     .pipeline-arrow svg path {
-      stroke-dasharray: 48;
-      stroke-dashoffset: 48;
+      stroke-dasharray: 26;
+      stroke-dashoffset: 26;
       animation: flowDash 1.6s ease-in-out infinite;
     }
     .pipeline-arrow:nth-of-type(2) svg path { animation-delay: 0.4s; }
@@ -435,7 +435,7 @@
     /* ── SOLUÇÃO: JORNADA CONECTADA ─────────────────────────────── */
     .journey-steps {
       display: grid;
-      grid-template-columns: 1fr 56px 1fr 56px 1fr;
+      grid-template-columns: 1fr 72px 1fr 72px 1fr;
       align-items: start;
       gap: 0;
       margin-top: 48px;
@@ -446,18 +446,18 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding-top: 56px;
-      gap: 4px;
+      padding-top: 52px;
+      gap: 6px;
     }
     .journey-connector svg { color: var(--color-green); }
     .journey-connector__label {
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--color-green-dark);
       text-align: center;
-      line-height: 1.3;
+      line-height: 1.4;
     }
     .journey-result {
       background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-purple-dark) 100%);
@@ -646,6 +646,13 @@
     }
     .section-checklist .checklist-result__title,
     .section-checklist .checklist-result__desc { color: rgba(255,255,255,0.85) !important; }
+    .section-checklist .gaps-label { color: rgba(255,255,255,0.45) !important; }
+    .section-checklist .gaps-group__label { color: rgba(255,255,255,0.75) !important; font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+    .section-checklist .gaps-item { color: rgba(255,255,255,0.58) !important; font-size: 13px; line-height: 1.5; }
+    .section-checklist .gap-badge--weak { background: rgba(255,80,80,0.18) !important; color: #FFA8A8 !important; border-color: rgba(255,100,100,0.3) !important; }
+    .section-checklist .gap-badge--ok { background: rgba(0,200,83,0.15) !important; color: #4ADE80 !important; border-color: rgba(0,200,83,0.3) !important; }
+    .section-checklist .gaps-desc { color: rgba(255,255,255,0.55) !important; }
+    .section-checklist .gaps-desc--ok { color: #4ADE80 !important; }
 
     /* ══════════════════════════════════════════════════════
        REDESIGN: COMPARISON — editorial split
@@ -1336,7 +1343,7 @@
 
           <!-- Conector 01 → 02 -->
           <div class="journey-connector" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <svg width="32" height="32" viewBox="0 0 22 22" fill="none">
               <path d="M4 11h14M12 5l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <span class="journey-connector__label">perfil<br>integrado</span>
@@ -1375,7 +1382,7 @@
 
           <!-- Conector 02 → 03 -->
           <div class="journey-connector" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <svg width="32" height="32" viewBox="0 0 22 22" fill="none">
               <path d="M4 11h14M12 5l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <span class="journey-connector__label">gaps<br>prescritos</span>
@@ -1529,16 +1536,16 @@
         <div class="content-grid">
 
           <a
-            href="https://blog.yourh.com.br/gestao-integrada-rh"
+            href="https://yourh.com.br/blog/yourh-chega-a-500-mil-usuarios"
             target="_blank"
             rel="noopener noreferrer"
             class="content-card animate-on-scroll delay-100"
-            aria-label="Ler artigo: Por que gestão de RH fragmentada custa caro"
+            aria-label="Ler artigo: YouRH chega a 500 mil usuários"
           >
             <div class="content-card__body">
-              <span class="content-card__tag">Artigo</span>
-              <h3 class="content-card__title">Por que gestão de RH fragmentada custa caro e como sair disso</h3>
-              <p class="content-card__desc">O custo real de operar com ferramentas desconectadas vai muito além das licenças. Veja o impacto nas decisões do dia a dia.</p>
+              <span class="content-card__tag">Cultura Organizacional</span>
+              <h3 class="content-card__title">YouRH chega a 500 mil usuários: o que esse número diz sobre o RH brasileiro</h3>
+              <p class="content-card__desc">Meio milhão de usuários ativos. O que esse marco representa para a gestão de pessoas no Brasil e como o RH está evoluindo.</p>
               <span class="content-card__cta">Ler artigo
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
@@ -1546,16 +1553,16 @@
           </a>
 
           <a
-            href="https://blog.yourh.com.br/avd-treinamento-integrados"
+            href="https://yourh.com.br/blog/o-que-as-melhores-empresas-ja-entenderam-sobre-gente-e-resultado"
             target="_blank"
             rel="noopener noreferrer"
             class="content-card animate-on-scroll delay-200"
-            aria-label="Ler artigo: Quando AVD e T&D falam a mesma língua"
+            aria-label="Ler artigo: O que as melhores empresas já entenderam sobre gente e resultado"
           >
             <div class="content-card__body">
-              <span class="content-card__tag">Artigo</span>
-              <h3 class="content-card__title">Quando AVD e T&amp;D falam a mesma língua: o que muda no desenvolvimento</h3>
-              <p class="content-card__desc">Lacunas identificadas na avaliação que alimentam trilhas de forma automática: como isso funciona e por que transforma o T&D da empresa.</p>
+              <span class="content-card__tag">Gestão de Pessoas</span>
+              <h3 class="content-card__title">O que as melhores empresas já entenderam sobre gente e resultado</h3>
+              <p class="content-card__desc">Empresas top no GPTW Brasil crescem 4x mais que o PIB. Entenda por que investir em pessoas é estratégia, não custo.</p>
               <span class="content-card__cta">Ler artigo
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
@@ -1563,17 +1570,17 @@
           </a>
 
           <a
-            href="https://yourh.com.br/webinar-gestao-360"
+            href="https://yourh.com.br/blog/como-reter-talentos-e-formar-lideraca-com-foco-em-resultado"
             target="_blank"
             rel="noopener noreferrer"
             class="content-card content-card--webinar animate-on-scroll delay-300"
-            aria-label="Webinar: Gestão 360° da jornada do colaborador na prática"
+            aria-label="Ler artigo: Como reter talentos e formar liderança com foco em resultado"
           >
             <div class="content-card__body">
-              <span class="content-card__tag content-card__tag--webinar">Webinar gratuito</span>
-              <h3 class="content-card__title">Gestão 360° da jornada do colaborador, ao vivo com especialistas YouRH</h3>
-              <p class="content-card__desc">Veja empresas reais mostrando como centralizaram R&S, AVD e T&D em uma plataforma e o que mudou na prática para o time de RH.</p>
-              <span class="content-card__cta content-card__cta--green">Garantir minha vaga
+              <span class="content-card__tag content-card__tag--webinar">Gestão de Pessoas</span>
+              <h3 class="content-card__title">Como reter talentos e formar liderança com foco em resultado</h3>
+              <p class="content-card__desc">Equipes estáveis e lideranças preparadas entregam mais performance e menos churn. Guia prático para transformar cultura em vantagem competitiva.</p>
+              <span class="content-card__cta content-card__cta--green">Ler artigo
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
             </div>
