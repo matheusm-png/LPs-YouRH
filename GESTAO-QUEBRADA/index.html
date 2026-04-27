@@ -35,9 +35,26 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
 
-  <!-- Bundle consolidado e minificado de CSS -->
+  <!-- CSS Crítico: Carregamento imediato da dobra superior -->
+  <style>
+    :root {
+      --color-green: #00C853; --color-purple: #3D008C; --color-cream: #F5F0E8; --color-white: #FFFFFF;
+      --font-body: 'Inter', system-ui, sans-serif; --font-headline: 'Bricolage Grotesque', system-ui, sans-serif;
+      --gradient-hero: linear-gradient(135deg, #2A0062 0%, #3D008C 50%, #1A004A 100%);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--font-body);background:var(--color-cream);color:#1A1A1A;line-height:1.6;-webkit-font-smoothing:antialiased}
+    .hero{background:var(--gradient-hero);padding:40px 0;position:relative;overflow:hidden;min-height:80vh;display:flex;align-items:center}
+    .container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
+    .logo img{width:187px;height:32px;display:block}
+    .hero__title{font-family:var(--font-headline);font-size:32px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:24px}
+    .btn--primary{background:linear-gradient(135deg,#00C853 0%,#00A844 100%);color:#fff;padding:16px 24px;border-radius:8px;text-decoration:none;display:inline-flex;font-weight:600}
+  </style>
+
+  <!-- Carregamento Assíncrono do Bundle Completo -->
   <link rel="preload" as="style" href="css/bundle.min.css" />
-  <link rel="stylesheet" href="css/bundle.min.css" />
+  <link rel="stylesheet" href="css/bundle.min.css" media="print" onload="this.media='all'" />
 
   <!-- Estilos específicos desta LP -->
   <style>
@@ -785,15 +802,22 @@
        INTEGRAÇÕES DE RASTREAMENTO — ver GUIA_IA.md para detalhes
        ═══════════════════════════════════════════════════════════════ -->
 
-  <!-- Google Tag Manager — Carregamento otimizado -->
+  <!-- GTM: Carregamento inteligente (espera interação ou 3s) -->
   <script>
-    window.addEventListener('load', function() {
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-NC7RBWD');
-    });
+    (function() {
+      var gtmLoaded = false;
+      function loadGTM() {
+        if (gtmLoaded) return;
+        gtmLoaded = true;
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-NC7RBWD');
+      }
+      window.addEventListener('scroll', loadGTM, {once: true});
+      window.addEventListener('touchstart', loadGTM, {once: true});
+      setTimeout(loadGTM, 3500); // Fallback de 3.5s
+    })();
   </script>
 
 </head>
@@ -1820,7 +1844,7 @@
           <div class="footer__brand-logo">
             <span class="footer__brand-eyebrow">Umentor agora é</span>
             <a href="#hero" aria-label="YouRH - voltar ao topo">
-              <img src="assets/logo.svg" alt="YouRH" height="40" width="auto" />
+              <img src="assets/logo.svg" alt="YouRH" height="40" width="187" />
             </a>
           </div>
           <p class="footer__tagline">Mais que um sistema de RH, um verdadeiro ecossistema para desenvolver PESSOAS!</p>

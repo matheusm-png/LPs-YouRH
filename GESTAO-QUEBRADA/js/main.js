@@ -221,7 +221,6 @@
     function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
 
     function render(p) {
-      // Usar opacidade apenas se necessário
       if (p <= 0) {
         if (overlay.style.opacity !== '0') overlay.style.opacity = '0';
         return;
@@ -234,19 +233,21 @@
         impact.style.opacity = impactOpacity;
       }
 
+      // Batch reads from data attributes once, or use pre-calculated values
       for (var i = 0; i < lines.length; i++) {
         var line = lines[i];
-        var d = line._len_data_delay || parseFloat(line.getAttribute('data-delay') || 0);
-        line._len_data_delay = d; // Cache do delay
-
-        var lp = d >= 1 ? 0 : Math.max(0, Math.min(1, (p - d) / (1 - d)));
-        var offset = line._len * (1 - easeOut(lp));
-        line.style.strokeDashoffset = offset;
+        if (!line._delay) {
+          line._delay = parseFloat(line.getAttribute('data-delay') || 0);
+        }
+        var lp = line._delay >= 1 ? 0 : Math.max(0, Math.min(1, (p - line._delay) / (1 - line._delay)));
+        line.style.strokeDashoffset = line._len * (1 - easeOut(lp));
       }
 
       var sp = Math.max(0, Math.min(1, (p - 0.45) / 0.55));
-      for (var j = 0; j < shards.length; j++) {
-        shards[j].style.opacity = sp;
+      if (shards.length > 0 && shards[0].style.opacity != sp) {
+        for (var j = 0; j < shards.length; j++) {
+          shards[j].style.opacity = sp;
+        }
       }
     }
 
