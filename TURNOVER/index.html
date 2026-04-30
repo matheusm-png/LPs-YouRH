@@ -776,35 +776,35 @@
 
                   <div class="form-group">
                     <input type="text" id="field-nome" class="form-input" data-field="nome"
-                      placeholder="Seu nome completo *" autocomplete="name"
+                      name="name" placeholder="Seu nome completo *" autocomplete="name"
                       aria-required="true" aria-describedby="error-nome" />
                     <span class="form-error" id="error-nome" role="alert"></span>
                   </div>
 
                   <div class="form-group">
                     <input type="email" id="field-email" class="form-input" data-field="email"
-                      placeholder="Seu e-mail corporativo *" autocomplete="email"
+                      name="email" placeholder="Seu e-mail corporativo *" autocomplete="email"
                       aria-required="true" aria-describedby="error-email" />
                     <span class="form-error" id="error-email" role="alert"></span>
                   </div>
 
                   <div class="form-group">
                     <input type="tel" id="field-telefone" class="form-input" data-field="telefone"
-                      placeholder="DDD + Telefone *" autocomplete="tel" inputmode="numeric"
+                      name="mobile_phone" placeholder="DDD + Telefone *" autocomplete="tel" inputmode="numeric"
                       aria-required="true" aria-describedby="error-telefone" />
                     <span class="form-error" id="error-telefone" role="alert"></span>
                   </div>
 
                   <div class="form-group">
                     <input type="text" id="field-empresa" class="form-input" data-field="empresa"
-                      placeholder="Nome da Empresa *" autocomplete="organization"
+                      name="company" placeholder="Nome da Empresa *" autocomplete="organization"
                       aria-required="true" aria-describedby="error-empresa" />
                     <span class="form-error" id="error-empresa" role="alert"></span>
                   </div>
 
                   <div class="form-group">
                     <select id="field-funcionarios" class="form-input form-select" data-field="funcionarios"
-                      aria-required="true" aria-describedby="error-funcionarios">
+                      name="form_fields_qtd_funcionarios" aria-required="true" aria-describedby="error-funcionarios">
                       <option value="" disabled selected>Número de funcionários *</option>
                       <option value="20 - 30">20 - 30</option>
                       <option value="31 - 70">31 - 70</option>
@@ -819,7 +819,7 @@
 
                   <div class="form-group">
                     <select id="field-cargo" class="form-input form-select" data-field="cargo"
-                      aria-required="true" aria-describedby="error-cargo">
+                      name="job_title" aria-required="true" aria-describedby="error-cargo">
                       <option value="" disabled selected>Seu cargo na empresa *</option>
                       <option value="Analista">Analista</option>
                       <option value="Assistente / Auxiliar">Assistente / Auxiliar</option>

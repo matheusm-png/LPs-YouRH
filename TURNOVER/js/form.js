@@ -180,25 +180,30 @@
   function buildRdPayload(data) {
     var utms = _utms;
 
+    // Campos de contato com os nomes técnicos exatos esperados pelo RD Station.
     var payload = {
-      // ⚠️ TODO: altere o conversion_identifier para o nome desta LP
-      // Formato: lp-[slug-da-lp]-yourh
-      conversion_identifier: 'lp-turnover-yourh',
-      name:                data.nome,
-      email:               data.email,
-      mobile_phone:        data.telefone,
-      company_name:        data.empresa,
-      number_of_employees: data.funcionarios,
-      job_title:           data.cargo,
+      conversion_identifier:        'lp-turnover-yourh',
+      conversion_page:              window.location.href,
+      page_title:                   document.title,
+      name:                         data.nome,
+      email:                        data.email,
+      mobile_phone:                 data.telefone,
+      company:                      data.empresa,
+      job_title:                    data.cargo,
+      form_fields_qtd_funcionarios: data.funcionarios,
     };
 
-    // Mapeia cada UTM para o campo correspondente da API do RD Station.
-    // Apenas inclui o campo se o valor estiver presente.
+    // Parâmetros UTM brutos (capturados da URL / localStorage).
+    if (utms.utm_source)   payload.utm_source   = utms.utm_source;
+    if (utms.utm_medium)   payload.utm_medium   = utms.utm_medium;
+    if (utms.utm_campaign) payload.utm_campaign = utms.utm_campaign;
+    if (utms.utm_term)     payload.utm_term     = utms.utm_term;
+    if (utms.utm_content)  payload.utm_content  = utms.utm_content;
+
+    // Campos de tráfego para atribuição interna do RD Station.
     if (utms.utm_source)   payload.traffic_source   = utms.utm_source;
     if (utms.utm_medium)   payload.traffic_medium   = utms.utm_medium;
     if (utms.utm_campaign) payload.traffic_campaign = utms.utm_campaign;
-    if (utms.utm_term)     payload.traffic_value    = utms.utm_term;
-    if (utms.utm_content)  payload.traffic_content  = utms.utm_content;
 
     return payload;
   }
