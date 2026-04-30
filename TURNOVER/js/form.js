@@ -93,6 +93,9 @@
     cargo: function (v) {
       return v !== '' && v !== null;
     },
+    site: function (v) {
+      return v.trim().length >= 2;
+    },
     lgpd: function (v, el) {
       return el ? el.checked : false;
     },
@@ -105,6 +108,7 @@
     empresa:      'Informe o nome da empresa.',
     funcionarios: 'Selecione o número de funcionários.',
     cargo:        'Selecione seu cargo.',
+    site:         'Informe seu site ou rede social.',
     lgpd:         'Você precisa aceitar a Política de Privacidade.',
   };
 
@@ -192,6 +196,8 @@
       job_title:                    data.cargo,
       form_fields_qtd_funcionarios: data.funcionarios,
     };
+
+    if (data.site) payload.site = data.site;
 
     // Parâmetros UTM brutos (capturados da URL / localStorage).
     if (utms.utm_source)   payload.utm_source   = utms.utm_source;
@@ -306,6 +312,7 @@
         return;
       }
 
+      var siteEl = form.querySelector('[name="site"]');
       var data = {
         nome:         form.querySelector('[data-field="nome"]').value.trim(),
         email:        form.querySelector('[data-field="email"]').value.trim(),
@@ -313,6 +320,7 @@
         empresa:      form.querySelector('[data-field="empresa"]').value.trim(),
         funcionarios: form.querySelector('[data-field="funcionarios"]').value,
         cargo:        form.querySelector('[data-field="cargo"]').value,
+        site:         siteEl ? siteEl.value.trim() : '',
       };
 
       var submitBtn = form.querySelector('.form-submit-btn');

@@ -837,7 +837,9 @@
 
                   <div class="form-group">
                     <input type="text" id="field-site" class="form-input" data-field="site"
-                      name="site" placeholder="Seu site ou rede social" autocomplete="url" />
+                      name="site" placeholder="Seu site ou rede social *" autocomplete="url"
+                      aria-required="true" aria-describedby="error-site" />
+                    <span class="form-error" id="error-site" role="alert"></span>
                   </div>
 
                   <input type="hidden" name="utm_source"          id="utm_source">
