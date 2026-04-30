@@ -790,7 +790,7 @@
 
                   <div class="form-group">
                     <input type="tel" id="field-telefone" class="form-input" data-field="telefone"
-                      name="mobile_phone" placeholder="DDD + Telefone *" autocomplete="tel" inputmode="numeric"
+                      name="phone" placeholder="DDD + Telefone *" autocomplete="tel" inputmode="numeric"
                       aria-required="true" aria-describedby="error-telefone" />
                     <span class="form-error" id="error-telefone" role="alert"></span>
                   </div>
@@ -804,7 +804,7 @@
 
                   <div class="form-group">
                     <select id="field-funcionarios" class="form-input form-select" data-field="funcionarios"
-                      name="form_fields_qtd_funcionarios" aria-required="true" aria-describedby="error-funcionarios">
+                      name="employees" aria-required="true" aria-describedby="error-funcionarios">
                       <option value="" disabled selected>Número de funcionários *</option>
                       <option value="20 - 30">20 - 30</option>
                       <option value="31 - 70">31 - 70</option>
@@ -819,7 +819,7 @@
 
                   <div class="form-group">
                     <select id="field-cargo" class="form-input form-select" data-field="cargo"
-                      name="job_title" aria-required="true" aria-describedby="error-cargo">
+                      name="role" aria-required="true" aria-describedby="error-cargo">
                       <option value="" disabled selected>Seu cargo na empresa *</option>
                       <option value="Analista">Analista</option>
                       <option value="Assistente / Auxiliar">Assistente / Auxiliar</option>
@@ -834,6 +834,18 @@
                     </select>
                     <span class="form-error" id="error-cargo" role="alert"></span>
                   </div>
+
+                  <div class="form-group">
+                    <input type="text" id="field-site" class="form-input" data-field="site"
+                      name="site" placeholder="Seu site ou rede social" autocomplete="url" />
+                  </div>
+
+                  <input type="hidden" name="utm_source"          id="utm_source">
+                  <input type="hidden" name="utm_medium"          id="utm_medium">
+                  <input type="hidden" name="utm_campaign"        id="utm_campaign">
+                  <input type="hidden" name="utm_content"         id="utm_content">
+                  <input type="hidden" name="utm_term"            id="utm_term">
+                  <input type="hidden" name="utm_marketing_tactic" id="utm_marketing_tactic">
 
                   <div class="form-group form-group--checkbox">
                     <label class="form-checkbox-label" id="label-lgpd">
@@ -1053,6 +1065,27 @@
   <script src="js/form.js" defer></script>
   <script src="js/money-rain.js" defer></script>
   <script src="js/main.js" defer></script>
+
+  <script>
+  function getUTM(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+      const utms = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+
+      utms.forEach(function(utm) {
+          const value = getUTM(utm);
+          if (value) {
+              const field = document.getElementById(utm);
+              if (field) {
+                  field.value = value;
+              }
+          }
+      });
+  });
+  </script>
 
 </body>
 </html>
