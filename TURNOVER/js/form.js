@@ -235,15 +235,8 @@
     }
 
     // Submit
-    var _submitting = false;
-
     form.addEventListener('submit', function (e) {
-      // Segunda passagem: submissão nativa liberada para o RD Station capturar
-      if (_submitting) return;
-
-      e.preventDefault();
-
-      // Valida todos os campos
+      // Valida todos os campos — só bloqueia se inválido
       var allValid = true;
       var firstInvalid = null;
       fields.forEach(function (input) {
@@ -256,9 +249,14 @@
       });
 
       if (!allValid) {
+        e.preventDefault(); // Bloqueia apenas quando há erro de validação
         if (firstInvalid) firstInvalid.focus();
         return;
       }
+
+      // Validação OK: injeta UTMs, dispara GTM e deixa o evento fluir.
+      // O RD Station loader captura o submit nativo e o form navega para action.
+      populateHiddenUtmFields(form);
 
       var data = {
         nome:         form.querySelector('[data-field="nome"]').value.trim(),
@@ -269,19 +267,9 @@
         cargo:        form.querySelector('[data-field="cargo"]').value,
       };
 
-      // Garante UTMs mais recentes (localStorage) nos campos hidden antes do envio
-      populateHiddenUtmFields(form);
-
-      showLoading(form.querySelector('.form-submit-btn'));
       fireGtmEvent(data);
-
-      // Submissão nativa: o RD Station loader captura o evento submit
-      _submitting = true;
-      if (form.requestSubmit) {
-        form.requestSubmit();
-      } else {
-        form.submit();
-      }
+      showLoading(form.querySelector('.form-submit-btn'));
+      // Sem preventDefault aqui: form submete nativamente → RD Station captura → redireciona para action
     });
   }
 
