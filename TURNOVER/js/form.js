@@ -190,7 +190,7 @@
 
   // ── INIT ─────────────────────────────────────────────────────────
   function init() {
-    var form = document.getElementById('conversion-form');
+    var form = document.getElementById('lp_turnover_conv');
     if (!form) return;
 
     // Preenche hidden UTMs assim que o DOM carrega (cobre quem chegou com UTMs na URL)
