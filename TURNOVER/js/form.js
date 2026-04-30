@@ -1,26 +1,76 @@
 /**
  * form.js
  * Validação em tempo real, máscara telefone BR,
- * integração RD Station API de Conversões, Meta Pixel Lead event
+ * integração RD Station API de Conversões, Meta Pixel Lead event.
+ *
+ * UTM persistence: lê da URL, salva em localStorage (30 dias),
+ * e reenvia no payload mesmo se o usuário navegou entre páginas.
  */
 
 (function () {
   'use strict';
 
-  // ── CONFIGURAÇÃO — PREENCHER ANTES DE PUBLICAR ───────────────────
+  // ── CONFIGURAÇÃO ─────────────────────────────────────────────────
   var RD_API_URL = 'https://api.rd.services/platform/conversions?api_key=2b4d5177951b2aaefe0b7f838559c2d9';
   // ⚠️ ATENÇÃO: a API key acima é fixa (YouRH). NÃO ALTERAR.
 
-  // Lê UTM params da URL para atribuição correta de origem no RD Station
-  function getUtmSource() {
+  // ⚠️ TODO: altere esta URL para o caminho correto da LP publicada
+  var OBRIGADO_URL = 'https://lp.yourh.com.br/turnover/obrigado.html';
+
+  var UTM_STORAGE_KEY = 'yourh_utm_params';
+  var UTM_EXPIRY_MS   = 30 * 24 * 60 * 60 * 1000; // 30 dias
+
+  // ── UTM PERSISTENCE ──────────────────────────────────────────────
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+
+  function readUtmsFromUrl() {
     var params = new URLSearchParams(window.location.search);
-    return params.get('utm_source') || params.get('utm_medium') || 'Direto';
+    var utms = {};
+    var hasAny = false;
+    UTM_KEYS.forEach(function (k) {
+      var val = params.get(k);
+      if (val && val.trim()) {
+        utms[k] = val.trim().toLowerCase();
+        hasAny = true;
+      }
+    });
+    return hasAny ? utms : null;
   }
 
-  // ⚠️ TODO: altere esta URL para o caminho correto da LP publicada
-  // Formato: https://lp.yourh.com.br/[SLUG-DA-LP]/obrigado.html
-  // Exemplo: https://lp.yourh.com.br/evento-rh/obrigado.html
-  var OBRIGADO_URL = 'https://lp.yourh.com.br/turnover/obrigado.html';
+  function saveUtms(utms) {
+    try {
+      localStorage.setItem(UTM_STORAGE_KEY, JSON.stringify({
+        data:    utms,
+        expires: Date.now() + UTM_EXPIRY_MS,
+      }));
+    } catch (e) {}
+  }
+
+  function loadUtms() {
+    try {
+      var raw = localStorage.getItem(UTM_STORAGE_KEY);
+      if (!raw) return null;
+      var stored = JSON.parse(raw);
+      if (!stored || Date.now() > stored.expires) {
+        localStorage.removeItem(UTM_STORAGE_KEY);
+        return null;
+      }
+      return stored.data || null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // Lê UTMs da URL e persiste; se não há na URL, usa o que está salvo.
+  // Executa imediatamente para capturar antes de qualquer redirect interno.
+  var _utms = (function () {
+    var fromUrl = readUtmsFromUrl();
+    if (fromUrl) {
+      saveUtms(fromUrl);
+      return fromUrl;
+    }
+    return loadUtms() || {};
+  })();
 
   // ── VALIDADORES ─────────────────────────────────────────────────
   var validators = {
@@ -127,6 +177,32 @@
   }
 
   // ── RD STATION API ───────────────────────────────────────────────
+  function buildRdPayload(data) {
+    var utms = _utms;
+
+    var payload = {
+      // ⚠️ TODO: altere o conversion_identifier para o nome desta LP
+      // Formato: lp-[slug-da-lp]-yourh
+      conversion_identifier: 'lp-turnover-yourh',
+      name:                data.nome,
+      email:               data.email,
+      mobile_phone:        data.telefone,
+      company_name:        data.empresa,
+      number_of_employees: data.funcionarios,
+      job_title:           data.cargo,
+    };
+
+    // Mapeia cada UTM para o campo correspondente da API do RD Station.
+    // Apenas inclui o campo se o valor estiver presente.
+    if (utms.utm_source)   payload.traffic_source   = utms.utm_source;
+    if (utms.utm_medium)   payload.traffic_medium   = utms.utm_medium;
+    if (utms.utm_campaign) payload.traffic_campaign = utms.utm_campaign;
+    if (utms.utm_term)     payload.traffic_value    = utms.utm_term;
+    if (utms.utm_content)  payload.traffic_content  = utms.utm_content;
+
+    return payload;
+  }
+
   function sendToRdStation(data) {
     return fetch(RD_API_URL, {
       method: 'POST',
@@ -134,39 +210,27 @@
       body: JSON.stringify({
         event_type:   'CONVERSION',
         event_family: 'CDP',
-        payload: {
-          // ⚠️ TODO: altere o conversion_identifier para o nome desta LP
-          // Formato: lp-[slug-da-lp]-yourh
-          // Exemplos: lp-evento-rh-yourh | lp-avd-yourh | lp-clima-yourh
-          // Este identificador é como o RD Station distingue de qual LP veio o lead.
-          conversion_identifier: 'lp-turnover-yourh',
-          name:                data.nome,
-          email:               data.email,
-          mobile_phone:        data.telefone,
-          company_name:        data.empresa,
-          number_of_employees: data.funcionarios,
-          job_title:           data.cargo,
-          traffic_source:      getUtmSource(),
-        },
+        payload:      buildRdPayload(data),
       }),
     });
   }
 
   // ── GTM + META PIXEL ─────────────────────────────────────────────
   function fireEvents(data) {
-    // GTM: evento lead_form_submit disparado aqui
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event:               'lead_form_submit',
       cargo:               data.cargo,
       empresa:             data.empresa,
       numero_funcionarios: data.funcionarios,
+      utm_source:          _utms.utm_source   || undefined,
+      utm_medium:          _utms.utm_medium   || undefined,
+      utm_campaign:        _utms.utm_campaign || undefined,
     });
 
-    // Meta Pixel: Lead NÃO disparado aqui — disparado no obrigado.html via PageView
+    // Meta Pixel: Lead NÃO disparado aqui — disparado no obrigado.html via PageView.
     // Isso evita duplo disparo. O obrigado.html é a fonte de verdade do evento Lead.
 
-    // Evento customizado para outras integrações
     window.dispatchEvent(new CustomEvent('lead_form_submit', {
       bubbles: true,
       detail: { email: data.email, cargo: data.cargo, empresa: data.empresa },
@@ -182,8 +246,7 @@
     var phoneInput = form.querySelector('[data-field="telefone"]');
     if (phoneInput) {
       phoneInput.addEventListener('input', function () {
-        var masked = maskPhone(phoneInput.value);
-        phoneInput.value = masked;
+        phoneInput.value = maskPhone(phoneInput.value);
       });
     }
 
@@ -202,7 +265,6 @@
           clearState(groupEl, input);
         }
       });
-      // Select: validar no change também
       if (input.tagName === 'SELECT') {
         input.addEventListener('change', function () {
           validateField(name, input);
@@ -239,7 +301,6 @@
         return;
       }
 
-      // Coleta dados
       var data = {
         nome:         form.querySelector('[data-field="nome"]').value.trim(),
         email:        form.querySelector('[data-field="email"]').value.trim(),
