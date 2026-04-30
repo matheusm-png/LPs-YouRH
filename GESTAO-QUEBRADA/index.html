@@ -35,30 +35,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
 
-  <!-- CSS Crítico: Carregamento imediato da dobra superior -->
-  <style>
-    :root {
-      --color-green: #00C853; --color-purple: #3D008C; --color-cream: #F5F0E8; --color-white: #FFFFFF;
-      --font-body: 'Inter', system-ui, sans-serif; --font-headline: 'Bricolage Grotesque', system-ui, sans-serif;
-      --gradient-hero: linear-gradient(135deg, #2A0062 0%, #3D008C 50%, #1A004A 100%);
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;font-size:16px;background:var(--color-cream)}
-    body{font-family:var(--font-body);background:var(--color-cream);color:#1A1A1A;line-height:1.6;overflow-x:hidden}
-    .site-header{position:absolute;width:100%;top:0;z-index:100;height:72px;display:flex;align-items:center;background:transparent}
-    .hero{background:var(--gradient-hero);padding:80px 0;position:relative;overflow:hidden;min-height:90vh;display:flex;align-items:center}
-    .container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
-    .logo img{width:187px;height:32px;display:block}
-    .hero__title{font-family:var(--font-headline);font-size:38px;font-weight:800;color:#fff;line-height:1.1;margin-bottom:24px}
-    .hero__sub{color:rgba(255,255,255,0.8);font-size:18px;margin-bottom:32px;max-width:620px}
-    .btn--primary{background:linear-gradient(135deg,#00C853 0%,#00A844 100%);color:#fff;padding:18px 32px;border-radius:12px;text-decoration:none;display:inline-flex;font-weight:600;box-shadow:0 10px 20px rgba(0,200,83,0.3)}
-    .animate-on-scroll{opacity:0;transition:opacity .5s ease}
-    .glass-crack-overlay, .hero__geo{display:none}
-  </style>
-
-  <!-- Carregamento Assíncrono do Bundle Completo -->
-  <link rel="preload" as="style" href="css/bundle.min.css" />
-  <link rel="stylesheet" href="css/bundle.min.css" media="print" onload="this.media='all'" />
+  <!-- Estilos base — NÃO ALTERAR -->
+  <link rel="stylesheet" href="css/main.css" />
 
   <!-- Estilos específicos desta LP -->
   <style>
@@ -806,23 +784,12 @@
        INTEGRAÇÕES DE RASTREAMENTO — ver GUIA_IA.md para detalhes
        ═══════════════════════════════════════════════════════════════ -->
 
-  <!-- GTM: Carregamento inteligente (espera interação ou 3s) -->
-  <script>
-    (function() {
-      var gtmLoaded = false;
-      function loadGTM() {
-        if (gtmLoaded) return;
-        gtmLoaded = true;
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-        var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-        j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-NC7RBWD');
-      }
-      window.addEventListener('scroll', loadGTM, {once: true});
-      window.addEventListener('touchstart', loadGTM, {once: true});
-      setTimeout(loadGTM, 3500); // Fallback de 3.5s
-    })();
-  </script>
+  <!-- Google Tag Manager — ID fixo YouRH, NÃO ALTERAR -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NC7RBWD');</script>
 
 </head>
 <body>
@@ -838,7 +805,7 @@
     <div class="container">
       <div class="header__inner">
         <a href="#hero" class="logo" aria-label="YouRH - página inicial">
-          <img src="assets/logo-dark.svg" alt="YouRH" width="187" height="32" fetchpriority="high" />
+          <img src="assets/logo-dark.svg" alt="YouRH" width="187" height="32" />
         </a>
         <nav class="nav" aria-label="Navegação principal">
           <a href="#problema"   class="nav__link">O problema</a>
@@ -1623,35 +1590,35 @@
           </div>
 
           <!-- Formulário — campos NÃO ALTERAR, integração via js/form.js -->
-          <div class="animate-on-scroll no-fouc from-right delay-200">
+          <div class="animate-on-scroll from-right delay-200">
             <div class="conversion-form" id="conversion-form-wrapper">
 
-              <form id="conversion-form" novalidate aria-label="Formulário de demonstração YouRH — Gestão Quebrada">
+              <form id="lp_gestao-quebrada_conv" action="https://lp.yourh.com.br/gestao-quebrada/obrigado.html" novalidate aria-label="Formulário de demonstração YouRH — Gestão Quebrada">
                 <div class="form-fields">
 
                   <div class="form-group">
-                    <input type="text" id="field-nome" class="form-input" data-field="nome"
+                    <input type="text" id="field-nome" name="name" class="form-input" data-field="nome"
                       placeholder="Seu nome completo *" autocomplete="name"
                       aria-required="true" aria-describedby="error-nome" />
                     <span class="form-error" id="error-nome" role="alert"></span>
                   </div>
 
                   <div class="form-group">
-                    <input type="email" id="field-email" class="form-input" data-field="email"
+                    <input type="email" id="field-email" name="email" class="form-input" data-field="email"
                       placeholder="Seu e-mail corporativo *" autocomplete="email"
                       aria-required="true" aria-describedby="error-email" />
                     <span class="form-error" id="error-email" role="alert"></span>
                   </div>
 
                   <div class="form-group">
-                    <input type="tel" id="field-telefone" class="form-input" data-field="telefone"
+                    <input type="tel" id="field-telefone" name="phone" class="form-input" data-field="telefone"
                       placeholder="DDD + Telefone *" autocomplete="tel" inputmode="numeric"
                       aria-required="true" aria-describedby="error-telefone" />
                     <span class="form-error" id="error-telefone" role="alert"></span>
                   </div>
 
                   <div class="form-group">
-                    <input type="text" id="field-empresa" class="form-input" data-field="empresa"
+                    <input type="text" id="field-empresa" name="company" class="form-input" data-field="empresa"
                       placeholder="Nome da Empresa *" autocomplete="organization"
                       aria-required="true" aria-describedby="error-empresa" />
                     <span class="form-error" id="error-empresa" role="alert"></span>
@@ -1659,7 +1626,7 @@
 
                   <div class="form-group">
                     <label for="field-funcionarios" class="sr-only">Número de funcionários</label>
-                    <select id="field-funcionarios" class="form-input form-select" data-field="funcionarios"
+                    <select id="field-funcionarios" name="employees" class="form-input form-select" data-field="funcionarios"
                       aria-required="true" aria-describedby="error-funcionarios">
                       <option value="" disabled selected>Número de funcionários *</option>
                       <option value="20 - 30">20 - 30</option>
@@ -1675,7 +1642,7 @@
 
                   <div class="form-group">
                     <label for="field-cargo" class="sr-only">Cargo na empresa</label>
-                    <select id="field-cargo" class="form-input form-select" data-field="cargo"
+                    <select id="field-cargo" name="role" class="form-input form-select" data-field="cargo"
                       aria-required="true" aria-describedby="error-cargo">
                       <option value="" disabled selected>Seu cargo na empresa *</option>
                       <option value="Analista">Analista</option>
@@ -1691,6 +1658,13 @@
                     </select>
                     <span class="form-error" id="error-cargo" role="alert"></span>
                   </div>
+
+                  <input type="hidden" name="utm_source"           id="utm_source">
+                  <input type="hidden" name="utm_medium"           id="utm_medium">
+                  <input type="hidden" name="utm_campaign"         id="utm_campaign">
+                  <input type="hidden" name="utm_content"          id="utm_content">
+                  <input type="hidden" name="utm_term"             id="utm_term">
+                  <input type="hidden" name="utm_marketing_tactic" id="utm_marketing_tactic">
 
                   <div class="form-group form-group--checkbox">
                     <label class="form-checkbox-label" id="label-lgpd">
@@ -1848,7 +1822,7 @@
           <div class="footer__brand-logo">
             <span class="footer__brand-eyebrow">Umentor agora é</span>
             <a href="#hero" aria-label="YouRH - voltar ao topo">
-              <img src="assets/logo.svg" alt="YouRH" height="40" width="187" />
+              <img src="assets/logo.svg" alt="YouRH" height="40" width="auto" />
             </a>
           </div>
           <p class="footer__tagline">Mais que um sistema de RH, um verdadeiro ecossistema para desenvolver PESSOAS!</p>
@@ -1892,10 +1866,34 @@
     </div>
   </footer>
 
-  <!-- Scripts minificados -->
-  <script src="js/checklist.min.js" defer></script>
-  <script src="js/form.min.js" defer></script>
-  <script src="js/main.min.js" defer></script>
+  <!-- Scripts — NÃO ALTERAR a ordem -->
+  <script src="js/checklist.js" defer></script>
+  <script src="js/form.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+  <!-- RD Station Loader — captura submissão nativa do formulário. NÃO ALTERAR. -->
+  <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/a81f367c-46ec-4dea-a2c2-4367f6781b13-loader.js"></script>
+
+  <script>
+  function getUTM(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+      const utms = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+
+      utms.forEach(function(utm) {
+          const value = getUTM(utm);
+          if (value) {
+              const field = document.getElementById(utm);
+              if (field) {
+                  field.value = value;
+              }
+          }
+      });
+  });
+  </script>
 
 </body>
 </html>

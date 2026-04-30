@@ -11,11 +11,6 @@
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: 'pageview' });
 
-  // Performance: Mostrar elementos ocultos para evitar FOUC
-  document.querySelectorAll('.animate-on-scroll').forEach(function(el) { el.style.opacity = '1'; });
-  var hiddenGeos = document.querySelectorAll('.glass-crack-overlay, .hero__geo');
-  hiddenGeos.forEach(function(el) { el.style.display = 'block'; el.style.visibility = 'visible'; });
-
   // ── INTERSECTION OBSERVER — Animações de scroll ───────────────
 
   function initScrollAnimations() {
@@ -226,34 +221,22 @@
     function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
 
     function render(p) {
-      if (p <= 0) {
-        if (overlay.style.opacity !== '0') overlay.style.opacity = '0';
-        return;
-      }
-      if (overlay.style.opacity !== '1') overlay.style.opacity = '1';
+      overlay.style.opacity = p > 0 ? 1 : 0;
+      if (p <= 0) return;
 
       if (impact) {
         var ip = Math.min(1, p * 5);
-        var impactOpacity = ip < 0.6 ? ip / 0.6 : Math.max(0, 1 - (ip - 0.6) / 0.4);
-        impact.style.opacity = impactOpacity;
+        impact.style.opacity = ip < 0.6 ? ip / 0.6 : Math.max(0, 1 - (ip - 0.6) / 0.4);
       }
 
-      // Batch reads from data attributes once, or use pre-calculated values
-      for (var i = 0; i < lines.length; i++) {
-        var line = lines[i];
-        if (!line._delay) {
-          line._delay = parseFloat(line.getAttribute('data-delay') || 0);
-        }
-        var lp = line._delay >= 1 ? 0 : Math.max(0, Math.min(1, (p - line._delay) / (1 - line._delay)));
+      lines.forEach(function (line) {
+        var d  = line._delay;
+        var lp = d >= 1 ? 0 : Math.max(0, Math.min(1, (p - d) / (1 - d)));
         line.style.strokeDashoffset = line._len * (1 - easeOut(lp));
-      }
+      });
 
       var sp = Math.max(0, Math.min(1, (p - 0.45) / 0.55));
-      if (shards.length > 0 && shards[0].style.opacity != sp) {
-        for (var j = 0; j < shards.length; j++) {
-          shards[j].style.opacity = sp;
-        }
-      }
+      shards.forEach(function (s) { s.style.opacity = sp; });
     }
 
     function lockScroll() {
