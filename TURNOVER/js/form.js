@@ -1,28 +1,18 @@
 /**
  * form.js
- * Validação em tempo real, máscara telefone BR,
- * integração RD Station API de Conversões, Meta Pixel Lead event.
- *
- * UTM persistence: lê da URL, salva em localStorage (30 dias),
- * e reenvia no payload mesmo se o usuário navegou entre páginas.
+ * Validação em tempo real, máscara telefone BR.
+ * O envio ao RD Station é feito pelo script loader oficial (não por API manual).
+ * Os UTMs são persistidos em localStorage e injetados nos campos hidden antes do submit.
  */
 
 (function () {
   'use strict';
 
-  // ── CONFIGURAÇÃO ─────────────────────────────────────────────────
-  var RD_API_URL = 'https://api.rd.services/platform/conversions?api_key=2b4d5177951b2aaefe0b7f838559c2d9';
-  // ⚠️ ATENÇÃO: a API key acima é fixa (YouRH). NÃO ALTERAR.
-
-  // ⚠️ TODO: altere esta URL para o caminho correto da LP publicada
-  var OBRIGADO_URL = 'https://lp.yourh.com.br/turnover/obrigado.html';
-
   var UTM_STORAGE_KEY = 'yourh_utm_params';
   var UTM_EXPIRY_MS   = 30 * 24 * 60 * 60 * 1000; // 30 dias
+  var UTM_KEYS        = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 
   // ── UTM PERSISTENCE ──────────────────────────────────────────────
-  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-
   function readUtmsFromUrl() {
     var params = new URLSearchParams(window.location.search);
     var utms = {};
@@ -61,8 +51,6 @@
     }
   }
 
-  // Lê UTMs da URL e persiste; se não há na URL, usa o que está salvo.
-  // Executa imediatamente para capturar antes de qualquer redirect interno.
   var _utms = (function () {
     var fromUrl = readUtmsFromUrl();
     if (fromUrl) {
@@ -71,6 +59,14 @@
     }
     return loadUtms() || {};
   })();
+
+  // Injeta UTMs do localStorage nos campos hidden do formulário.
+  function populateHiddenUtmFields(form) {
+    UTM_KEYS.forEach(function (k) {
+      var el = form.querySelector('#' + k);
+      if (el && _utms[k]) el.value = _utms[k];
+    });
+  }
 
   // ── VALIDADORES ─────────────────────────────────────────────────
   var validators = {
@@ -129,7 +125,6 @@
     inputEl.classList.add('is-error');
     var errorEl = groupEl.querySelector('.form-error');
     if (errorEl) errorEl.textContent = msg;
-    // Re-trigger shake
     inputEl.classList.remove('is-error');
     void inputEl.offsetWidth;
     inputEl.classList.add('is-error');
@@ -168,66 +163,15 @@
     return true;
   }
 
-  // ── LOADING / SUCCESS ────────────────────────────────────────────
+  // ── LOADING ──────────────────────────────────────────────────────
   function showLoading(btn) {
     btn.disabled = true;
     btn.dataset.original = btn.innerHTML;
     btn.innerHTML = '<span class="spinner"></span> Enviando...';
   }
 
-  function hideLoading(btn) {
-    btn.disabled = false;
-    btn.innerHTML = btn.dataset.original || 'quero falar com um especialista!';
-  }
-
-  // ── RD STATION API ───────────────────────────────────────────────
-  function buildRdPayload(data) {
-    var utms = _utms;
-
-    // Campos de contato com os nomes técnicos exatos esperados pelo RD Station.
-    var payload = {
-      conversion_identifier:        'lp-turnover-yourh',
-      conversion_page:              window.location.href,
-      page_title:                   document.title,
-      name:                         data.nome,
-      email:                        data.email,
-      mobile_phone:                 data.telefone,
-      company:                      data.empresa,
-      job_title:                    data.cargo,
-      form_fields_qtd_funcionarios: data.funcionarios,
-    };
-
-    if (data.site) payload.site = data.site;
-
-    // Parâmetros UTM brutos (capturados da URL / localStorage).
-    if (utms.utm_source)   payload.utm_source   = utms.utm_source;
-    if (utms.utm_medium)   payload.utm_medium   = utms.utm_medium;
-    if (utms.utm_campaign) payload.utm_campaign = utms.utm_campaign;
-    if (utms.utm_term)     payload.utm_term     = utms.utm_term;
-    if (utms.utm_content)  payload.utm_content  = utms.utm_content;
-
-    // Campos de tráfego para atribuição interna do RD Station.
-    if (utms.utm_source)   payload.traffic_source   = utms.utm_source;
-    if (utms.utm_medium)   payload.traffic_medium   = utms.utm_medium;
-    if (utms.utm_campaign) payload.traffic_campaign = utms.utm_campaign;
-
-    return payload;
-  }
-
-  function sendToRdStation(data) {
-    return fetch(RD_API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        event_type:   'CONVERSION',
-        event_family: 'CDP',
-        payload:      buildRdPayload(data),
-      }),
-    });
-  }
-
-  // ── GTM + META PIXEL ─────────────────────────────────────────────
-  function fireEvents(data) {
+  // ── GTM ──────────────────────────────────────────────────────────
+  function fireGtmEvent(data) {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event:               'lead_form_submit',
@@ -238,13 +182,9 @@
       utm_medium:          _utms.utm_medium   || undefined,
       utm_campaign:        _utms.utm_campaign || undefined,
     });
-
-    // Meta Pixel: Lead NÃO disparado aqui — disparado no obrigado.html via PageView.
-    // Isso evita duplo disparo. O obrigado.html é a fonte de verdade do evento Lead.
-
     window.dispatchEvent(new CustomEvent('lead_form_submit', {
       bubbles: true,
-      detail: { email: data.email, cargo: data.cargo, empresa: data.empresa },
+      detail:  { email: data.email, cargo: data.cargo, empresa: data.empresa },
     }));
   }
 
@@ -252,6 +192,9 @@
   function init() {
     var form = document.getElementById('conversion-form');
     if (!form) return;
+
+    // Preenche hidden UTMs assim que o DOM carrega (cobre quem chegou com UTMs na URL)
+    populateHiddenUtmFields(form);
 
     // Máscara de telefone
     var phoneInput = form.querySelector('[data-field="telefone"]');
@@ -261,11 +204,11 @@
       });
     }
 
-    // Validação no blur para inputs e selects
+    // Validação no blur
     var fields = form.querySelectorAll('[data-field]');
     fields.forEach(function (input) {
       var name = input.dataset.field;
-      if (name === 'lgpd') return; // checkbox validado no change
+      if (name === 'lgpd') return;
 
       input.addEventListener('blur', function () {
         validateField(name, input);
@@ -292,12 +235,17 @@
     }
 
     // Submit
+    var _submitting = false;
+
     form.addEventListener('submit', function (e) {
+      // Segunda passagem: submissão nativa liberada para o RD Station capturar
+      if (_submitting) return;
+
       e.preventDefault();
 
+      // Valida todos os campos
       var allValid = true;
       var firstInvalid = null;
-
       fields.forEach(function (input) {
         var name = input.dataset.field;
         var valid = validateField(name, input);
@@ -312,7 +260,6 @@
         return;
       }
 
-      var siteEl = form.querySelector('[name="site"]');
       var data = {
         nome:         form.querySelector('[data-field="nome"]').value.trim(),
         email:        form.querySelector('[data-field="email"]').value.trim(),
@@ -320,30 +267,21 @@
         empresa:      form.querySelector('[data-field="empresa"]').value.trim(),
         funcionarios: form.querySelector('[data-field="funcionarios"]').value,
         cargo:        form.querySelector('[data-field="cargo"]').value,
-        site:         siteEl ? siteEl.value.trim() : '',
       };
 
-      var submitBtn = form.querySelector('.form-submit-btn');
-      showLoading(submitBtn);
+      // Garante UTMs mais recentes (localStorage) nos campos hidden antes do envio
+      populateHiddenUtmFields(form);
 
-      sendToRdStation(data)
-        .then(function (res) {
-          if (res.ok || res.status === 200 || res.status === 201) {
-            fireEvents(data);
-            window.location.href = OBRIGADO_URL;
-          } else {
-            throw new Error('Status ' + res.status);
-          }
-        })
-        .catch(function (err) {
-          console.error('[YouRH Form] Erro RD Station:', err);
-          hideLoading(submitBtn);
-          var errorEl = form.querySelector('.form-send-error');
-          if (errorEl) {
-            errorEl.textContent = 'Erro ao enviar. Tente novamente.';
-            errorEl.style.display = 'block';
-          }
-        });
+      showLoading(form.querySelector('.form-submit-btn'));
+      fireGtmEvent(data);
+
+      // Submissão nativa: o RD Station loader captura o evento submit
+      _submitting = true;
+      if (form.requestSubmit) {
+        form.requestSubmit();
+      } else {
+        form.submit();
+      }
     });
   }
 
