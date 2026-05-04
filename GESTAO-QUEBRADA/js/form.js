@@ -10,7 +10,7 @@
 
   var UTM_STORAGE_KEY = 'yourh_utm_params';
   var UTM_EXPIRY_MS   = 30 * 24 * 60 * 60 * 1000; // 30 dias
-  var UTM_KEYS        = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+  var UTM_KEYS        = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_marketing_tactic'];
 
   function readUtmsFromUrl() {
     var params = new URLSearchParams(window.location.search);
@@ -170,6 +170,7 @@
       utm_source:          _utms.utm_source   || undefined,
       utm_medium:          _utms.utm_medium   || undefined,
       utm_campaign:        _utms.utm_campaign || undefined,
+      utm_marketing_tactic:_utms.utm_marketing_tactic || undefined,
     });
     window.dispatchEvent(new CustomEvent('lead_form_submit', {
       bubbles: true,
