@@ -784,6 +784,12 @@
        INTEGRAÇÕES DE RASTREAMENTO — ver GUIA_IA.md para detalhes
        ═══════════════════════════════════════════════════════════════ -->
 
+  <!-- RD Station Tracking Script — NÃO ALTERAR após configurar
+       Token encontrado em: RD Station > Configurações > Código de Rastreamento
+       ⚠️ Este script deve ficar ANTES do GTM para garantir cookie de sessão correto. -->
+  <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/2b4d5177951b2aaefe0b7f838559c2d9-rdstation.js"></script>
+  <!-- Fim RD Station Tracking Script -->
+
   <!-- Google Tag Manager — ID fixo YouRH, NÃO ALTERAR -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -1593,7 +1599,7 @@
           <div class="animate-on-scroll from-right delay-200">
             <div class="conversion-form" id="conversion-form-wrapper">
 
-              <form id="lp_gestao-quebrada_conv" action="https://lp.yourh.com.br/gestao-quebrada/obrigado.html" novalidate aria-label="Formulário de demonstração YouRH — Gestão Quebrada">
+              <form id="lp_gestao-quebrada_conv" method="post" action="https://lp.yourh.com.br/gestao-quebrada/obrigado.html" novalidate aria-label="Formulário de demonstração YouRH — Gestão Quebrada">
                 <div class="form-fields">
 
                   <div class="form-group">

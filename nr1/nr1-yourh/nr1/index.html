@@ -36,6 +36,12 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="css/main.css" />
 
+  <!-- RD Station Tracking Script — NÃO ALTERAR após configurar
+       Token encontrado em: RD Station > Configurações > Código de Rastreamento
+       ⚠️ Este script deve ficar ANTES do GTM para garantir cookie de sessão correto. -->
+  <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/2b4d5177951b2aaefe0b7f838559c2d9-rdstation.js"></script>
+  <!-- Fim RD Station Tracking Script -->
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -1015,7 +1021,7 @@
           <div class="animate-on-scroll from-right delay-200">
             <div class="conversion-form" id="conversion-form-wrapper">
 
-              <form id="conversion-form" novalidate aria-label="Formulário de contato YouRH">
+              <form id="lp_nr1_conv" method="post" action="https://lp.yourh.com.br/nr1/obrigado.html" novalidate aria-label="Formulário de contato YouRH">
                 <div class="form-fields">
 
                   <!-- 1. Nome -->
@@ -1023,6 +1029,7 @@
                     <input
                       type="text"
                       id="field-nome"
+                      name="name"
                       class="form-input"
                       data-field="nome"
                       placeholder="Seu nome completo *"
@@ -1038,6 +1045,7 @@
                     <input
                       type="email"
                       id="field-email"
+                      name="email"
                       class="form-input"
                       data-field="email"
                       placeholder="Seu e-mail corporativo *"
@@ -1053,6 +1061,7 @@
                     <input
                       type="tel"
                       id="field-telefone"
+                      name="phone"
                       class="form-input"
                       data-field="telefone"
                       placeholder="DDD + Telefone *"
@@ -1069,6 +1078,7 @@
                     <input
                       type="text"
                       id="field-empresa"
+                      name="company"
                       class="form-input"
                       data-field="empresa"
                       placeholder="Nome da Empresa *"
@@ -1079,10 +1089,27 @@
                     <span class="form-error" id="error-empresa" role="alert"></span>
                   </div>
 
-                  <!-- 5. Número de funcionários -->
+                  <!-- 5. Site ou rede social -->
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      id="field-site"
+                      name="site"
+                      class="form-input"
+                      data-field="site"
+                      placeholder="Site ou rede social da empresa *"
+                      autocomplete="url"
+                      aria-required="true"
+                      aria-describedby="error-site"
+                    />
+                    <span class="form-error" id="error-site" role="alert"></span>
+                  </div>
+
+                  <!-- 6. Número de funcionários -->
                   <div class="form-group">
                     <select
                       id="field-funcionarios"
+                      name="employees"
                       class="form-input form-select"
                       data-field="funcionarios"
                       aria-required="true"
@@ -1104,6 +1131,7 @@
                   <div class="form-group">
                     <select
                       id="field-cargo"
+                      name="role"
                       class="form-input form-select"
                       data-field="cargo"
                       aria-required="true"
@@ -1123,6 +1151,13 @@
                     </select>
                     <span class="form-error" id="error-cargo" role="alert"></span>
                   </div>
+
+                  <input type="hidden" name="utm_source"           id="utm_source">
+                  <input type="hidden" name="utm_medium"           id="utm_medium">
+                  <input type="hidden" name="utm_campaign"         id="utm_campaign">
+                  <input type="hidden" name="utm_content"          id="utm_content">
+                  <input type="hidden" name="utm_term"             id="utm_term">
+                  <input type="hidden" name="utm_marketing_tactic" id="utm_marketing_tactic">
 
                   <!-- 7. Checkbox LGPD -->
                   <div class="form-group form-group--checkbox">
@@ -1569,6 +1604,30 @@
   <script src="js/checklist.js" defer></script>
   <script src="js/form.js" defer></script>
   <script src="js/main.js" defer></script>
+
+  <!-- RD Station Loader — captura submissão nativa do formulário. NÃO ALTERAR. -->
+  <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/a81f367c-46ec-4dea-a2c2-4367f6781b13-loader.js"></script>
+
+  <script>
+  function getUTM(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+      const utms = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+
+      utms.forEach(function(utm) {
+          const value = getUTM(utm);
+          if (value) {
+              const field = document.getElementById(utm);
+              if (field) {
+                  field.value = value;
+              }
+          }
+      });
+  });
+  </script>
 
   <!-- Evento: CTA da calculadora abre popup -->
   <script>
