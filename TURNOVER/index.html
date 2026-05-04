@@ -771,7 +771,7 @@
           <div class="animate-on-scroll from-right delay-200">
             <div class="conversion-form" id="conversion-form-wrapper">
 
-              <form id="lp_turnover_conv" action="https://lp.yourh.com.br/turnover/obrigado.html" novalidate aria-label="Formulário de contato: Redução de Turnover YouRH">
+              <form id="lp_turnover_conv" method="post" action="obrigado.html" novalidate aria-label="Formulário de contato: Redução de Turnover YouRH">
                 <div class="form-fields">
 
                   <div class="form-group">
@@ -803,6 +803,7 @@
                   </div>
 
                   <div class="form-group">
+                    <label for="field-funcionarios" class="sr-only">Número de funcionários</label>
                     <select id="field-funcionarios" class="form-input form-select" data-field="funcionarios"
                       name="employees" aria-required="true" aria-describedby="error-funcionarios">
                       <option value="" disabled selected>Número de funcionários *</option>
@@ -818,6 +819,7 @@
                   </div>
 
                   <div class="form-group">
+                    <label for="field-cargo" class="sr-only">Cargo na empresa</label>
                     <select id="field-cargo" class="form-input form-select" data-field="cargo"
                       name="role" aria-required="true" aria-describedby="error-cargo">
                       <option value="" disabled selected>Seu cargo na empresa *</option>
