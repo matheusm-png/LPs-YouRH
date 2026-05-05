@@ -519,98 +519,66 @@
     .exit-modal__backdrop {
       position: absolute;
       inset: 0;
-      background: rgba(8,2,24,0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(4,1,16,0.88);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
     .exit-modal__box {
       position: relative;
       background: var(--color-white);
       border-radius: var(--radius-2xl);
-      max-width: 520px;
+      max-width: 480px;
       width: 100%;
       overflow: hidden;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.05);
+      animation: modalIn 0.3s cubic-bezier(0.16,1,0.3,1) both;
     }
-    /* Topo escuro com gradiente da marca */
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
     .exit-modal__hero {
       background: var(--gradient-hero);
-      padding: var(--space-8) var(--space-8) var(--space-7);
+      padding: 36px 36px 32px;
       position: relative;
       overflow: hidden;
     }
     .exit-modal__hero::before {
       content: '';
       position: absolute;
-      top: -60px; right: -60px;
-      width: 260px; height: 260px;
-      background: radial-gradient(circle, rgba(0,200,83,0.18) 0%, transparent 65%);
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(0,200,83,0.15) 0%, transparent 65%);
       pointer-events: none;
     }
-    .exit-modal__hero::after {
-      content: '';
-      position: absolute;
-      bottom: -40px; left: -40px;
-      width: 180px; height: 180px;
-      background: radial-gradient(circle, rgba(97,222,117,0.1) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .exit-modal__pineapple {
-      position: absolute;
-      right: var(--space-6);
-      top: 50%;
-      transform: translateY(-54%);
-      font-size: 5rem;
-      line-height: 1;
-      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.35));
-      animation: pineappleFloat 5s ease-in-out infinite;
-      pointer-events: none;
-    }
-    .exit-modal__badge {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      background: rgba(0,200,83,0.14);
-      color: var(--color-green);
-      border: 1px solid rgba(0,200,83,0.28);
-      font-size: var(--text-xs);
+    .exit-modal__eyebrow {
+      font-size: 11px;
       font-weight: var(--weight-semibold);
-      letter-spacing: 0.07em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 5px var(--space-3);
-      border-radius: var(--radius-full);
-      margin-bottom: var(--space-4);
-      position: relative;
-    }
-    .exit-modal__badge::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--color-green);
-      flex-shrink: 0;
+      color: var(--color-green);
+      margin-bottom: var(--space-3);
     }
     .exit-modal__headline {
       font-family: var(--font-headline);
-      font-size: var(--text-xl);
+      font-size: clamp(1.35rem, 2.5vw, 1.65rem);
       font-weight: var(--weight-extrabold);
       color: var(--color-white);
-      line-height: var(--leading-snug);
-      max-width: 280px;
+      line-height: 1.2;
       margin: 0;
-      position: relative;
+      max-width: 320px;
     }
     .exit-modal__headline em {
       font-style: normal;
       color: var(--color-green);
     }
-    /* Área branca inferior */
     .exit-modal__body {
-      padding: var(--space-6) var(--space-8) var(--space-7);
+      padding: 28px 36px 32px;
     }
     .exit-modal__text {
       font-size: var(--text-sm);
       color: var(--color-text-muted);
-      line-height: var(--leading-normal);
+      line-height: 1.6;
       margin-bottom: var(--space-5);
     }
     .exit-modal__bullets {
@@ -619,7 +587,7 @@
       margin: 0 0 var(--space-6);
       display: flex;
       flex-direction: column;
-      gap: var(--space-2);
+      gap: 10px;
     }
     .exit-modal__bullets li {
       display: flex;
@@ -631,9 +599,9 @@
     }
     .exit-modal__bullets li::before {
       content: '';
-      width: 20px; height: 20px;
+      width: 18px; height: 18px;
       border-radius: 50%;
-      background: var(--color-green-light) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M2 5l2.5 2.5L8 2.5' stroke='%2300C853' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E") center no-repeat;
+      background: rgba(0,200,83,0.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 9 9'%3E%3Cpath d='M1.5 4.5l2 2L7.5 2' stroke='%2300C853' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E") center no-repeat;
       flex-shrink: 0;
     }
     .exit-modal__cta {
@@ -652,20 +620,19 @@
       padding: var(--space-2);
       width: 100%;
       transition: color 0.2s;
-      text-decoration: underline;
-      text-underline-offset: 2px;
       font-family: var(--font-body);
+      opacity: 0.6;
     }
-    .exit-modal__dismiss:hover { color: var(--color-text); }
+    .exit-modal__dismiss:hover { opacity: 1; color: var(--color-text); }
     .exit-modal__close {
       position: absolute;
       top: var(--space-4);
       right: var(--space-4);
-      background: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.1);
       border: none;
       cursor: pointer;
-      color: rgba(255,255,255,0.75);
-      padding: 7px;
+      color: rgba(255,255,255,0.6);
+      padding: 6px;
       border-radius: var(--radius-md);
       line-height: 1;
       transition: background 0.2s, color 0.2s;
@@ -675,7 +642,7 @@
       justify-content: center;
     }
     .exit-modal__close:hover {
-      background: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.2);
       color: #fff;
     }
 
@@ -1494,20 +1461,19 @@
         <button class="exit-modal__close" id="exit-modal-close" aria-label="Fechar">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
-        <span class="exit-modal__pineapple" aria-hidden="true">🍍</span>
-        <span class="exit-modal__badge">Espera um segundo</span>
-        <h2 class="exit-modal__headline" id="exit-modal-title">Seu RH pode parar de sofrer <em>ainda hoje.</em></h2>
+        <p class="exit-modal__eyebrow">Antes de sair</p>
+        <h2 class="exit-modal__headline" id="exit-modal-title">Seu RH não precisa ser um abacaxi <em>pra sempre.</em></h2>
       </div>
 
       <div class="exit-modal__body">
-        <p class="exit-modal__text">Uma conversa de 30 minutos com um especialista YouRH pode mudar como você gerencia avaliações, treinamentos e desenvolvimento na prática.</p>
+        <p class="exit-modal__text">Empresas como a sua saíram do caos em menos de 30 dias. Uma conversa, sem script, sem compromisso.</p>
         <ul class="exit-modal__bullets">
-          <li>Demonstração personalizada e gratuita</li>
-          <li>Sem compromisso ou cartão de crédito</li>
-          <li>Resultado visível em até 30 dias</li>
+          <li>Avaliação de desempenho sem planilha</li>
+          <li>Treinamentos com 88% de taxa de conclusão</li>
+          <li>R&S, AVD e T&D em um único login</li>
         </ul>
         <a href="#form" class="btn btn--primary btn--lg exit-modal__cta" id="exit-modal-cta">
-          Quero minha demo gratuita
+          Quero ver funcionando →
         </a>
         <button class="exit-modal__dismiss" id="exit-modal-dismiss">
           Não, vou continuar descascando abacaxi
@@ -1572,11 +1538,15 @@
         document.body.style.overflow = '';
       }
 
-      document.addEventListener('mouseleave', function(e) {
-        if (e.clientY < 10) showModal();
+      // Desktop: mouse move próximo ao topo (mais confiável que mouseleave)
+      document.addEventListener('mousemove', function(e) {
+        if (e.clientY < 20) showModal();
       });
 
-      // Mobile: show after 40s idle if not converted
+      // Fallback desktop: 45s na página
+      var desktopTimer = setTimeout(function() { showModal(); }, 45000);
+
+      // Mobile: 40s idle
       var idleTimer = setTimeout(function() { showModal(); }, 40000);
       document.addEventListener('touchstart', function() {
         clearTimeout(idleTimer);
