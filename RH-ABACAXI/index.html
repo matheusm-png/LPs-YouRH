@@ -9,7 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon_yourh.svg" />
   <link rel="shortcut icon" href="assets/favicon_yourh.svg" />
 
-  <meta property="og:title"        content="Chega de RH Abacaxi — Centralize tudo com a YouRH" />
+  <meta property="og:title"        content="Chega de RH Abacaxi | Centralize tudo com a YouRH" />
   <meta property="og:description"  content="Pare de perder tempo com planilhas e retrabalho. Centralize Avaliação, Treinamentos e Desenvolvimento em um só lugar." />
   <meta property="og:type"         content="website" />
   <meta property="og:locale"       content="pt_BR" />
@@ -18,7 +18,7 @@
   <meta property="og:image:width"  content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Chega de RH Abacaxi — Centralize tudo com a YouRH" />
+  <meta name="twitter:title"       content="Chega de RH Abacaxi | Centralize tudo com a YouRH" />
   <meta name="twitter:description" content="Pare de perder tempo com planilhas e retrabalho. Centralize Avaliação, Treinamentos e Desenvolvimento em um só lugar." />
   <meta name="twitter:image"       content="assets/compartilhamento-img.webp" />
 
@@ -85,7 +85,7 @@
     .section-emotional__overlay {
       position: absolute;
       inset: 0;
-      background: rgba(61, 0, 140, 0.72);
+      background: linear-gradient(rgba(10, 5, 30, 0.75), rgba(10, 5, 30, 0.85));
       z-index: 1;
     }
     .section-emotional .container {
@@ -153,36 +153,78 @@
     .compare-card__list li svg { flex-shrink: 0; margin-top: 3px; }
 
     /* ── Para quem é ── */
-    .target-list {
+    .persona-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: var(--space-3);
-      margin-top: var(--space-8);
-      max-width: 680px;
-      margin-left: auto;
-      margin-right: auto;
+      gap: var(--space-4);
+      margin-top: var(--space-10);
     }
-    @media (min-width: 640px) { .target-list { grid-template-columns: 1fr 1fr; } }
-    .target-item {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-3);
+    @media (min-width: 640px) { .persona-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .persona-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .persona-card {
       background: var(--color-white);
       border: 1px solid var(--color-border);
-      border-radius: var(--radius-xl);
-      padding: var(--space-4) var(--space-5);
-      font-size: var(--text-sm);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-6);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+    .persona-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient-cta);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .persona-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,200,83,0.12); border-color: rgba(0,200,83,0.35); }
+    .persona-card:hover::after { transform: scaleX(1); }
+    .persona-card__icon { font-size: 2.2rem; margin-bottom: var(--space-4); display: block; line-height: 1; }
+    .persona-card__title {
+      font-family: var(--font-headline);
+      font-size: var(--text-base);
+      font-weight: var(--weight-bold);
       color: var(--color-text);
+      margin-bottom: var(--space-2);
+    }
+    .persona-card__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
       line-height: var(--leading-normal);
     }
-    .target-item svg { flex-shrink: 0; color: var(--color-green); margin-top: 2px; }
+    .persona-cta-text {
+      text-align: center;
+      margin-top: var(--space-12);
+      margin-inline: auto;
+      font-weight: var(--weight-semibold);
+      font-size: var(--text-lg);
+      max-width: 680px;
+    }
 
     /* ── CTA Final ── */
     .section-final-cta {
+      position: relative;
       background: var(--color-purple);
       color: var(--color-white);
       padding: var(--space-16) var(--space-5);
       text-align: center;
+      overflow: hidden;
+    }
+    .section-final-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('assets/ABACAXI_BG2.jpg') center center / cover no-repeat;
+      opacity: 0.18;
+      z-index: 0;
+    }
+    .section-final-cta .container {
+      position: relative;
+      z-index: 1;
     }
     .final-cta__title {
       font-family: var(--font-headline);
@@ -215,36 +257,39 @@
     .btn--white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
 
     /* ── CTA flutuante ── */
-    .floating-cta {
+    #fcta {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      z-index: 1000;
-      transform: translateY(120%);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+      z-index: 9000;
       opacity: 0;
+      transform: translateY(80px);
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);
       pointer-events: none;
     }
-    .floating-cta.is-visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
-    .btn--sticky {
-      background: var(--gradient-cta);
-      color: var(--color-white);
-      padding: var(--space-4) var(--space-8);
-      border-radius: var(--radius-full);
-      font-weight: var(--weight-extrabold);
-      font-size: var(--text-sm);
-      box-shadow: 0 8px 24px rgba(0,200,83,0.4), 0 0 0 4px rgba(0,200,83,0.1);
-      display: flex;
+    #fcta.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #fcta a {
+      display: inline-flex;
       align-items: center;
-      gap: var(--space-2);
-      white-space: nowrap;
-      border: 2px solid rgba(255,255,255,0.1);
+      gap: 8px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #00c853, #00a844);
+      color: #fff;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      border-radius: 999px;
+      border: none;
+      outline: none;
+      box-shadow: 0 8px 24px rgba(0,200,83,0.4);
       transition: transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
     }
-    .btn--sticky:hover { transform: scale(1.05); box-shadow: 0 12px 32px rgba(0,200,83,0.5), 0 0 0 6px rgba(0,200,83,0.2); }
+    #fcta a:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,200,83,0.5); }
     @media (max-width: 767px) {
-      .floating-cta { bottom: 16px; left: 16px; right: 16px; }
-      .btn--sticky { width: 100%; justify-content: center; font-size: var(--text-md); padding: var(--space-5); }
+      #fcta { bottom: 16px; left: 16px; right: 16px; }
+      #fcta a { width: 100%; justify-content: center; font-size: 16px; padding: 16px 24px; }
     }
 
     /* ── Dor: lista compacta ── */
@@ -315,6 +360,213 @@
       font-size: var(--text-xs);
       font-weight: var(--weight-medium);
     }
+    /* ── Logos clientes marquee ── */
+    .section-logos {
+      background: rgba(255,255,255,0.04);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: var(--space-6) 0 var(--space-5);
+      overflow: hidden;
+    }
+    .logos__label {
+      text-align: center;
+      font-size: var(--text-xs);
+      font-weight: var(--weight-semibold);
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-5);
+    }
+    .logos-marquee {
+      overflow: hidden;
+      width: 100%;
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .logos-track {
+      display: flex;
+      align-items: center;
+      gap: 56px;
+      width: max-content;
+      animation: marqueeScroll 28s linear infinite;
+      will-change: transform;
+    }
+    .logos-track:hover { animation-play-state: paused; }
+    .logos-track img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: brightness(0) invert(1) opacity(0.5);
+      transition: filter 0.3s ease;
+    }
+    .logos-track img:hover { filter: brightness(0) invert(1) opacity(1); }
+
+    /* ── Hero social proof bar ── */
+    .hero__social-proof {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+      margin-bottom: var(--space-2);
+    }
+    .hero__sp-avatars {
+      display: flex;
+    }
+    .hero__sp-avatars img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.2);
+      margin-left: -8px;
+      flex-shrink: 0;
+    }
+    .hero__sp-avatars img:first-child { margin-left: 0; }
+    .hero__sp-text {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.75);
+      line-height: 1.4;
+    }
+    .hero__sp-text strong { color: #fff; }
+
+    /* ── Persona micro-CTA ── */
+    .persona-cta-btn {
+      text-align: center;
+      margin-top: var(--space-8);
+    }
+    .persona-cta-note {
+      margin-top: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    /* ── Resultados ── */
+    .section-results {
+      background: var(--color-purple-dark, #1a0052);
+      padding: var(--space-16) var(--space-5);
+    }
+    .section-results .section-title,
+    .section-results .section-label {
+      color: var(--color-white);
+    }
+    .section-results .section-label {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85);
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+      margin-top: var(--space-10);
+    }
+    @media (min-width: 768px) {
+      .results-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .result-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-6) var(--space-5);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .result-card__number {
+      font-family: var(--font-headline);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: var(--weight-extrabold);
+      color: var(--color-green);
+      line-height: 1;
+    }
+    .result-card__plus {
+      font-size: 0.65em;
+      vertical-align: super;
+    }
+    .result-card__label {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.7);
+      line-height: var(--leading-normal);
+    }
+
+    /* ── Objeção no CTA final ── */
+    .final-cta__objection {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      margin-top: var(--space-5);
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      margin-inline: auto;
+      line-height: var(--leading-normal);
+    }
+    .final-cta__objection svg { flex-shrink: 0; opacity: 0.7; }
+
+    /* ── Exit-intent modal ── */
+    .exit-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-5);
+    }
+    .exit-modal[hidden] { display: none; }
+    .exit-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,5,30,0.75);
+      backdrop-filter: blur(4px);
+    }
+    .exit-modal__box {
+      position: relative;
+      background: var(--color-white);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-10) var(--space-8);
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+    }
+    .exit-modal__close {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-4);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-text-muted);
+      padding: var(--space-1);
+      border-radius: var(--radius-md);
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .exit-modal__close:hover { color: var(--color-text); }
+    .exit-modal__emoji { font-size: 2.5rem; margin-bottom: var(--space-4); line-height: 1; }
+    .exit-modal__title {
+      font-family: var(--font-headline);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-extrabold);
+      color: var(--color-text);
+      margin-bottom: var(--space-3);
+    }
+    .exit-modal__text {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: var(--leading-normal);
+      margin-bottom: var(--space-6);
+    }
+    .exit-modal__cta { width: 100%; justify-content: center; }
+    .exit-modal__note {
+      margin-top: var(--space-3);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+
   </style>
 </head>
 <body>
@@ -353,7 +605,7 @@
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M7 1L8.5 5H13L9.5 7.5L11 11.5L7 9L3 11.5L4.5 7.5L1 5H5.5L7 1Z" fill="currentColor"/>
               </svg>
-              Campanha RH Abacaxi — YouRH
+              Campanha RH Abacaxi · YouRH
             </div>
 
             <h1 class="hero__title animate-on-scroll delay-100" id="hero-title">
@@ -367,8 +619,19 @@
 
             <div class="hero__actions animate-on-scroll delay-300">
               <a href="#form" class="btn btn--primary btn--lg">
-                Quero agendar uma demonstração
+                Quero ver a YouRH em ação
               </a>
+            </div>
+
+            <div class="hero__social-proof animate-on-scroll delay-350">
+              <div class="hero__sp-avatars" aria-hidden="true">
+                <img src="https://ui-avatars.com/api/?name=M+S&background=3D008C&color=fff&size=32" alt="">
+                <img src="https://ui-avatars.com/api/?name=C+R&background=5B00D4&color=fff&size=32" alt="">
+                <img src="https://ui-avatars.com/api/?name=A+P&background=00C853&color=fff&size=32" alt="">
+                <img src="https://ui-avatars.com/api/?name=J+T&background=3D008C&color=fff&size=32" alt="">
+                <img src="https://ui-avatars.com/api/?name=L+F&background=5B00D4&color=fff&size=32" alt="">
+              </div>
+              <span class="hero__sp-text">Mais de <strong>400 empresas</strong> já resolveram o abacaxi com a YouRH</span>
             </div>
 
             <div class="hero__trust animate-on-scroll delay-400">
@@ -394,9 +657,39 @@
           </div>
 
           <div class="hero__visual" aria-hidden="true">
-            <img src="assets/ABACAXIPNG" alt="" class="hero__pineapple">
+            <div class="hero__pineapple-wrap">
+              <img src="assets/ABACAXIPNG" alt="" class="hero__pineapple">
+            </div>
           </div>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LOGOS CLIENTES ───────────────────────────────────────── -->
+    <section class="section-logos" aria-label="Empresas que confiam na YouRH">
+      <p class="logos__label">Empresas que já resolveram o abacaxi com a YouRH</p>
+      <div class="logos-marquee" aria-hidden="true">
+        <div class="logos-track">
+          <img src="assets/logos_clientes/afubra.png"        alt="Afubra">
+          <img src="assets/logos_clientes/anasol.png"        alt="Anasol">
+          <img src="assets/logos_clientes/botafogo.png"          alt="Botafogo">
+          <img src="assets/logos_clientes/dufrio.png"        alt="Dufrio">
+          <img src="assets/logos_clientes/metasa.png"        alt="Metasa">
+          <img src="assets/logos_clientes/pittol.png"        alt="Pittol">
+          <img src="assets/logos_clientes/stokcenter.png"    alt="Stokcenter">
+          <img src="assets/logos_clientes/tw_transportes.png" alt="TW Transportes">
+          <img src="assets/logos_clientes/zaffari.png"       alt="Zaffari">
+          <!-- duplicadas para loop infinito -->
+          <img src="assets/logos_clientes/afubra.png"        alt="">
+          <img src="assets/logos_clientes/anasol.png"        alt="">
+          <img src="assets/logos_clientes/botafogo.png"          alt="">
+          <img src="assets/logos_clientes/dufrio.png"        alt="">
+          <img src="assets/logos_clientes/metasa.png"        alt="">
+          <img src="assets/logos_clientes/pittol.png"        alt="">
+          <img src="assets/logos_clientes/stokcenter.png"    alt="">
+          <img src="assets/logos_clientes/tw_transportes.png" alt="">
+          <img src="assets/logos_clientes/zaffari.png"       alt="">
         </div>
       </div>
     </section>
@@ -611,40 +904,51 @@
 
         <div class="section-header section-header--center animate-on-scroll">
           <span class="section-label">Para quem é</span>
-          <h2 class="section-title" id="target-title">Essa solução é para você que trabalha com RH e sente que está no limite.</h2>
-          <p class="section-subtitle">A YouRH é ideal para empresas que:</p>
+          <h2 class="section-title" id="target-title">Você se reconhece em algum desses cenários?</h2>
+          <p class="section-subtitle">Se sim, a YouRH foi feita exatamente para você.</p>
         </div>
 
-        <div class="target-list">
-          <div class="target-item animate-on-scroll delay-100">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            Possuem RH pequeno e sobrecarregado
+        <div class="persona-grid">
+          <div class="persona-card animate-on-scroll delay-100">
+            <span class="persona-card__icon">🤯</span>
+            <h3 class="persona-card__title">RH de um só</h3>
+            <p class="persona-card__desc">Você é responsável por tudo: do onboarding à avaliação. Sobrecarregado e ainda precisam que você seja estratégico.</p>
           </div>
-          <div class="target-item animate-on-scroll delay-150">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            Querem organizar avaliação e desenvolvimento
+          <div class="persona-card animate-on-scroll delay-150">
+            <span class="persona-card__icon">📊</span>
+            <h3 class="persona-card__title">Decisões no escuro</h3>
+            <p class="persona-card__desc">Avaliações no improviso, PDI em planilha, treinamento no WhatsApp. Tudo fragmentado e sem visibilidade real.</p>
           </div>
-          <div class="target-item animate-on-scroll delay-200">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            Precisam acelerar produtividade e performance
+          <div class="persona-card animate-on-scroll delay-200">
+            <span class="persona-card__icon">🔥</span>
+            <h3 class="persona-card__title">Sempre apagando incêndio</h3>
+            <p class="persona-card__desc">Em vez de desenvolver pessoas, você passa o dia resolvendo urgências que poderiam ter sido evitadas com processo.</p>
           </div>
-          <div class="target-item animate-on-scroll delay-250">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            Querem formar lideranças melhores
+          <div class="persona-card animate-on-scroll delay-250">
+            <span class="persona-card__icon">🏆</span>
+            <h3 class="persona-card__title">Quer ser visto como estratégico</h3>
+            <p class="persona-card__desc">Você sabe que o RH pode entregar muito mais valor, mas falta tempo, ferramenta e estrutura para provar isso.</p>
           </div>
-          <div class="target-item animate-on-scroll delay-300">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            Precisam de treinamento contínuo sem caos
+          <div class="persona-card animate-on-scroll delay-300">
+            <span class="persona-card__icon">📈</span>
+            <h3 class="persona-card__title">Liderança sem suporte</h3>
+            <p class="persona-card__desc">Os gestores não sabem dar feedback nem desenvolver o time. Você resolve isso, ou leva a culpa quando o resultado falha.</p>
           </div>
-          <div class="target-item animate-on-scroll delay-350">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            Querem parar de "apagar incêndio" e virar estratégico
+          <div class="persona-card animate-on-scroll delay-350">
+            <span class="persona-card__icon">⏰</span>
+            <h3 class="persona-card__title">Sem tempo pro que importa</h3>
+            <p class="persona-card__desc">O dia acaba e você mal tocou nas atividades que realmente constroem cultura e desenvolvem pessoas de verdade.</p>
           </div>
         </div>
 
-        <p class="section-subtitle animate-on-scroll" style="text-align:center; margin-top: var(--space-8); font-weight: var(--weight-semibold);">
+        <p class="persona-cta-text animate-on-scroll">
           Se você sente que está carregando a empresa nas costas… essa plataforma foi feita para você.
         </p>
+
+        <div class="persona-cta-btn animate-on-scroll">
+          <a href="#form" class="btn btn--primary btn--lg">Quero sair do operacional →</a>
+          <p class="persona-cta-note">Demonstração gratuita, sem compromisso</p>
+        </div>
 
       </div>
     </section>
@@ -663,7 +967,7 @@
               <svg class="testimonial__quote-icon" width="24" height="18" viewBox="0 0 24 18" fill="none" aria-hidden="true">
                 <path d="M0 18h9l3-8V0H0v10h5l-3 8zm12 0h9l3-8V0H12v10h5l-3 8z" fill="currentColor"/>
               </svg>
-              <p>"A gente vivia preso em planilhas e retrabalho. Com a YouRH conseguimos rodar avaliação, treinamento e PDI com muito mais clareza."</p>
+              <p>"A gente vivia preso em planilhas e retrabalho. Com a YouRH conseguimos rodar avaliação, treinamento e PDI com muito mais clareza. Economizamos mais de 10 horas por semana só no processo de avaliação."</p>
             </div>
             <div class="testimonial__author">
               <div class="author__photo">
@@ -681,7 +985,7 @@
               <svg class="testimonial__quote-icon" width="24" height="18" viewBox="0 0 24 18" fill="none" aria-hidden="true">
                 <path d="M0 18h9l3-8V0H0v10h5l-3 8zm12 0h9l3-8V0H12v10h5l-3 8z" fill="currentColor"/>
               </svg>
-              <p>"A plataforma deu estrutura para nosso RH. Hoje temos processos claros e liderança mais preparada."</p>
+              <p>"A plataforma deu estrutura para nosso RH. Hoje temos processos claros e liderança mais preparada. Em 60 dias, 90% dos gestores tinham concluído os treinamentos obrigatórios."</p>
             </div>
             <div class="testimonial__author">
               <div class="author__photo">
@@ -692,6 +996,34 @@
                 <span class="author__meta">Diretor de Pessoas · InovaCorp</span>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RESULTADOS ────────────────────────────────────────────── -->
+    <section class="section-results" aria-label="Resultados da YouRH">
+      <div class="container">
+        <div class="section-header section-header--center animate-on-scroll">
+          <span class="section-label">Resultados reais</span>
+          <h2 class="section-title">O que muda quando o RH para de descascar abacaxi</h2>
+        </div>
+        <div class="results-grid">
+          <div class="result-card animate-on-scroll delay-100">
+            <span class="result-card__number">400<span class="result-card__plus">+</span></span>
+            <span class="result-card__label">empresas já usam a YouRH no Brasil</span>
+          </div>
+          <div class="result-card animate-on-scroll delay-200">
+            <span class="result-card__number">550<span class="result-card__plus">+</span></span>
+            <span class="result-card__label">treinamentos prontos para aplicar desde o primeiro dia</span>
+          </div>
+          <div class="result-card animate-on-scroll delay-300">
+            <span class="result-card__number">-40<span class="result-card__plus">%</span></span>
+            <span class="result-card__label">de tempo gasto no operacional após implementação</span>
+          </div>
+          <div class="result-card animate-on-scroll delay-400">
+            <span class="result-card__number">30</span>
+            <span class="result-card__label">dias para o RH estar rodando na plataforma</span>
           </div>
         </div>
       </div>
@@ -868,7 +1200,7 @@
                   </div>
 
                   <button type="submit" class="form-submit-btn">
-                    Agendar demonstração
+                    Agendar minha demo gratuita
                   </button>
 
                   <p class="form-note">
@@ -963,9 +1295,13 @@
           Clique abaixo e veja como a YouRH resolve isso de forma simples, rápida e estruturada.
         </p>
         <a href="#form" class="btn--white">
-          Agendar demonstração agora
+          Quero resolver o meu abacaxi agora
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
+        <p class="final-cta__objection">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v5M10 14v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          A maioria das empresas está rodando em até 30 dias. A YouRH conduz todo o processo de implantação com você.
+        </p>
       </div>
     </section>
 
@@ -1004,12 +1340,12 @@
             <div class="footer__address">
               <strong>Passo Fundo – RS</strong>
               <span>Av. Brasil Oeste, 560 – 2401 – Centro</span>
-              <span>Passo Fundo/RS — CEP: 99010-001</span>
+              <span>Passo Fundo/RS · CEP 99010-001</span>
             </div>
             <div class="footer__address">
               <strong>Balneário Camboriú – SC</strong>
               <span>Rua 700, 489 – 1104 – Centro</span>
-              <span>Balneário Camboriú/SC — CEP: 88330-620</span>
+              <span>Balneário Camboriú/SC · CEP 88330-620</span>
             </div>
           </div>
           <a href="https://painel.umentor.com.br/inteligente_novos/?con_cod=ana12479&pla=5" target="_blank" rel="noopener" class="footer__jobs-btn">
@@ -1025,9 +1361,9 @@
     </div>
   </footer>
 
-  <div class="floating-cta" id="floating-cta">
-    <a href="#form" class="btn--sticky">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <div id="fcta">
+    <a href="#form">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
         <line x1="16" y1="2" x2="16" y2="6"></line>
         <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -1037,18 +1373,35 @@
     </a>
   </div>
 
+  <!-- Exit-intent modal -->
+  <div class="exit-modal" id="exit-modal" role="dialog" aria-modal="true" aria-labelledby="exit-modal-title" hidden>
+    <div class="exit-modal__backdrop" id="exit-modal-backdrop"></div>
+    <div class="exit-modal__box">
+      <button class="exit-modal__close" id="exit-modal-close" aria-label="Fechar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="exit-modal__emoji" aria-hidden="true">🍍</div>
+      <h2 class="exit-modal__title" id="exit-modal-title">Antes de ir, uma coisa rápida.</h2>
+      <p class="exit-modal__text">A maioria dos RHs que visitam essa página continua presa no operacional por mais 6 meses antes de agir.<br>Uma conversa de 30 minutos pode mudar isso.</p>
+      <a href="#form" class="btn btn--primary btn--lg exit-modal__cta" id="exit-modal-cta">
+        Agendar minha demo gratuita
+      </a>
+      <p class="exit-modal__note">Sem compromisso. Sem cartão de crédito.</p>
+    </div>
+  </div>
+
   <script src="js/form.js" defer></script>
   <script src="js/main.js" defer></script>
 
   <script>
     (function() {
-      var cta  = document.getElementById('floating-cta');
+      var cta  = document.getElementById('fcta');
       var hero = document.getElementById('hero');
       var parallax = document.querySelector('.section-parallax');
 
       if (cta && hero) {
         var observer = new IntersectionObserver(function(entries) {
-          cta.classList.toggle('is-visible', !entries[0].isIntersecting);
+          cta.classList.toggle('show', !entries[0].isIntersecting);
         }, { threshold: 0 });
         observer.observe(hero);
       }
@@ -1071,6 +1424,46 @@
     })();
   </script>
 
+  <script>
+    (function() {
+      var modal    = document.getElementById('exit-modal');
+      var backdrop = document.getElementById('exit-modal-backdrop');
+      var closeBtn = document.getElementById('exit-modal-close');
+      var ctaBtn   = document.getElementById('exit-modal-cta');
+      var shown    = false;
+
+      function showModal() {
+        if (shown || sessionStorage.getItem('exitShown')) return;
+        shown = true;
+        sessionStorage.setItem('exitShown', '1');
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+
+      function hideModal() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+      }
+
+      document.addEventListener('mouseleave', function(e) {
+        if (e.clientY < 10) showModal();
+      });
+
+      // Mobile: show after 40s idle if not converted
+      var idleTimer = setTimeout(function() { showModal(); }, 40000);
+      document.addEventListener('touchstart', function() {
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(function() { showModal(); }, 40000);
+      }, { passive: true });
+
+      if (backdrop) backdrop.addEventListener('click', hideModal);
+      if (closeBtn) closeBtn.addEventListener('click', hideModal);
+      if (ctaBtn)   ctaBtn.addEventListener('click', hideModal);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') hideModal();
+      });
+    })();
+  </script>
 
 </body>
 </html>

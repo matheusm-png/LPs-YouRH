@@ -575,12 +575,19 @@ mark {
   background: rgba(255, 255, 255, 0.03) !important;
   border-color: rgba(140, 70, 255, 0.18) !important;
   color: var(--color-text);
-  transition: border-color 0.3s, box-shadow 0.3s;
 }
-.target-item:hover {
+.persona-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(140, 70, 255, 0.18) !important;
+}
+.persona-card__title { color: var(--color-text); }
+.persona-card__desc { color: var(--color-text-muted); }
+.persona-card:hover {
+  background: rgba(255, 255, 255, 0.07) !important;
   border-color: rgba(0, 230, 118, 0.35) !important;
-  box-shadow: 0 0 16px rgba(0, 230, 118, 0.08);
+  box-shadow: 0 16px 40px rgba(0, 230, 118, 0.08) !important;
 }
+.persona-cta-text { color: var(--color-text); }
 
 /* ─── FORMULÁRIO ───────────────────────────────────────────── */
 .section-form {
@@ -604,15 +611,15 @@ mark {
 }
 
 .conversion-form {
-  background: rgba(21, 18, 42, 0.8);
-  border: 1px solid rgba(140, 70, 255, 0.2);
+  background: rgba(38, 32, 68, 0.95);
+  border: 1px solid rgba(140, 70, 255, 0.3);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
 .form-input {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(140, 70, 255, 0.2);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(140, 70, 255, 0.3);
   color: var(--color-text);
 }
 .form-input::placeholder {

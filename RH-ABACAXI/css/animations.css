@@ -86,6 +86,19 @@
   50%       { transform: translateY(-8px); }
 }
 
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes pineappleFloat {
+  0%   { transform: translateY(0px)   rotate(-1.5deg); }
+  35%  { transform: translateY(-10px) rotate(0deg);    }
+  65%  { transform: translateY(-6px)  rotate(1.5deg);  }
+  100% { transform: translateY(0px)   rotate(-1.5deg); }
+}
+
+
 /* ── Estado inicial para animações por scroll ────────────────── */
 
 .animate-on-scroll {
