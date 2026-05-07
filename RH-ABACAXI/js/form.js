@@ -278,7 +278,13 @@
 
       fireGtmEvent(data);
       showLoading(form.querySelector('.form-submit-btn'));
-      // Sem preventDefault aqui: form submete nativamente → RD Station captura → redireciona para action
+
+      // RD Station listener já capturou o evento antes deste handler.
+      // Bloqueamos a navegação POST nativa (Netlify rejeita POST em arquivos estáticos)
+      // e redirecionamos via GET após um tick para o RD processar.
+      e.preventDefault();
+      var destination = form.getAttribute('action') || 'obrigado.html';
+      setTimeout(function() { window.location.href = destination; }, 100);
     });
   }
 
