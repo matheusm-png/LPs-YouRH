@@ -401,6 +401,10 @@
       mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
     }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
     .logos-track {
       display: flex;
       align-items: center;
@@ -522,147 +526,6 @@
       line-height: var(--leading-normal);
     }
     .final-cta__objection svg { flex-shrink: 0; opacity: 0.7; }
-
-    /* ── Exit-intent modal ── */
-    .exit-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--space-5);
-    }
-    .exit-modal[hidden] { display: none; }
-    .exit-modal__backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(4,1,16,0.88);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-    }
-    .exit-modal__box {
-      position: relative;
-      background: var(--color-white);
-      border-radius: var(--radius-2xl);
-      max-width: 480px;
-      width: 100%;
-      overflow: hidden;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.05);
-      animation: modalIn 0.3s cubic-bezier(0.16,1,0.3,1) both;
-    }
-    @keyframes modalIn {
-      from { opacity: 0; transform: translateY(16px) scale(0.97); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .exit-modal__hero {
-      background: var(--gradient-hero);
-      padding: 36px 36px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-    .exit-modal__hero::before {
-      content: '';
-      position: absolute;
-      top: -80px; right: -80px;
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(0,200,83,0.15) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .exit-modal__eyebrow {
-      font-size: 11px;
-      font-weight: var(--weight-semibold);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--color-green);
-      margin-bottom: var(--space-3);
-    }
-    .exit-modal__headline {
-      font-family: var(--font-headline);
-      font-size: clamp(1.35rem, 2.5vw, 1.65rem);
-      font-weight: var(--weight-extrabold);
-      color: var(--color-white);
-      line-height: 1.2;
-      margin: 0;
-      max-width: 320px;
-    }
-    .exit-modal__headline em {
-      font-style: normal;
-      color: var(--color-green);
-    }
-    .exit-modal__body {
-      padding: 28px 36px 32px;
-    }
-    .exit-modal__text {
-      font-size: var(--text-sm);
-      color: var(--color-text-muted);
-      line-height: 1.6;
-      margin-bottom: var(--space-5);
-    }
-    .exit-modal__bullets {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 var(--space-6);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .exit-modal__bullets li {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      font-size: var(--text-sm);
-      font-weight: var(--weight-medium);
-      color: var(--color-text);
-    }
-    .exit-modal__bullets li::before {
-      content: '';
-      width: 18px; height: 18px;
-      border-radius: 50%;
-      background: rgba(0,200,83,0.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 9 9'%3E%3Cpath d='M1.5 4.5l2 2L7.5 2' stroke='%2300C853' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E") center no-repeat;
-      flex-shrink: 0;
-    }
-    .exit-modal__cta {
-      width: 100%;
-      justify-content: center;
-      margin-bottom: var(--space-3);
-    }
-    .exit-modal__dismiss {
-      display: block;
-      text-align: center;
-      font-size: var(--text-xs);
-      color: var(--color-text-muted);
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: var(--space-2);
-      width: 100%;
-      transition: color 0.2s;
-      font-family: var(--font-body);
-      opacity: 0.6;
-    }
-    .exit-modal__dismiss:hover { opacity: 1; color: var(--color-text); }
-    .exit-modal__close {
-      position: absolute;
-      top: var(--space-4);
-      right: var(--space-4);
-      background: rgba(255,255,255,0.1);
-      border: none;
-      cursor: pointer;
-      color: rgba(255,255,255,0.6);
-      padding: 6px;
-      border-radius: var(--radius-md);
-      line-height: 1;
-      transition: background 0.2s, color 0.2s;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .exit-modal__close:hover {
-      background: rgba(255,255,255,0.2);
-      color: #fff;
-    }
 
   </style>
 </head>
@@ -839,9 +702,7 @@
       <div class="container animate-on-scroll">
         <p class="emotional__quote">E se o abacaxi ficasse só no happy hour?</p>
         <p class="emotional__sub">
-          Porque na rotina do RH… já deu.<br>
-          Sua missão vai muito além de resolver urgências do dia a dia.<br>
-          Você foi contratado para organizar, desenvolver e impulsionar pessoas.
+          Porque na rotina do RH… já deu. Sua missão vai muito além de resolver urgências do dia a dia. Você foi contratado para organizar, desenvolver e impulsionar pessoas.
         </p>
       </div>
     </section>
@@ -1478,37 +1339,6 @@
     </a>
   </div>
 
-  <!-- Exit-intent modal -->
-  <div class="exit-modal" id="exit-modal" role="dialog" aria-modal="true" aria-labelledby="exit-modal-title" hidden>
-    <div class="exit-modal__backdrop" id="exit-modal-backdrop"></div>
-    <div class="exit-modal__box">
-
-      <div class="exit-modal__hero">
-        <button class="exit-modal__close" id="exit-modal-close" aria-label="Fechar">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        </button>
-        <p class="exit-modal__eyebrow">Antes de sair</p>
-        <h2 class="exit-modal__headline" id="exit-modal-title">Seu RH não precisa ser um abacaxi <em>pra sempre.</em></h2>
-      </div>
-
-      <div class="exit-modal__body">
-        <p class="exit-modal__text">Empresas como a sua saíram do caos em menos de 30 dias. Uma conversa, sem script, sem compromisso.</p>
-        <ul class="exit-modal__bullets">
-          <li>Avaliação de desempenho sem planilha</li>
-          <li>Treinamentos com 88% de taxa de conclusão</li>
-          <li>R&S, AVD e T&D em um único login</li>
-        </ul>
-        <a href="#form" class="btn btn--primary btn--lg exit-modal__cta" id="exit-modal-cta">
-          Quero ver funcionando →
-        </a>
-        <button class="exit-modal__dismiss" id="exit-modal-dismiss">
-          Não, vou continuar descascando abacaxi
-        </button>
-      </div>
-
-    </div>
-  </div>
-
   <script src="js/form.js" defer></script>
   <script src="js/main.js" defer></script>
 
@@ -1540,53 +1370,6 @@
           }
         });
       }
-    })();
-  </script>
-
-  <script>
-    (function() {
-      var modal    = document.getElementById('exit-modal');
-      var backdrop = document.getElementById('exit-modal-backdrop');
-      var closeBtn = document.getElementById('exit-modal-close');
-      var ctaBtn   = document.getElementById('exit-modal-cta');
-      var shown    = false;
-
-      function showModal() {
-        if (shown || sessionStorage.getItem('exitShown')) return;
-        shown = true;
-        sessionStorage.setItem('exitShown', '1');
-        modal.hidden = false;
-        document.body.style.overflow = 'hidden';
-      }
-
-      function hideModal() {
-        modal.hidden = true;
-        document.body.style.overflow = '';
-      }
-
-      // Desktop: mouse move próximo ao topo (mais confiável que mouseleave)
-      document.addEventListener('mousemove', function(e) {
-        if (e.clientY < 20) showModal();
-      });
-
-      // Fallback desktop: 45s na página
-      var desktopTimer = setTimeout(function() { showModal(); }, 45000);
-
-      // Mobile: 40s idle
-      var idleTimer = setTimeout(function() { showModal(); }, 40000);
-      document.addEventListener('touchstart', function() {
-        clearTimeout(idleTimer);
-        idleTimer = setTimeout(function() { showModal(); }, 40000);
-      }, { passive: true });
-
-      var dismissBtn = document.getElementById('exit-modal-dismiss');
-      if (backdrop)   backdrop.addEventListener('click', hideModal);
-      if (closeBtn)   closeBtn.addEventListener('click', hideModal);
-      if (ctaBtn)     ctaBtn.addEventListener('click', hideModal);
-      if (dismissBtn) dismissBtn.addEventListener('click', hideModal);
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') hideModal();
-      });
     })();
   </script>
 
