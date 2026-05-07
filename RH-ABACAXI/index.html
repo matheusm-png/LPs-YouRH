@@ -29,7 +29,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/main.css?v=2" />
-  <link rel="stylesheet" href="css/dark.css?v=2" />
+  <link rel="stylesheet" href="css/dark.css?v=3" />
 
   <!-- RD Station — NÃO ALTERAR -->
   <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/2b4d5177951b2aaefe0b7f838559c2d9-rdstation.js"></script>
@@ -183,7 +183,19 @@
     }
     .persona-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,200,83,0.12); border-color: rgba(0,200,83,0.35); }
     .persona-card:hover::after { transform: scaleX(1); }
-    .persona-card__icon { font-size: 2.2rem; margin-bottom: var(--space-4); display: block; line-height: 1; }
+    .persona-card__icon {
+      font-size: 1.6rem;
+      margin-bottom: var(--space-4);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-lg);
+      background: var(--color-text);
+      line-height: 1;
+      filter: grayscale(0.3);
+    }
     .persona-card__title {
       font-family: var(--font-headline);
       font-size: var(--text-base);
@@ -233,6 +245,12 @@
       line-height: var(--leading-tight);
       max-width: 580px;
       margin: 0 auto var(--space-4);
+    }
+    .final-cta__title mark {
+      background: linear-gradient(135deg, var(--color-yellow), var(--color-yellow-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .final-cta__desc {
       font-size: var(--text-md);
@@ -692,8 +710,8 @@
             </h1>
 
             <p class="hero__sub animate-on-scroll delay-200">
-              Pare de perder tempo com planilhas, retrabalho e processos manuais.
-              Com a YouRH, você centraliza Avaliação de Desempenho, Treinamentos e Desenvolvimento em um só lugar. E finalmente ganha tempo para atuar com estratégia.
+              Pare de perder tempo com <strong>planilhas</strong>, <strong>retrabalho</strong> e <strong>processos manuais</strong>.
+              Com a YouRH, você centraliza <strong>Avaliação de Desempenho</strong>, <strong>Treinamentos</strong> e <strong>Desenvolvimento</strong> em um só lugar. E finalmente ganha tempo para atuar com estratégia.
             </p>
 
             <div class="hero__actions animate-on-scroll delay-300">
@@ -822,7 +840,7 @@
         <p class="emotional__quote">E se o abacaxi ficasse só no happy hour?</p>
         <p class="emotional__sub">
           Porque na rotina do RH… já deu.<br>
-          Você não foi contratado para ficar apagando incêndio.<br>
+          Sua missão vai muito além de resolver urgências do dia a dia.<br>
           Você foi contratado para organizar, desenvolver e impulsionar pessoas.
         </p>
       </div>
@@ -1056,6 +1074,10 @@
                 <span class="author__name">Ana Silva</span>
                 <span class="author__meta">Gerente de RH · TechLogix</span>
               </div>
+              <div class="author__logo" aria-label="Logo da empresa">
+                <!-- Logo da empresa — a ser inserido -->
+                <img src="" alt="TechLogix" style="height:28px;width:auto;object-fit:contain;opacity:0.7;display:none;" class="author__logo-img" />
+              </div>
             </div>
           </div>
 
@@ -1073,6 +1095,10 @@
               <div class="author__info">
                 <span class="author__name">Carlos Santos</span>
                 <span class="author__meta">Diretor de Pessoas · InovaCorp</span>
+              </div>
+              <div class="author__logo" aria-label="Logo da empresa">
+                <!-- Logo da empresa — a ser inserido -->
+                <img src="" alt="InovaCorp" style="height:28px;width:auto;object-fit:contain;opacity:0.7;display:none;" class="author__logo-img" />
               </div>
             </div>
           </div>
@@ -1368,7 +1394,7 @@
     <!-- ── CTA FINAL ───────────────────────────────────────────── -->
     <section class="section-final-cta" aria-label="Chamada final para ação">
       <div class="container animate-on-scroll">
-        <p class="final-cta__title">RH… o abacaxi ainda está aí?</p>
+        <p class="final-cta__title">RH… o <mark>abacaxi</mark> ainda está aí?</p>
         <p class="final-cta__desc">
           Quanto sua empresa está perdendo deixando esse abacaxi mais uma semana no seu setor?
           Clique abaixo e veja como a YouRH resolve isso de forma simples, rápida e estruturada.

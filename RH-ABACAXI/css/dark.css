@@ -723,15 +723,16 @@ mark {
 }
 
 .section-final-cta .btn--white {
-  background: var(--color-white);
-  color: #C4B5FD;
-  border: 1px solid rgba(124, 58, 237, 0.4);
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+  background: linear-gradient(135deg, var(--color-yellow), var(--color-yellow-dark));
+  color: #2A0062;
+  border: none;
+  box-shadow: 0 8px 28px rgba(255,140,0,0.4);
 }
 .section-final-cta .btn--white:hover {
-  background: rgba(124, 58, 237, 0.1);
-  color: #EDE8FF;
-  box-shadow: var(--glow-purple);
+  background: linear-gradient(135deg, #FFE033, var(--color-yellow));
+  color: #2A0062;
+  box-shadow: 0 12px 36px rgba(255,140,0,0.55);
+  transform: translateY(-2px);
 }
 
 /* ─── FOOTER ───────────────────────────────────────────────── */
