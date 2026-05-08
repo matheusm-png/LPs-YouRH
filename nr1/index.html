@@ -198,6 +198,135 @@
     </section>
 
     <!-- ============================================================
+         3b. WEBINAR BANNER
+         ============================================================ -->
+    <section class="webinar-section" id="webinar" aria-labelledby="webinar-title">
+      <div class="container">
+        <div class="webinar-card animate-on-scroll">
+
+          <!-- Foto como fundo do card -->
+          <div class="webinar-card__bg" aria-hidden="true">
+            <img src="assets/IMAGEM-MAGNUN-NR1 (1).jpg" alt="" />
+          </div>
+
+          <!-- Painel de vidro sobreposto à esquerda -->
+          <div class="webinar-glass">
+
+            <div class="webinar-glass__badge">
+              <span class="webinar-live-dot" aria-hidden="true"></span>
+              Webinar ao vivo &mdash; 12/05 &middot; Terça &middot; 19h
+            </div>
+
+            <h2 class="webinar-glass__title" id="webinar-title">
+              <span class="hl-circle">NR-1<svg viewBox="0 0 100 68" fill="none" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="50" cy="34" rx="47" ry="30" stroke="#00C853" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+              chegou à <span class="hl-underline">mesa da diretoria</span>.
+              Agora é hora de entender o que fazer.
+            </h2>
+
+            <p class="webinar-glass__desc">
+              Magnun Barcarol, CEO da YouRH, conduz um webmeeting online e ao vivo, em formato de
+              mesa aberta para CEOs e diretores. Um encontro direto, sem palestra engessada, para
+              tirar dúvidas sobre responsabilidades da liderança, riscos psicossociais, adequação
+              interna e os próximos passos que precisam sair do papel.
+            </p>
+
+            <p class="webinar-glass__sub">
+              Uma conversa online para quem precisa decidir com clareza, reduzir riscos e preparar
+              a empresa antes que o tema vire urgência.
+            </p>
+
+            <button
+              class="btn btn--primary btn--lg"
+              id="webinar-cta-btn"
+              type="button"
+            >
+              Quero participar do webinar
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal de inscrição no webinar -->
+    <div class="wmodal" id="webinar-modal" hidden role="dialog" aria-modal="true" aria-labelledby="wmodal-title">
+      <div class="wmodal__overlay"></div>
+      <div class="wmodal__dialog" tabindex="-1">
+
+        <button class="wmodal__close" id="wmodal-close" aria-label="Fechar">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <!-- Formulário -->
+        <div class="wmodal__body" id="wmodal-form-body">
+          <div class="wmodal__header">
+            <div class="wmodal__badge">Webinar 12/05 · 19h</div>
+            <h3 class="wmodal__title" id="wmodal-title">Reserve sua vaga</h3>
+            <p class="wmodal__subtitle">Preencha os dados abaixo para confirmar sua participação.</p>
+          </div>
+
+          <form id="webinar-form" novalidate autocomplete="off">
+
+            <div class="form-group">
+              <label class="form-label" for="w-nome">Nome completo <span aria-hidden="true">*</span></label>
+              <input class="form-input" id="w-nome" name="nome" type="text" placeholder="Seu nome completo" data-wfield="nome" autocomplete="name" required />
+              <span class="form-error" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="w-email">E-mail corporativo <span aria-hidden="true">*</span></label>
+              <input class="form-input" id="w-email" name="email" type="email" placeholder="seu@email.com.br" data-wfield="email" autocomplete="email" required />
+              <span class="form-error" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="w-telefone">Telefone / WhatsApp <span aria-hidden="true">*</span></label>
+              <input class="form-input" id="w-telefone" name="telefone" type="tel" placeholder="(00) 00000-0000" data-wfield="telefone" autocomplete="tel" required />
+              <span class="form-error" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="w-empresa">Empresa <span aria-hidden="true">*</span></label>
+              <input class="form-input" id="w-empresa" name="empresa" type="text" placeholder="Nome da empresa" data-wfield="empresa" autocomplete="organization" required />
+              <span class="form-error" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="w-cargo">Cargo <span aria-hidden="true">*</span></label>
+              <input class="form-input" id="w-cargo" name="cargo" type="text" placeholder="Ex: CEO, Diretor de RH, Gerente..." data-wfield="cargo" required />
+              <span class="form-error" role="alert"></span>
+            </div>
+
+            <button class="form-submit-btn" id="webinar-submit-btn" type="submit">
+              Confirmar inscrição
+            </button>
+
+          </form>
+        </div>
+
+        <!-- Estado de sucesso -->
+        <div class="wmodal__success" id="wmodal-success" hidden>
+          <div class="wmodal__success-icon" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="20" fill="var(--color-green-light)"/>
+              <path d="M12 20l6 6 10-12" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="wmodal__success-title">Inscrição confirmada!</h3>
+          <p class="wmodal__success-desc">
+            Ótimo! Sua vaga está reservada para o webinar do dia <strong>12/05 às 19h</strong>.
+            Fique de olho no seu e-mail com os detalhes de acesso.
+          </p>
+          <button class="btn btn--primary" id="wmodal-success-close" type="button">Fechar</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============================================================
          4. SEÇÃO PROBLEMA — "5 erros que vão custar caro"
          ============================================================ -->
     <section class="section-problems" id="problemas" aria-labelledby="problems-title">
@@ -1601,6 +1730,7 @@
   <!-- FIM POPUP DE OBRIGADO -->
 
   <!-- Scripts -->
+  <script src="js/webinar.js" defer></script>
   <script src="js/popup.js" defer></script>
   <script src="js/countdown.js" defer></script>
   <script src="js/checklist.js" defer></script>
