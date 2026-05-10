@@ -1077,6 +1077,123 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   filter: drop-shadow(0 20px 70px rgba(98,18,179,0.28));
 }
 
+/* Blocos de Identificação Flutuantes (UI Holográfica) */
+.hero-id-tag {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-id-tag__name {
+  background: rgba(10, 10, 20, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  padding: 6px 14px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  text-transform: uppercase;
+}
+
+.hero-id-tag__line {
+  position: absolute;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.hero-id-tag__line::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* 9BOX - Esquerda */
+.hero-id-tag--9box {
+  left: 4%;
+  top: 48%;
+  color: var(--clr-9box);
+  animation: float-tag-9box 4s ease-in-out infinite;
+}
+.hero-id-tag--9box .hero-id-tag__name { border-color: rgba(137, 26, 85, 0.4); }
+.hero-id-tag--9box .hero-id-tag__line {
+  left: 100%;
+  top: 50%;
+  width: 40px;
+  height: 1px;
+}
+.hero-id-tag--9box .hero-id-tag__line::after {
+  right: -3px;
+  top: -2.5px;
+}
+
+/* AVD - Centro / Baixo */
+.hero-id-tag--avd {
+  left: 50%;
+  top: 75%;
+  transform: translateX(-50%);
+  color: var(--clr-avd);
+  animation: float-tag-avd 3.5s ease-in-out infinite;
+}
+.hero-id-tag--avd .hero-id-tag__name { border-color: rgba(27, 175, 150, 0.4); }
+.hero-id-tag--avd .hero-id-tag__line {
+  bottom: 100%;
+  left: 50%;
+  width: 1px;
+  height: 40px;
+}
+.hero-id-tag--avd .hero-id-tag__line::after {
+  top: -3px;
+  left: -2.5px;
+}
+
+/* UC - Direita */
+.hero-id-tag--uc {
+  right: 4%;
+  top: 55%;
+  flex-direction: row-reverse;
+  color: var(--clr-uc);
+  animation: float-tag-uc 4.5s ease-in-out infinite;
+}
+.hero-id-tag--uc .hero-id-tag__name { border-color: rgba(234, 165, 65, 0.4); }
+.hero-id-tag--uc .hero-id-tag__line {
+  right: 100%;
+  top: 50%;
+  width: 35px;
+  height: 1px;
+}
+.hero-id-tag--uc .hero-id-tag__line::after {
+  left: -3px;
+  top: -2.5px;
+}
+
+/* Animações de flutuação independentes */
+@keyframes float-tag-9box {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes float-tag-avd {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+@keyframes float-tag-uc {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@media (max-width: 768px) {
+  .hero-id-tag { display: none; } /* Ocultar no mobile para não poluir a tela */
+}
+
 .arrival__sfx-row {
   display: flex;
   align-items: center;
@@ -2542,94 +2659,156 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-right: 1px dashed rgba(255,255,255,0.3);
 }
 
-/* Estilização Cinematográfica dos Post-its - ROTAÇÕES MAIS AGRESSIVAS */
-.board__postit--red { 
-  background: #ffcaca; 
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.4) 0%, transparent 60%),
-    linear-gradient(135deg, #ffeaea 0%, #ffcaca 100%);
-  transform: rotate(-6.5deg) !important; /* MAIS TORTO */
-  color: #2d0a0a;
-  border-radius: 2px 3px 12px 3px / 4px 8px 3px 6px !important; 
-}
-.board__postit--yellow { 
-  background: #fff8a8; 
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.4) 0%, transparent 60%),
-    linear-gradient(135deg, #ffffd8 0%, #fff8a8 100%);
-  transform: rotate(4.2deg) !important;  /* MAIS TORTO */
-  color: #2d2800; 
-  border-radius: 4px 10px 3px 6px / 3px 4px 12px 4px !important;
-}
-.board__postit--orange { 
-  background: #ffddaa; 
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.4) 0%, transparent 60%),
-    linear-gradient(135deg, #fff3e0 0%, #ffddaa 100%);
-  transform: rotate(-4.8deg) !important;  /* MAIS TORTO */
-  color: #2d1600; 
-  border-radius: 8px 4px 4px 10px / 3px 8px 5px 4px !important;
+/* Ambient Clutter - Fotos e Documentos no Fundo */
+.board__clutter {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
 }
 
-/* SOBREPOSIÇÃO GARANTIDA APÓS O REVEAL VISIBLE */
-.board__postit.reveal.visible { opacity: 1 !important; } 
-.board__postit--red.reveal.visible    { transform: rotate(-6.5deg) !important; }
-.board__postit--yellow.reveal.visible { transform: rotate(4.2deg) !important; }
-.board__postit--orange.reveal.visible { transform: rotate(-4.8deg) !important; }
-
-.board__postit:hover,
-.board__postit--red.reveal.visible:hover,
-.board__postit--yellow.reveal.visible:hover,
-.board__postit--orange.reveal.visible:hover {
-  transform: scale(1.08) rotate(0deg) !important;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6) !important;
-  z-index: 15;
+.board__clutter--photo1 {
+  width: 140px;
+  height: 160px;
+  background: #fff;
+  padding: 6px 6px 24px 6px;
+  top: -40px;
+  left: -20px;
+  transform: rotate(-12deg);
+}
+.board__clutter--photo1::after {
+  content: ''; display: block; width: 100%; height: 100%; background: #333;
 }
 
-.board__postit .crisis-metric__value { 
-  color: #7e1515; 
-  font-family: 'Permanent Marker', cursive; 
-  font-weight: 400;
-  font-size: 2.2rem;
-  letter-spacing: 0.02em;
-  text-shadow: 1px 1px 0px rgba(255,255,255,0.3);
+.board__clutter--doc {
+  width: 180px;
+  height: 220px;
+  background: #e8e3d8;
+  top: -50px;
+  right: -30px;
+  transform: rotate(8deg);
+  padding: 16px;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.1);
 }
+.doc-redaction {
+  width: 100%; height: 12px; background: #111; margin-bottom: 12px;
+}
+.doc-redaction.short { width: 60%; }
 
-.board__postit .crisis-metric__label { 
-  color: rgba(0,0,0,0.8); 
-  font-family: 'Caveat', cursive; 
-  font-size: 1.35rem;
-  font-weight: 700;
-  margin-top: 5px;
-  line-height: 0.9;
-  transform: rotate(-1deg);
-}
-.board__postit .crisis-metric__icon { 
-  font-size: 2.2rem; 
-  filter: grayscale(0.3) sepia(0.1); 
-  margin-bottom: 5px;
-}
-
-/* BARBANTE COM MOVIMENTO (Sagging SVG String) */
+/* Estilização Cinematográfica dos Evidence Cards */
 .board__evidence-row {
   position: relative;
 }
 
+.evidence-card {
+  position: relative;
+  width: 100%;
+  background: #f4f1ea;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.05'/%3E%3C/svg%3E");
+  padding: 40px 20px 30px;
+  border-radius: 2px;
+  /* Sombra realista de papel preso na parede, não flutuando no espaço */
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.3), 
+              5px 15px 25px rgba(0,0,0,0.2), 
+              inset 0 0 30px rgba(100,80,60,0.05);
+  border: 1px solid rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 5;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+}
+
+/* Rotações mais sutis e realistas */
+.evidence-card:nth-child(3) { transform: rotate(-2.5deg); }
+.evidence-card:nth-child(4) { transform: rotate(1.5deg); margin-top: 15px; }
+.evidence-card:nth-child(5) { transform: rotate(-3.5deg); }
+
+/* SOBREPOSIÇÃO GARANTIDA APÓS O REVEAL VISIBLE */
+.evidence-card.reveal.visible { opacity: 1 !important; }
+.evidence-card:nth-child(3).reveal.visible { transform: rotate(-2.5deg) !important; }
+.evidence-card:nth-child(4).reveal.visible { transform: rotate(1.5deg) !important; }
+.evidence-card:nth-child(5).reveal.visible { transform: rotate(-3.5deg) !important; }
+
+.evidence-card:hover {
+  transform: scale(1.04) rotate(0deg) !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4), 
+              0 25px 40px rgba(0,0,0,0.3) !important;
+  z-index: 15;
+}
+
+/* Fita adesiva prendendo os cards (substitui o percevejo) */
+.evidence-card__tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 70px;
+  height: 24px;
+  background: rgba(230, 225, 210, 0.85);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  backdrop-filter: blur(2px);
+  border-left: 2px dashed rgba(255,255,255,0.3);
+  border-right: 2px dashed rgba(255,255,255,0.3);
+  z-index: 10;
+}
+
+/* Carimbo vermelho de evidência */
+.evidence-card__stamp {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(180, 20, 20, 0.8);
+  border: 2px solid rgba(180, 20, 20, 0.6);
+  padding: 2px 6px;
+  transform: rotate(-8deg);
+  letter-spacing: 1px;
+}
+
+/* Fontes maduras e fortes */
+.evidence-card .crisis-metric__value { 
+  color: #111; 
+  font-family: var(--ff-display); 
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  letter-spacing: -0.02em;
+  margin-top: 15px;
+  line-height: 1.1;
+}
+
+.evidence-card .crisis-metric__label { 
+  color: #880000; 
+  font-family: 'Courier New', Courier, monospace; 
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 12px;
+}
+
+/* BARBANTE COM MOVIMENTO (Fio vermelho complexo entre as evidências) */
 .board__evidence-row::before {
   content: '';
   position: absolute;
-  top: -10px;
-  left: 16.5%; /* Do centro do postit 1 */
-  right: 16.5%; /* Ao centro do postit 3 */
-  height: 25px;
-  /* SVG URL-encoded gerando curvas suaves de gravidade (curva bézier) */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' preserveAspectRatio='none'%3E%3Cpath d='M0,2 Q25,14 50,2 Q75,14 100,2' fill='none' stroke='%23b91c1c' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  top: 25px;
+  left: -20px; 
+  right: -20px; 
+  height: 100px;
+  /* Fio de investigação vermelho conectando tudo */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 100' preserveAspectRatio='none'%3E%3Cpath d='M0,20 Q75,70 150,30 T300,40' fill='none' stroke='%23aa0000' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M0,40 Q100,-10 200,60 T300,20' fill='none' stroke='%23aa0000' stroke-width='0.8' stroke-linecap='round' opacity='0.6'/%3E%3C/svg%3E");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   opacity: 0.85;
   pointer-events: none;
-  z-index: 3;
-  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.6));
+  z-index: 6;
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,0.6));
 }
 
 
