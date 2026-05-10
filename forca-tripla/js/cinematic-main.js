@@ -153,12 +153,12 @@
     /* Phase 1: full-bleed image fades in + subtle zoom-out on img */
     const p1 = rng(p, 0, 0.35);
     if (vEl.imgWrap) vEl.imgWrap.style.opacity = p1;
-    if (vEl.imgEl)   vEl.imgEl.style.transform = `scale(${lerp(1.12, 1.0, p1)})`;
+    if (vEl.imgEl)   vEl.imgEl.style.transform = `scale(${lerp(1.4, 1.25, p1)}) translateY(${lerp(120, 80, p1)}px)`;
     anim(vEl.caption, p1, undefined, lerp(24, 0, p1));
 
     const p2 = rng(p, 0.28, 0.65);
     if (vEl.name) {
-      vEl.name.style.opacity   = p2;
+      vEl.name.style.opacity   = p2 * 0.65; /* Máximo de 65% para ver a foto no fundo */
       vEl.name.style.transform = `scale(${lerp(0.3, 1, p2)}) translateY(${lerp(50, 0, p2)}px)`;
     }
 
@@ -254,6 +254,21 @@
 
   /* ── SCROLL LISTENER (RAF throttle) ────────────────────────────── */
   let ticking = false;
+  let scrolledPast30 = false;
+
+  function updateStickyCta() {
+    const stickyBar = document.getElementById('sticky-cta-mobile');
+    if (!stickyBar) return;
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    scrolledPast30 = docH > 0 && (window.scrollY / docH) >= 0.30;
+
+    if (scrolledPast30 && !stickyBar._formVisible) {
+      stickyBar.classList.add('is-visible');
+    } else {
+      stickyBar.classList.remove('is-visible');
+    }
+  }
+
   window.addEventListener('scroll', () => {
     if (!ticking) {
       requestAnimationFrame(() => {
@@ -263,6 +278,7 @@
         updateChega();
         updateArrival();
         updateParallax();
+        updateStickyCta();
         ticking = false;
       });
       ticking = true;
@@ -276,5 +292,19 @@
   updateChega();
   updateArrival();
   updateParallax();
+
+  /* ── CRO #6: STICKY CTA — hide when form is visible ───────────── */
+  const stickyBar = document.getElementById('sticky-cta-mobile');
+  const formSection = document.getElementById('form');
+  if (stickyBar && formSection) {
+    stickyBar._formVisible = false;
+    const formObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        stickyBar._formVisible = e.isIntersecting;
+        updateStickyCta();
+      });
+    }, { threshold: 0.1 });
+    formObserver.observe(formSection);
+  }
 
 })();

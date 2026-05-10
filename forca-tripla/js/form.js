@@ -69,6 +69,9 @@
   }
 
   // ── VALIDADORES ─────────────────────────────────────────────────
+  // CRO #5: 'empresa' e 'funcionarios' são opcionais — validam só se preenchidos
+  var optionalFields = ['empresa', 'funcionarios'];
+
   var validators = {
     nome: function (v) {
       return v.trim().length >= 3 && v.trim().split(' ').length >= 2 && v.trim().split(' ')[1].length >= 1;
@@ -81,10 +84,11 @@
       return d.length >= 10 && d.length <= 11;
     },
     empresa: function (v) {
+      if (!v || !v.trim()) return true; // opcional: vazio é ok
       return v.trim().length >= 2;
     },
     funcionarios: function (v) {
-      return v !== '' && v !== null;
+      return true; // opcional: qualquer valor é ok
     },
     cargo: function (v) {
       return v !== '' && v !== null;
@@ -147,6 +151,17 @@
 
     var value = inputEl.value;
     var isValid;
+
+    // CRO #5: campos opcionais passam se vazios
+    if (optionalFields.indexOf(name) !== -1) {
+      var isEmpty = (inputEl.tagName === 'SELECT')
+        ? (value === '' || value === null)
+        : (!value || !value.trim());
+      if (isEmpty) {
+        clearState(groupEl, inputEl);
+        return true;
+      }
+    }
 
     if (name === 'lgpd') {
       isValid = inputEl.checked;
