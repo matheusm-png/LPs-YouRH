@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Solicite Demonstração — YouRH</title>
+<meta name="description" content="Agende uma demonstração da YouRH. Plataforma completa de RH Tech que integra avaliação de desempenho, T&D e desenvolvimento de pessoas."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://yourh.com.br/solicite-demonstracao"/>
+<meta property="og:title" content="Solicite Demonstração — YouRH"/>
+<meta property="og:description" content="Agende uma demonstração. Avaliação de desempenho, treinamento e desenvolvimento em uma só plataforma."/>
+<meta property="og:url" content="https://yourh.com.br/solicite-demonstracao"/>
+<meta property="og:image" content="/assets/cdn2.cardume.digital/public/sites/yourh/images/default/share.webp"/>
+<meta property="og:type" content="website"/>
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/cdn2.cardume.digital/public/sites/yourh/favicons/favicon-96x96.png"/>
+<link rel="shortcut icon" href="/assets/cdn2.cardume.digital/public/sites/yourh/favicons/favicon.ico"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/cdn2.cardume.digital/public/sites/yourh/favicons/apple-touch-icon.png"/>
+
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin/>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet"/>
+
+<!-- RD Station + Recaptcha -->
+<link rel="stylesheet" href="/assets/cdn2.cardume.digital/public/sites/yourh/css/default.min.css"/>
+<script defer src="https://www.google.com/recaptcha/api.js?render=6LdyGcQkAAAAACQk2LGJupjrk6832k-KRjSGaAdJ"></script>
+<script defer src="/assets/cdn2.cardume.digital/public/sites/yourh/js/default.min.js"></script>
+
+<style>
+/* ============================================================
+   YouRH · Solicite Demonstração
+   Paleta: #000 · #FFF · #6212B3 (roxo) · #61DD75 (verde)
+   Tipografia: General Sans (corpo/apoio) · Plus Jakarta Sans 800 (impacto)
+============================================================ */
+:root{
+  --black:#000000;
+  --paper:#fafafa;
+  --paper-2:#f3f1f6;
+  --ink:#0a0610;
+  --ink-2:#1a1424;
+  --muted-dark:#5a5468;
+  --purple:#6212B3;
+  --purple-2:#7d2dd1;
+  --purple-3:#9b5fdb;
+  --purple-deep:#3a0a6f;
+  --green:#61DD75;
+  --green-2:#7ef090;
+  --error:#e8504a;
+  --line:rgba(255,255,255,.10);
+  --line-strong:rgba(255,255,255,.18);
+  --line-dark:rgba(10,6,16,.10);
+  --line-dark-2:rgba(10,6,16,.18);
+  --text:#ece8f5;
+  --muted:#a8a3b8;
+  --radius:16px;
+  --radius-md:22px;
+  --radius-lg:28px;
+  --radius-xl:36px;
+  --shadow-card:0 30px 80px -30px rgba(98,18,179,.55), 0 12px 30px -10px rgba(0,0,0,.65);
+  --shadow-soft:0 24px 60px -24px rgba(0,0,0,.18);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --nav-h:74px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth; scroll-padding-top:90px}
+body{
+  background:var(--black);
+  color:var(--text);
+  font-family:'General Sans','Inter',system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  font-synthesis:none;
+}
+img{max-width:100%; display:block}
+a{color:inherit; text-decoration:none}
+button{font-family:inherit; cursor:pointer}
+
+.container{width:min(1240px, 92%); margin:0 auto; position:relative}
+
+/* ── Tipografia ── */
+.display, .display-md, h1, h2, h3{
+  font-family:'Plus Jakarta Sans','General Sans',sans-serif;
+  font-weight:800;
+  letter-spacing:-.025em;
+  line-height:1.1;
+  color:#fff;
+  margin:0;
+  text-wrap:balance;
+}
+.display{font-size:clamp(2.2rem,5vw,4.4rem); line-height:1.06}
+.display-md{font-size:clamp(1.8rem,3.4vw,3rem); line-height:1.14}
+.display-md--dark{color:var(--ink)}
+h3{font-size:clamp(1.15rem,1.6vw,1.45rem); font-weight:700; line-height:1.25}
+
+.text-soft{
+  font-family:'General Sans',sans-serif;
+  font-weight:500;
+  letter-spacing:-.01em;
+  color:inherit;
+}
+.display-md--dark .text-soft{color:var(--ink-2)}
+
+.lead{
+  font-family:'General Sans',sans-serif;
+  font-weight:400;
+  font-size:clamp(1rem,1.25vw,1.16rem);
+  color:var(--text);
+  max-width:60ch;
+  line-height:1.64;
+  margin:0;
+}
+.lead--center{margin:22px auto 0; text-align:center; color:#cfc9dc}
+.lead--dark{color:var(--muted-dark); max-width:54ch}
+.lead strong{font-weight:600; color:inherit}
+
+.eyebrow{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:'General Sans',sans-serif;
+  font-size:.78rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  padding:7px 14px;
+  border:1px solid var(--line-strong);
+  border-radius:99px;
+  background:rgba(255,255,255,.04);
+  backdrop-filter:blur(10px);
+  font-weight:500;
+}
+.eyebrow--light{color:#e9e1f8; border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.06)}
+.eyebrow--dark{color:var(--purple); border-color:rgba(98,18,179,.3); background:rgba(98,18,179,.06)}
+.eyebrow::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--green); flex-shrink:0}
+.eyebrow__pill{
+  display:inline-block;
+  background:var(--green); color:var(--ink);
+  padding:3px 10px; border-radius:99px;
+  font-weight:600; letter-spacing:.08em; font-size:.72rem;
+}
+
+.text-green{color:var(--green)}
+.text-purple{color:var(--purple-2)}
+
+/* Tarjas highlight */
+.hl-block, .hl-block--green{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:800;
+  display:inline;
+  padding:.06em .22em;
+  border-radius:.14em;
+  box-decoration-break:clone;
+  -webkit-box-decoration-break:clone;
+  letter-spacing:-.02em;
+  line-height:1.18;
+}
+.hl-block{background:#000; color:#fff}
+.hl-block--green{background:var(--green); color:var(--ink)}
+.display:has(.hl-block), .display-md:has(.hl-block){line-height:1.22}
+
+/* ── Nav ── */
+.nav{
+  position:fixed; top:0; left:0; right:0;
+  z-index:50;
+  padding:14px 0;
+  backdrop-filter:saturate(140%) blur(16px);
+  -webkit-backdrop-filter:saturate(140%) blur(16px);
+  background:linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,.3));
+  border-bottom:1px solid var(--line);
+  transition:background .3s var(--ease), border-color .3s var(--ease);
+}
+.nav.is-light{
+  background:linear-gradient(180deg, rgba(250,250,250,.95), rgba(250,250,250,.75));
+  border-bottom-color:var(--line-dark);
+}
+.nav.is-light .nav__links a{color:var(--ink-2)}
+.nav.is-light .nav__links a:hover{color:var(--purple)}
+.nav__inner{
+  width:min(1240px,92%); margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+}
+.nav__logo{display:flex; align-items:center}
+.nav__logo img{height:30px; clip-path:inset(18% 0 0 0); width:auto; display:block; filter:brightness(0) invert(1)}
+.nav.is-light .nav__logo img{filter:none}
+.nav__links{display:flex; gap:28px}
+.nav__links a{
+  color:#cfc9dc; font-size:.94rem;
+  transition:color .25s var(--ease);
+  font-weight:500;
+}
+.nav__links a:hover{color:var(--green)}
+@media(max-width:880px){.nav__links{display:none}}
+
+/* ── Buttons ── */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:15px 24px;
+  border-radius:99px;
+  font-family:'General Sans',sans-serif;
+  font-weight:600;
+  font-size:1rem;
+  border:1px solid transparent;
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease);
+  white-space:nowrap;
+  cursor:pointer;
+  position:relative; overflow:hidden;
+}
+.btn--sm{padding:11px 20px; font-size:.92rem}
+.btn--lg{padding:17px 30px; font-size:1.05rem}
+.btn--block{width:100%}
+.btn--green{
+  background:var(--green); color:var(--ink);
+  box-shadow:0 14px 36px -14px rgba(97,221,117,.7), 0 0 0 1px rgba(97,221,117,.4) inset;
+}
+.btn--green::after{
+  content:""; position:absolute; top:0; left:-100%; width:100%; height:100%;
+  background:linear-gradient(120deg, transparent, rgba(255,255,255,.5), transparent);
+  transition:left .8s var(--ease);
+}
+.btn--green:hover{background:var(--green-2); transform:translateY(-2px); box-shadow:0 22px 50px -18px rgba(97,221,117,.85)}
+.btn--green:hover::after{left:120%}
+.btn--ghost{
+  background:rgba(255,255,255,.05); color:#fff;
+  border-color:var(--line-strong);
+  backdrop-filter:blur(10px);
+}
+.btn--ghost:hover{background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.3)}
+
+/* ── Glow + noise + grid (backgrounds) ── */
+.hero__glow{
+  position:absolute; border-radius:50%;
+  filter:blur(110px); pointer-events:none;
+  animation:floatGlow 14s ease-in-out infinite alternate;
+}
+.hero__glow--1{width:560px; height:560px; background:var(--purple); top:-120px; right:-80px; opacity:.55}
+.hero__glow--2{width:480px; height:480px; background:#3a0a6f; bottom:-160px; left:-100px; opacity:.55; animation-duration:18s}
+.hero__glow--3{width:680px; height:680px; background:var(--purple); top:30%; left:50%; transform:translateX(-50%); opacity:.28}
+@keyframes floatGlow{
+  0%{transform:translate(0,0) scale(1)}
+  100%{transform:translate(40px,30px) scale(1.08)}
+}
+.hero__noise{
+  position:absolute; inset:0; opacity:.4; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .15 0 0 0 0 .07 0 0 0 0 .25 0 0 0 .25 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  pointer-events:none;
+}
+.hero__grid{
+  position:absolute; inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  opacity:.5; pointer-events:none;
+}
+
+/* ── Glass ── */
+.glass{
+  background:linear-gradient(160deg, rgba(255,255,255,.10), rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(22px) saturate(140%);
+  -webkit-backdrop-filter:blur(22px) saturate(140%);
+  border-radius:var(--radius-lg);
+  padding:24px;
+  box-shadow:var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.18);
+  position:relative; overflow:hidden;
+}
+.glass--strong{
+  background:linear-gradient(160deg, rgba(255,255,255,.13), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(26px) saturate(160%);
+  -webkit-backdrop-filter:blur(26px) saturate(160%);
+}
+.glass__shine{
+  position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  background:linear-gradient(135deg, rgba(255,255,255,.18) 0%, transparent 30%);
+  mix-blend-mode:screen; opacity:.5;
+}
+
+/* ── SECTION base ── */
+section{padding:clamp(80px,11vw,150px) 0; position:relative; isolation:isolate}
+.section-head{text-align:center; max-width:820px; margin:0 auto 70px}
+.section-head--left{text-align:left; margin-left:0; margin-right:auto; max-width:720px}
+
+/* ============ 1. HERO ============ */
+.hero{
+  min-height:100vh;
+  padding:calc(var(--nav-h) + 60px) 0 90px;
+  display:flex; align-items:center;
+  background:
+    radial-gradient(1100px 800px at 80% 10%, rgba(98,18,179,.55), transparent 60%),
+    radial-gradient(900px 700px at 0% 100%, rgba(58,10,111,.55), transparent 60%),
+    linear-gradient(180deg, #1a0830 0%, #0a0414 60%, #050309 100%);
+  overflow:hidden;
+}
+.hero__bg{position:absolute; inset:0; z-index:0; pointer-events:none}
+.hero__inner{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:64px;
+  align-items:start;
+  z-index:2;
+  position:relative;
+}
+.hero__copy{display:flex; flex-direction:column; gap:24px; min-width:0}
+.hero__chips{
+  list-style:none; padding:0; margin:0;
+  display:flex; gap:20px; flex-wrap:wrap;
+  color:#cfc9dc; font-size:.94rem;
+  font-family:'General Sans',sans-serif;
+}
+.hero__chips li{display:flex; align-items:center; gap:10px; font-weight:500}
+.dot{width:8px; height:8px; border-radius:50%; display:inline-block}
+.dot--green{background:var(--green); box-shadow:0 0 14px var(--green)}
+
+.hero__form-wrap{min-width:0}
+.hero__form-box{
+  padding:36px;
+  background:linear-gradient(160deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(26px) saturate(160%);
+  -webkit-backdrop-filter:blur(26px) saturate(160%);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.18);
+  position:relative; overflow:hidden;
+}
+.hero__form-box::before{
+  content:""; position:absolute; inset:0; pointer-radius:none; border-radius:inherit;
+  background:linear-gradient(135deg, rgba(255,255,255,.16) 0%, transparent 30%);
+  mix-blend-mode:screen; opacity:.5; pointer-events:none;
+}
+.hero__form-title{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:800; font-size:clamp(1.3rem,1.8vw,1.55rem);
+  color:#fff; margin-bottom:4px; letter-spacing:-.02em;
+}
+.hero__form-sub{
+  font-family:'General Sans',sans-serif;
+  font-size:.95rem; color:#cfc9dc; margin-bottom:24px;
+}
+
+/* ── RD Station form overrides ── */
+.hero__form-box .form,
+.hero__form-box .content-box{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  padding:0 !important;
+}
+.hero__form-box .form .row{display:flex; flex-wrap:wrap; gap:16px; margin:0 !important}
+.hero__form-box .form .col-12{padding:0 !important; width:100%; flex:0 0 100%}
+.hero__form-box .form .form-group{
+  position:relative; display:flex; flex-direction:column; gap:6px; margin:0 !important;
+}
+.hero__form-box .form .placeholder{
+  font-family:'General Sans',sans-serif !important;
+  font-size:.86rem !important; color:#dcd5ed !important;
+  font-weight:500 !important; position:relative !important;
+  transform:none !important; top:auto !important; left:auto !important;
+  padding:0 !important; background:transparent !important;
+}
+.hero__form-box .form input[type=text],
+.hero__form-box .form select{
+  width:100% !important;
+  padding:13px 16px !important;
+  background:rgba(0,0,0,.4) !important;
+  border:1px solid var(--line-strong) !important;
+  border-radius:12px !important;
+  color:#fff !important;
+  font-size:.98rem !important;
+  font-family:'General Sans',sans-serif !important;
+  transition:border-color .25s var(--ease), box-shadow .25s var(--ease) !important;
+  appearance:none !important;
+}
+.hero__form-box .form input[type=text]:focus,
+.hero__form-box .form select:focus{
+  outline:none !important;
+  border-color:var(--green) !important;
+  box-shadow:0 0 0 4px rgba(97,221,117,.18) !important;
+}
+.hero__form-box .form input[type=text]::placeholder{color:#7a7390 !important}
+.hero__form-box .form select{
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23a8a3b8' d='M6 8L0 0h12z'/></svg>") !important;
+  background-repeat:no-repeat !important; background-position:right 14px center !important;
+}
+.hero__form-box .form select option{background:#1a0830; color:#fff}
+.hero__form-box .form .checkbox,
+.hero__form-box .form label.checkbox{
+  font-family:'General Sans',sans-serif !important;
+  font-size:.88rem !important; color:#cfc9dc !important;
+  line-height:1.5 !important;
+  display:flex !important; align-items:flex-start !important; gap:10px !important;
+  cursor:pointer !important;
+}
+.hero__form-box .form .checkbox input[type=checkbox]{
+  width:17px !important; height:17px !important;
+  margin-top:2px !important; flex-shrink:0 !important;
+  accent-color:var(--green) !important;
+}
+.hero__form-box .form .checkbox a{color:var(--green) !important}
+.hero__form-box .form .btn.green-2,
+.hero__form-box .form button[type=submit]{
+  width:100% !important;
+  padding:16px 24px !important;
+  background:var(--green) !important; color:var(--ink) !important;
+  font-weight:700 !important; font-size:1.02rem !important;
+  border:none !important; border-radius:99px !important;
+  font-family:'General Sans',sans-serif !important;
+  cursor:pointer !important;
+  box-shadow:0 14px 36px -14px rgba(97,221,117,.7) !important;
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease) !important;
+  margin-top:4px !important;
+}
+.hero__form-box .form .btn.green-2:hover,
+.hero__form-box .form button[type=submit]:hover{
+  background:var(--green-2) !important;
+  transform:translateY(-2px) !important;
+  box-shadow:0 22px 50px -18px rgba(97,221,117,.85) !important;
+}
+.hero__form-box .form .alert.small{
+  background:rgba(97,221,117,.12) !important;
+  border:1px solid rgba(97,221,117,.3) !important;
+  border-radius:12px !important;
+  color:var(--green) !important;
+  font-family:'General Sans',sans-serif !important;
+  font-size:.92rem !important;
+  padding:14px 18px !important;
+}
+.hero__form-box .form .alert.small .progress-bar{background:var(--green) !important; border-radius:4px !important}
+.hero__form-box .form .checkmark{
+  flex-shrink:0; width:17px; height:17px; border-radius:4px;
+  border:1.5px solid rgba(255,255,255,.3); background:rgba(0,0,0,.4);
+  display:inline-block; position:relative;
+}
+
+/* ============ 2. DOR ============ */
+.pain{
+  background:linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  color:var(--ink);
+  overflow:hidden;
+}
+.pain__top{
+  display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:end;
+  margin-bottom:72px;
+}
+.num-list{
+  list-style:none; padding:0; margin:0;
+  display:flex; flex-direction:column;
+  border-top:1px solid var(--line-dark-2);
+  border-radius:var(--radius);
+  background:rgba(250,250,250,.55);
+  backdrop-filter:blur(8px);
+}
+.num-list__item{
+  display:grid; grid-template-columns:120px 1fr;
+  gap:32px; padding:28px 24px;
+  border-bottom:1px solid var(--line-dark-2);
+  align-items:start;
+  transition:padding .3s var(--ease), background .3s var(--ease);
+  position:relative;
+}
+.num-list__item:last-child{border-bottom:0}
+.num-list__item::before{
+  content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px;
+  background:linear-gradient(90deg, var(--purple), var(--green));
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .6s var(--ease);
+}
+.num-list__item:hover::before{transform:scaleX(1)}
+.num-list__item:hover{padding-left:34px; background:rgba(255,255,255,.7)}
+.num-list__num{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(2rem,3.6vw,3.2rem);
+  font-weight:800; color:var(--purple);
+  line-height:.9; letter-spacing:-.04em;
+}
+.num-list__body h3{
+  color:var(--ink); margin-bottom:8px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(1.1rem,1.6vw,1.4rem);
+  font-weight:700; line-height:1.22; letter-spacing:-.018em;
+}
+.num-list__body p{
+  font-family:'General Sans',sans-serif;
+  color:var(--muted-dark); margin:0;
+  font-size:.98rem; max-width:58ch; line-height:1.62;
+}
+.pain__close{
+  margin-top:72px; padding:56px 52px;
+  border-radius:var(--radius-xl);
+  background:linear-gradient(140deg, var(--ink) 0%, #1a0830 100%);
+  text-align:center; position:relative; overflow:hidden;
+}
+.pain__close::before{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(600px 300px at 50% 0%, rgba(98,18,179,.4), transparent 70%);
+}
+.pain__close .display-md{color:#fff; position:relative; line-height:1.22}
+.pain__close .text-soft{color:rgba(255,255,255,.85)}
+
+/* ============ 3. VS ============ */
+.vs{
+  background:linear-gradient(180deg, #04020a 0%, #0a0612 100%);
+  overflow:hidden;
+}
+.vs__bg{position:absolute; inset:0; z-index:0; opacity:.45}
+.vs__grid{
+  display:grid; grid-template-columns:1fr 72px 1fr;
+  gap:20px; align-items:stretch; margin-bottom:60px;
+}
+.vs__col{
+  border-radius:var(--radius-xl); padding:38px 34px;
+  display:flex; flex-direction:column; gap:20px;
+  position:relative; overflow:hidden;
+}
+.vs__col--before{
+  background:linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.005));
+  border:1px solid var(--line); color:#8c8699;
+}
+.vs__col--after{
+  background:
+    radial-gradient(500px 280px at 50% 0%, rgba(97,221,117,.18), transparent 70%),
+    linear-gradient(160deg, rgba(98,18,179,.35), rgba(97,221,117,.08));
+  border:1px solid rgba(97,221,117,.4);
+  box-shadow:0 30px 80px -30px rgba(97,221,117,.4), 0 30px 80px -30px rgba(98,18,179,.5), inset 0 1px 0 rgba(255,255,255,.15);
+  backdrop-filter:blur(16px);
+}
+.vs__head{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+.vs__sub{
+  font-family:'General Sans',sans-serif;
+  color:#9b94aa; font-size:.85rem;
+  letter-spacing:.06em; text-transform:uppercase; font-weight:500;
+}
+.vs__col--after .vs__sub{color:#fff}
+.vs__tag{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.8rem; letter-spacing:.16em;
+  padding:7px 16px; border-radius:99px;
+  background:rgba(255,255,255,.05); border:1px solid var(--line-strong); color:#cfc9dc;
+  font-weight:700;
+}
+.vs__tag--green{background:rgba(97,221,117,.18); border-color:rgba(97,221,117,.45); color:var(--green)}
+.vs__list{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px}
+.vs__col--before .vs__list li{
+  font-family:'General Sans',sans-serif;
+  padding:13px 15px;
+  background:rgba(255,255,255,.025);
+  border:1px solid var(--line);
+  border-radius:13px;
+  font-size:.98rem;
+  display:flex; align-items:center; gap:13px;
+  font-weight:500; color:#a39db1;
+}
+.vs__col--after .vs__list li{
+  font-family:'General Sans',sans-serif;
+  padding:13px 15px;
+  background:rgba(0,0,0,.3);
+  border:1px solid rgba(97,221,117,.18);
+  border-radius:13px;
+  color:#fff; font-size:.98rem; font-weight:500;
+  display:flex; align-items:center; gap:13px;
+  transition:border-color .3s var(--ease), background .3s var(--ease);
+}
+.vs__col--after .vs__list li:hover{border-color:rgba(97,221,117,.5); background:rgba(0,0,0,.45)}
+.vs__icon{
+  width:26px; height:26px; flex-shrink:0;
+  border-radius:50%; display:grid; place-items:center;
+}
+.vs__icon svg{width:14px; height:14px; stroke-linecap:round; stroke-linejoin:round}
+.vs__icon--x{background:rgba(232,80,74,.12); border:1px solid rgba(232,80,74,.4); color:var(--error)}
+.vs__icon--check{background:var(--green); color:var(--ink); box-shadow:0 0 16px rgba(97,221,117,.4)}
+.vs__divider{display:grid; place-items:center; position:relative}
+.vs__line{
+  position:absolute; top:10%; bottom:10%; left:50%; width:1px;
+  background:linear-gradient(180deg, transparent, rgba(98,18,179,.6), var(--green), transparent);
+}
+.vs__arrow{
+  width:50px; height:50px; border-radius:50%;
+  background:var(--purple); color:#fff;
+  display:grid; place-items:center;
+  box-shadow:0 0 0 6px rgba(98,18,179,.18), 0 0 30px var(--purple); z-index:2;
+}
+.vs__arrow svg{width:20px; height:20px}
+.vs__close{
+  text-align:center;
+  font-family:'General Sans',sans-serif;
+  font-size:clamp(1.3rem,2.2vw,1.9rem);
+  color:#fff; line-height:1.4;
+  max-width:820px; margin:0 auto; font-weight:500;
+}
+
+/* ============ 4. BENTO (soluções) ============ */
+.bento-sec{
+  background:
+    radial-gradient(900px 600px at 50% -10%, rgba(98,18,179,.35), transparent 70%),
+    linear-gradient(180deg, #060410 0%, #0a0612 100%);
+}
+.bento{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  grid-auto-rows:minmax(180px, auto);
+  gap:18px;
+  position:relative; z-index:1;
+}
+.bento__card{
+  position:relative; padding:30px;
+  border-radius:var(--radius-lg);
+  background:linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.015));
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+  display:flex; flex-direction:column; gap:12px;
+  overflow:hidden;
+  transition:transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+  box-shadow:0 1px 0 rgba(255,255,255,.08) inset, var(--shadow-soft);
+}
+.bento__card::before{
+  content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  background:radial-gradient(500px 220px at 50% -20%, rgba(98,18,179,.35), transparent 70%);
+  opacity:0; transition:opacity .4s var(--ease);
+}
+.bento__shine{
+  position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  background:linear-gradient(135deg, rgba(255,255,255,.16) 0%, transparent 35%);
+  mix-blend-mode:screen; opacity:.5;
+}
+.bento__card:hover{transform:translateY(-5px); border-color:rgba(98,18,179,.55); box-shadow:0 30px 80px -30px rgba(98,18,179,.6)}
+.bento__card:hover::before{opacity:1}
+.bento__card--lg{grid-column:span 4; grid-row:span 2}
+.bento__card--md{grid-column:span 2; grid-row:span 2}
+.bento__card--sm{grid-column:span 3}
+.bento__card--green{
+  background:linear-gradient(160deg, rgba(97,221,117,.12), rgba(255,255,255,.02));
+  border-color:rgba(97,221,117,.3);
+}
+.bento__card--green::before{background:radial-gradient(500px 220px at 50% -20%, rgba(97,221,117,.3), transparent 70%)}
+.bento__card--green:hover{border-color:rgba(97,221,117,.55); box-shadow:0 30px 80px -30px rgba(97,221,117,.5)}
+.bento__card--stat{
+  background:linear-gradient(140deg, var(--purple) 0%, #2a0654 100%);
+  border-color:rgba(255,255,255,.2);
+}
+.bento__card--stat::before{display:none}
+.bento__head{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px}
+.bento__card h3{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(1.1rem,1.6vw,1.45rem);
+  margin:0; color:#fff; line-height:1.22; font-weight:700; letter-spacing:-.018em;
+}
+.bento__card p{
+  font-family:'General Sans',sans-serif;
+  color:#cfc9dc; margin:0; font-size:.96rem; line-height:1.58; max-width:46ch;
+}
+.module__tag{
+  align-self:flex-start;
+  font-family:'General Sans',sans-serif;
+  font-size:.7rem; letter-spacing:.16em; text-transform:uppercase;
+  padding:6px 13px; border-radius:99px;
+  background:rgba(98,18,179,.2); color:#d4baf5;
+  border:1px solid rgba(98,18,179,.45); font-weight:600;
+}
+.module__tag--green{background:rgba(97,221,117,.15); color:var(--green); border-color:rgba(97,221,117,.45)}
+.module__tag--white{background:rgba(255,255,255,.18); color:#fff; border-color:rgba(255,255,255,.35)}
+.bento__link{
+  display:inline-flex; align-items:center; gap:6px; margin-top:auto;
+  font-family:'General Sans',sans-serif;
+  font-size:.9rem; font-weight:600; color:var(--green);
+  transition:gap .2s;
+}
+.bento__link:hover{gap:10px}
+.bento__link svg{width:14px; height:14px}
+.bento__card--green .bento__link{color:var(--green)}
+.big-stat{display:flex; flex-direction:column; gap:12px; margin-top:auto}
+.big-stat__num{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(2.8rem,5vw,4.2rem);
+  font-weight:800; line-height:1; color:#fff; letter-spacing:-.035em;
+}
+.big-stat p{
+  font-family:'General Sans',sans-serif;
+  color:rgba(255,255,255,.85); font-size:.92rem; max-width:24ch;
+}
+.bento__viz{
+  margin-top:auto; padding:16px;
+  background:rgba(0,0,0,.45);
+  border:1px solid var(--line);
+  border-radius:12px;
+  display:flex; flex-direction:column; gap:11px;
+}
+.viz-row{
+  display:grid; grid-template-columns:70px 1fr 36px; align-items:center; gap:10px;
+  font-family:'General Sans',sans-serif;
+  font-size:.82rem; color:#cfc9dc; font-weight:500;
+}
+.viz-row b{color:#fff; text-align:right; font-weight:700}
+.bar{height:7px; border-radius:99px; background:rgba(255,255,255,.08); overflow:hidden}
+.bar>span{
+  display:block; height:100%; width:0;
+  background:var(--c, var(--purple-2));
+  border-radius:99px;
+  transition:width 1.6s var(--ease) .2s;
+  box-shadow:0 0 14px var(--c, var(--purple-2));
+}
+.bar.is-in>span{width:var(--w, 60%)}
+
+/* ============ 5. DEPOIMENTOS ============ */
+.testimonials{
+  background:linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  color:var(--ink);
+}
+.t-head{margin-bottom:60px; max-width:780px}
+.t-edit{display:grid; grid-template-columns:1fr 1fr; gap:24px}
+.t-card{
+  background:#fff;
+  border:1px solid var(--line-dark);
+  border-radius:var(--radius-xl);
+  padding:38px;
+  display:flex; flex-direction:column; gap:20px;
+  box-shadow:0 30px 60px -30px rgba(10,6,16,.15);
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.t-card:hover{transform:translateY(-5px); box-shadow:0 40px 80px -30px rgba(98,18,179,.25)}
+.t-card__top{display:flex; align-items:flex-start; gap:16px}
+.quote-mark{
+  font-size:4rem; line-height:.7;
+  color:var(--purple); flex-shrink:0; font-weight:700; font-family:'Plus Jakarta Sans',sans-serif;
+}
+.t-stat{
+  flex:1; min-width:0;
+  padding:16px 18px; border-radius:13px;
+  background:linear-gradient(140deg, rgba(98,18,179,.06), rgba(97,221,117,.08));
+  border:1px solid rgba(97,221,117,.25);
+  display:flex; flex-direction:column; gap:7px;
+}
+.t-stat__num{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(2.2rem,3.8vw,3rem);
+  font-weight:800; line-height:.95; letter-spacing:-.035em;
+  color:var(--purple); display:inline-flex; align-items:baseline;
+}
+.t-stat__unit{font-size:.5em; font-weight:700; margin-left:.05em}
+.t-stat__sign{font-size:.48em; margin-right:.04em; position:relative; top:-.3em}
+.t-stat__desc{
+  font-family:'General Sans',sans-serif;
+  color:var(--muted-dark); font-size:.91rem; line-height:1.5;
+}
+.t-card__quote{
+  font-family:'General Sans',sans-serif;
+  font-size:clamp(1rem,1.3vw,1.15rem);
+  line-height:1.6; color:var(--ink); font-weight:500;
+}
+.t-card__author{display:flex; align-items:center; gap:13px; padding-top:16px; border-top:1px solid var(--line-dark)}
+.avatar{
+  width:50px; height:50px; border-radius:50%;
+  display:grid; place-items:center; flex-shrink:0; overflow:hidden;
+  box-shadow:0 8px 20px -8px rgba(98,18,179,.4);
+}
+.avatar svg{width:100%; height:100%}
+.t-card__author strong{
+  display:block; color:var(--ink);
+  font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:.98rem;
+}
+.t-card__author span{
+  font-family:'General Sans',sans-serif; color:var(--muted-dark); font-size:.86rem;
+}
+
+/* ============ 6. CTA FINAL ============ */
+.cta-final{
+  background:
+    radial-gradient(1100px 700px at 80% 0%, rgba(98,18,179,.55), transparent 70%),
+    radial-gradient(900px 600px at 0% 100%, rgba(58,10,111,.5), transparent 70%),
+    linear-gradient(180deg, #1a0830 0%, #0a0414 60%, #050309 100%);
+}
+.cta-final__bg{position:absolute; inset:0; z-index:0}
+.cta-final__inner{
+  display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+  position:relative; z-index:1;
+}
+.cta-final__copy{display:flex; flex-direction:column; gap:20px}
+.benefits-list{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:13px}
+.benefits-list li{
+  display:flex; align-items:flex-start; gap:13px;
+  font-family:'General Sans',sans-serif;
+  font-size:1rem; color:#fff; font-weight:500; line-height:1.5;
+}
+.check-ic{
+  width:24px; height:24px; flex-shrink:0; border-radius:50%;
+  background:var(--green); color:var(--ink);
+  display:grid; place-items:center; margin-top:1px;
+  box-shadow:0 0 16px rgba(97,221,117,.4);
+}
+.check-ic svg{width:13px; height:13px}
+.cta-final__trust{
+  display:flex; gap:40px; flex-wrap:wrap;
+  padding-top:28px; border-top:1px solid rgba(255,255,255,.08);
+}
+.cta-final__num{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:2.2rem; font-weight:800; color:#fff; line-height:1;
+}
+.cta-final__label{font-family:'General Sans',sans-serif; font-size:.85rem; color:rgba(255,255,255,.45); margin-top:4px}
+.cta-final__form-wrap{min-width:0}
+
+/* ── CTA form glass ── */
+.cta-final__form-box{
+  padding:36px;
+  background:linear-gradient(160deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(26px) saturate(160%);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.18);
+  position:relative; overflow:hidden;
+}
+.cta-final__form-box::before{
+  content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  background:linear-gradient(135deg, rgba(255,255,255,.16) 0%, transparent 30%);
+  mix-blend-mode:screen; opacity:.5;
+}
+.cta-final__form-box .hero__form-title{font-size:clamp(1.2rem,1.6vw,1.45rem)}
+
+/* Apply same RD Station overrides to CTA form box */
+.cta-final__form-box .form,
+.cta-final__form-box .content-box{background:transparent !important; border:none !important; box-shadow:none !important; padding:0 !important}
+.cta-final__form-box .form .row{display:flex; flex-wrap:wrap; gap:14px; margin:0 !important}
+.cta-final__form-box .form .col-12{padding:0 !important; width:100%; flex:0 0 100%}
+.cta-final__form-box .form .form-group{position:relative; display:flex; flex-direction:column; gap:5px; margin:0 !important}
+.cta-final__form-box .form .placeholder{font-family:'General Sans',sans-serif !important; font-size:.85rem !important; color:#dcd5ed !important; font-weight:500 !important; position:relative !important; transform:none !important; top:auto !important; left:auto !important; padding:0 !important; background:transparent !important}
+.cta-final__form-box .form input[type=text],
+.cta-final__form-box .form select{width:100% !important; padding:12px 15px !important; background:rgba(0,0,0,.4) !important; border:1px solid var(--line-strong) !important; border-radius:11px !important; color:#fff !important; font-size:.96rem !important; font-family:'General Sans',sans-serif !important; transition:border-color .25s, box-shadow .25s !important; appearance:none !important}
+.cta-final__form-box .form input[type=text]:focus,
+.cta-final__form-box .form select:focus{outline:none !important; border-color:var(--green) !important; box-shadow:0 0 0 4px rgba(97,221,117,.18) !important}
+.cta-final__form-box .form select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23a8a3b8' d='M6 8L0 0h12z'/></svg>") !important; background-repeat:no-repeat !important; background-position:right 14px center !important}
+.cta-final__form-box .form select option{background:#1a0830; color:#fff}
+.cta-final__form-box .form .checkbox,
+.cta-final__form-box .form label.checkbox{font-family:'General Sans',sans-serif !important; font-size:.86rem !important; color:#cfc9dc !important; line-height:1.5 !important; display:flex !important; align-items:flex-start !important; gap:9px !important; cursor:pointer !important}
+.cta-final__form-box .form .checkbox input[type=checkbox]{width:16px !important; height:16px !important; margin-top:2px !important; flex-shrink:0 !important; accent-color:var(--green) !important}
+.cta-final__form-box .form .checkbox a{color:var(--green) !important}
+.cta-final__form-box .form .btn.green-2,
+.cta-final__form-box .form button[type=submit]{width:100% !important; padding:15px 24px !important; background:var(--green) !important; color:var(--ink) !important; font-weight:700 !important; font-size:1rem !important; border:none !important; border-radius:99px !important; font-family:'General Sans',sans-serif !important; cursor:pointer !important; box-shadow:0 14px 36px -14px rgba(97,221,117,.7) !important; transition:transform .3s, box-shadow .3s !important}
+.cta-final__form-box .form .btn.green-2:hover,
+.cta-final__form-box .form button[type=submit]:hover{background:var(--green-2) !important; transform:translateY(-2px) !important}
+.cta-final__form-box .form .alert.small{background:rgba(97,221,117,.12) !important; border:1px solid rgba(97,221,117,.3) !important; border-radius:12px !important; color:var(--green) !important; font-family:'General Sans',sans-serif !important; font-size:.9rem !important; padding:13px 16px !important}
+
+/* ── Footer ── */
+.foot{padding:36px 0; border-top:1px solid var(--line); background:#04020a}
+.foot__inner{display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap}
+.foot__inner img{height:28px; clip-path:inset(18% 0 0 0); filter:brightness(0) invert(1)}
+.foot p{margin:0; font-family:'General Sans',sans-serif; color:var(--muted); font-size:.86rem}
+.foot a{color:var(--muted); transition:color .2s}
+.foot a:hover{color:#fff}
+
+/* ── Hero logo trust bar ── */
+.logo-trust{
+  margin-top:22px; padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.logo-trust__label{
+  font-family:'General Sans',sans-serif;
+  font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;
+  color:rgba(255,255,255,.35); font-weight:500; margin-bottom:14px;
+}
+.logo-trust__row{
+  display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center;
+}
+.logo-trust__item{
+  font-family:'General Sans',sans-serif;
+  font-size:.78rem; font-weight:600;
+  color:rgba(255,255,255,.45);
+  padding:5px 11px; border-radius:6px;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);
+  letter-spacing:.04em;
+  transition:color .2s, border-color .2s;
+}
+.logo-trust__item:hover{color:rgba(255,255,255,.75); border-color:rgba(255,255,255,.2)}
+
+/* ── Hero authority badge ── */
+.hero__authority{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:'General Sans',sans-serif;
+  font-size:.8rem; font-weight:600;
+  color:rgba(255,255,255,.55);
+  margin-bottom:6px;
+}
+.hero__authority::before{
+  content:""; display:inline-block; width:5px; height:5px;
+  border-radius:50%; background:var(--green);
+}
+
+/* ── Pain stat callout ── */
+.pain__stat{
+  margin-top:56px;
+  padding:30px 36px;
+  border-radius:var(--radius-lg);
+  background:linear-gradient(135deg, rgba(98,18,179,.08), rgba(97,221,117,.06));
+  border:1px solid rgba(97,221,117,.2);
+  display:flex; align-items:center; gap:28px; flex-wrap:wrap;
+}
+.pain__stat-num{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(2.2rem,4vw,3.2rem);
+  font-weight:800; line-height:1; letter-spacing:-.035em;
+  color:var(--purple); white-space:nowrap; flex-shrink:0;
+}
+.pain__stat-text{
+  font-family:'General Sans',sans-serif;
+  font-size:clamp(.95rem,1.2vw,1.08rem);
+  color:var(--muted-dark); line-height:1.55; font-weight:500;
+}
+.pain__stat-text strong{color:var(--ink); font-weight:700}
+
+/* ── Bento feature list ── */
+.bento__feat{
+  list-style:none; padding:0; margin:8px 0 0;
+  display:flex; flex-direction:column; gap:7px;
+}
+.bento__feat li{
+  display:flex; align-items:flex-start; gap:8px;
+  font-family:'General Sans',sans-serif;
+  font-size:.86rem; color:#cfc9dc; line-height:1.45;
+}
+.bento__feat li::before{
+  content:""; display:block; width:5px; height:5px; border-radius:50%;
+  background:var(--green); flex-shrink:0; margin-top:.42em;
+}
+.bento__card--green .bento__feat li::before{background:var(--green)}
+.bento__card--comunica .bento__feat li::before{background:var(--purple-3)}
+
+/* ── Stats Band ── */
+.stats-band{
+  padding:clamp(64px,9vw,100px) 0;
+  background:linear-gradient(180deg, #08041a 0%, #0d0120 100%);
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.stats-band__grid{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:2px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius-xl);
+  overflow:hidden;
+}
+.stats-band__item{
+  padding:40px 28px;
+  background:rgba(255,255,255,.025);
+  border-right:1px solid rgba(255,255,255,.07);
+  display:flex; flex-direction:column; gap:10px;
+  text-align:center;
+  transition:background .3s;
+}
+.stats-band__item:last-child{border-right:none}
+.stats-band__item:hover{background:rgba(98,18,179,.08)}
+.stats-band__num{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(2.4rem,4.5vw,4rem);
+  font-weight:800; line-height:.9; letter-spacing:-.04em; color:#fff;
+}
+.stats-band__num span{color:var(--green)}
+.stats-band__label{
+  font-family:'General Sans',sans-serif;
+  font-size:.9rem; color:rgba(255,255,255,.45); line-height:1.45; font-weight:500;
+}
+@media(max-width:800px){
+  .stats-band__grid{grid-template-columns:repeat(2,1fr)}
+  .stats-band__item{border-right:none; border-bottom:1px solid rgba(255,255,255,.07)}
+  .stats-band__item:nth-child(3),.stats-band__item:nth-child(4){border-bottom:none}
+}
+
+/* ── Objeções ── */
+.objections{
+  background:linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  color:var(--ink);
+}
+.obj-grid{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:18px;
+  margin-top:0;
+}
+.obj-card{
+  background:#fff; border-radius:var(--radius-xl);
+  border:1px solid var(--line-dark);
+  padding:34px 38px;
+  display:flex; align-items:flex-start; gap:22px;
+  box-shadow:0 20px 50px -20px rgba(10,6,16,.1);
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.obj-card:hover{transform:translateY(-4px); box-shadow:0 30px 70px -25px rgba(98,18,179,.18)}
+.obj-icon{
+  width:52px; height:52px; flex-shrink:0; border-radius:var(--radius);
+  background:linear-gradient(140deg, rgba(98,18,179,.12), rgba(97,221,117,.1));
+  border:1px solid rgba(97,221,117,.25);
+  display:grid; place-items:center;
+}
+.obj-icon svg{width:24px; height:24px; color:var(--purple); stroke:var(--purple)}
+.obj-body{}
+.obj-body h3{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1.1rem; font-weight:700; color:var(--ink); margin:0 0 6px;
+}
+.obj-body p{
+  font-family:'General Sans',sans-serif;
+  font-size:.94rem; color:var(--muted-dark); margin:0; line-height:1.55;
+}
+@media(max-width:760px){
+  .obj-grid{grid-template-columns:1fr}
+}
+
+/* ── WhatsApp Chat Widget ── */
+.wa-widget{
+  position:fixed;bottom:28px;right:28px;z-index:1000;
+  display:flex;flex-direction:column-reverse;  /* botão fica embaixo, painel acima */
+  align-items:flex-end;gap:14px;
+}
+
+/* ── Trigger button ── */
+.wa-trigger{
+  width:58px;height:58px;border-radius:50%;
+  background:linear-gradient(135deg,#25d366,#1ebe5d);
+  border:none;cursor:pointer;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 28px rgba(37,211,102,.55),0 0 0 0 rgba(37,211,102,.35);
+  transition:transform .22s var(--ease),box-shadow .22s var(--ease);
+  position:relative;
+  animation:waPulseRing 2.8s ease-out 2s infinite;
+}
+.wa-trigger:hover{transform:scale(1.1);box-shadow:0 10px 36px rgba(37,211,102,.7)}
+.wa-trigger svg{width:30px;height:30px;fill:#fff;flex-shrink:0}
+@keyframes waPulseRing{
+  0%{box-shadow:0 6px 28px rgba(37,211,102,.55),0 0 0 0 rgba(37,211,102,.35)}
+  70%{box-shadow:0 6px 28px rgba(37,211,102,.55),0 0 0 14px rgba(37,211,102,0)}
+  100%{box-shadow:0 6px 28px rgba(37,211,102,.55),0 0 0 0 rgba(37,211,102,0)}
+}
+.wa-trigger__badge{
+  position:absolute;top:-4px;right:-4px;
+  width:20px;height:20px;border-radius:50%;
+  background:#ff3b30;color:#fff;
+  font-family:'General Sans',sans-serif;font-size:.67rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid #000;
+  animation:badgePop .4s var(--ease-out) both 1.2s;
+}
+@keyframes badgePop{from{transform:scale(0)}to{transform:scale(1)}}
+
+/* ── Panel (dark mode) ── */
+.wa-panel{
+  width:360px;max-height:530px;
+  display:flex;flex-direction:column;
+  border-radius:20px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 32px 80px -20px rgba(0,0,0,.8),0 0 0 1px rgba(98,18,179,.25);
+  background:#0d0120;
+  transform-origin:bottom right;
+  transform:scale(.88) translateY(12px);
+  opacity:0;pointer-events:none;
+  transition:transform .38s var(--ease-out),opacity .28s var(--ease);
+}
+.wa-panel.is-open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+
+/* ── Header ── */
+.wa-header{
+  background:linear-gradient(135deg,#1a0438,#2a0654);
+  padding:16px 18px;
+  display:flex;align-items:center;gap:13px;flex-shrink:0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.wa-avatar{
+  width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,#6212B3,#9b5fdb);
+  display:grid;place-items:center;flex-shrink:0;
+  box-shadow:0 0 0 3px rgba(98,18,179,.35);
+}
+.wa-avatar svg{width:22px;height:22px;fill:#fff}
+.wa-header-info{flex:1;min-width:0}
+.wa-header-info strong{
+  display:block;font-family:'General Sans',sans-serif;
+  font-size:.93rem;font-weight:700;color:#fff;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.wa-header-info span{
+  font-family:'General Sans',sans-serif;font-size:.75rem;
+  color:var(--green);font-weight:500;
+}
+.wa-close{
+  background:none;border:none;cursor:pointer;
+  color:rgba(255,255,255,.45);font-size:1.4rem;
+  padding:2px 6px;line-height:1;
+  transition:color .2s,background .2s;border-radius:50%;flex-shrink:0;
+}
+.wa-close:hover{color:#fff;background:rgba(255,255,255,.1)}
+
+/* ── Messages area ── */
+.wa-messages{
+  flex:1;overflow-y:auto;padding:16px 13px;
+  display:flex;flex-direction:column;gap:8px;
+  background:linear-gradient(180deg,#0d0120 0%,#110228 100%);
+}
+.wa-messages::-webkit-scrollbar{width:3px}
+.wa-messages::-webkit-scrollbar-thumb{background:rgba(98,18,179,.4);border-radius:4px}
+
+/* ── Bubbles ── */
+.wa-bubble{
+  max-width:84%;padding:9px 13px;
+  border-radius:14px;
+  font-family:'General Sans',sans-serif;font-size:.875rem;line-height:1.5;
+  animation:bubbleIn .22s var(--ease-out) both;
+}
+@keyframes bubbleIn{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
+.wa-bubble--bot{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+  border-top-left-radius:3px;
+  align-self:flex-start;color:#e8e0f5;
+}
+.wa-bubble--user{
+  background:linear-gradient(135deg,#6212B3,#7d2dd1);
+  border-top-right-radius:3px;
+  align-self:flex-end;color:#fff;
+  box-shadow:0 4px 16px rgba(98,18,179,.4);
+}
+.wa-bubble--bot strong{font-weight:700;color:#fff}
+.wa-bubble--user strong{font-weight:700}
+
+/* ── Typing indicator ── */
+.wa-typing{display:flex;align-items:center;gap:5px;padding:11px 14px}
+.wa-typing span{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(255,255,255,.3);
+  animation:typingDot 1.2s infinite;
+}
+.wa-typing span:nth-child(2){animation-delay:.2s}
+.wa-typing span:nth-child(3){animation-delay:.4s}
+@keyframes typingDot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+
+/* ── Chips ── */
+.wa-chips{display:flex;flex-wrap:wrap;gap:7px;padding:8px 13px 4px;background:#0d0120}
+.wa-chip{
+  padding:7px 14px;border-radius:99px;
+  background:rgba(98,18,179,.18);
+  border:1.5px solid rgba(98,18,179,.5);
+  font-family:'General Sans',sans-serif;font-size:.82rem;font-weight:600;
+  color:#c4a8ff;cursor:pointer;
+  transition:background .2s,border-color .2s,color .2s;
+}
+.wa-chip:hover{background:#6212B3;border-color:#6212B3;color:#fff}
+
+/* ── Input row ── */
+.wa-input-row{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 13px;
+  background:#08010f;
+  border-top:1px solid rgba(255,255,255,.07);
+  flex-shrink:0;
+}
+.wa-input{
+  flex:1;padding:10px 14px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:99px;
+  font-family:'General Sans',sans-serif;font-size:.88rem;color:#fff;outline:none;
+  transition:border-color .2s,background .2s;
+}
+.wa-input:focus{border-color:rgba(98,18,179,.7);background:rgba(98,18,179,.1)}
+.wa-input::placeholder{color:rgba(255,255,255,.28)}
+.wa-send{
+  width:38px;height:38px;border-radius:50%;
+  background:#6212B3;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,transform .2s;flex-shrink:0;
+  box-shadow:0 4px 14px rgba(98,18,179,.5);
+}
+.wa-send:hover:not(:disabled){background:#7d2dd1;transform:scale(1.08)}
+.wa-send:disabled{background:rgba(255,255,255,.1);box-shadow:none;cursor:default}
+.wa-send svg{width:17px;height:17px;fill:#fff}
+
+/* ── Summary card ── */
+.wa-summary{
+  background:rgba(98,18,179,.15);
+  border:1px solid rgba(98,18,179,.35);
+  border-radius:10px;padding:10px 13px;margin-top:5px;
+  font-family:'General Sans',sans-serif;font-size:.81rem;color:#c4b8d4;line-height:1.7;
+}
+.wa-summary strong{color:#c4a8ff;font-weight:700}
+
+/* ── WA CTA button ── */
+.wa-cta{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  padding:13px 18px;
+  background:linear-gradient(135deg,#25d366,#1ebe5d);
+  color:#0a0610;
+  font-family:'General Sans',sans-serif;font-size:.94rem;font-weight:700;
+  border-radius:12px;margin-top:8px;text-decoration:none;
+  box-shadow:0 8px 24px rgba(37,211,102,.4);
+  transition:transform .2s,box-shadow .2s;
+}
+.wa-cta:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(37,211,102,.55);color:#0a0610}
+.wa-cta svg{width:18px;height:18px;fill:#0a0610;flex-shrink:0}
+
+@media(max-width:480px){
+  .wa-panel{width:calc(100vw - 24px)}
+  .wa-widget{right:12px;bottom:16px}
+}
+
+/* ── Reveal animations ── */
+.reveal, .reveal-zoom, .reveal-left, .reveal-right, .reveal-x, .reveal-grid{will-change:opacity,transform,filter}
+.reveal{opacity:0; transform:translateY(28px); filter:blur(6px); transition:opacity .8s var(--ease-out), transform .8s var(--ease-out), filter .8s var(--ease-out)}
+.reveal.in-view{opacity:1; transform:none; filter:blur(0)}
+.reveal-zoom{opacity:0; transform:scale(.96); filter:blur(8px); transition:opacity 1s var(--ease-out), transform 1s var(--ease-out), filter 1s var(--ease-out)}
+.reveal-zoom.in-view{opacity:1; transform:scale(1); filter:blur(0)}
+.reveal-left{opacity:0; transform:translateX(-40px); transition:opacity .9s var(--ease-out), transform .9s var(--ease-out)}
+.reveal-right{opacity:0; transform:translateX(40px); transition:opacity .9s var(--ease-out), transform .9s var(--ease-out) .15s}
+.reveal-left.in-view, .reveal-right.in-view{opacity:1; transform:none}
+.reveal-x{opacity:0; transform:translateX(-40px); transition:opacity .8s var(--ease-out), transform .8s var(--ease-out)}
+.reveal-x.in-view{opacity:1; transform:none}
+.num-list__item.reveal-x.in-view{transition-delay:calc(var(--i,0) * 80ms)}
+.reveal-grid{opacity:0; transform:translateY(28px) scale(.97); transition:opacity .8s var(--ease-out), transform .8s var(--ease-out)}
+.reveal-grid.in-view{opacity:1; transform:none}
+.reveal-lines .line{display:block; opacity:0; transform:translateY(35%); transition:opacity .9s var(--ease-out), transform .9s var(--ease-out)}
+.reveal-lines.in-view .line{opacity:1; transform:none}
+.reveal-lines.in-view .line:nth-child(1){transition-delay:.05s}
+.reveal-lines.in-view .line:nth-child(2){transition-delay:.18s}
+.reveal-lines.in-view .line:nth-child(3){transition-delay:.32s}
+
+/* ── Bento product color themes ── */
+.bento__card--performa { --pc-r:34;  --pc-g:181; --pc-b:162; --pc:#22B5A2 }
+.bento__card--educa    { --pc-r:240; --pc-g:144; --pc-b:42;  --pc:#F0902A }
+.bento__card--recruta  { --pc-r:139; --pc-g:92;  --pc-b:246; --pc:#8B5CF6 }
+.bento__card--comunica { --pc-r:224; --pc-g:88;  --pc-b:120; --pc:#E05878 }
+
+.bento__card--performa,
+.bento__card--educa,
+.bento__card--recruta,
+.bento__card--comunica {
+  background:linear-gradient(160deg,
+    rgba(var(--pc-r),var(--pc-g),var(--pc-b),.1),
+    rgba(255,255,255,.015)) !important;
+  border-color:rgba(var(--pc-r),var(--pc-g),var(--pc-b),.28) !important;
+}
+.bento__card--performa:hover,
+.bento__card--educa:hover,
+.bento__card--recruta:hover,
+.bento__card--comunica:hover {
+  border-color:rgba(var(--pc-r),var(--pc-g),var(--pc-b),.55) !important;
+  box-shadow:0 30px 80px -30px rgba(var(--pc-r),var(--pc-g),var(--pc-b),.5) !important;
+}
+.bento__card--performa::before,
+.bento__card--educa::before,
+.bento__card--recruta::before,
+.bento__card--comunica::before {
+  background:radial-gradient(500px 220px at 50% -20%,
+    rgba(var(--pc-r),var(--pc-g),var(--pc-b),.3), transparent 70%) !important;
+}
+
+/* Tags */
+.module__tag--performa { background:rgba(34,181,162,.15);  color:#22B5A2; border-color:rgba(34,181,162,.4) }
+.module__tag--educa    { background:rgba(240,144,42,.15);  color:#F0902A; border-color:rgba(240,144,42,.4) }
+.module__tag--recruta  { background:rgba(139,92,246,.15);  color:#8B5CF6; border-color:rgba(139,92,246,.4) }
+.module__tag--comunica { background:rgba(224,88,120,.15);  color:#E05878; border-color:rgba(224,88,120,.4) }
+
+/* Bullets */
+.bento__card--performa .bento__feat li::before { background:#22B5A2 }
+.bento__card--educa    .bento__feat li::before { background:#F0902A }
+.bento__card--recruta  .bento__feat li::before { background:#8B5CF6 }
+.bento__card--comunica .bento__feat li::before { background:#E05878 }
+
+/* Links */
+.bento__card--performa .bento__link { color:#22B5A2 }
+.bento__card--educa    .bento__link { color:#F0902A }
+.bento__card--recruta  .bento__link { color:#8B5CF6 }
+.bento__card--comunica .bento__link { color:#E05878 }
+
+/* ── Responsive ── */
+@media(max-width:1000px){
+  .hero__inner{grid-template-columns:1fr; gap:48px; padding-top:20px}
+  .hero__copy{max-width:600px}
+  .vs__grid{grid-template-columns:1fr; gap:14px}
+  .vs__divider{transform:rotate(90deg); height:72px}
+  .vs__line{top:20%; bottom:20%}
+  .bento{grid-template-columns:1fr !important}
+  .t-edit{grid-template-columns:1fr 1fr !important}
+  .cta-final__inner{grid-template-columns:1fr; gap:48px}
+  .pain__top{grid-template-columns:1fr; gap:24px; margin-bottom:48px}
+}
+@media(max-width:760px){
+  .t-edit{grid-template-columns:1fr !important}
+}
+@media(max-width:720px){
+  .hero__form-box, .cta-final__form-box{padding:26px 22px}
+  .bento{grid-template-columns:1fr}
+  .bento__card--sm{grid-column:span 1}
+  .pain__close{padding:40px 24px; margin-top:56px}
+  .vs__col{padding:30px 24px}
+  .t-card{padding:28px 22px}
+  .cta-final__trust{gap:28px}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.reveal-zoom,.reveal-x,.reveal-left,.reveal-right,.reveal-grid,.reveal-lines .line{opacity:1; transform:none; filter:none; transition:none}
+  .hero__glow{animation:none}
+  .bar>span{transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" role="banner">
+  <div class="nav__inner">
+    <a class="nav__logo" href="/" aria-label="YouRH — página inicial">
+      <img src="/assets/cdn2.cardume.digital/public/sites/yourh/images/logos/logo.svg" alt="YouRH" height="30"/>
+    </a>
+    <nav class="nav__links" aria-label="Navegação">
+      <a href="#dor">Por que agora</a>
+      <a href="#solucao">Soluções</a>
+      <a href="#prova">Resultados</a>
+      <a href="/">← Voltar ao site</a>
+    </nav>
+    <a href="#form" class="btn btn--green btn--sm">Agendar minha demo</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 1. HERO ============ -->
+<section id="hero" class="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__glow hero__glow--1"></div>
+    <div class="hero__glow hero__glow--2"></div>
+    <div class="hero__noise"></div>
+    <div class="hero__grid"></div>
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <span class="eyebrow eyebrow--light reveal">
+        <span class="eyebrow__pill">Demonstração</span>
+        Sem compromisso · Resposta em 1 dia útil
+      </span>
+
+      <p class="hero__authority reveal">Ecossistema de RH para empresas de 60 a 300 colaboradores</p>
+
+      <h1 class="display reveal-lines">
+        <span class="line"><span class="text-soft">O seu RH não precisa</span></span>
+        <span class="line"><span class="text-soft">de mais um parabéns.</span></span>
+        <span class="line">Precisa de <span class="hl-block--green">estrutura.</span></span>
+      </h1>
+
+      <p class="lead reveal">
+        A YouRH centraliza <strong>avaliação de desempenho</strong>, <strong>treinamento corporativo</strong> e <strong>desenvolvimento de pessoas</strong> em uma única plataforma. Reduza até 40% das rotinas manuais e libere tempo para o que importa.
+      </p>
+
+      <ul class="hero__chips reveal" aria-label="Pilares da plataforma">
+        <li><span class="dot dot--green"></span> Avaliação de Desempenho</li>
+        <li><span class="dot dot--green"></span> T&D com +500 cursos</li>
+        <li><span class="dot dot--green"></span> PDI e Feedback</li>
+      </ul>
+    </div>
+
+    <div class="hero__form-wrap" id="form">
+      <div class="hero__form-box reveal-zoom">
+        <div class="hero__form-title">Agende sua demonstração</div>
+        <div class="hero__form-sub">Fale com um especialista em RH Tech. 100% gratuito.</div>
+        <form action="https://yourh.com.br/form/send" class="form" data-lang="pt-BR" data-recaptcha-action="demo" data-recaptcha-key="6LdyGcQkAAAAACQk2LGJupjrk6832k-KRjSGaAdJ" method="post" name='"solicite-demonstracao"'>
+          <input name="_token" type="hidden" value="RxMWTtdWZaHfYL64YGH0B3u8Ggx3GJBzlQ8Hvc3M"/>
+          <input name="form" type="hidden" value="eyJpdiI6InhjSGprWXVUNzVUZVRzVlVsUkxEZVE9PSIsInZhbHVlIjoicFdXOFlmOS9uMjM1YXB6QzI0L2h2dz09IiwibWFjIjoiYTNmMjZmNGJiNjhjNGU3OWNlMTJjMmI5YmU1ZDYwOTg5NWYwMjkwZTg4YjIwYWRhNzg0YzM4NjM3ODhmNGFlNSJ9"/>
+          <input id="utm_source" name="utm_source" type="hidden"/>
+          <input id="utm_medium" name="utm_medium" type="hidden"/>
+          <input id="utm_campaign" name="utm_campaign" type="hidden"/>
+          <input id="utm_content" name="utm_content" type="hidden"/>
+          <input id="utm_term" name="utm_term" type="hidden"/>
+          <input id="utm_marketing_tactic" name="utm_marketing_tactic" type="hidden"/>
+          <div class="row form-hide">
+            <div class="col-12 form-group">
+              <div class="placeholder">Seu nome completo *</div>
+              <input aria-label="Seu nome completo" maxlength="49" name="name" required type="text" placeholder="Como podemos te chamar?"/>
+            </div>
+            <div class="col-12 form-group">
+              <div class="placeholder">Seu e-mail corporativo *</div>
+              <input aria-label="Seu e-mail corporativo" maxlength="128" name="email" required type="text" placeholder="voce@empresa.com.br"/>
+            </div>
+            <div class="col-12 form-group">
+              <div class="placeholder">WhatsApp (DDD + número) *</div>
+              <input aria-label="DDD + Telefone" autocomplete="tel-national" class="phone-mask" maxlength="16" name="phone" required type="text" placeholder="(11) 99999-9999"/>
+            </div>
+            <div class="col-12 form-group">
+              <div class="placeholder">Nome da empresa *</div>
+              <input aria-label="Nome da Empresa" maxlength="49" name="company" required type="text" placeholder="Nome da empresa"/>
+            </div>
+            <div class="col-12 form-group">
+              <div class="placeholder">Número de colaboradores *</div>
+              <select aria-label="Número de funcionários" name="employees" required>
+                <option disabled selected value=""> </option>
+                <option value="20 - 30">20 – 30</option>
+                <option value="31 - 70">31 – 70</option>
+                <option value="71 - 100">71 – 100</option>
+                <option value="101 - 200">101 – 200</option>
+                <option value="201 - 300">201 – 300</option>
+                <option value="301 - 500">301 – 500</option>
+                <option value="501+">501+</option>
+              </select>
+            </div>
+            <div class="col-12 form-group">
+              <div class="placeholder">Seu cargo na empresa *</div>
+              <select aria-label="Seu cargo na empresa" name="role" required>
+                <option disabled selected value=""> </option>
+                <option value="Analista">Analista</option>
+                <option value="Assistente / Auxiliar">Assistente / Auxiliar</option>
+                <option value="CEO">CEO</option>
+                <option value="Consultor">Consultor</option>
+                <option value="Diretor">Diretor</option>
+                <option value="Gerente / Head">Gerente / Head</option>
+                <option value="Supervisor / Coordenador">Supervisor / Coordenador</option>
+                <option value="Trainee / Estagiário">Trainee / Estagiário</option>
+                <option value="Outros">Outros</option>
+              </select>
+            </div>
+            <div class="col-12 form-group">
+              <div class="placeholder">Site ou rede social da empresa *</div>
+              <input aria-label="Seu site ou rede social" maxlength="255" name="site" required type="text" placeholder="empresa.com.br ou @empresa"/>
+            </div>
+            <div class="col-12 form-group">
+              <label class="checkbox">
+                <input aria-label="Política de Privacidade" name="policy" required type="checkbox"/>
+                <span class="checkmark"></span>
+                Ao informar meus dados, concordo com a <a href="https://yourh.com.br/politica-de-privacidade" target="_blank">Política de Privacidade</a>.
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="alert small" style="display:none">
+                <div class="progress-bar" style="width:0%"></div>
+                <div class="message"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row form-hide">
+            <div class="col-12 text-center">
+              <button class="btn green-2 full" type="submit">Quero estruturar meu RH →</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Logo trust bar -->
+      <div class="logo-trust reveal">
+        <p class="logo-trust__label">Confiado por</p>
+        <div class="logo-trust__row">
+          <span class="logo-trust__item">Zaffari</span>
+          <span class="logo-trust__item">Jurnil</span>
+          <span class="logo-trust__item">Pittol</span>
+          <span class="logo-trust__item">UNIFAA</span>
+          <span class="logo-trust__item">Alltech</span>
+          <span class="logo-trust__item">Dahuer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. DOR ============ -->
+<section id="dor" class="pain pain--light">
+  <div class="container">
+    <div class="pain__top">
+      <div class="reveal">
+        <span class="eyebrow eyebrow--dark">A rotina que ninguém vê</span>
+        <h2 class="display-md display-md--dark" style="margin-top:18px; line-height:1.2">
+          <span class="text-soft">Por trás de cada</span><br/>
+          <span style="font-family:'Plus Jakarta Sans'; font-weight:800; color:var(--purple); font-style:italic">"parabéns, RH"</span><br/>
+          <span class="text-soft">tem uma </span><span class="hl-block--green">planilha aberta.</span>
+        </h2>
+      </div>
+      <p class="lead lead--dark reveal">
+        A gente escuta o agradecimento, mas vive a correria. Reconhecimento de verdade é deixar de fazer tudo no braço — e ganhar uma estrutura que sustente a <strong>gestão de pessoas</strong> o ano inteiro.
+      </p>
+    </div>
+
+    <ol class="num-list">
+      <li class="num-list__item reveal-x">
+        <span class="num-list__num">01</span>
+        <div class="num-list__body">
+          <h3>Avaliação que vira novela</h3>
+          <p>Ciclo aberto, prazo passa, devolutiva não chega, líder não responde. A <strong>avaliação de desempenho</strong> começa com energia e morre na inbox do gestor.</p>
+        </div>
+      </li>
+      <li class="num-list__item reveal-x">
+        <span class="num-list__num">02</span>
+        <div class="num-list__body">
+          <h3>Treinamento sem trilha</h3>
+          <p>Conteúdo solto, sem dados, sem evidência de evolução. Quem terminou? Quem evoluiu? Ninguém sabe — e o orçamento de <strong>capacitação corporativa</strong> já foi.</p>
+        </div>
+      </li>
+      <li class="num-list__item reveal-x">
+        <span class="num-list__num">03</span>
+        <div class="num-list__body">
+          <h3>PDI que dorme na gaveta</h3>
+          <p>Conversa boa, plano bonito, e três meses depois ninguém lembra. Sem acompanhamento, o <strong>desenvolvimento de colaboradores</strong> vira intenção.</p>
+        </div>
+      </li>
+      <li class="num-list__item reveal-x">
+        <span class="num-list__num">04</span>
+        <div class="num-list__body">
+          <h3>Dado que vive em planilha</h3>
+          <p>Cinco abas, três versões, dois exports. Quando a diretoria pergunta sobre <strong>engajamento</strong> ou <strong>desempenho</strong>, o RH precisa de uma semana pra responder.</p>
+        </div>
+      </li>
+      <li class="num-list__item reveal-x">
+        <span class="num-list__num">05</span>
+        <div class="num-list__body">
+          <h3>RH como pronto-socorro</h3>
+          <p>Tudo é urgência. Tudo cai no RH. E o estratégico — aquele que prova valor pra liderança — sempre fica pra semana que vem.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="pain__stat reveal">
+      <span class="pain__stat-num">73%</span>
+      <p class="pain__stat-text">dos profissionais de RH gastam <strong>mais de 12 horas por semana</strong> em tarefas operacionais que poderiam ser totalmente automatizadas — tempo que deveria ir para gestão estratégica de pessoas.</p>
+    </div>
+
+    <div class="pain__close reveal">
+      <h3 class="display-md">
+        <span class="text-soft">O problema não é falta de esforço.</span><br/>
+        <span class="hl-block--green">É falta de sistema.</span>
+      </h3>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. ANTES × DEPOIS ============ -->
+<section id="vs" class="vs">
+  <div class="vs__bg" aria-hidden="true">
+    <div class="hero__glow hero__glow--2"></div>
+  </div>
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="eyebrow eyebrow--light">Antes da YouRH × Depois da YouRH</span>
+      <h2 class="display-md" style="margin-top:20px">
+        <span class="text-soft">A diferença não é o esforço.</span><br/>
+        <span class="hl-block--green">É o sistema por trás.</span>
+      </h2>
+    </header>
+
+    <div class="vs__grid">
+      <div class="vs__col vs__col--before reveal-left">
+        <div class="vs__head">
+          <span class="vs__tag">Antes</span>
+          <span class="vs__sub">Sem sistema</span>
+        </div>
+        <ul class="vs__list">
+          <li><span class="vs__icon vs__icon--x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg></span>Tudo no braço, todo o tempo</li>
+          <li><span class="vs__icon vs__icon--x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg></span>Planilha pra cada processo</li>
+          <li><span class="vs__icon vs__icon--x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg></span>Cobrança que cansa o gestor</li>
+          <li><span class="vs__icon vs__icon--x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg></span>Treinamento improvisado</li>
+          <li><span class="vs__icon vs__icon--x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg></span>Avaliação travada na metade</li>
+          <li><span class="vs__icon vs__icon--x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg></span>RH sempre apagando incêndio</li>
+        </ul>
+      </div>
+
+      <div class="vs__divider" aria-hidden="true">
+        <div class="vs__line"></div>
+        <div class="vs__arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+
+      <div class="vs__col vs__col--after reveal-right">
+        <div class="vs__head">
+          <span class="vs__tag vs__tag--green">Depois</span>
+          <span class="vs__sub">Com YouRH</span>
+        </div>
+        <ul class="vs__list">
+          <li><span class="vs__icon vs__icon--check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>Processo roda automatizado e rastreável</li>
+          <li><span class="vs__icon vs__icon--check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>Trilhas rodam por área, sem improviso</li>
+          <li><span class="vs__icon vs__icon--check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>Avaliação fecha no prazo, sempre</li>
+          <li><span class="vs__icon vs__icon--check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>PDI é acompanhado semana a semana</li>
+          <li><span class="vs__icon vs__icon--check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>Você vê tudo na palma da mão</li>
+          <li><span class="vs__icon vs__icon--check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>RH chega na diretoria com dado</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="vs__close reveal">
+      <span class="text-soft">A YouRH transforma</span> <span class="hl-block--green">esforço em processo</span>.<br/>
+      <span class="text-soft">E processo em </span><span class="hl-block">gestão de verdade.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============ 4. SOLUÇÕES (bento) ============ -->
+<section id="solucao" class="bento-sec">
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="eyebrow eyebrow--light">A YouRH na prática</span>
+      <h2 class="display-md" style="margin-top:20px">
+        <span class="text-soft">Tudo que é importante para</span><br/>
+        gente e gestão <span class="hl-block--green">em um só lugar!</span>
+      </h2>
+      <p class="lead lead--center">
+        <strong>Avaliação</strong>, <strong>treinamento</strong> e <strong>desenvolvimento</strong> conectados numa jornada que líder, colaborador e RH conseguem acompanhar de verdade.
+      </p>
+    </header>
+
+    <div class="bento" style="grid-template-columns:repeat(2,1fr)">
+      <!-- Performa -->
+      <article class="bento__card bento__card--performa reveal" style="grid-column:span 1">
+        <div class="bento__shine"></div>
+        <div class="bento__head">
+          <span class="module__tag module__tag--performa">You Performa · Avaliação</span>
+          <a class="bento__link" href="/solucoes/you-performa/">Saiba mais <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+        <h3>Avaliação de desempenho que termina</h3>
+        <p>Ciclos automatizados, devolutiva acompanhada e avaliação 360. O RH para de cobrar no individual e começa a analisar resultado.</p>
+        <ul class="bento__feat">
+          <li>Avaliação 360° e por competências</li>
+          <li>Ciclos automáticos com prazo definido</li>
+          <li>PDI integrado ao resultado</li>
+          <li>Relatórios de desempenho em tempo real</li>
+        </ul>
+      </article>
+
+      <!-- Educa -->
+      <article class="bento__card bento__card--educa reveal" style="grid-column:span 1">
+        <div class="bento__shine"></div>
+        <div class="bento__head">
+          <span class="module__tag module__tag--educa">You Educa · LMS</span>
+          <a class="bento__link" href="/solucoes/you-educa/">Saiba mais <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+        <h3>Universidade corporativa pronta para usar</h3>
+        <p>+500 trilhas curadas por área, com progresso real e relatório que prova evolução. Conectada à avaliação de desempenho.</p>
+        <ul class="bento__feat">
+          <li>+500 cursos prontos (liderança, NRs, cultura)</li>
+          <li>Trilhas por área e cargo</li>
+          <li>Certificações e gamificação</li>
+          <li>Relatório de evolução por colaborador</li>
+        </ul>
+      </article>
+
+      <!-- Recruta -->
+      <article class="bento__card bento__card--recruta reveal" style="grid-column:span 1">
+        <div class="bento__shine"></div>
+        <div class="bento__head">
+          <span class="module__tag module__tag--recruta">You Recruta · ATS</span>
+          <a class="bento__link" href="/solucoes/you-recruta/">Saiba mais <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+        <h3>Recrutamento preditivo e integrado</h3>
+        <p>Match automático, banco de talentos e funil visual. Contratação rápida e assertiva, do zero ao onboarding.</p>
+        <ul class="bento__feat">
+          <li>Match automático por perfil</li>
+          <li>Banco de talentos ativo</li>
+          <li>Funil de contratações visual</li>
+          <li>Página de vagas personalizada</li>
+        </ul>
+      </article>
+
+      <!-- Comunica -->
+      <article class="bento__card bento__card--comunica reveal" style="grid-column:span 1">
+        <div class="bento__shine"></div>
+        <div class="bento__head">
+          <span class="module__tag module__tag--comunica">You Comunica · Engajamento</span>
+          <a class="bento__link" href="/solucoes/you-comunica/">Saiba mais <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+        <h3>Clima e comunicação em um só lugar</h3>
+        <p>Pesquisa de clima, comunicados internos e feedback contínuo. O RH mede engajamento e age antes do problema virar saída.</p>
+        <ul class="bento__feat">
+          <li>Pesquisa de clima automatizada</li>
+          <li>Comunicados segmentados por área</li>
+          <li>Feedback contínuo entre pares</li>
+          <li>NPS de colaboradores com análise de tendência</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. STATS BAND ============ -->
+<section class="stats-band">
+  <div class="container">
+    <div class="stats-band__grid">
+      <div class="stats-band__item reveal">
+        <span class="stats-band__num"><span class="count" data-target="34">0</span><span style="color:var(--green)">%</span></span>
+        <span class="stats-band__label">aumento médio de engajamento da liderança</span>
+      </div>
+      <div class="stats-band__item reveal">
+        <span class="stats-band__num"><span class="count" data-target="40">0</span><span style="color:var(--green)">%</span></span>
+        <span class="stats-band__label">redução em rotinas manuais de RH</span>
+      </div>
+      <div class="stats-band__item reveal">
+        <span class="stats-band__num">+<span class="count" data-target="500">0</span></span>
+        <span class="stats-band__label">cursos na universidade corporativa</span>
+      </div>
+      <div class="stats-band__item reveal">
+        <span class="stats-band__num"><span class="count" data-target="88">0</span><span style="color:var(--green)">%</span></span>
+        <span class="stats-band__label">taxa de retenção de clientes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. DEPOIMENTOS ============ -->
+<section id="prova" class="testimonials testimonials--light">
+  <div class="container">
+    <header class="t-head reveal">
+      <span class="eyebrow eyebrow--dark">Quem já saiu do operacional</span>
+      <h2 class="display-md display-md--dark" style="margin-top:18px">
+        <span class="text-soft">Quando o RH ganha estrutura,</span><br/>
+        <span class="hl-block--green">todo mundo sente.</span>
+      </h2>
+    </header>
+
+    <div class="t-edit" style="grid-template-columns:repeat(3,1fr)">
+      <article class="t-card reveal">
+        <div class="t-card__top">
+          <span class="quote-mark">"</span>
+          <div class="t-stat">
+            <span class="t-stat__num text-purple">
+              <span class="count" data-target="90">0</span><span class="t-stat__unit">%</span>
+            </span>
+            <span class="t-stat__desc">dos líderes concluíram as trilhas obrigatórias em 60 dias — sem cobrança no individual.</span>
+          </div>
+        </div>
+        <p class="t-card__quote">Antes da YouRH, a gente vivia atrás do gestor pra fechar avaliação. Hoje o ciclo roda sozinho — e a gente volta a discutir pessoas.</p>
+        <div class="t-card__author">
+          <div class="avatar">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="22" fill="url(#g1)"/>
+              <defs><linearGradient id="g1" x1="0" y1="0" x2="48" y2="48"><stop offset="0%" stop-color="#6212B3"/><stop offset="100%" stop-color="#9b5fdb"/></linearGradient></defs>
+              <circle cx="24" cy="20" r="6.5" fill="#fff"/>
+              <path d="M11 38c2.5-6.5 7.5-9.5 13-9.5s10.5 3 13 9.5" fill="#fff"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Carlos Santos</strong>
+            <span>Diretor de Pessoas · InovaCorp</span>
+            <span style="display:block; font-size:.78rem; color:var(--purple); font-weight:600; margin-top:2px">Mid-Market · Varejo · 180 colaboradores</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="t-card reveal">
+        <div class="t-card__top">
+          <span class="quote-mark">"</span>
+          <div class="t-stat">
+            <span class="t-stat__num text-purple">
+              <span class="t-stat__sign">+</span><span class="count" data-target="10">0</span><span class="t-stat__unit" style="font-size:.46em">h</span>
+            </span>
+            <span class="t-stat__desc">economizadas por semana só no processo de avaliação. Tempo que voltou pro estratégico.</span>
+          </div>
+        </div>
+        <p class="t-card__quote">O ganho mais óbvio foi tempo. O ganho real foi voltar a discutir pessoas em vez de planilha. Hoje o RH chega na diretoria com dado.</p>
+        <div class="t-card__author">
+          <div class="avatar">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="22" fill="url(#g2)"/>
+              <defs><linearGradient id="g2" x1="0" y1="0" x2="48" y2="48"><stop offset="0%" stop-color="#6212B3"/><stop offset="100%" stop-color="#61DD75"/></linearGradient></defs>
+              <circle cx="24" cy="20" r="6.5" fill="#fff"/>
+              <path d="M11 38c2.5-6.5 7.5-9.5 13-9.5s10.5 3 13 9.5" fill="#fff"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Ana Silva</strong>
+            <span>Gerente de RH · TechLogix</span>
+            <span style="display:block; font-size:.78rem; color:var(--purple); font-weight:600; margin-top:2px">PME · Tecnologia · 95 colaboradores</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="t-card reveal">
+        <div class="t-card__top">
+          <span class="quote-mark">"</span>
+          <div class="t-stat">
+            <span class="t-stat__num text-purple">
+              <span class="count" data-target="82">0</span><span class="t-stat__unit">%</span>
+            </span>
+            <span class="t-stat__desc">de adesão nos primeiros treinamentos obrigatórios — resultado que nunca tínhamos alcançado antes.</span>
+          </div>
+        </div>
+        <p class="t-card__quote">A implementação foi mais rápida do que eu esperava. Em três semanas estávamos rodando o primeiro ciclo de avaliação. A equipe abraçou de verdade.</p>
+        <div class="t-card__author">
+          <div class="avatar">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="22" fill="url(#g3)"/>
+              <defs><linearGradient id="g3" x1="0" y1="0" x2="48" y2="48"><stop offset="0%" stop-color="#3a0a6f"/><stop offset="100%" stop-color="#61DD75"/></linearGradient></defs>
+              <circle cx="24" cy="20" r="6.5" fill="#fff"/>
+              <path d="M11 38c2.5-6.5 7.5-9.5 13-9.5s10.5 3 13 9.5" fill="#fff"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Renata Oliveira</strong>
+            <span>Head de Gente · Grupo Pittol</span>
+            <span style="display:block; font-size:.78rem; color:var(--purple); font-weight:600; margin-top:2px">Mid-Market · Distribuição · 240 colaboradores</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. OBJEÇÕES ============ -->
+<section class="objections">
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="eyebrow eyebrow--dark">Sem surpresas</span>
+      <h2 class="display-md display-md--dark" style="margin-top:18px">
+        <span class="text-soft">Implementar não precisa</span><br/>
+        ser <span class="hl-block--green">complicado.</span>
+      </h2>
+      <p class="lead lead--center lead--dark">Sabemos que troca de sistema gera dúvida. Por isso eliminamos as barreiras antes de você precisar perguntar.</p>
+    </header>
+
+    <div class="obj-grid">
+      <div class="obj-card reveal-grid">
+        <div class="obj-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="obj-body">
+          <h3>Implementação em até 30 dias</h3>
+          <p>Você não espera meses para ver resultado. Nosso processo de onboarding é guiado por um especialista dedicado — da configuração ao primeiro ciclo rodando.</p>
+        </div>
+      </div>
+
+      <div class="obj-card reveal-grid">
+        <div class="obj-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="obj-body">
+          <h3>Sem fidelidade contratual</h3>
+          <p>Não prendemos ninguém. Se a plataforma não entregar o que prometemos, você sai sem multa. A confiança é construída com resultado, não com contrato.</p>
+        </div>
+      </div>
+
+      <div class="obj-card reveal-grid">
+        <div class="obj-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="obj-body">
+          <h3>Suporte humano dedicado, não bot</h3>
+          <p>Cada cliente tem um CSM dedicado que responde em até 5 minutos. Sem ticket genérico, sem espera — alguém que conhece o seu RH de verdade.</p>
+        </div>
+      </div>
+
+      <div class="obj-card reveal-grid">
+        <div class="obj-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <div class="obj-body">
+          <h3>Migração de dados inclusa</h3>
+          <p>Não jogue fora o histórico que você já tem. Nossa equipe cuida da migração dos dados da sua planilha ou sistema anterior sem custo adicional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. CTA FINAL ============ -->
+<section class="cta-final">
+  <div class="cta-final__bg" aria-hidden="true">
+    <div class="hero__glow hero__glow--1"></div>
+    <div class="hero__glow hero__glow--2"></div>
+    <div class="hero__noise"></div>
+  </div>
+  <div class="container cta-final__inner">
+    <div class="cta-final__copy reveal-left">
+      <span class="eyebrow eyebrow--light">
+        <span class="eyebrow__pill eyebrow__pill" style="background:var(--green);color:var(--ink)">Demonstração gratuita</span>
+        Sem compromisso
+      </span>
+      <h2 class="display-md" style="margin-top:6px">
+        <span class="text-soft">Veja a YouRH</span><br/>
+        funcionando <span class="hl-block--green">na prática!</span>
+      </h2>
+      <p class="lead">
+        Em poucos minutos, sua equipe entende como sair do braço — <strong>avaliação de desempenho</strong>, <strong>treinamento de colaboradores</strong> e <strong>desenvolvimento</strong> centralizados em uma plataforma só.
+      </p>
+      <ul class="benefits-list">
+        <li>
+          <span class="check-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>
+          Como rodar avaliação de desempenho sem cobrar no individual
+        </li>
+        <li>
+          <span class="check-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>
+          Como aplicar treinamento corporativo com trilha pronta (+500 cursos)
+        </li>
+        <li>
+          <span class="check-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>
+          Como acompanhar PDI sem perder o fio da meada
+        </li>
+        <li>
+          <span class="check-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg></span>
+          Como mostrar resultado de RH para a diretoria com dados reais
+        </li>
+      </ul>
+      <div class="cta-final__trust">
+        <div><div class="cta-final__num">400+</div><div class="cta-final__label">Empresas</div></div>
+        <div><div class="cta-final__num">450K+</div><div class="cta-final__label">Colaboradores</div></div>
+        <div><div class="cta-final__num">88%</div><div class="cta-final__label">Taxa de conclusão</div></div>
+      </div>
+    </div>
+
+    <div class="cta-final__form-wrap reveal-right">
+      <div class="cta-final__form-box">
+        <div class="hero__form-title" style="margin-bottom:4px">Agende sua demonstração</div>
+        <div class="hero__form-sub">Resposta em 1 dia útil · Demonstração 100% personalizada para o seu RH.</div>
+        <form action="https://yourh.com.br/form/send" class="form" data-lang="pt-BR" data-recaptcha-action="demo" data-recaptcha-key="6LdyGcQkAAAAACQk2LGJupjrk6832k-KRjSGaAdJ" method="post" name='"solicite-demonstracao-2"'>
+          <input name="_token" type="hidden" value="RxMWTtdWZaHfYL64YGH0B3u8Ggx3GJBzlQ8Hvc3M"/>
+          <input name="form" type="hidden" value="eyJpdiI6InhjSGprWXVUNzVUZVRzVlVsUkxEZVE9PSIsInZhbHVlIjoicFdXOFlmOS9uMjM1YXB6QzI0L2h2dz09IiwibWFjIjoiYTNmMjZmNGJiNjhjNGU3OWNlMTJjMmI5YmU1ZDYwOTg5NWYwMjkwZTg4YjIwYWRhNzg0YzM4NjM3ODhmNGFlNSJ9"/>
+          <input name="utm_source" type="hidden"/>
+          <input name="utm_medium" type="hidden"/>
+          <input name="utm_campaign" type="hidden"/>
+          <input name="utm_content" type="hidden"/>
+          <input name="utm_term" type="hidden"/>
+          <div class="row form-hide">
+            <div class="col-12 form-group">
+              <div class="placeholder">Seu nome completo *</div>
+              <input maxlength="49" name="name" required type="text" placeholder="Como podemos te chamar?"/>
+            </div>
+            <div class="col-12 form-group">
+              <div class="placeholder">E-mail corporativo *</div>
+              <input maxlength="128" name="email" required type="text" placeholder="voce@empresa.com.br"/>
+            </div>
+            <div class="col-12 form-group">
+              <div class="placeholder">WhatsApp *</div>
+              <input class="phone-mask" maxlength="16" name="phone" required type="text" placeholder="(11) 99999-9999"/>
+            </div>
+            <div class="col-12 form-group">
+              <div class="placeholder">Nome da empresa *</div>
+              <input maxlength="49" name="company" required type="text"/>
+            </div>
+            <div class="col-12 form-group">
+              <div class="placeholder">Nº de colaboradores *</div>
+              <select name="employees" required>
+                <option disabled selected value=""> </option>
+                <option value="20 - 30">20 – 30</option>
+                <option value="31 - 70">31 – 70</option>
+                <option value="71 - 100">71 – 100</option>
+                <option value="101 - 200">101 – 200</option>
+                <option value="201 - 300">201 – 300</option>
+                <option value="301 - 500">301 – 500</option>
+                <option value="501+">501+</option>
+              </select>
+            </div>
+            <div class="col-12 form-group">
+              <label class="checkbox">
+                <input name="policy" required type="checkbox"/>
+                <span class="checkmark"></span>
+                Concordo com a <a href="https://yourh.com.br/politica-de-privacidade" target="_blank">Política de Privacidade</a>.
+              </label>
+            </div>
+          </div>
+          <div class="row"><div class="col-12">
+            <div class="alert small" style="display:none"><div class="progress-bar" style="width:0%"></div><div class="message"></div></div>
+          </div></div>
+          <div class="row form-hide"><div class="col-12 text-center">
+            <button class="btn green-2 full" type="submit">Quero estruturar meu RH agora →</button>
+          </div></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="container foot__inner">
+    <a href="/" aria-label="YouRH">
+      <img src="/assets/cdn2.cardume.digital/public/sites/yourh/images/logos/logo.svg" alt="YouRH" height="28"/>
+    </a>
+    <p>© <span id="year"></span> YouRH · CNPJ 29.067.310/0001-05 · <a href="https://yourh.com.br/politica-de-privacidade">Política de Privacidade</a></p>
+  </div>
+</footer>
+
+<!-- WhatsApp Chat Bot -->
+<div id="wa-widget" class="wa-widget">
+
+  <button class="wa-trigger" id="wa-trigger" aria-label="Falar no WhatsApp" aria-expanded="false">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#fff" d="M16 2C8.28 2 2 8.28 2 16c0 2.46.65 4.78 1.78 6.8L2 30l7.37-1.74A13.93 13.93 0 0016 30c7.72 0 14-6.28 14-14S23.72 2 16 2zm7.11 19.7c-.3.84-1.74 1.6-2.4 1.7-.61.09-1.38.13-2.23-.14-.51-.17-1.17-.39-2-.76-3.52-1.52-5.82-5.08-5.99-5.32-.17-.24-1.4-1.86-1.4-3.55 0-1.69.88-2.52 1.2-2.86.3-.34.65-.43.87-.43.21 0 .43.01.62.01.19 0 .46-.07.72.55.26.62.9 2.2.98 2.36.08.17.13.36.03.58-.1.22-.16.35-.31.54-.15.2-.32.44-.46.59-.15.16-.31.33-.13.65.17.32.78 1.28 1.67 2.07 1.15 1.02 2.12 1.34 2.44 1.49.3.15.48.12.66-.07.17-.2.74-.87.94-1.17.2-.3.39-.25.66-.15.27.1 1.73.82 2.03.97.3.15.49.22.57.34.07.12.07.7-.23 1.54z"/>
+    </svg>
+    <span class="wa-trigger__badge" aria-hidden="true">1</span>
+  </button>
+
+  <div class="wa-panel" id="wa-panel" aria-hidden="true" role="dialog" aria-label="Chat YouRH">
+
+    <div class="wa-header">
+      <div class="wa-avatar">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="wa-header-info">
+        <strong>YouRH · Especialista em RH</strong>
+        <span>🟢 Online agora</span>
+      </div>
+      <button class="wa-close" id="wa-close" aria-label="Fechar chat">&#x2715;</button>
+    </div>
+
+    <div class="wa-messages" id="wa-messages"></div>
+
+    <div class="wa-chips" id="wa-chips"></div>
+
+    <div class="wa-input-row" id="wa-input-row" style="display:none">
+      <input type="text" class="wa-input" id="wa-input" placeholder="Digite aqui..." autocomplete="off" maxlength="200"/>
+      <button class="wa-send" id="wa-send" aria-label="Enviar">
+        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- RD Station -->
+<script type="text/javascript" src="/assets/d335luupugsy2.cloudfront.net/js/loader-scripts/a81f367c-46ec-4dea-a2c2-4367f6781b13-loader.js" async></script>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ── stagger index ── */
+document.querySelectorAll('.num-list__item').forEach((el,i) => el.style.setProperty('--i',i));
+
+/* ── Reveal observer ── */
+const revealEls = document.querySelectorAll('.reveal,.reveal-zoom,.reveal-left,.reveal-right,.reveal-x,.reveal-grid,.reveal-lines');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+}, { threshold:0.15, rootMargin:'0px 0px -50px 0px' });
+revealEls.forEach(el => io.observe(el));
+
+/* ── Bars ── */
+const barIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-in'); barIO.unobserve(e.target); } });
+}, { threshold:0.4 });
+document.querySelectorAll('.bar').forEach(el => barIO.observe(el));
+
+/* ── Count-up ── */
+const counterIO = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.target, 10) || 0;
+    const dur = 1800;
+    const t0 = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - t0)/dur, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1-p, 3)));
+      if(p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    counterIO.unobserve(el);
+  });
+}, { threshold:0.5 });
+document.querySelectorAll('.count').forEach(c => counterIO.observe(c));
+
+/* ── Nav adaptativo (claro/escuro) ── */
+const nav = document.querySelector('.nav');
+const lightSecs = document.querySelectorAll('.pain--light, .testimonials, .objections');
+const updateNav = () => {
+  let light = false;
+  lightSecs.forEach(sec => {
+    const r = sec.getBoundingClientRect();
+    if(r.top <= 100 && r.bottom >= 100) light = true;
+  });
+  nav.classList.toggle('is-light', light);
+};
+window.addEventListener('scroll', updateNav, {passive:true});
+updateNav();
+
+/* ── UTM → hidden inputs ── */
+(function(){
+  const p = new URLSearchParams(window.location.search);
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_marketing_tactic'].forEach(k => {
+    document.querySelectorAll('[name='+k+']').forEach(el => { if(p.get(k)) el.value = p.get(k); });
+  });
+})();
+</script>
+
+
+<script>
+/* ══════════════════════════════════════════
+   YouRH · WhatsApp Chat Bot
+══════════════════════════════════════════ */
+(function(){
+  const WANUM  = '5547999982938';
+  const LS_KEY = 'yourh_lead';
+
+  const trigger    = document.getElementById('wa-trigger');
+  const panel      = document.getElementById('wa-panel');
+  const closeBtn   = document.getElementById('wa-close');
+  const messagesEl = document.getElementById('wa-messages');
+  const chipsEl    = document.getElementById('wa-chips');
+  const inputEl    = document.getElementById('wa-input');
+  const sendBtn    = document.getElementById('wa-send');
+  const inputRow   = document.getElementById('wa-input-row');
+
+  let isOpen  = false;
+  let started = false;
+  let step    = 0;
+  let answers = {};
+
+  const QUESTIONS = [
+    {
+      key: 'name',
+      ask: () => 'Olá! 👋 Sou o assistente da YouRH.\n\nVou te ajudar a agendar sua demonstração em menos de 2 minutos.\n\nComo posso te chamar?',
+      type: 'text', placeholder: 'Seu nome completo'
+    },
+    {
+      key: 'email',
+      ask: () => `Prazer, **${answers.name}**! 😊\n\nQual é o seu **e-mail corporativo**?`,
+      type: 'text', placeholder: 'voce@empresa.com.br'
+    },
+    {
+      key: 'phone',
+      ask: () => 'Ótimo! E o seu **WhatsApp** com DDD?',
+      type: 'tel', placeholder: '(11) 99999-9999'
+    },
+    {
+      key: 'company',
+      ask: () => 'Qual é o **nome da sua empresa**?',
+      type: 'text', placeholder: 'Nome da empresa'
+    },
+    {
+      key: 'employees',
+      ask: () => 'Quantos **colaboradores** vocês têm?\n\nEscolha uma opção:',
+      type: 'chips',
+      options: ['20–30','31–70','71–100','101–200','201–300','301–500','501+']
+    },
+    {
+      key: 'role',
+      ask: () => 'E qual é o seu **cargo**?',
+      type: 'chips',
+      options: ['Analista','Assistente/Aux.','CEO','Consultor','Diretor','Gerente/Head','Supervisor/Coord.','Outros']
+    },
+    {
+      key: 'site',
+      ask: () => 'Última pergunta: qual é o **site ou rede social** da empresa?',
+      type: 'text', placeholder: 'empresa.com.br ou @empresa'
+    }
+  ];
+
+  /* ── Toggle panel ── */
+  function open()  { isOpen = true;  panel.classList.add('is-open');    panel.setAttribute('aria-hidden','false'); trigger.setAttribute('aria-expanded','true');  if(!started){ started=true; startBot(); } }
+  function close() { isOpen = false; panel.classList.remove('is-open'); panel.setAttribute('aria-hidden','true');  trigger.setAttribute('aria-expanded','false'); }
+
+  trigger.addEventListener('click', () => isOpen ? close() : open());
+  closeBtn.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if(e.key==='Escape' && isOpen) close(); });
+
+  /* ── Scroll to bottom ── */
+  function scrollBottom(){ messagesEl.scrollTop = messagesEl.scrollHeight; }
+
+  /* ── Render **bold** mini-markdown ── */
+  function render(text){
+    return text
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\n/g,'<br>')
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  }
+
+  /* ── Add bubble ── */
+  function addBubble(text, who){
+    const div = document.createElement('div');
+    div.className = 'wa-bubble wa-bubble--' + who;
+    div.innerHTML = render(text);
+    messagesEl.appendChild(div);
+    scrollBottom();
+    return div;
+  }
+
+  /* ── Typing indicator ── */
+  function showTyping(){
+    const el = document.createElement('div');
+    el.className = 'wa-bubble wa-bubble--bot wa-typing';
+    el.id = 'wa-typing-indicator';
+    el.innerHTML = '<span></span><span></span><span></span>';
+    messagesEl.appendChild(el);
+    scrollBottom();
+  }
+  function removeTyping(){
+    const el = document.getElementById('wa-typing-indicator');
+    if(el) el.remove();
+  }
+
+  /* ── Bot says (with typing delay) ── */
+  function botSay(text, ms){
+    ms = ms || 800;
+    return new Promise(function(resolve){
+      showTyping();
+      setTimeout(function(){
+        removeTyping();
+        addBubble(text, 'bot');
+        resolve();
+      }, ms);
+    });
+  }
+
+  /* ── Chips ── */
+  function showChips(options, onSelect){
+    chipsEl.innerHTML = '';
+    options.forEach(function(opt){
+      const btn = document.createElement('button');
+      btn.className = 'wa-chip';
+      btn.textContent = opt;
+      btn.addEventListener('click', function(){
+        chipsEl.innerHTML = '';
+        onSelect(opt);
+      });
+      chipsEl.appendChild(btn);
+    });
+    scrollBottom();
+  }
+
+  /* ── Text input ── */
+  function showInput(placeholder, type){
+    inputRow.style.display = 'flex';
+    inputEl.placeholder = placeholder || 'Digite aqui...';
+    inputEl.type = (type === 'tel') ? 'tel' : 'text';
+    inputEl.value = '';
+    sendBtn.disabled = false;
+    setTimeout(function(){ inputEl.focus(); }, 100);
+  }
+  function hideInput(){
+    inputRow.style.display = 'none';
+    inputEl.value = '';
+  }
+
+  /* ── Phone mask ── */
+  inputEl.addEventListener('input', function(){
+    if(inputEl.type !== 'tel') return;
+    var v = inputEl.value.replace(/\D/g,'').slice(0,11);
+    if(v.length > 6)      v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+    else if(v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+    else if(v.length > 0) v = '(' + v;
+    inputEl.value = v;
+  });
+
+  /* ── Ask step n ── */
+  function askStep(n){
+    if(n >= QUESTIONS.length){ finishFlow(); return; }
+    var q = QUESTIONS[n];
+    botSay(q.ask()).then(function(){
+      if(q.type === 'chips'){
+        hideInput();
+        showChips(q.options, function(val){
+          addBubble(val, 'user');
+          answers[q.key] = val;
+          step = n + 1;
+          askStep(step);
+        });
+      } else {
+        showInput(q.placeholder, q.type);
+      }
+    });
+  }
+
+  /* ── Handle send ── */
+  function handleSend(){
+    var val = inputEl.value.trim();
+    if(!val) return;
+    sendBtn.disabled = true;
+    hideInput();
+    addBubble(val, 'user');
+    answers[QUESTIONS[step].key] = val;
+    step++;
+    askStep(step);
+  }
+  sendBtn.addEventListener('click', handleSend);
+  inputEl.addEventListener('keydown', function(e){ if(e.key === 'Enter') handleSend(); });
+
+  /* ── Build WhatsApp URL ── */
+  function buildWAUrl(data, returning){
+    var intro = returning
+      ? 'Olá! Vim pelo site da YouRH e já preenchi o formulário de demonstração.'
+      : 'Olá! Vim pelo site da YouRH e gostaria de agendar uma demonstração.';
+    var msg = intro + '\n\n'
+      + '*Nome:* '           + (data.name      || '') + '\n'
+      + '*E-mail:* '         + (data.email     || '') + '\n'
+      + '*WhatsApp:* '       + (data.phone     || '') + '\n'
+      + '*Empresa:* '        + (data.company   || '') + '\n'
+      + '*Colaboradores:* '  + (data.employees || '') + '\n'
+      + '*Cargo:* '          + (data.role      || '');
+    if(data.site) msg += '\n*Site:* ' + data.site;
+    return 'https://wa.me/' + WANUM + '?text=' + encodeURIComponent(msg);
+  }
+
+  /* ── WA CTA button ── */
+  function addWAButton(url, label){
+    var wrap = document.createElement('div');
+    wrap.className = 'wa-bubble wa-bubble--bot';
+    wrap.innerHTML = '<a class="wa-cta" href="' + url + '" target="_blank" rel="noopener">'
+      + '<svg viewBox="0 0 32 32"><path fill="#fff" d="M16 2C8.28 2 2 8.28 2 16c0 2.46.65 4.78 1.78 6.8L2 30l7.37-1.74A13.93 13.93 0 0016 30c7.72 0 14-6.28 14-14S23.72 2 16 2zm7.11 19.7c-.3.84-1.74 1.6-2.4 1.7-.61.09-1.38.13-2.23-.14-.51-.17-1.17-.39-2-.76-3.52-1.52-5.82-5.08-5.99-5.32-.17-.24-1.4-1.86-1.4-3.55 0-1.69.88-2.52 1.2-2.86.3-.34.65-.43.87-.43.21 0 .43.01.62.01.19 0 .46-.07.72.55.26.62.9 2.2.98 2.36.08.17.13.36.03.58-.1.22-.16.35-.31.54-.15.2-.32.44-.46.59-.15.16-.31.33-.13.65.17.32.78 1.28 1.67 2.07 1.15 1.02 2.12 1.34 2.44 1.49.3.15.48.12.66-.07.17-.2.74-.87.94-1.17.2-.3.39-.25.66-.15.27.1 1.73.82 2.03.97.3.15.49.22.57.34.07.12.07.7-.23 1.54z"/></svg>'
+      + label + '</a>';
+    messagesEl.appendChild(wrap);
+    scrollBottom();
+  }
+
+  /* ── Summary card ── */
+  function addSummaryCard(data){
+    var rows = [
+      ['Nome', data.name], ['E-mail', data.email],
+      ['WhatsApp', data.phone], ['Empresa', data.company],
+      ['Colaboradores', data.employees], ['Cargo', data.role]
+    ];
+    if(data.site) rows.push(['Site', data.site]);
+    var html = rows.filter(function(r){ return r[1]; })
+      .map(function(r){ return '<strong>' + r[0] + ':</strong> ' + r[1]; })
+      .join('<br>');
+    var wrap = document.createElement('div');
+    wrap.className = 'wa-bubble wa-bubble--bot';
+    wrap.innerHTML = '<div class="wa-summary">' + html + '</div>';
+    messagesEl.appendChild(wrap);
+    scrollBottom();
+  }
+
+  /* ── Finish flow (new lead) ── */
+  function finishFlow(){
+    try{ localStorage.setItem(LS_KEY, JSON.stringify(answers)); }catch(e){}
+    botSay('Perfeito! ✅ Aqui está um resumo das suas informações:', 600).then(function(){
+      addSummaryCard(answers);
+      botSay('Clique abaixo e um especialista da YouRH vai entrar em contato com você rapidinho! 🚀', 700).then(function(){
+        addWAButton(buildWAUrl(answers, false), 'Falar com especialista agora');
+      });
+    });
+  }
+
+  /* ── Confirmation flow (form already filled) ── */
+  function confirmationFlow(data){
+    answers = data;
+    botSay('Olá, **' + data.name + '**! 👋\n\nVi que você já preencheu o formulário de demonstração. Confirme seus dados:', 900).then(function(){
+      addSummaryCard(data);
+      botSay('Tudo certo? Clique abaixo que um especialista já vai te atender! 🚀', 700).then(function(){
+        addWAButton(buildWAUrl(data, true), 'Confirmar e falar agora');
+      });
+    });
+  }
+
+  /* ── Start ── */
+  function startBot(){
+    hideInput();
+    var saved = null;
+    try{ var raw = localStorage.getItem(LS_KEY); if(raw) saved = JSON.parse(raw); }catch(e){}
+    if(saved && saved.name){
+      confirmationFlow(saved);
+    } else {
+      step = 0; answers = {};
+      askStep(0);
+    }
+  }
+
+  /* ── Capture form submissions → localStorage ── */
+  document.querySelectorAll('form.form').forEach(function(form){
+    form.addEventListener('submit', function(){
+      try{
+        var g = function(n){ var el = form.querySelector('[name="'+n+'"]'); return el ? el.value : ''; };
+        var data = { name:g('name'), email:g('email'), phone:g('phone'), company:g('company'), employees:g('employees'), role:g('role'), site:g('site') };
+        if(data.name) localStorage.setItem(LS_KEY, JSON.stringify(data));
+      }catch(e){}
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
