@@ -8,7 +8,8 @@
      (RD Station é processado pelo loader script oficial)
 */
 
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 /* =========== Stagger index ============ */
 document.querySelectorAll('.num-list__item').forEach((el, i) => el.style.setProperty('--i', i));
