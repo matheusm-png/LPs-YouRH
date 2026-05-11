@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouRH — Central de Soluções para RH</title>
+  <meta name="description" content="Acesse todos os materiais e soluções YouRH em um só lugar." />
+  <link rel="icon" type="image/svg+xml" href="https://lp.yourh.com.br/nr1/assets/favicon_yourh.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:      #3D008C;
+      --purple-dark: #2A0062;
+      --purple-mid:  #5a00cc;
+      --purple-lite: #9b5cf6;
+      --green:       #00C853;
+      --green-dark:  #00A844;
+      --bg:          #0a0a0a;
+      --bg-card:     #141414;
+      --text:        #e5e5e5;
+      --muted:       #a3a3a3;
+      --font-body:   'Inter', system-ui, sans-serif;
+      --font-head:   'Bricolage Grotesque', system-ui, sans-serif;
+      --ease:        cubic-bezier(.25,.46,.45,.94);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); overflow-x: hidden; }
+
+    /* ── NAVBAR ─────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      height: 64px;
+      background: linear-gradient(to bottom, rgba(0,0,0,.8), transparent);
+      transition: background 300ms ease, backdrop-filter 300ms ease;
+    }
+    .nav.solid {
+      background: rgba(10,10,10,.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo {
+      height: 32px;
+      filter: brightness(0) invert(1);
+    }
+    .nav-logo-text {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: #fff;
+      letter-spacing: -.02em;
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green);
+      color: #000;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: .85rem;
+      padding: 9px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 200ms, transform 200ms;
+    }
+    .nav-cta:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+    /* ── HERO ───────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      background: linear-gradient(135deg, #1a003d 0%, #2A0062 45%, #3D008C 100%);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 100px 6vw 80px;
+    }
+    /* decorative blobs */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 500px; height: 500px;
+      background: rgba(0,200,83,.08);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -160px; left: 30%;
+      width: 420px; height: 420px;
+      background: rgba(255,255,255,.03);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    /* fade into bg at bottom */
+    .hero-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to top, var(--bg), transparent);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 56px;
+    }
+    .hero-body {
+      flex: 1;
+      min-width: 0;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 18px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 28px; height: 2px;
+      background: var(--green);
+      border-radius: 2px;
+    }
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.08;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,.72);
+      line-height: 1.65;
+      max-width: 440px;
+      margin-bottom: 32px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* screenshot card on the right */
+    .hero-visual {
+      flex: 0 0 480px;
+      position: relative;
+    }
+    .hero-visual-img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow:
+        0 32px 80px rgba(0,0,0,.6),
+        0 0 0 1px rgba(255,255,255,.1);
+      display: block;
+      transform: perspective(1000px) rotateY(-4deg) rotateX(2deg);
+      transition: transform 400ms ease;
+    }
+    .hero-visual:hover .hero-visual-img {
+      transform: perspective(1000px) rotateY(-1deg) rotateX(0deg);
+    }
+    /* browser bar decoration */
+    .hero-visual::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 28px;
+      background: #1e1e1e;
+      border-radius: 12px 12px 0 0;
+      border: 1px solid rgba(255,255,255,.08);
+      border-bottom: none;
+      position: absolute;
+      top: -28px;
+    }
+    .hero-visual::after {
+      content: '⬤  ⬤  ⬤';
+      position: absolute;
+      top: -22px;
+      left: 12px;
+      font-size: .45rem;
+      color: rgba(255,255,255,.25);
+      letter-spacing: 4px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: .95rem;
+      padding: 13px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 220ms;
+    }
+    .btn-white { background: #fff; color: #000; }
+    .btn-white:hover { background: #e0e0e0; transform: translateY(-2px); }
+    .btn-ghost {
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(8px);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.22); transform: translateY(-2px); }
+
+    @media (max-width: 900px) {
+      .hero-visual { display: none; }
+      .hero { min-height: 75vh; }
+    }
+
+    /* ── CONTENT ────────────────────────────────────────── */
+    .content { padding-bottom: 80px; }
+
+    /* ── ROW ────────────────────────────────────────────── */
+    .row { padding: 24px 0 32px; }
+    .row-label {
+      padding: 0 5vw 14px;
+      font-family: var(--font-head);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .track {
+      display: flex;
+      gap: 14px;
+      padding: 6px 5vw 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .track::-webkit-scrollbar { display: none; }
+
+    /* ── CARD ───────────────────────────────────────────── */
+    .card {
+      flex: 0 0 300px;
+      scroll-snap-align: start;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--bg-card);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      cursor: pointer;
+      transition: transform 360ms var(--ease), box-shadow 360ms ease, z-index 0ms 360ms;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: scale(1.08) translateY(-8px);
+      box-shadow: 0 28px 64px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.09);
+      z-index: 20;
+      transition: transform 360ms var(--ease), box-shadow 360ms ease, z-index 0ms;
+    }
+
+    /* thumbnail */
+    .card-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    /* bottom info */
+    .card-info {
+      padding: 14px 16px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .card-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+    .badge {
+      font-size: .67rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255,255,255,.09);
+      color: #bbb;
+    }
+    .badge.green {
+      background: rgba(0,200,83,.18);
+      color: var(--green);
+      border: 1px solid rgba(0,200,83,.3);
+    }
+    .badge.purple {
+      background: rgba(155,92,246,.2);
+      color: var(--purple-lite);
+      border: 1px solid rgba(155,92,246,.35);
+    }
+    .card-title {
+      font-family: var(--font-head);
+      font-size: .97rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: .79rem;
+      color: var(--muted);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* hover overlay */
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.96) 0%, rgba(0,0,0,.35) 55%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+      opacity: 0;
+      transition: opacity 280ms ease;
+      pointer-events: none;
+    }
+    .card:hover .card-overlay { opacity: 1; pointer-events: auto; }
+    .card-overlay-title {
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .card-overlay-desc {
+      font-size: .78rem;
+      color: #ddd;
+      line-height: 1.5;
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-overlay-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green);
+      color: #000;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: .82rem;
+      padding: 9px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      width: fit-content;
+      transition: background 200ms;
+    }
+    .card-overlay-btn:hover { background: var(--green-dark); }
+
+    /* wide card variant */
+    .card.wide { flex: 0 0 420px; }
+
+    /* ── CTA BANNER ─────────────────────────────────────── */
+    .cta {
+      margin: 44px 5vw;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 60%, var(--purple-mid) 100%);
+      padding: 52px 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      flex-wrap: wrap;
+      overflow: hidden;
+      position: relative;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -70px; right: -70px;
+      width: 280px; height: 280px;
+      background: rgba(255,255,255,.05);
+      border-radius: 50%;
+    }
+    .cta::after {
+      content: '';
+      position: absolute;
+      bottom: -90px; right: 140px;
+      width: 340px; height: 340px;
+      background: rgba(0,200,83,.07);
+      border-radius: 50%;
+    }
+    .cta-text { flex: 1; min-width: 220px; position: relative; z-index: 1; }
+    .cta-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .cta-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .cta-sub {
+      font-size: .9rem;
+      color: rgba(255,255,255,.72);
+      line-height: 1.6;
+    }
+    .cta-btn {
+      position: relative;
+      z-index: 1;
+      background: var(--green);
+      color: #000;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 15px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 200ms, transform 200ms;
+    }
+    .cta-btn:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding: 36px 5vw 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-logo {
+      height: 26px;
+      filter: brightness(0) invert(1);
+      opacity: .6;
+    }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: .82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 200ms;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { font-size: .76rem; color: #444; width: 100%; }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero { height: 72vh; }
+      .hero-body { padding: 0 5vw 56px; }
+      .card { flex: 0 0 240px; }
+      .card.wide { flex: 0 0 300px; }
+      .cta { flex-direction: column; }
+      .cta-btn { width: 100%; text-align: center; justify-content: center; display: flex; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav" id="nav">
+    <img
+      src="https://lp.yourh.com.br/nr1/assets/logo-dark.svg"
+      alt="YouRH"
+      class="nav-logo"
+      onerror="this.style.display='none'; document.getElementById('logo-fb').style.display='block'"
+    />
+    <span id="logo-fb" class="nav-logo-text" style="display:none">YouRH</span>
+    <a href="https://lp.yourh.com.br/solicite-demonstracao2" class="nav-cta">Agendar Demo →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-fade"></div>
+    <div class="hero-inner">
+      <div class="hero-body">
+        <span class="hero-eyebrow">Kit Gratuito</span>
+        <h1 class="hero-title">Reduza turnover em 47% em 6 meses sem trocar uma única ferramenta</h1>
+        <p class="hero-desc">Avaliação de Desempenho, 9Box e Universidade Corporativa em um único ecossistema. Usado por +455 empresas no Brasil.</p>
+        <div class="hero-actions">
+          <a href="https://lp.yourh.com.br/herois-do-rh" class="btn btn-white">▶ Quero o Kit Gratuito</a>
+          <a href="https://lp.yourh.com.br/solicite-demonstracao2" class="btn btn-ghost">Falar com especialista</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img class="hero-visual-img" src="assets/thumbs/FORCA-TRIPLA.png" alt="Os 3 Heróis do RH — YouRH" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- ROW 1 -->
+    <section class="row">
+      <h2 class="row-label">🩺 Diagnóstico & Problemas</h2>
+      <div class="track">
+
+        <!-- Gestão Quebrada -->
+        <a class="card wide" href="https://lp.yourh.com.br/gestao-quebrada">
+          <img class="card-img" src="assets/thumbs/GESTAO-QUEBRADA.png" alt="Gestão Quebrada" loading="lazy" />
+          <div class="card-overlay">
+            <div class="card-overlay-title">RH com Gestão Quebrada?</div>
+            <div class="card-overlay-desc">Do recrutamento à avaliação, você usa uma ferramenta diferente. A YouRH gerencia 360° toda a jornada do colaborador.</div>
+            <a class="card-overlay-btn" href="https://lp.yourh.com.br/gestao-quebrada">Fazer o Diagnóstico →</a>
+          </div>
+          <div class="card-info">
+            <div class="card-badges"><span class="badge">Diagnóstico</span></div>
+            <div class="card-title">RH, você tem uma gestão quebrada</div>
+            <div class="card-desc">Do recrutamento à avaliação, cada etapa vive em uma ferramenta diferente. Centralize tudo.</div>
+          </div>
+        </a>
+
+        <!-- Abacaxi -->
+        <a class="card" href="https://lp.yourh.com.br/rh-abacaxi">
+          <img class="card-img" src="assets/thumbs/abacaxi.png" alt="Chega de RH Abacaxi" loading="lazy" />
+          <div class="card-overlay">
+            <div class="card-overlay-title">Chega de RH Abacaxi</div>
+            <div class="card-overlay-desc">Pare de perder tempo com planilhas e retrabalho. Centralize Avaliação, Treinamentos e Desenvolvimento em um só lugar.</div>
+            <a class="card-overlay-btn" href="https://lp.yourh.com.br/rh-abacaxi">Ver Solução →</a>
+          </div>
+          <div class="card-info">
+            <div class="card-badges"><span class="badge">Solução</span></div>
+            <div class="card-title">Chega de descascar abacaxi todo dia</div>
+            <div class="card-desc">Planilhas, retrabalho e sistemas que não conversam. Existe uma saída.</div>
+          </div>
+        </a>
+
+        <!-- Turnover -->
+        <a class="card" href="https://lp.yourh.com.br/turnover">
+          <img class="card-img" src="assets/thumbs/turnover.png" alt="Turnover" loading="lazy" />
+          <div class="card-overlay">
+            <div class="card-overlay-title">Sua empresa está perdendo dinheiro com turnover</div>
+            <div class="card-overlay-desc">Turnover custa US$ 10 trilhões globais. Descubra como reduzir a rotatividade com estratégia real e dados.</div>
+            <a class="card-overlay-btn" href="https://lp.yourh.com.br/turnover">Ver Diagnóstico →</a>
+          </div>
+          <div class="card-info">
+            <div class="card-badges"><span class="badge">Retenção</span><span class="badge">Engajamento</span></div>
+            <div class="card-title">Perdendo dinheiro com turnover sem perceber</div>
+            <div class="card-desc">Apenas 20% dos funcionários estão engajados. Saiba como mudar isso.</div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ROW 2 -->
+    <section class="row">
+      <h2 class="row-label">🎯 Soluções & Plataforma</h2>
+      <div class="track">
+
+        <!-- Força Tripla -->
+        <a class="card wide" href="https://lp.yourh.com.br/herois-do-rh">
+          <img class="card-img" src="assets/thumbs/FORCA-TRIPLA.png" alt="Os 3 Heróis do RH" loading="lazy" />
+          <div class="card-overlay">
+            <div class="card-overlay-title">Os 3 Heróis do RH — Kit Gratuito</div>
+            <div class="card-overlay-desc">Avaliação de Desempenho, 9Box e Universidade Corporativa: a combinação que transforma o RH operacional em estratégico.</div>
+            <a class="card-overlay-btn" href="https://lp.yourh.com.br/herois-do-rh">Baixar Kit Gratuito →</a>
+          </div>
+          <div class="card-info">
+            <div class="card-badges"><span class="badge green">Gratuito</span><span class="badge">Kit</span></div>
+            <div class="card-title">Os 3 Heróis do RH</div>
+            <div class="card-desc">Avaliação, 9Box e Universidade Corporativa em um ecossistema. Reduza turnover em 47% em 6 meses.</div>
+          </div>
+        </a>
+
+        <!-- Dia do RH -->
+        <a class="card" href="https://lp.yourh.com.br/dia-do-rh">
+          <img class="card-img" src="assets/thumbs/DIA-DO-RH.png" alt="Plataforma YouRH" loading="lazy" />
+          <div class="card-overlay">
+            <div class="card-overlay-title">Plataforma YouRH</div>
+            <div class="card-overlay-desc">O RH não precisa de mais um parabéns. Precisa de estrutura. Centralize avaliação de desempenho, treinamento e desenvolvimento.</div>
+            <a class="card-overlay-btn" href="https://lp.yourh.com.br/dia-do-rh">Conhecer a Plataforma →</a>
+          </div>
+          <div class="card-info">
+            <div class="card-badges"><span class="badge purple">Plataforma</span></div>
+            <div class="card-title">O RH precisa de estrutura, não de parabéns</div>
+            <div class="card-desc">Avaliação de desempenho, T&D e desenvolvimento em uma só plataforma integrada.</div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <div class="cta">
+      <div class="cta-text">
+        <div class="cta-label">Próximo Passo</div>
+        <h2 class="cta-title">Veja a YouRH funcionando na sua empresa</h2>
+        <p class="cta-sub">30 minutos com um especialista para entender como centralizar toda a gestão de pessoas, reduzir turnover e parar de depender de planilha.</p>
+      </div>
+      <a href="https://lp.yourh.com.br/solicite-demonstracao2" class="cta-btn">Agendar Demonstração Gratuita →</a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <img
+      src="https://lp.yourh.com.br/nr1/assets/logo-dark.svg"
+      alt="YouRH"
+      class="footer-logo"
+      onerror="this.style.display='none'"
+    />
+    <div class="footer-links">
+      <a href="https://lp.yourh.com.br/gestao-quebrada">Gestão Quebrada</a>
+      <a href="https://lp.yourh.com.br/rh-abacaxi">RH Abacaxi</a>
+      <a href="https://lp.yourh.com.br/turnover">Turnover</a>
+      <a href="https://lp.yourh.com.br/herois-do-rh">3 Heróis do RH</a>
+      <a href="https://lp.yourh.com.br/dia-do-rh">Dia do RH</a>
+      <a href="https://lp.yourh.com.br/solicite-demonstracao2">Solicite Demo</a>
+    </div>
+    <p class="footer-copy">© 2026 YouRH · Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('solid', window.scrollY > 30);
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
