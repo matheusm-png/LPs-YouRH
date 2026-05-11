@@ -11,6 +11,31 @@
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+/* =========== Countdown até 31/05/2026 23:59 =========== */
+(function () {
+  const target = new Date('2026-05-31T23:59:59');
+  const cdDays = document.getElementById('cd-days');
+  const cdHours = document.getElementById('cd-hours');
+  const cdMins = document.getElementById('cd-minutes');
+  const cdSecs = document.getElementById('cd-seconds');
+  const bar = document.getElementById('countdown-bar');
+  if (!cdDays) return;
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    const diff = target - Date.now();
+    if (diff <= 0) { if (bar) bar.style.display = 'none'; return; }
+    cdDays.textContent  = pad(Math.floor(diff / 86400000));
+    cdHours.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+    cdMins.textContent  = pad(Math.floor((diff % 3600000) / 60000));
+    cdSecs.textContent  = pad(Math.floor((diff % 60000) / 1000));
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+
 /* =========== Stagger index ============ */
 document.querySelectorAll('.num-list__item').forEach((el, i) => el.style.setProperty('--i', i));
 document.querySelectorAll('.bgrid__item').forEach((el, i) => el.style.setProperty('--i', i));
