@@ -346,10 +346,12 @@ if (leadForm) {
       });
     }
 
-    /* Loading state no botão — o browser vai redirecionar para obrigado.html */
+    /* Loading state + redireciona via JS (POST em hospedagem estática dá 404) */
+    e.preventDefault();
     const btn = leadForm.querySelector('button[type=submit]');
     btn.disabled = true;
     btn.classList.add('btn--loading');
     btn.innerHTML = '<span class="btn__spinner"></span> Enviando…';
+    setTimeout(() => { window.location.href = 'obrigado.html'; }, 800);
   });
 }
