@@ -263,7 +263,7 @@
       // e redirecionamos via GET após GTM processar (500ms).
       e.preventDefault();
       var destination = form.getAttribute('action') || 'obrigado.html';
-      setTimeout(function() { window.location.href = destination; }, 500);
+      setTimeout(function() { window.location.href = destination; }, 2000);
     });
   }
 
