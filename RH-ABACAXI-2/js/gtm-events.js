@@ -58,6 +58,67 @@
     });
   }
 
+  // ── SCROLL DEPTH ──────────────────────────────────────────────────
+
+  function fireScrollDepth(percentage) {
+    push({
+      event:             'scroll_depth',
+      event_id:          uuid(),
+      event_name:        'scroll_depth',
+      scroll_percentage: percentage,
+      page_url:          window.location.href
+    });
+  }
+
+  function initScrollTracking() {
+    var milestones = { 25: false, 50: false, 75: false, 100: false };
+    var ticking = false;
+
+    function checkScroll() {
+      var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      var pct = (window.scrollY / scrollable) * 100;
+      [25, 50, 75, 100].forEach(function (mark) {
+        if (!milestones[mark] && pct >= mark) {
+          milestones[mark] = true;
+          fireScrollDepth(mark);
+        }
+      });
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(checkScroll);
+      }
+    }, { passive: true });
+  }
+
+  // ── TIME ON PAGE ───────────────────────────────────────────────────
+
+  function fireTimeOnPage(seconds) {
+    push({
+      event:                'time_on_page',
+      event_id:             uuid(),
+      event_name:           'time_on_page',
+      time_on_page_seconds: seconds,
+      page_url:             window.location.href
+    });
+  }
+
+  function initTimeTracking() {
+    var elapsed = 0;
+    var interval = setInterval(function () {
+      elapsed += 30;
+      fireTimeOnPage(elapsed);
+    }, 30000);
+
+    window.addEventListener('beforeunload', function () {
+      clearInterval(interval);
+    });
+  }
+
   // API pública — chamada por form.js após validação aprovada
   window.GTMEvents = {
     fireLeadFormSubmit: function (form) {
@@ -79,10 +140,14 @@
     document.addEventListener('DOMContentLoaded', function () {
       firePageview();
       initFormStarted();
+      initScrollTracking();
+      initTimeTracking();
     });
   } else {
     firePageview();
     initFormStarted();
+    initScrollTracking();
+    initTimeTracking();
   }
 
 })();
