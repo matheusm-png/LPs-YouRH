@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Chega de RH Abacaxi. Centralize Avaliação de Desempenho, Treinamentos e Desenvolvimento em um só lugar com a YouRH." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon_yourh.svg" />
+  <link rel="shortcut icon" href="assets/favicon_yourh.svg" />
+
+  <meta property="og:title"        content="Chega de RH Abacaxi | Centralize tudo com a YouRH" />
+  <meta property="og:description"  content="Pare de perder tempo com planilhas e retrabalho. Centralize Avaliação, Treinamentos e Desenvolvimento em um só lugar." />
+  <meta property="og:type"         content="website" />
+  <meta property="og:locale"       content="pt_BR" />
+  <meta property="og:url"          content="[PREENCHER: URL completa da LP]" />
+  <meta property="og:image"        content="assets/compartilhamento-img.webp" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Chega de RH Abacaxi | Centralize tudo com a YouRH" />
+  <meta name="twitter:description" content="Pare de perder tempo com planilhas e retrabalho. Centralize Avaliação, Treinamentos e Desenvolvimento em um só lugar." />
+  <meta name="twitter:image"       content="assets/compartilhamento-img.webp" />
+
+  <title>Chega de RH Abacaxi | YouRH</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/main.css?v=2" />
+  <link rel="stylesheet" href="css/dark.css?v=3" />
+
+  <!-- RD Station — NÃO ALTERAR -->
+  <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/2b4d5177951b2aaefe0b7f838559c2d9-rdstation.js"></script>
+
+  <!-- Google Tag Manager — NÃO ALTERAR -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NC7RBWD');</script>
+
+  <style>
+    /* ── Frase emocional ── */
+    .section-emotional {
+      position: relative;
+      overflow: hidden;
+      color: var(--color-white);
+      padding: var(--space-16) var(--space-5);
+      text-align: center;
+    }
+    .section-emotional__bg {
+      position: absolute;
+      inset: 0;
+      background: url('assets/coquetel-de-abacaxi.jpeg') center center / cover no-repeat;
+      background-attachment: fixed;
+      z-index: 0;
+    }
+    .section-emotional__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(10, 5, 30, 0.75), rgba(10, 5, 30, 0.85));
+      z-index: 1;
+    }
+    .section-emotional .container {
+      position: relative;
+      z-index: 2;
+    }
+    .emotional__quote {
+      font-family: var(--font-headline);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: var(--weight-extrabold);
+      line-height: var(--leading-tight);
+      max-width: 680px;
+      margin: 0 auto var(--space-4);
+    }
+    .emotional__sub {
+      font-size: var(--text-lg);
+      opacity: 0.9;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: var(--leading-normal);
+    }
+
+    /* ── Antes/Depois ── */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      margin-top: var(--space-10);
+    }
+    @media (min-width: 768px) { .compare-grid { grid-template-columns: 1fr 1fr; } }
+    .compare-card {
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8) var(--space-6);
+      border: 1px solid var(--color-border);
+    }
+    .compare-card--before { background: #FFF5F5; border-color: #FFCDD2; }
+    .compare-card--after  { background: var(--color-green-light); border-color: #A5D6A7; }
+    .compare-card__title {
+      font-family: var(--font-headline);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-bold);
+      margin-bottom: var(--space-5);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .compare-card--before .compare-card__title { color: #C62828; }
+    .compare-card--after  .compare-card__title { color: var(--color-green-dark); }
+    .compare-card__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .compare-card__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      line-height: var(--leading-normal);
+    }
+    .compare-card__list li svg { flex-shrink: 0; margin-top: 3px; }
+
+    /* ── Para quem é ── */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-10);
+    }
+    @media (min-width: 640px) { .persona-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .persona-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .persona-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-6);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+    .persona-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient-cta);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .persona-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,200,83,0.12); border-color: rgba(0,200,83,0.35); }
+    .persona-card:hover::after { transform: scaleX(1); }
+    .persona-card__icon {
+      font-size: 1.6rem;
+      margin-bottom: var(--space-4);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-lg);
+      background: var(--color-text);
+      line-height: 1;
+      filter: grayscale(0.3);
+    }
+    .persona-card__title {
+      font-family: var(--font-headline);
+      font-size: var(--text-base);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--space-2);
+    }
+    .persona-card__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: var(--leading-normal);
+    }
+    .persona-cta-text {
+      text-align: center;
+      margin-top: var(--space-12);
+      margin-inline: auto;
+      font-weight: var(--weight-semibold);
+      font-size: var(--text-lg);
+      max-width: 680px;
+    }
+
+    /* ── CTA Final ── */
+    .section-final-cta {
+      position: relative;
+      background: var(--color-purple);
+      color: var(--color-white);
+      padding: var(--space-16) var(--space-5);
+      text-align: center;
+      overflow: hidden;
+    }
+    .section-final-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('assets/ABACAXI_BG2.jpg') center center / cover no-repeat;
+      opacity: 0.18;
+      z-index: 0;
+    }
+    .section-final-cta .container {
+      position: relative;
+      z-index: 1;
+    }
+    .final-cta__title {
+      font-family: var(--font-headline);
+      font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+      font-weight: var(--weight-extrabold);
+      line-height: var(--leading-tight);
+      max-width: 580px;
+      margin: 0 auto var(--space-4);
+    }
+    .final-cta__title mark {
+      background: linear-gradient(135deg, var(--color-yellow), var(--color-yellow-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .final-cta__desc {
+      font-size: var(--text-md);
+      opacity: 0.85;
+      max-width: 480px;
+      margin: 0 auto var(--space-6);
+      line-height: var(--leading-normal);
+    }
+    .btn--white {
+      background: var(--color-white);
+      color: var(--color-purple);
+      font-weight: var(--weight-bold);
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-full);
+      font-size: var(--text-md);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn--white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+    /* ── CTA flutuante ── */
+    #fcta {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9000;
+      opacity: 0;
+      transform: translateY(80px);
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);
+      pointer-events: none;
+    }
+    #fcta.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #fcta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #00c853, #00a844);
+      color: #fff;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      border-radius: 999px;
+      border: none;
+      outline: none;
+      box-shadow: 0 8px 24px rgba(0,200,83,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+    #fcta a:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,200,83,0.5); }
+    @media (max-width: 767px) {
+      #fcta { bottom: 16px; left: 16px; right: 16px; }
+      #fcta a { width: 100%; justify-content: center; font-size: 16px; padding: 16px 24px; }
+    }
+
+    /* ── Dor: lista compacta ── */
+    .pain-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-8) auto 0;
+      max-width: 640px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .pain-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-4) var(--space-5);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      line-height: var(--leading-normal);
+    }
+    .pain-list li svg { flex-shrink: 0; color: #C62828; margin-top: 2px; }
+    .pain-note {
+      text-align: center;
+      margin-top: var(--space-6);
+      font-size: var(--text-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+    }
+
+    /* ── Highlight +550 ── */
+    .highlight-550 {
+      background: var(--color-purple-light);
+      border: 1px solid var(--color-purple);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8) var(--space-6);
+      text-align: center;
+      margin-top: var(--space-10);
+    }
+    .highlight-550__number {
+      font-family: var(--font-headline);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: var(--weight-extrabold);
+      color: var(--color-purple);
+      line-height: 1;
+    }
+    .highlight-550__label {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      margin: var(--space-2) 0 var(--space-4);
+    }
+    .highlight-550__tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-2);
+    }
+    .highlight-550__tag {
+      background: var(--color-white);
+      border: 1px solid var(--color-purple);
+      color: var(--color-purple);
+      border-radius: var(--radius-full);
+      padding: var(--space-1) var(--space-3);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+    }
+    /* ── Logos clientes marquee ── */
+    .section-logos {
+      background: rgba(255,255,255,0.04);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: var(--space-6) 0 var(--space-5);
+      overflow: hidden;
+    }
+    .logos__label {
+      text-align: center;
+      font-size: var(--text-xs);
+      font-weight: var(--weight-semibold);
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-5);
+    }
+    .logos-marquee {
+      overflow: hidden;
+      width: 100%;
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .logos-track {
+      display: flex;
+      align-items: center;
+      gap: 56px;
+      width: max-content;
+      animation: marqueeScroll 28s linear infinite;
+      will-change: transform;
+    }
+    .logos-track:hover { animation-play-state: paused; }
+    .logos-track img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: brightness(0) invert(1) opacity(0.5);
+      transition: filter 0.3s ease;
+    }
+    .logos-track img:hover { filter: brightness(0) invert(1) opacity(1); }
+
+    /* ── Hero social proof bar ── */
+    .hero__social-proof {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+      margin-bottom: var(--space-2);
+    }
+    .hero__sp-avatars {
+      display: flex;
+    }
+    .hero__sp-avatars img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.2);
+      margin-left: -8px;
+      flex-shrink: 0;
+    }
+    .hero__sp-avatars img:first-child { margin-left: 0; }
+    .hero__sp-text {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.75);
+      line-height: 1.4;
+    }
+    .hero__sp-text strong { color: #fff; }
+
+    /* ── Persona micro-CTA ── */
+    .persona-cta-btn {
+      text-align: center;
+      margin-top: var(--space-8);
+    }
+    .persona-cta-note {
+      margin-top: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    /* ── Resultados ── */
+    .section-results {
+      background: var(--color-purple-dark, #1a0052);
+      padding: var(--space-16) var(--space-5);
+    }
+    .section-results .section-title,
+    .section-results .section-label {
+      color: var(--color-white);
+    }
+    .section-results .section-label {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85);
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+      margin-top: var(--space-10);
+    }
+    @media (min-width: 768px) {
+      .results-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .result-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-6) var(--space-5);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .result-card__number {
+      font-family: var(--font-headline);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: var(--weight-extrabold);
+      color: var(--color-green);
+      line-height: 1;
+    }
+    .result-card__plus {
+      font-size: 0.65em;
+      vertical-align: super;
+    }
+    .result-card__label {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.7);
+      line-height: var(--leading-normal);
+    }
+
+    /* ── Objeção no CTA final ── */
+    .final-cta__objection {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      margin-top: var(--space-5);
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      margin-inline: auto;
+      line-height: var(--leading-normal);
+    }
+    .final-cta__objection svg { flex-shrink: 0; opacity: 0.7; }
+
+  </style>
+</head>
+<body>
+
+  <!-- GTM noscript — NÃO ALTERAR -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC7RBWD"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="header__inner">
+        <a href="#hero" class="logo" aria-label="YouRH - página inicial">
+          <img src="assets/logo-dark.svg" alt="YouRH" height="32" width="auto" />
+        </a>
+        <nav class="nav" aria-label="Navegação principal">
+          <a href="#solucao"    class="nav__link">Solução</a>
+          <a href="#comparacao" class="nav__link">Antes e depois</a>
+          <a href="#faq"        class="nav__link">FAQ</a>
+        </nav>
+        <div class="header__cta">
+          <a href="#form" class="btn btn--primary">Agendar demonstração</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── HERO ─────────────────────────────────────────────────── -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero__inner">
+
+          <div class="hero__content">
+            <div class="hero__badge animate-on-scroll">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M7 1L8.5 5H13L9.5 7.5L11 11.5L7 9L3 11.5L4.5 7.5L1 5H5.5L7 1Z" fill="currentColor"/>
+              </svg>
+              Campanha RH Abacaxi · YouRH
+            </div>
+
+            <h1 class="hero__title animate-on-scroll delay-100" id="hero-title">
+              RH… chega de descascar <mark>abacaxi</mark> todo dia.
+            </h1>
+
+            <p class="hero__sub animate-on-scroll delay-200">
+              Pare de perder tempo com <strong>planilhas</strong>, <strong>retrabalho</strong> e <strong>processos manuais</strong>.
+              Com a YouRH, você centraliza <strong>Avaliação de Desempenho</strong>, <strong>Treinamentos</strong> e <strong>Desenvolvimento</strong> em um só lugar. E finalmente ganha tempo para atuar com estratégia.
+            </p>
+
+            <div class="hero__actions animate-on-scroll delay-300">
+              <a href="#form" class="btn btn--primary btn--lg">
+                Quero ver a YouRH em ação
+              </a>
+            </div>
+
+            <div class="hero__social-proof animate-on-scroll delay-350">
+              <div class="hero__sp-avatars" aria-hidden="true">
+                <img src="https://ui-avatars.com/api/?name=M+S&background=3D008C&color=fff&size=32" alt="">
+                <img src="https://ui-avatars.com/api/?name=C+R&background=5B00D4&color=fff&size=32" alt="">
+                <img src="https://ui-avatars.com/api/?name=A+P&background=00C853&color=fff&size=32" alt="">
+                <img src="https://ui-avatars.com/api/?name=J+T&background=3D008C&color=fff&size=32" alt="">
+                <img src="https://ui-avatars.com/api/?name=L+F&background=5B00D4&color=fff&size=32" alt="">
+              </div>
+              <span class="hero__sp-text">Mais de <strong>400 empresas</strong> já resolveram o abacaxi com a YouRH</span>
+            </div>
+
+            <div class="hero__trust animate-on-scroll delay-400">
+              <div class="hero__trust-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M13 2H3a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1V3a1 1 0 00-1-1zM7 11L4 8l1.4-1.4L7 8.2l3.6-3.6L12 6l-5 5z" fill="currentColor"/>
+                </svg>
+                Sem planilha
+              </div>
+              <div class="hero__trust-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M13 2H3a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1V3a1 1 0 00-1-1zM7 11L4 8l1.4-1.4L7 8.2l3.6-3.6L12 6l-5 5z" fill="currentColor"/>
+                </svg>
+                Sem retrabalho
+              </div>
+              <div class="hero__trust-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M13 2H3a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1V3a1 1 0 00-1-1zM7 11L4 8l1.4-1.4L7 8.2l3.6-3.6L12 6l-5 5z" fill="currentColor"/>
+                </svg>
+                Sem dor de cabeça
+              </div>
+            </div>
+          </div>
+
+          <div class="hero__visual" aria-hidden="true">
+            <div class="hero__pineapple-wrap">
+              <img src="assets/ABACAXIPNG" alt="" class="hero__pineapple">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LOGOS CLIENTES ───────────────────────────────────────── -->
+    <section class="section-logos" aria-label="Empresas que confiam na YouRH">
+      <p class="logos__label">Empresas que já resolveram o abacaxi com a YouRH</p>
+      <div class="logos-marquee" aria-hidden="true">
+        <div class="logos-track">
+          <img src="assets/logos_clientes/afubra.png"        alt="Afubra">
+          <img src="assets/logos_clientes/anasol.png"        alt="Anasol">
+          <img src="assets/logos_clientes/botafogo.png"          alt="Botafogo">
+          <img src="assets/logos_clientes/dufrio.png"        alt="Dufrio">
+          <img src="assets/logos_clientes/metasa.png"        alt="Metasa">
+          <img src="assets/logos_clientes/pittol.png"        alt="Pittol">
+          <img src="assets/logos_clientes/stokcenter.png"    alt="Stokcenter">
+          <img src="assets/logos_clientes/tw_transportes.png" alt="TW Transportes">
+          <img src="assets/logos_clientes/zaffari.png"       alt="Zaffari">
+          <!-- duplicadas para loop infinito -->
+          <img src="assets/logos_clientes/afubra.png"        alt="">
+          <img src="assets/logos_clientes/anasol.png"        alt="">
+          <img src="assets/logos_clientes/botafogo.png"          alt="">
+          <img src="assets/logos_clientes/dufrio.png"        alt="">
+          <img src="assets/logos_clientes/metasa.png"        alt="">
+          <img src="assets/logos_clientes/pittol.png"        alt="">
+          <img src="assets/logos_clientes/stokcenter.png"    alt="">
+          <img src="assets/logos_clientes/tw_transportes.png" alt="">
+          <img src="assets/logos_clientes/zaffari.png"       alt="">
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DOR + PROBLEMA ──────────────────────────────────────── -->
+    <section class="section-problems" id="problemas" aria-labelledby="problems-title">
+      <div class="container">
+
+        <div class="section-header animate-on-scroll">
+          <span class="section-label">A rotina que você conhece bem</span>
+          <h2 class="section-title" id="problems-title">Você começa o dia com uma lista… e termina com mais problemas do que tarefas feitas.</h2>
+          <p class="section-subtitle">Antes do meio-dia já aparece:</p>
+        </div>
+
+        <ul class="pain-list" role="list">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 3l8 8M11 3l-8 8" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg>
+            Avaliação de desempenho travada, ciclos que não saem do papel
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 3l8 8M11 3l-8 8" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg>
+            Treinamento que ninguém conclui, sem trilha, sem acompanhamento
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 3l8 8M11 3l-8 8" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg>
+            Colaboradores sem plano de evolução, feedbacks soltos e sem follow-up
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 3l8 8M11 3l-8 8" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg>
+            Planilhas espalhadas em mil lugares, dados fragmentados e retrabalho constante
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 3l8 8M11 3l-8 8" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg>
+            Líder pedindo ajuda "pra ontem" e o estratégico sempre fica pra depois
+          </li>
+        </ul>
+
+        <p class="pain-note animate-on-scroll">
+          O problema não é falta de esforço. É falta de sistema.<br>
+          <span style="font-weight: var(--weight-normal); color: var(--color-text-muted);">O RH fica preso no operacional. E a empresa cresce sem gestão de pessoas.</span>
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ── FRASE EMOCIONAL ─────────────────────────────────────── -->
+    <section class="section-emotional" id="emotional" aria-label="Frase de impacto">
+      <div class="section-emotional__bg" id="emotional-bg" aria-hidden="true"></div>
+      <div class="section-emotional__overlay" aria-hidden="true"></div>
+      <div class="container animate-on-scroll">
+        <p class="emotional__quote">E se o abacaxi ficasse só no happy hour?</p>
+        <p class="emotional__sub">
+          Porque na rotina do RH… já deu. Sua missão vai muito além de resolver urgências do dia a dia. Você foi contratado para organizar, desenvolver e impulsionar pessoas.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── SOLUÇÃO + +550 ──────────────────────────────────────── -->
+    <section class="section-solution" id="solucao" aria-labelledby="solution-title">
+      <div class="container">
+
+        <div class="section-header section-header--center animate-on-scroll">
+          <span class="section-label">Como a YouRH resolve</span>
+          <h2 class="section-title" id="solution-title">Com a YouRH, você centraliza tudo em um só lugar.</h2>
+          <p class="section-subtitle">Uma única plataforma para organizar e automatizar:</p>
+        </div>
+
+        <div class="solution-grid">
+
+          <article class="solution-card animate-on-scroll delay-100">
+            <div class="solution-card__step" aria-hidden="true">01</div>
+            <span class="solution-card__product">YouRH · Avaliação</span>
+            <div class="solution-card__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <path d="M14 3L2 9l12 6 12-6-12-6zM2 15l12 6 12-6M2 21l12 6 12-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="solution-card__title">Avaliação de Desempenho estruturada</h3>
+            <p class="solution-card__desc">Ciclos automatizados, prazos claros e visibilidade para líderes e colaboradores. Sem planilha, sem cobrança manual.</p>
+            <ul class="solution-card__features" aria-label="Funcionalidades">
+              <li class="solution-card__feature">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Ciclos com prazos claros e acompanhamento real
+              </li>
+              <li class="solution-card__feature">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Clareza de quem entrega e quem precisa evoluir
+              </li>
+            </ul>
+          </article>
+
+          <article class="solution-card solution-card--featured animate-on-scroll delay-200">
+            <div class="solution-card__step" aria-hidden="true">02</div>
+            <span class="solution-card__product">YouRH · Treinamentos</span>
+            <div class="solution-card__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect x="3" y="3" width="9" height="9" rx="2" stroke="currentColor" stroke-width="2"/>
+                <rect x="16" y="3" width="9" height="9" rx="2" stroke="currentColor" stroke-width="2"/>
+                <rect x="3" y="16" width="9" height="9" rx="2" stroke="currentColor" stroke-width="2"/>
+                <rect x="16" y="16" width="9" height="9" rx="2" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3 class="solution-card__title">Treinamentos e Capacitação com trilhas prontas</h3>
+            <p class="solution-card__desc">Trilhas organizadas por área. Mais de 550 conteúdos prontos, sem improviso e sem começar do zero.</p>
+            <ul class="solution-card__features" aria-label="Funcionalidades">
+              <li class="solution-card__feature">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                +550 treinamentos prontos para usar
+              </li>
+              <li class="solution-card__feature">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Acompanhamento de conclusão e engajamento
+              </li>
+            </ul>
+          </article>
+
+          <article class="solution-card animate-on-scroll delay-300">
+            <div class="solution-card__step" aria-hidden="true">03</div>
+            <span class="solution-card__product">YouRH · Desenvolvimento</span>
+            <div class="solution-card__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <path d="M4 20l6-8 4 5 4-6 6 9H4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="22" cy="7" r="3" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3 class="solution-card__title">Desenvolvimento e evolução de pessoas</h3>
+            <p class="solution-card__desc">PDIs estruturados, indicadores de evolução claros e visão estratégica para líderes e RH.</p>
+            <ul class="solution-card__features" aria-label="Funcionalidades">
+              <li class="solution-card__feature">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                PDIs estruturados e acompanhados
+              </li>
+              <li class="solution-card__feature">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Visão estratégica para líderes e RH
+              </li>
+            </ul>
+          </article>
+
+        </div>
+
+        <!-- Destaque +550 -->
+        <div class="highlight-550 animate-on-scroll">
+          <div class="highlight-550__number">550+</div>
+          <p class="highlight-550__label">treinamentos prontos para aplicar agora</p>
+          <div class="highlight-550__tags">
+            <span class="highlight-550__tag">Gestão de pessoas</span>
+            <span class="highlight-550__tag">Liderança</span>
+            <span class="highlight-550__tag">Comunicação</span>
+            <span class="highlight-550__tag">Produtividade</span>
+            <span class="highlight-550__tag">Desenvolvimento profissional</span>
+            <span class="highlight-550__tag">Cultura e performance</span>
+          </div>
+          <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: var(--color-text-muted);">
+            Você não precisa criar tudo do zero. Precisa implementar e rodar.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── ANTES E DEPOIS ──────────────────────────────────────── -->
+    <section class="section-cost" id="comparacao" aria-labelledby="compare-title">
+      <div class="container">
+
+        <div class="section-header section-header--center animate-on-scroll">
+          <span class="section-label">Antes e depois</span>
+          <h2 class="section-title" id="compare-title">O RH Abacaxi vs O RH Estratégico</h2>
+        </div>
+
+        <div class="compare-grid">
+          <div class="compare-card compare-card--before animate-on-scroll delay-100">
+            <h3 class="compare-card__title">
+              <span style="font-size:1.5em;">&#127821;</span> RH Abacaxi
+            </h3>
+            <ul class="compare-card__list">
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg> Tudo manual</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg> Planilha para tudo</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg> Cobrança constante</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg> Líderes perdidos</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg> Treinamento improvisado</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg> Avaliação travada</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg> RH apagando incêndio</li>
+            </ul>
+          </div>
+
+          <div class="compare-card compare-card--after animate-on-scroll delay-200">
+            <h3 class="compare-card__title">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#00A844" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              RH Estratégico
+            </h3>
+            <ul class="compare-card__list">
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#00A844" stroke-width="2" stroke-linecap="round"/></svg> Processos automatizados</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#00A844" stroke-width="2" stroke-linecap="round"/></svg> Trilhas organizadas</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#00A844" stroke-width="2" stroke-linecap="round"/></svg> Avaliação estruturada</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#00A844" stroke-width="2" stroke-linecap="round"/></svg> Desenvolvimento acompanhado</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#00A844" stroke-width="2" stroke-linecap="round"/></svg> Indicadores e visão clara</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#00A844" stroke-width="2" stroke-linecap="round"/></svg> RH com tempo para planejar</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#00A844" stroke-width="2" stroke-linecap="round"/></svg> RH respeitado e estratégico</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── PARA QUEM É ─────────────────────────────────────────── -->
+    <section class="section-cost" id="para-quem" aria-labelledby="target-title">
+      <div class="container">
+
+        <div class="section-header section-header--center animate-on-scroll">
+          <span class="section-label">Para quem é</span>
+          <h2 class="section-title" id="target-title">Você se reconhece em algum desses cenários?</h2>
+          <p class="section-subtitle">Se sim, a YouRH foi feita exatamente para você.</p>
+        </div>
+
+        <div class="persona-grid">
+          <div class="persona-card animate-on-scroll delay-100">
+            <span class="persona-card__icon">🤯</span>
+            <h3 class="persona-card__title">RH de um só</h3>
+            <p class="persona-card__desc">Você é responsável por tudo: do onboarding à avaliação. Sobrecarregado e ainda precisam que você seja estratégico.</p>
+          </div>
+          <div class="persona-card animate-on-scroll delay-150">
+            <span class="persona-card__icon">📊</span>
+            <h3 class="persona-card__title">Decisões no escuro</h3>
+            <p class="persona-card__desc">Avaliações no improviso, PDI em planilha, treinamento no WhatsApp. Tudo fragmentado e sem visibilidade real.</p>
+          </div>
+          <div class="persona-card animate-on-scroll delay-200">
+            <span class="persona-card__icon">🔥</span>
+            <h3 class="persona-card__title">Sempre apagando incêndio</h3>
+            <p class="persona-card__desc">Em vez de desenvolver pessoas, você passa o dia resolvendo urgências que poderiam ter sido evitadas com processo.</p>
+          </div>
+          <div class="persona-card animate-on-scroll delay-250">
+            <span class="persona-card__icon">🏆</span>
+            <h3 class="persona-card__title">Quer ser visto como estratégico</h3>
+            <p class="persona-card__desc">Você sabe que o RH pode entregar muito mais valor, mas falta tempo, ferramenta e estrutura para provar isso.</p>
+          </div>
+          <div class="persona-card animate-on-scroll delay-300">
+            <span class="persona-card__icon">📈</span>
+            <h3 class="persona-card__title">Liderança sem suporte</h3>
+            <p class="persona-card__desc">Os gestores não sabem dar feedback nem desenvolver o time. Você resolve isso, ou leva a culpa quando o resultado falha.</p>
+          </div>
+          <div class="persona-card animate-on-scroll delay-350">
+            <span class="persona-card__icon">⏰</span>
+            <h3 class="persona-card__title">Sem tempo pro que importa</h3>
+            <p class="persona-card__desc">O dia acaba e você mal tocou nas atividades que realmente constroem cultura e desenvolvem pessoas de verdade.</p>
+          </div>
+        </div>
+
+        <p class="persona-cta-text animate-on-scroll">
+          Se você sente que está carregando a empresa nas costas… essa plataforma foi feita para você.
+        </p>
+
+        <div class="persona-cta-btn animate-on-scroll">
+          <a href="#form" class="btn btn--primary btn--lg">Quero sair do operacional →</a>
+          <p class="persona-cta-note">Demonstração gratuita, sem compromisso</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── PROVA SOCIAL ────────────────────────────────────────── -->
+    <section class="section-testimonials" id="depoimentos" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-header section-header--center animate-on-scroll">
+          <span class="section-label">Quem já resolveu o abacaxi</span>
+          <h2 class="section-title" id="testimonials-title">A YouRH já ajudou centenas de RHs a sair do manual e virar estratégico.</h2>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card animate-on-scroll delay-100">
+            <div class="testimonial__content">
+              <svg class="testimonial__quote-icon" width="24" height="18" viewBox="0 0 24 18" fill="none" aria-hidden="true">
+                <path d="M0 18h9l3-8V0H0v10h5l-3 8zm12 0h9l3-8V0H12v10h5l-3 8z" fill="currentColor"/>
+              </svg>
+              <p>"A gente vivia preso em planilhas e retrabalho. Com a YouRH conseguimos rodar avaliação, treinamento e PDI com muito mais clareza. Economizamos mais de 10 horas por semana só no processo de avaliação."</p>
+            </div>
+            <div class="testimonial__author">
+              <div class="author__photo">
+                <img src="https://ui-avatars.com/api/?name=Ana+Silva&background=3D008C&color=fff" alt="Ana Silva" />
+              </div>
+              <div class="author__info">
+                <span class="author__name">Ana Silva</span>
+                <span class="author__meta">Gerente de RH · TechLogix</span>
+              </div>
+              <div class="author__logo" aria-label="Logo da empresa">
+                <!-- Logo da empresa — a ser inserido -->
+                <img src="" alt="TechLogix" style="height:28px;width:auto;object-fit:contain;opacity:0.7;display:none;" class="author__logo-img" />
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card animate-on-scroll delay-200">
+            <div class="testimonial__content">
+              <svg class="testimonial__quote-icon" width="24" height="18" viewBox="0 0 24 18" fill="none" aria-hidden="true">
+                <path d="M0 18h9l3-8V0H0v10h5l-3 8zm12 0h9l3-8V0H12v10h5l-3 8z" fill="currentColor"/>
+              </svg>
+              <p>"A plataforma deu estrutura para nosso RH. Hoje temos processos claros e liderança mais preparada. Em 60 dias, 90% dos gestores tinham concluído os treinamentos obrigatórios."</p>
+            </div>
+            <div class="testimonial__author">
+              <div class="author__photo">
+                <img src="https://ui-avatars.com/api/?name=Carlos+Santos&background=00C853&color=fff" alt="Carlos Santos" />
+              </div>
+              <div class="author__info">
+                <span class="author__name">Carlos Santos</span>
+                <span class="author__meta">Diretor de Pessoas · InovaCorp</span>
+              </div>
+              <div class="author__logo" aria-label="Logo da empresa">
+                <!-- Logo da empresa — a ser inserido -->
+                <img src="" alt="InovaCorp" style="height:28px;width:auto;object-fit:contain;opacity:0.7;display:none;" class="author__logo-img" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RESULTADOS ────────────────────────────────────────────── -->
+    <section class="section-results" aria-label="Resultados da YouRH">
+      <div class="container">
+        <div class="section-header section-header--center animate-on-scroll">
+          <span class="section-label">Resultados reais</span>
+          <h2 class="section-title">O que muda quando o RH para de descascar abacaxi</h2>
+        </div>
+        <div class="results-grid">
+          <div class="result-card animate-on-scroll delay-100">
+            <span class="result-card__number">400<span class="result-card__plus">+</span></span>
+            <span class="result-card__label">empresas já usam a YouRH no Brasil</span>
+          </div>
+          <div class="result-card animate-on-scroll delay-200">
+            <span class="result-card__number">550<span class="result-card__plus">+</span></span>
+            <span class="result-card__label">treinamentos prontos para aplicar desde o primeiro dia</span>
+          </div>
+          <div class="result-card animate-on-scroll delay-300">
+            <span class="result-card__number">-40<span class="result-card__plus">%</span></span>
+            <span class="result-card__label">de tempo gasto no operacional após implementação</span>
+          </div>
+          <div class="result-card animate-on-scroll delay-400">
+            <span class="result-card__number">30</span>
+            <span class="result-card__label">dias para o RH estar rodando na plataforma</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FORMULÁRIO ──────────────────────────────────────────── -->
+    <section class="section-form" id="form" aria-labelledby="form-title">
+      <div class="container">
+        <div class="form-layout">
+
+          <div class="form-aside animate-on-scroll from-left">
+            <span class="section-label">Agende sua demonstração</span>
+            <h2 class="form-aside__title" id="form-title">
+              Veja a YouRH funcionando na prática
+            </h2>
+            <p class="form-aside__subtitle">
+              Em poucos minutos você entende como centralizar avaliação, treinamento e desenvolvimento em um só lugar e eliminar o abacaxi do RH de vez.
+            </p>
+            <ul class="form-aside__benefits" aria-label="O que você vai ver na demonstração">
+              <li class="form-aside__benefit">
+                <div class="form-aside__benefit-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+                </div>
+                Como rodar Avaliação de Desempenho sem planilhas
+              </li>
+              <li class="form-aside__benefit">
+                <div class="form-aside__benefit-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+                </div>
+                Como aplicar treinamentos com trilhas prontas
+              </li>
+              <li class="form-aside__benefit">
+                <div class="form-aside__benefit-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+                </div>
+                Como acompanhar desenvolvimento e evolução
+              </li>
+              <li class="form-aside__benefit">
+                <div class="form-aside__benefit-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+                </div>
+                Como ganhar tempo e transformar sua rotina
+              </li>
+            </ul>
+            <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: var(--color-text-muted); font-weight: var(--weight-medium);">
+              ⏳ Agenda limitada durante a campanha.
+            </p>
+          </div>
+
+          <div class="animate-on-scroll from-right delay-200">
+            <div class="conversion-form" id="conversion-form-wrapper">
+
+              <form id="lp_rh-abacaxi_conv" method="post" action="https://lp.yourh.com.br/rh-abacaxi/obrigado.html" novalidate aria-label="Formulário de agendamento de demonstração YouRH">
+                <div class="form-fields">
+
+                  <div class="form-group">
+                    <input type="text" id="field-nome" name="name" class="form-input" data-field="nome"
+                      placeholder="Seu nome completo *" autocomplete="name"
+                      aria-required="true" aria-describedby="error-nome" />
+                    <span class="form-error" id="error-nome" role="alert"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="email" id="field-email" name="email" class="form-input" data-field="email"
+                      placeholder="Seu e-mail corporativo *" autocomplete="email"
+                      aria-required="true" aria-describedby="error-email" />
+                    <span class="form-error" id="error-email" role="alert"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="tel" id="field-telefone" name="phone" class="form-input" data-field="telefone"
+                      placeholder="WhatsApp (DDD + número) *" autocomplete="tel" inputmode="numeric"
+                      aria-required="true" aria-describedby="error-telefone" />
+                    <span class="form-error" id="error-telefone" role="alert"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="text" id="field-empresa" name="company" class="form-input" data-field="empresa"
+                      placeholder="Nome da Empresa *" autocomplete="organization"
+                      aria-required="true" aria-describedby="error-empresa" />
+                    <span class="form-error" id="error-empresa" role="alert"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="text" id="field-site" name="site" class="form-input" data-field="site"
+                      placeholder="Site ou rede social da empresa *" autocomplete="url"
+                      aria-required="true" aria-describedby="error-site" />
+                    <span class="form-error" id="error-site" role="alert"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="field-cargo" class="sr-only">Cargo na empresa</label>
+                    <select id="field-cargo" name="role" class="form-input form-select" data-field="cargo"
+                      aria-required="true" aria-describedby="error-cargo">
+                      <option value="" disabled selected>Seu cargo na empresa *</option>
+                      <option value="Analista">Analista</option>
+                      <option value="Assistente / Auxiliar">Assistente / Auxiliar</option>
+                      <option value="CEO">CEO</option>
+                      <option value="Consultor">Consultor</option>
+                      <option value="Diretor">Diretor</option>
+                      <option value="Gerente / Head">Gerente / Head</option>
+                      <option value="Supervisor / Coordenador">Supervisor / Coordenador</option>
+                      <option value="Trainee / Estagiário">Trainee / Estagiário</option>
+                      <option value="Outros">Outros</option>
+                    </select>
+                    <span class="form-error" id="error-cargo" role="alert"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="field-funcionarios" class="sr-only">Número de colaboradores</label>
+                    <select id="field-funcionarios" name="employees" class="form-input form-select" data-field="funcionarios"
+                      aria-required="true" aria-describedby="error-funcionarios">
+                      <option value="" disabled selected>Número de colaboradores *</option>
+                      <option value="20 - 30">20 - 30</option>
+                      <option value="31 - 70">31 - 70</option>
+                      <option value="71 - 100">71 - 100</option>
+                      <option value="101 - 200">101 - 200</option>
+                      <option value="201 - 300">201 - 300</option>
+                      <option value="301 - 500">301 - 500</option>
+                      <option value="501+">501+</option>
+                    </select>
+                    <span class="form-error" id="error-funcionarios" role="alert"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="field-pessoas-rh" class="sr-only">Quantas pessoas no RH</label>
+                    <select id="field-pessoas-rh" name="rh_team_size" class="form-input form-select" data-field="pessoas_rh"
+                      aria-required="true" aria-describedby="error-pessoas-rh">
+                      <option value="" disabled selected>Quantas pessoas no RH? *</option>
+                      <option value="1 pessoa">1 pessoa</option>
+                      <option value="2 a 3">2 a 3</option>
+                      <option value="4 a 5">4 a 5</option>
+                      <option value="6 a 10">6 a 10</option>
+                      <option value="11+">11+</option>
+                    </select>
+                    <span class="form-error" id="error-pessoas-rh" role="alert"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="field-desafio" class="sr-only">Maior desafio hoje</label>
+                    <select id="field-desafio" name="main_challenge" class="form-input form-select" data-field="desafio"
+                      aria-required="true" aria-describedby="error-desafio">
+                      <option value="" disabled selected>Maior desafio hoje *</option>
+                      <option value="Avaliação de desempenho">Avaliação de desempenho</option>
+                      <option value="Treinamento e capacitação">Treinamento e capacitação</option>
+                      <option value="Desenvolvimento de lideranças">Desenvolvimento de lideranças</option>
+                      <option value="Retrabalho e processos manuais">Retrabalho e processos manuais</option>
+                      <option value="Retenção de talentos">Retenção de talentos</option>
+                      <option value="Outro">Outro</option>
+                    </select>
+                    <span class="form-error" id="error-desafio" role="alert"></span>
+                  </div>
+
+                  <input type="hidden" name="utm_source"           id="utm_source">
+                  <input type="hidden" name="utm_medium"           id="utm_medium">
+                  <input type="hidden" name="utm_campaign"         id="utm_campaign">
+                  <input type="hidden" name="utm_content"          id="utm_content">
+                  <input type="hidden" name="utm_term"             id="utm_term">
+                  <input type="hidden" name="utm_marketing_tactic" id="utm_marketing_tactic">
+
+                  <div class="form-group form-group--checkbox">
+                    <label class="form-checkbox-label" id="label-lgpd">
+                      <input type="checkbox" id="field-lgpd" data-field="lgpd"
+                        aria-required="true" aria-describedby="error-lgpd" />
+                      <span class="form-checkbox-box" aria-hidden="true">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5 3.5-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                      <span class="form-checkbox-text">
+                        Ao informar meus dados, eu concordo com a
+                        <a href="https://yourh.com.br/politica-de-privacidade" target="_blank" rel="noopener noreferrer">Política de Privacidade.</a>
+                      </span>
+                    </label>
+                    <span class="form-error" id="error-lgpd" role="alert"></span>
+                  </div>
+
+                  <button type="submit" class="form-submit-btn">
+                    Agendar minha demo gratuita
+                  </button>
+
+                  <p class="form-note">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <path d="M6 1a5 5 0 100 10A5 5 0 006 1zm0 1.5a3.5 3.5 0 110 7 3.5 3.5 0 010-7zM5.5 5v3h1V5h-1zm0-1.5v1h1v-1h-1z" fill="currentColor"/>
+                    </svg>
+                    Rápido, gratuito e sem compromisso. O abacaxi pode acabar hoje.
+                  </p>
+
+                  <div class="form-send-error" role="alert"></div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ ────────────────────────────────────────────────── -->
+    <section class="section-faq" id="faq" aria-labelledby="faq-title">
+      <div class="container container--narrow">
+
+        <div class="section-header section-header--center animate-on-scroll">
+          <span class="section-label">Dúvidas frequentes</span>
+          <h2 class="section-title" id="faq-title">Perguntas e respostas</h2>
+        </div>
+
+        <div class="faq-list" role="list">
+
+          <div class="faq-item animate-on-scroll delay-100" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+              <span class="faq-question__text">A demonstração é gratuita?</span>
+              <div class="faq-question__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            </button>
+            <div class="faq-answer" id="faq-answer-1" role="region">
+              <div class="faq-answer__inner">Sim. Você conhece a plataforma sem custo e sem compromisso.</div>
+            </div>
+          </div>
+
+          <div class="faq-item animate-on-scroll delay-200" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+              <span class="faq-question__text">Isso serve para RH pequeno?</span>
+              <div class="faq-question__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            </button>
+            <div class="faq-answer" id="faq-answer-2" role="region">
+              <div class="faq-answer__inner">Sim. É onde a YouRH gera mais impacto. Quanto menor o time, maior a necessidade de automação e estrutura.</div>
+            </div>
+          </div>
+
+          <div class="faq-item animate-on-scroll delay-300" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+              <span class="faq-question__text">A YouRH substitui planilhas?</span>
+              <div class="faq-question__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            </button>
+            <div class="faq-answer" id="faq-answer-3" role="region">
+              <div class="faq-answer__inner">Sim. A proposta é tirar o RH do manual e centralizar avaliação, treinamento e desenvolvimento em uma única plataforma.</div>
+            </div>
+          </div>
+
+          <div class="faq-item animate-on-scroll delay-400" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+              <span class="faq-question__text">Esses 550 treinamentos já vêm inclusos?</span>
+              <div class="faq-question__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            </button>
+            <div class="faq-answer" id="faq-answer-4" role="region">
+              <div class="faq-answer__inner">Sim. Você já começa com uma base pronta: conteúdos em gestão de pessoas, liderança, comunicação, produtividade e mais.</div>
+            </div>
+          </div>
+
+          <div class="faq-item animate-on-scroll delay-500" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+              <span class="faq-question__text">Quanto tempo leva para implementar?</span>
+              <div class="faq-question__icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            </button>
+            <div class="faq-answer" id="faq-answer-5" role="region">
+              <div class="faq-answer__inner">A implantação é rápida e orientada. Na demonstração, explicamos todo o processo.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA FINAL ───────────────────────────────────────────── -->
+    <section class="section-final-cta" aria-label="Chamada final para ação">
+      <div class="container animate-on-scroll">
+        <p class="final-cta__title">RH… o <mark>abacaxi</mark> ainda está aí?</p>
+        <p class="final-cta__desc">
+          Quanto sua empresa está perdendo deixando esse abacaxi mais uma semana no seu setor?
+          Clique abaixo e veja como a YouRH resolve isso de forma simples, rápida e estruturada.
+        </p>
+        <a href="#form" class="btn--white">
+          Quero resolver o meu abacaxi agora
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <p class="final-cta__objection">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v5M10 14v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          A maioria das empresas está rodando em até 30 dias. A YouRH conduz todo o processo de implantação com você.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER — NÃO ALTERAR ────────────────────────────────── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__main">
+        <div class="footer__brand">
+          <div class="footer__brand-logo">
+            <span class="footer__brand-eyebrow">Umentor agora é</span>
+            <a href="#hero" aria-label="YouRH - voltar ao topo">
+              <img src="assets/logo.svg" alt="YouRH" height="40" width="auto" />
+            </a>
+          </div>
+          <p class="footer__tagline">Avaliação de Desempenho, Treinamentos e Desenvolvimento em um só lugar. Automatize o RH. Estruture processos. Ganhe tempo. Seja estratégico.</p>
+          <div class="footer__social-box">
+            <span class="footer__social-label">Siga-nos nas redes</span>
+            <div class="footer__social-links">
+              <a href="https://www.instagram.com/yourhoficial" target="_blank" rel="noopener" aria-label="Instagram YouRH" class="footer__social-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/company/yourhoficial/" target="_blank" rel="noopener" aria-label="LinkedIn YouRH" class="footer__social-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a href="https://www.youtube.com/@yourhoficial" target="_blank" rel="noopener" aria-label="YouTube YouRH" class="footer__social-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--color-purple-dark)"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__info">
+          <div class="footer__addresses">
+            <div class="footer__address">
+              <strong>Passo Fundo – RS</strong>
+              <span>Av. Brasil Oeste, 560 – 2401 – Centro</span>
+              <span>Passo Fundo/RS · CEP 99010-001</span>
+            </div>
+            <div class="footer__address">
+              <strong>Balneário Camboriú – SC</strong>
+              <span>Rua 700, 489 – 1104 – Centro</span>
+              <span>Balneário Camboriú/SC · CEP 88330-620</span>
+            </div>
+          </div>
+          <a href="https://painel.umentor.com.br/inteligente_novos/?con_cod=ana12479&pla=5" target="_blank" rel="noopener" class="footer__jobs-btn">
+            trabalhe na yourh
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">YOURH DESENVOLVIMENTO E TREINAMENTO LTDA – 29.067.310/0001-05</p>
+        <a href="https://yourh.com.br/politica-de-privacidade" target="_blank" rel="noopener" class="footer__link">Política de privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="fcta">
+    <a href="#form">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </svg>
+      Agendar demonstração
+    </a>
+  </div>
+
+  <script src="js/gtm-events.js" defer></script>
+  <script src="js/form.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+  <script>
+    (function() {
+      var cta  = document.getElementById('fcta');
+      var hero = document.getElementById('hero');
+      var parallax = document.querySelector('.section-parallax');
+
+      if (cta && hero) {
+        var observer = new IntersectionObserver(function(entries) {
+          cta.classList.toggle('show', !entries[0].isIntersecting);
+        }, { threshold: 0 });
+        observer.observe(hero);
+      }
+
+      // Efeito Parallax Real
+      if (parallax) {
+        window.addEventListener('scroll', function() {
+          var scrolled = window.pageYOffset;
+          var rect = parallax.getBoundingClientRect();
+          var offset = window.innerHeight;
+          
+          if (rect.top <= offset && rect.bottom >= 0) {
+            // Calcula a posição do scroll relativa à seção
+            var speed = 0.4;
+            var yPos = -(rect.top * speed);
+            parallax.style.backgroundPositionY = yPos + 'px';
+          }
+        });
+      }
+    })();
+  </script>
+
+  <!-- RD Station Loader — captura submissão nativa do formulário. NÃO ALTERAR. -->
+  <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/a81f367c-46ec-4dea-a2c2-4367f6781b13-loader.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<svg id="pineapple-svg" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fragment: Top-Left (Crown leaf) -->
+  <g class="p-frag" data-dir="tl">
+    <path d="M70 100C50 60 40 40 60 20C80 40 90 60 70 100Z" fill="#2E7D32"/>
+    <path d="M85 95C70 65 65 45 80 30C95 45 100 65 85 95Z" fill="#388E3C"/>
+  </g>
+  <!-- Fragment: Top-Right (Crown leaf) -->
+  <g class="p-frag" data-dir="tr">
+    <path d="M130 100C150 60 160 40 140 20C120 40 110 60 130 100Z" fill="#2E7D32"/>
+    <path d="M115 95C130 65 135 45 120 30C105 45 100 65 115 95Z" fill="#388E3C"/>
+  </g>
+  <!-- Fragment: Top-Center (Crown central leaf) -->
+  <g class="p-frag" data-dir="tc">
+    <path d="M100 90C100 50 100 30 100 10C115 30 115 50 100 90Z" fill="#43A047"/>
+    <path d="M100 90C100 50 100 30 100 10C85 30 85 50 100 90Z" fill="#4CAF50"/>
+  </g>
+  <!-- Fragment: Body Top-Left -->
+  <g class="p-frag" data-dir="bl">
+    <path d="M100 110C60 110 40 140 40 180C40 220 60 250 100 250V110Z" fill="#FFD600"/>
+    <path d="M55 145C65 140 75 145 80 155C85 165 80 175 70 180" stroke="#FBC02D" stroke-width="2"/>
+    <path d="M60 200C70 195 80 200 85 210C90 220 85 230 75 235" stroke="#FBC02D" stroke-width="2"/>
+  </g>
+  <!-- Fragment: Body Top-Right -->
+  <g class="p-frag" data-dir="br">
+    <path d="M100 110C140 110 160 140 160 180C160 220 140 250 100 250V110Z" fill="#FFC107"/>
+    <path d="M145 145C135 140 125 145 120 155C115 165 120 175 130 180" stroke="#FFA000" stroke-width="2"/>
+    <path d="M140 200C130 195 120 200 115 210C110 220 115 230 125 235" stroke="#FFA000" stroke-width="2"/>
+  </g>
+  <!-- Fragment: Body Bottom-Center -->
+  <g class="p-frag" data-dir="bc">
+    <path d="M100 250C70 250 60 270 100 290C140 270 130 250 100 250Z" fill="#FBC02D"/>
+    <path d="M100 250V290" stroke="#F57F17" stroke-width="2"/>
+  </g>
+</svg>

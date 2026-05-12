@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- noindex: página de obrigado nunca deve ser indexada -->
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Demonstração agendada! | YouRH</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon_yourh.svg" />
+  <link rel="shortcut icon" href="assets/favicon_yourh.svg" />
+
+  <!-- Google Fonts — NÃO ALTERAR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Estilos — NÃO ALTERAR -->
+  <link rel="stylesheet" href="css/main.css" />
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       INTEGRAÇÕES DE RASTREAMENTO — NÃO ALTERAR os IDs
+       O evento Lead do Meta Pixel é disparado aqui (e não no index.html)
+       para evitar duplo disparo. Esta é a fonte de verdade do Lead.
+       ═══════════════════════════════════════════════════════════════ -->
+
+  <!-- Google Tag Manager — ID fixo YouRH, NÃO ALTERAR -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NC7RBWD');</script>
+  <!-- Fim Google Tag Manager -->
+
+  <style>
+    .obrigado-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .obrigado-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-12) var(--space-5);
+      background: var(--gradient-hero);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .obrigado-main::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(0,200,83,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .obrigado-main::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -80px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(97,222,117,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Card */
+    .obrigado-card {
+      background: var(--color-white);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-10) var(--space-8);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .obrigado-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-green) 0%, #7AFFA8 100%);
+    }
+
+    @media (min-width: 768px) {
+      .obrigado-card {
+        padding: var(--space-12) var(--space-12);
+      }
+    }
+
+    /* Check icon animado */
+    .obrigado-check {
+      width: 76px;
+      height: 76px;
+      background: var(--color-green-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-green);
+      margin-bottom: var(--space-5);
+      position: relative;
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .obrigado-check::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,200,83,0.2);
+      animation: pulseRing 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseRing {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%       { transform: scale(1.1); opacity: 0.5; }
+    }
+
+    .obrigado-check svg path {
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: drawCheck 0.6s ease 0.4s forwards;
+    }
+
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Badge */
+    .obrigado-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: var(--color-green-light);
+      color: var(--color-green-dark);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px var(--space-3);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-4);
+    }
+
+    .obrigado-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--color-green);
+      flex-shrink: 0;
+    }
+
+    /* Title */
+    .obrigado-title {
+      font-family: var(--font-headline);
+      font-size: var(--text-2xl);
+      font-weight: var(--weight-extrabold);
+      color: var(--color-purple);
+      line-height: var(--leading-tight);
+      margin-bottom: var(--space-3);
+    }
+
+    @media (min-width: 768px) {
+      .obrigado-title { font-size: var(--text-3xl); }
+    }
+
+    .obrigado-desc {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      line-height: var(--leading-normal);
+      max-width: 420px;
+      margin-bottom: var(--space-8);
+    }
+
+    /* Steps */
+    .obrigado-steps {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+      margin-bottom: var(--space-7);
+      background: var(--color-cream);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    @media (min-width: 560px) {
+      .obrigado-steps {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .obrigado-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: var(--space-5) var(--space-4);
+      gap: var(--space-2);
+      position: relative;
+    }
+
+    @media (min-width: 560px) {
+      .obrigado-step:not(:last-child) {
+        border-right: 1px solid var(--color-border);
+      }
+    }
+
+    @media (max-width: 559px) {
+      .obrigado-step:not(:last-child) {
+        border-bottom: 1px solid var(--color-border);
+      }
+    }
+
+    .obrigado-step__num {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--color-purple-light);
+      color: var(--color-purple);
+      font-family: var(--font-headline);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-bold);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .obrigado-step:first-child .obrigado-step__num {
+      background: var(--color-green);
+      color: #fff;
+    }
+
+    .obrigado-step__label {
+      font-size: var(--text-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      line-height: var(--leading-snug);
+    }
+
+    .obrigado-step__sub {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      line-height: var(--leading-snug);
+    }
+
+    /* Actions */
+    .obrigado-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      width: 100%;
+    }
+
+    .obrigado-back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-muted);
+      text-decoration: none;
+      padding: var(--space-3);
+      border-radius: var(--radius-md);
+      transition: color 0.2s;
+    }
+
+    .obrigado-back:hover { color: var(--color-purple); }
+
+    .obrigado-back svg {
+      transition: transform 0.2s;
+    }
+    .obrigado-back:hover svg { transform: translateX(-3px); }
+  </style>
+</head>
+<body class="obrigado-page">
+
+  <!-- Google Tag Manager (noscript) — NÃO ALTERAR -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC7RBWD"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- Fim Google Tag Manager (noscript) -->
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner" style="position: relative; top: 0; box-shadow: 0 1px 0 rgba(0,0,0,0.08);">
+    <div class="container">
+      <div class="header__inner">
+        <a href="index.html" class="logo" aria-label="YouRH - voltar para a página principal">
+          <img src="assets/logo-dark.svg" alt="YouRH" height="32" width="auto" />
+        </a>
+        <nav class="nav" aria-label="Navegação principal">
+          <a href="index.html#problemas"  class="nav__link">O problema</a>
+          <a href="index.html#solucao"    class="nav__link">Solução</a>
+          <a href="index.html#comparacao" class="nav__link">Antes e depois</a>
+          <a href="index.html#faq"        class="nav__link">FAQ</a>
+        </nav>
+        <div class="header__cta">
+          <a href="index.html#form" class="btn btn--primary">Agendar demonstração</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="obrigado-main" id="main-content">
+    <div class="obrigado-card fade-in-up">
+
+      <!-- Ícone de check — NÃO ALTERAR -->
+      <div class="obrigado-icon" aria-hidden="true">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <path d="M8 20l9 9 15-15" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <span class="obrigado-badge">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+          <circle cx="5" cy="5" r="3" fill="currentColor"/>
+        </svg>
+        Demonstração agendada
+      </span>
+
+      <h1 class="obrigado-title">Recebemos seu contato!</h1>
+
+      <p class="obrigado-desc">
+        Um especialista YouRH vai entrar em contato em breve para agendar sua demonstração personalizada.
+      </p>
+
+      <div class="obrigado-divider" aria-hidden="true"></div>
+
+      <div class="obrigado-detail" aria-label="Próximos passos">
+        <div class="obrigado-detail__item">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Verifique sua caixa de entrada e WhatsApp. Entraremos em contato em breve.
+        </div>
+        <div class="obrigado-detail__item">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Na demonstração, vamos mostrar como centralizar avaliação, treinamento e desenvolvimento na prática.
+        </div>
+        <div class="obrigado-detail__item">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Sem compromisso de compra. Só uma conversa para acabar com o abacaxi do seu RH.
+        </div>
+      </div>
+
+      <a href="index.html" class="btn btn--primary btn--lg" style="width: 100%;">
+        Voltar para a página
+      </a>
+
+    </div>
+  </main>
+
+  <!-- FOOTER — NÃO ALTERAR (branding fixo YouRH) -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__main">
+
+        <div class="footer__brand">
+          <div class="footer__brand-logo">
+            <span class="footer__brand-eyebrow">Umentor agora é</span>
+            <a href="index.html" aria-label="YouRH - página inicial">
+              <img src="assets/logo.svg" alt="YouRH" height="40" width="auto" />
+            </a>
+          </div>
+          <p class="footer__tagline">Mais que um sistema de RH, um verdadeiro ecossistema para desenvolver PESSOAS!</p>
+          <div class="footer__social-box">
+            <span class="footer__social-label">Siga-nos nas redes</span>
+            <div class="footer__social-links">
+              <a href="https://www.instagram.com/yourhoficial" target="_blank" rel="noopener" aria-label="Instagram YouRH" class="footer__social-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/company/yourhoficial/" target="_blank" rel="noopener" aria-label="LinkedIn YouRH" class="footer__social-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a href="https://www.youtube.com/@yourhoficial" target="_blank" rel="noopener" aria-label="YouTube YouRH" class="footer__social-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--color-purple-dark)"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__info">
+          <div class="footer__addresses">
+            <div class="footer__address">
+              <strong>Passo Fundo – RS</strong>
+              <span>Av. Brasil Oeste, 560 – 2401 – Centro</span>
+              <span>Passo Fundo/RS · CEP 99010-001</span>
+            </div>
+            <div class="footer__address">
+              <strong>Balneário Camboriú – SC</strong>
+              <span>Rua 700, 489 – 1104 – Centro</span>
+              <span>Balneário Camboriú/SC · CEP 88330-620</span>
+            </div>
+          </div>
+          <a href="https://painel.umentor.com.br/inteligente_novos/?con_cod=ana12479&pla=5" target="_blank" rel="noopener" class="footer__jobs-btn">
+            trabalhe na yourh
+          </a>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">YOURH DESENVOLVIMENTO E TREINAMENTO LTDA – 29.067.310/0001-05</p>
+        <a href="https://yourh.com.br/politica-de-privacidade" target="_blank" rel="noopener" class="footer__link">Política de privacidade</a>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <script src="js/gtm-events.js" defer></script>
+</body>
+</html>
