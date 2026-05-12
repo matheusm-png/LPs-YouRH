@@ -270,8 +270,11 @@
 
       fireGtmEvent(data);
       showLoading(form.querySelector('.form-submit-btn'));
-      // Sem preventDefault aqui: form submete nativamente → RD Station captura → redireciona para action
-    });
+
+      e.preventDefault();
+      setTimeout(function () {
+        window.location.href = 'obrigado.html';
+      }, 1500);
   }
 
   if (document.readyState === 'loading') {
