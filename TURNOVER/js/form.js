@@ -275,6 +275,7 @@
       setTimeout(function () {
         window.location.href = form.getAttribute('action') + '?t=' + Date.now();
       }, 1500);
+    });
   }
 
   if (document.readyState === 'loading') {
@@ -283,3 +284,4 @@
     init();
   }
 })();
+
