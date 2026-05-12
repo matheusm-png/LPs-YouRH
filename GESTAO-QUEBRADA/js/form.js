@@ -234,6 +234,8 @@
         return;
       }
 
+      e.preventDefault();
+
       populateHiddenUtmFields(form);
 
       var data = {
@@ -247,6 +249,11 @@
 
       fireGtmEvent(data);
       showLoading(form.querySelector('.form-submit-btn'));
+
+      // Aguarda o RD Station capturar os dados antes de redirecionar
+      setTimeout(function () {
+        window.location.href = form.getAttribute('action');
+      }, 1500);
     });
   }
 
