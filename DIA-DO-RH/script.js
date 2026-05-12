@@ -318,6 +318,9 @@ document.querySelectorAll('[data-field]').forEach((input) => {
 /* =========== Form submission ============ */
 const leadForm = document.getElementById('lp_dia-do-rh_conv');
 if (leadForm) {
+  /* Popula hidden fields no carregamento inicial (garante que a RD leia com antecedência) */
+  populateUtmFields(leadForm);
+
   leadForm.addEventListener('submit', (e) => {
     const { valid, firstInvalid } = validateAllFields(leadForm);
 
@@ -352,6 +355,6 @@ if (leadForm) {
     btn.disabled = true;
     btn.classList.add('btn--loading');
     btn.innerHTML = '<span class="btn__spinner"></span> Enviando…';
-    setTimeout(() => { window.location.href = 'obrigado.html'; }, 800);
+    setTimeout(() => { window.location.href = 'obrigado.html'; }, 1200);
   });
 }
