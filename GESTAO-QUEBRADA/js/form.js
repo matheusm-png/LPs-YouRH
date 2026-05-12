@@ -116,13 +116,11 @@
 
   function setError(groupEl, inputEl, msg) {
     groupEl.classList.add('has-error');
-    inputEl.classList.remove('is-valid');
+    inputEl.classList.remove('is-valid', 'is-error');
+    void inputEl.offsetWidth;
     inputEl.classList.add('is-error');
     var errorEl = groupEl.querySelector('.form-error');
     if (errorEl) errorEl.textContent = msg;
-    inputEl.classList.remove('is-error');
-    void inputEl.offsetWidth;
-    inputEl.classList.add('is-error');
   }
 
   function setValid(groupEl, inputEl) {
