@@ -273,7 +273,7 @@
 
       e.preventDefault();
       setTimeout(function () {
-        window.location.href = '/turnover/obrigado.html?ok=1';
+        window.location.href = form.getAttribute('action');
       }, 1500);
   }
 
