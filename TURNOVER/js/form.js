@@ -273,7 +273,7 @@
 
       e.preventDefault();
       setTimeout(function () {
-        window.location.href = form.getAttribute('action');
+        window.location.href = form.getAttribute('action') + '?t=' + Date.now();
       }, 1500);
   }
 
