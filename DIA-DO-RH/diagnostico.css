@@ -1,0 +1,611 @@
+/* 
+  Styles customizados para o fluxo interativo de Autodiagnóstico.
+  Herda as variáveis base de styles.css.
+*/
+
+.body-diag {
+  background: radial-gradient(ellipse at top, #160b26, #050309), #050309;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Fixo Simplificado */
+.diag-header {
+  padding: 20px 4%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(5,3,9,0.8);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+.diag-badge {
+  background: rgba(97,221,117,0.12);
+  color: var(--green);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 99px;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(97,221,117,0.2);
+}
+
+.diag-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  padding: 40px 0 80px;
+  position: relative;
+}
+
+/* Global Reveal Animation */
+.reveal-up {
+  animation: revealUp 0.6s var(--ease-out) forwards;
+  opacity: 0;
+}
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====================================================
+   TELA 1: INTRO
+   ==================================================== */
+#intro-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  gap: 50px;
+}
+.intro-content {
+  max-width: 540px;
+  text-align: center;
+}
+.intro-content h1 {
+  margin: 20px 0;
+}
+.intro-content .lead {
+  margin-bottom: 30px;
+  color: var(--muted);
+}
+.intro-box {
+  text-align: left;
+  padding: 35px;
+  border-radius: 24px;
+  box-shadow: 0 40px 100px -20px rgba(0,0,0,0.8);
+}
+.intro-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.field-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.intro-form label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #cfc9dc;
+}
+.intro-form input, .intro-form select {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 13px 16px;
+  border-radius: 12px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+.intro-form input:focus, .intro-form select:focus {
+  outline: none;
+  border-color: var(--green);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(97,221,117,0.15);
+}
+.intro-form select option {
+  background-color: #1a0e2e;
+  color: #fff;
+}
+
+.field__error {
+  color: #ff4d4d;
+  font-size: 0.75rem;
+  min-height: 14px;
+  display: block;
+  margin-top: 2px;
+}
+.intro-form input.is-error, .intro-form select.is-error {
+  border-color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.05);
+}
+
+.check-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.4;
+  cursor: pointer;
+  margin-top: 5px;
+}
+.check-line a { color: var(--green); text-decoration: none; }
+.check-line a:hover { text-decoration: underline; }
+.check-line input {
+  width: auto;
+  margin-top: 2px;
+  accent-color: var(--green);
+}
+
+.small-lock {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: -5px;
+}
+
+@media (max-width: 600px) {
+  .field-group {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+
+.intro-floating {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+.floating-item {
+  position: absolute;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 20px;
+  border-radius: 99px;
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: floatSlow 6s infinite alternate ease-in-out;
+}
+.floating-item.item-1 { top: 20%; left: 10%; }
+.floating-item.item-2 { bottom: 30%; right: 10%; animation-delay: 2s;}
+
+@keyframes floatSlow {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-20px); }
+}
+
+/* ====================================================
+   TELA 2: O QUIZ (Wizard)
+   ==================================================== */
+.quiz-progress-container {
+  max-width: 750px;
+  margin: 0 auto 40px;
+}
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.progress-header .dim-title {
+  color: var(--green);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+.progress-header .progress-text {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.progress-bar-track {
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), var(--green));
+  border-radius: 10px;
+  transition: width 0.4s cubic-bezier(.25,.8,.25,1);
+}
+
+.quiz-main {
+  max-width: 750px;
+  margin: 0 auto;
+  min-height: 400px;
+}
+
+.question-card {
+  animation: revealIn 0.5s var(--ease-out);
+}
+@keyframes revealIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.question-text {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin: 20px 0 12px;
+  line-height: 1.2;
+}
+.question-hint {
+  background: rgba(255,255,255,0.05);
+  border-left: 3px solid var(--purple);
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  margin-bottom: 30px;
+  color: #cfc9dc;
+}
+
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.option-btn {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 20px 24px;
+  border-radius: 16px;
+  color: #ece8f5;
+  text-align: left;
+  font-size: 1.05rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  transition: all 0.25s var(--ease);
+  font-family: inherit;
+}
+.option-btn:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.3);
+  transform: translateX(5px);
+}
+.option-btn.active {
+  background: rgba(97,221,117,0.15);
+  border-color: var(--green);
+  transform: scale(0.98);
+}
+
+.option-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.4);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.option-btn:hover .option-circle {
+  border-color: var(--green);
+}
+.option-btn.active .option-circle {
+  background: var(--green);
+  border-color: var(--green);
+  box-shadow: 0 0 10px rgba(97,221,117,0.5);
+}
+.option-btn.active .option-circle::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--ink);
+  border-radius: 50%;
+}
+
+.option-text {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+.btn-secondary {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-secondary:hover {
+  color: #fff;
+}
+
+/* ====================================================
+   TELA 3: PROCESSAMENTO
+   ==================================================== */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+.loader-box {
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+.spinner-circle {
+  width: 60px; height: 60px;
+  border: 4px solid rgba(255,255,255,0.1);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  margin: 0 auto 24px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to {transform: rotate(360deg);} }
+
+.loading-title { font-size: 1.6rem; margin-bottom: 8px; color: #fff; }
+.loading-subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 25px; height: 1.2em; }
+
+.processing-track {
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.processing-fill {
+  height: 100%;
+  background: var(--green);
+  box-shadow: 0 0 15px var(--green);
+  width: 0%;
+  transition: width 0.2s ease;
+}
+
+/* ====================================================
+   TELA 4: DASHBOARD
+   ==================================================== */
+#dashboard-screen {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.dash-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.dash-header h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-top: 10px;
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1.5fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.dash-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 35px;
+}
+.dash-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+.card-main {
+  background: linear-gradient(160deg, rgba(98,18,179,0.15), rgba(0,0,0,0));
+  border-color: rgba(98,18,179,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.score-circle-wrap {
+  margin-bottom: 25px;
+}
+.score-ring {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: conic-gradient(var(--green) calc(var(--score, 0) * 1%), rgba(255,255,255,0.08) 0deg); /* logic handled by total scale */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* fallback for lack of complex conic logic is just a border container since we animate simply */
+  border: 8px solid rgba(255,255,255,0.08);
+  border-top-color: var(--green);
+  border-right-color: var(--green);
+  animation: ringPulse 2s infinite alternate;
+}
+@keyframes ringPulse { from {box-shadow: 0 0 20px rgba(97,221,117,0.1);} to {box-shadow: 0 0 40px rgba(97,221,117,0.3);} }
+
+.score-inner {
+  width: 144px;
+  height: 144px;
+  background: #0a0610;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.score-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.score-number { font-family: 'Owners', sans-serif; font-size: 3.5rem; font-weight: 700; color: #fff; line-height: 1; }
+.score-max { font-size: 0.85rem; color: var(--muted); }
+
+.level-pre { font-size: 0.85rem; color: var(--muted); }
+.level-title { color: var(--green); font-size: 1.6rem; margin: 5px 0 12px; }
+.level-desc { color: #cfc9dc; font-size: 0.95rem; line-height: 1.6; }
+
+/* Dim breakdown */
+.dim-breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.res-dim-item {
+  width: 100%;
+}
+.dim-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.dim-title { color: #ece8f5; }
+.dim-val { color: var(--green); }
+
+.dim-bar-bg {
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+}
+.dim-bar-fill {
+  height: 100%;
+  background: var(--purple-2);
+  border-radius: 4px;
+  transition: width 1s ease-out 0.5s;
+}
+
+/* Plan Ação */
+.dash-section { margin-top: 60px; }
+.dash-sec-head { margin-bottom: 30px; }
+.dash-sec-head h3 { font-size: 1.5rem; color: #fff; margin-bottom: 8px;}
+.dash-sec-head p { color: var(--muted); }
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.plan-phase {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 25px;
+}
+.phase-badge {
+  background: rgba(98,18,179,0.2);
+  color: var(--purple-3);
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+.plan-phase h5 {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+.phase-items {
+  list-style: none; padding: 0; margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.phase-items li {
+  font-size: 0.88rem;
+  color: #b1aac2;
+  display: flex;
+  gap: 10px;
+  line-height: 1.4;
+}
+.phase-items li .check { color: var(--green); }
+
+/* Rec Grid */
+.rec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.rec-card {
+  background: rgba(255,255,255,0.04);
+  border-radius: 16px;
+  padding: 20px;
+}
+.rec-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.rec-icon { font-size: 1.2rem; }
+.rec-head h4 { font-size: 1rem; color: #fff; margin: 0;}
+.rec-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin: 0;}
+
+/* Final CTA Box */
+.dash-cta-box {
+  margin-top: 80px;
+  background: linear-gradient(135deg, var(--purple-deep), #1a0830);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  padding: 50px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(98,18,179,0.4);
+}
+.dash-cta-box::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(97,221,117,0.15), transparent 70%);
+}
+.cta-box-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+.dash-cta-box h3 { font-size: 2rem; margin-bottom: 15px; }
+.dash-cta-box p { color: #cfc9dc; font-size: 1.05rem; margin-bottom: 30px; }
+
+/* Footer */
+.diag-footer {
+  padding: 30px 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.3);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+  #intro-screen { flex-direction: column; min-height: auto; padding-top: 40px; }
+  .dash-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .intro-box { padding: 25px 20px; }
+  .question-text { font-size: 1.4rem; }
+  .option-btn { padding: 16px; font-size: 0.95rem; }
+  .dash-cta-box { padding: 35px 20px; }
+  .dash-cta-box h3 { font-size: 1.5rem; }
+}

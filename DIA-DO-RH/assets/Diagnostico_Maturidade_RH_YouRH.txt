@@ -1,0 +1,393 @@
+
+
+YouRH | Mês do RH 2025
+
+DIAGNÓSTICO ESTRATÉGICO
+DE MATURIDADE EM RH
+
+Avalie o nível real do seu setor de Recursos Humanos
+e descubra o caminho para um RH estratégico e digital
+
+
+Informações da Empresa
+
+Empresa
+_____________________________________________
+
+Segmento / Setor
+_____________________________________________
+
+Número de colaboradores
+_____________________________________________
+
+Nome do responsável de RH
+_____________________________________________
+
+Data do diagnóstico
+_____________________________________________
+
+Consultor YouRH
+_____________________________________________
+
+
+
+Como utilizar este diagnóstico
+
+Este diagnóstico avalia a maturidade do seu setor de RH em 5 dimensões estratégicas:
+
+  1. Digitalização & Tecnologia
+  2. Processos & Documentação
+  3. Gestão de Pessoas & Clima Organizacional
+  4. Recrutamento, Seleção & Onboarding
+  5. Estratégia & People Analytics
+
+Cada questão possui uma pontuação específica. Marque com ✔ (ou circule) a alternativa que melhor descreve a realidade atual do seu RH. Ao final, some os scores de cada dimensão e calcule o total.
+
+⚠️  Responda com base na realidade atual — não no que deseja que fosse. O diagnóstico só gera valor quando reflete fielmente o cenário presente.
+
+Dimensão 1 — Digitalização & Tecnologia
+Score máximo: 20 pontos
+
+1.1. Como o RH gerencia os dados e documentos dos colaboradores?
+  ☐  Totalmente em papel, sem organização digital  [Score: 0]
+  ☐  Parcialmente digital, com uso de planilhas e arquivos soltos  [Score: 1]
+  ☐  Sistema básico de RH (ex.: módulo simples de folha)  [Score: 2]
+  ☐  HRIS integrado com múltiplos módulos (admissão, ponto, folha, férias)  [Score: 4]
+💡 Um HRIS centralizado é a base de qualquer RH moderno.
+
+1.2. Como é feita a gestão do ponto e frequência dos colaboradores?
+  ☐  Controle manual em papel ou planilha  [Score: 0]
+  ☐  Relógio de ponto físico, sem integração com sistemas  [Score: 1]
+  ☐  Sistema digital de ponto, mas sem integração automática  [Score: 2]
+  ☐  Sistema digital integrado com folha de pagamento e automações  [Score: 4]
+
+1.3. O RH utiliza assinatura eletrônica para documentos e contratos?
+  ☐  Não, todos os documentos são assinados fisicamente  [Score: 0]
+  ☐  Em alguns documentos, de forma não padronizada  [Score: 1]
+  ☐  Na maioria dos documentos, com ferramenta específica  [Score: 3]
+  ☐  Em todos os documentos, com auditoria e rastreabilidade completa  [Score: 4]
+
+1.4. Como o RH utiliza automação e tecnologia em seus processos?
+  ☐  Sem nenhuma automação — tudo é executado manualmente  [Score: 0]
+  ☐  Automação pontual em alguns envios de e-mail ou lembretes  [Score: 2]
+  ☐  Automação em processos-chave (admissão, férias, avisos)  [Score: 3]
+  ☐  Automação ampla com workflows, integrações e IA aplicada ao RH  [Score: 4]
+
+1.5. O RH tem acesso a um portal ou app para autoatendimento dos colaboradores?
+  ☐  Não existe canal de autoatendimento  [Score: 0]
+  ☐  Canal informal (WhatsApp ou e-mail)  [Score: 1]
+  ☐  Portal básico para consulta de holerites e solicitações  [Score: 2]
+  ☐  App ou portal completo com autoatendimento, solicitações e comunicados  [Score: 4]
+
+SUBTOTAL — Dimensão 1 (Digitalização & Tecnologia):
+________ / 20
+
+Dimensão 2 — Processos & Documentação
+Score máximo: 20 pontos
+
+2.1. Os processos de RH são documentados e seguidos de forma padronizada?
+  ☐  Não há processos documentados — cada pessoa faz de um jeito  [Score: 0]
+  ☐  Alguns processos documentados, mas sem adesão consistente  [Score: 1]
+  ☐  Processos documentados e seguidos pela maioria do time de RH  [Score: 3]
+  ☐  Processos mapeados, documentados, auditados e constantemente melhorados  [Score: 4]
+
+2.2. Como é feita a gestão de férias e afastamentos?
+  ☐  Controle manual em planilha ou papel, com frequentes erros  [Score: 0]
+  ☐  Planilha organizada, mas sem alertas ou automações  [Score: 1]
+  ☐  Sistema que controla e alerta, mas sem integração com folha  [Score: 2]
+  ☐  Sistema integrado com notificações automáticas e aprovações digitais  [Score: 4]
+
+2.3. Como o RH garante a conformidade com a legislação trabalhista?
+  ☐  Sem processo definido — lida com questões legais de forma reativa  [Score: 0]
+  ☐  Checklist manual e consultas pontuais ao DP ou escritório contábil  [Score: 1]
+  ☐  Calendário de obrigações e auditorias internas periódicas  [Score: 3]
+  ☐  Sistema de compliance integrado com alertas automáticos de prazos legais  [Score: 4]
+
+2.4. O processo de desligamento de colaboradores é estruturado e documentado?
+  ☐  Sem processo definido, cada desligamento é tratado de forma diferente  [Score: 0]
+  ☐  Processo parcialmente formalizado, com algumas inconsistências  [Score: 1]
+  ☐  Checklist de desligamento padronizado com etapas documentadas  [Score: 3]
+  ☐  Fluxo digital completo com entrevistas de desligamento, devolução e análise de causa  [Score: 4]
+
+2.5. Como são gerenciadas as políticas internas de RH (benefícios, cargos, salários)?
+  ☐  Não há políticas formalizadas — decisões são tomadas caso a caso  [Score: 0]
+  ☐  Políticas existem em documentos dispersos, pouco acessíveis  [Score: 1]
+  ☐  Políticas documentadas e disponíveis, mas raramente revisadas  [Score: 2]
+  ☐  Políticas claras, acessíveis a todos, revisadas periodicamente e alinhadas ao mercado  [Score: 4]
+
+SUBTOTAL — Dimensão 2 (Processos & Documentação):
+________ / 20
+
+Dimensão 3 — Gestão de Pessoas & Clima Organizacional
+Score máximo: 20 pontos
+
+3.1. Como a empresa mede o engajamento e o clima organizacional?
+  ☐  Não há nenhuma medição formal de clima ou engajamento  [Score: 0]
+  ☐  Percepção informal pelos gestores, sem dados estruturados  [Score: 1]
+  ☐  Pesquisa de clima anual, com análise superficial dos resultados  [Score: 2]
+  ☐  Pesquisa semestral + eNPS mensal com plano de ação documentado  [Score: 4]
+
+3.2. Como é realizada a gestão de desempenho dos colaboradores?
+  ☐  Sem processo de avaliação de desempenho definido  [Score: 0]
+  ☐  Avaliação informal e esporádica, sem critérios claros  [Score: 1]
+  ☐  Avaliação anual formalizada com feedback documentado  [Score: 2]
+  ☐  Ciclos contínuos de feedback + OKRs/metas individuais ligadas ao negócio  [Score: 4]
+
+3.3. Existe um programa estruturado de desenvolvimento e capacitação?
+  ☐  Sem programa de desenvolvimento — treinamentos ocorrem esporadicamente  [Score: 0]
+  ☐  Treinamentos pontuais sem planejamento anual definido  [Score: 1]
+  ☐  Plano de treinamento anual com orçamento destinado  [Score: 3]
+  ☐  Trilhas de desenvolvimento por cargo/área com LMS e mensuração de impacto  [Score: 4]
+
+3.4. Como é gerenciada a relação com os colaboradores no dia a dia?
+  ☐  Gestão reativa — o RH atua somente quando há problemas  [Score: 0]
+  ☐  Gestão parcialmente proativa em algumas áreas  [Score: 1]
+  ☐  Comunicação estruturada com ações periódicas de engajamento  [Score: 2]
+  ☐  Parceria estratégica com líderes (HR Business Partner) em todas as áreas  [Score: 4]
+
+3.5. A empresa tem estrutura de cargos e salários definida e atualizada?
+  ☐  Sem estrutura formal — salários definidos sem critério claro  [Score: 0]
+  ☐  Estrutura parcial, desatualizada ou conhecida apenas pelo RH  [Score: 1]
+  ☐  Plano de cargos e salários documentado, revisado anualmente  [Score: 3]
+  ☐  Estrutura transparente, vinculada ao mercado e ao desenvolvimento do colaborador  [Score: 4]
+
+SUBTOTAL — Dimensão 3 (Gestão de Pessoas & Clima):
+________ / 20
+
+Dimensão 4 — Recrutamento, Seleção & Onboarding
+Score máximo: 20 pontos
+
+4.1. Como é o processo de recrutamento e seleção na empresa?
+  ☐  Sem processo definido — contratações ocorrem de forma ad hoc  [Score: 0]
+  ☐  Processo informal com triagem manual de currículos  [Score: 1]
+  ☐  Processo estruturado com etapas definidas, mas sem suporte tecnológico  [Score: 2]
+  ☐  ATS (sistema de recrutamento) com pipeline visual e comunicação automatizada  [Score: 4]
+
+4.2. Quanto tempo leva, em média, o processo de contratação (time-to-hire)?
+  ☐  Mais de 60 dias — sem controle ou meta definida  [Score: 0]
+  ☐  Entre 31 e 60 dias, com variações grandes entre vagas  [Score: 1]
+  ☐  Entre 15 e 30 dias, com processo razoavelmente padronizado  [Score: 3]
+  ☐  Menos de 15 dias, com SLAs definidos e monitorados  [Score: 4]
+💡 O time-to-hire é um KPI crítico de eficiência do RH.
+
+4.3. Como é feita a triagem e avaliação de candidatos?
+  ☐  Análise manual de currículos sem critérios padronizados  [Score: 0]
+  ☐  Triagem com perguntas básicas por e-mail ou telefone  [Score: 1]
+  ☐  Testes e entrevistas estruturadas com critérios definidos por vaga  [Score: 3]
+  ☐  Avaliações comportamentais (DISC, MBTI, etc.) e testes técnicos digitais integrados  [Score: 4]
+
+4.4. Como é o processo de onboarding dos novos colaboradores?
+  ☐  Sem onboarding estruturado — o novo colaborador aprende por conta própria  [Score: 0]
+  ☐  Onboarding informal, variando de acordo com o gestor  [Score: 1]
+  ☐  Processo de integração definido com agenda estruturada nos primeiros dias  [Score: 2]
+  ☐  Programa de onboarding digital com trilha de aprendizagem, buddy e acompanhamento de 90 dias  [Score: 4]
+
+4.5. O RH acompanha e mede a qualidade das contratações (quality of hire)?
+  ☐  Não há acompanhamento pós-contratação  [Score: 0]
+  ☐  Feedback informal do gestor após período de experiência  [Score: 1]
+  ☐  Avaliação formal ao final do período de experiência (45/90 dias)  [Score: 2]
+  ☐  Dashboard de qualidade de contratação com indicadores de desempenho e retenção  [Score: 4]
+
+SUBTOTAL — Dimensão 4 (Recrutamento, Seleção & Onboarding):
+________ / 20
+
+Dimensão 5 — Estratégia & People Analytics
+Score máximo: 20 pontos
+
+5.1. O RH define e acompanha indicadores (KPIs) de forma regular?
+  ☐  Sem indicadores definidos — o RH não mede seus resultados  [Score: 0]
+  ☐  Alguns indicadores básicos como headcount e turnover, medidos esporadicamente  [Score: 1]
+  ☐  KPIs definidos e acompanhados mensalmente em reuniões de equipe  [Score: 3]
+  ☐  Dashboard de People Analytics atualizado em tempo real com análises preditivas  [Score: 4]
+
+5.2. O planejamento de RH está alinhado ao planejamento estratégico do negócio?
+  ☐  Não existe planejamento de RH — as ações são reativas às demandas  [Score: 0]
+  ☐  Planejamento de RH existe, mas não está alinhado às metas da empresa  [Score: 1]
+  ☐  Alinhamento parcial, com revisões anuais e reuniões com a diretoria  [Score: 3]
+  ☐  RH é parceiro estratégico do negócio, com metas integradas ao planejamento corporativo  [Score: 4]
+
+5.3. Como o RH utiliza dados para tomada de decisão?
+  ☐  Decisões tomadas com base em intuição ou pressão — sem dados  [Score: 0]
+  ☐  Uso pontual de dados para justificar decisões já tomadas  [Score: 1]
+  ☐  Relatórios mensais utilizados em reuniões de gestão  [Score: 2]
+  ☐  People Analytics integrado à estratégia, com modelos preditivos de retenção e performance  [Score: 4]
+
+5.4. Como é feita a gestão da marca empregadora (Employer Branding)?
+  ☐  A empresa não trabalha a marca empregadora ativamente  [Score: 0]
+  ☐  Presença básica em LinkedIn sem estratégia definida  [Score: 1]
+  ☐  Estratégia de employer branding com conteúdo regular e acompanhamento de reputação  [Score: 3]
+  ☐  Programa estruturado de EB com embaixadores, NPS de candidatos e benchmarking  [Score: 4]
+
+5.5. O RH tem papel ativo nas decisões estratégicas da liderança e do board?
+  ☐  O RH é visto como área administrativa, sem participação estratégica  [Score: 0]
+  ☐  Participação pontual em decisões relacionadas a contratação ou cortes  [Score: 1]
+  ☐  RH é consultado em decisões de expansão, cultura e estrutura organizacional  [Score: 3]
+  ☐  CHRO ou Head de RH participa ativamente das reuniões de liderança e comitês estratégicos  [Score: 4]
+
+SUBTOTAL — Dimensão 5 (Estratégia & People Analytics):
+________ / 20
+
+Consolidação do Diagnóstico
+Preencha após responder todas as dimensões
+
+Tabela de Resultados por Dimensão
+
+Dimensão
+Score Obtido (preencher)
+Score Máximo
+% Atingido
+1. Digitalização & Tecnologia
+
+20
+
+2. Processos & Documentação
+
+20
+
+3. Gestão de Pessoas & Clima
+
+20
+
+4. Recrutamento & Onboarding
+
+20
+
+5. Estratégia & Analytics
+
+20
+
+TOTAL GERAL
+
+100
+
+
+Nível de Maturidade de RH
+
+Pontuação
+Nível de Maturidade
+Descrição
+0 – 20
+Nível 1 — Operacional Básico
+RH reativo, sem processos definidos, altamente manual. Alta dependência de pessoas para execução das tarefas. Baixíssima ou nenhuma digitalização.
+21 – 40
+Nível 2 — Em Desenvolvimento
+Alguns processos formalizados, mas ainda inconsistentes. Poucos sistemas em uso. Foco predominante em tarefas operacionais.
+41 – 60
+Nível 3 — Estruturado
+Processos razoavelmente definidos e documentados. Uso pontual de ferramentas digitais. Iniciativas estratégicas ainda incipientes.
+61 – 80
+Nível 4 — Avançado
+RH digital com automações relevantes. Dados utilizados para tomada de decisão. Atuação estratégica consolidada em grande parte.
+81 – 100
+Nível 5 — RH Estratégico Digital
+RH totalmente integrado, com uso de inteligência de dados, automação ampla e forte atuação como parceiro estratégico do negócio.
+
+📌  Nível Identificado no Diagnóstico:
+
+Nível: _______________   |   Score Total: _______ / 100   |   Resultado: ________________%
+
+Principais Pontos de Atenção:
+
+1. ___________________________________________________________________________
+2. ___________________________________________________________________________
+3. ___________________________________________________________________________
+
+Plano de Ação — 90 Dias
+Roteiro estratégico para evolução da maturidade de RH
+
+Com base no diagnóstico realizado, o plano de ação a seguir organiza as iniciativas prioritárias em três fases de 30 dias cada. As ações devem ser adaptadas ao nível de maturidade identificado e ao contexto específico da empresa.
+
+Fase
+Ações Prioritárias
+Fase 1 (Dias 1–30)
+Diagnóstico e Fundação
+☐  Mapeamento completo dos processos de RH atuais (AS-IS)
+
+☐  Identificação e priorização dos gaps críticos
+
+☐  Definição de responsáveis e quick wins de impacto imediato
+
+☐  Implementação de sistema de gestão de ponto e frequência digital
+
+☐  Padronização dos contratos e documentos admissionais
+Fase 2 (Dias 31–60)
+Digitalização e Estruturação
+☐  Implantação ou otimização do HRIS/sistema de gestão de pessoas
+
+☐  Digitalização dos arquivos e prontuários de colaboradores
+
+☐  Criação de fluxos de onboarding digital e estruturado
+
+☐  Implementação de ferramenta de gestão de desempenho
+
+☐  Automatização dos relatórios e indicadores de RH básicos
+Fase 3 (Dias 61–90)
+Estratégia e Inteligência
+☐  Construção do painel de People Analytics com KPIs estratégicos
+
+☐  Implantação de programa de desenvolvimento e trilhas de aprendizagem
+
+☐  Criação de comitê de RH estratégico com lideranças
+
+☐  Definição de metas de RH alinhadas ao planejamento do negócio
+
+☐  Avaliação de resultados do plano e projeção para os próximos 90 dias
+
+Acompanhamento do Plano de Ação
+
+Iniciativa / Ação
+Responsável
+Prazo
+Status
+
+
+
+⬜ Pendente
+
+
+
+⬜ Pendente
+
+
+
+⬜ Pendente
+
+
+
+⬜ Pendente
+
+
+
+⬜ Pendente
+
+
+
+⬜ Pendente
+
+Recomendações Estratégicas YouRH
+Próximos passos para transformar seu RH
+
+Com base nos padrões observados em centenas de diagnósticos de RH, estas são as recomendações estratégicas que mais impactam a jornada de maturidade das organizações:
+
+Área
+Recomendação Estratégica
+🎯 Digitalização
+Adotar um HRIS centralizado que integre admissão, ponto, férias e folha. A fragmentação de sistemas é o principal gerador de retrabalho e erros.
+📊 People Analytics
+Instituir dashboards com indicadores-chave: turnover, absenteísmo, tempo médio de contratação, NPS do colaborador. Dados transformam RH em área estratégica.
+🤖 Automação
+Automatizar processos repetitivos como envio de documentos, lembretes de vencimento, relatórios mensais e fluxos de aprovação. Libera o time para iniciativas de valor.
+🌱 Desenvolvimento
+Estruturar uma trilha de aprendizagem por cargo e área, vinculada às metas de negócio. RH que desenvolve pessoas retém talentos e reduz turnover.
+🤝 Cultura e Clima
+Implementar pesquisa de clima semestral e medir eNPS mensalmente. Empresas com cultura forte têm até 4x menos rotatividade que a média do mercado.
+📋 Compliance & Gestão
+Garantir rastreabilidade de todos os documentos e processos. Conformidade trabalhista reduzida a riscos e auditorias são diferenciais competitivos.
+
+🚀  Próximo Passo: Fale com um especialista YouRH
+
+Este diagnóstico é o ponto de partida para a transformação do seu RH. Nossa equipe está pronta para apresentar as soluções certas para o seu nível de maturidade e apoiar na implementação do plano de ação.
+
+🌐  www.yourh.com.br   |   📧  contato@yourh.com.br   |   📱  @yourh.rh
+
+YouRH — Mês do RH 2025 | Diagnóstico Estratégico de Maturidade em RH | Uso exclusivo para processo comercial
