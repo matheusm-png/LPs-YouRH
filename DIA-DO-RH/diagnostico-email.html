@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Autodiagnóstico de Maturidade em RH | YouRH</title>
+<meta name="description" content="Descubra gratuitamente o nível estratégico do seu RH e receba um plano de ação de 90 dias." />
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon_yourh.svg" />
+
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@500,600,700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="diagnostico.css" />
+<link rel="stylesheet" href="diagnostico-email.css" />
+
+<!-- Tracking YouRH -->
+<script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/2b4d5177951b2aaefe0b7f838559c2d9-rdstation.js"></script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NC7RBWD');</script>
+
+</head>
+<body class="body-diag">
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC7RBWD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- Iframe oculto para submissão silenciosa do formulário para o RD Station -->
+<iframe name="rd_submit_iframe" id="rd_submit_iframe" style="display:none;"></iframe>
+
+<header class="diag-header">
+  <a href="index.html" class="diag-logo">
+    <img src="assets/logo.svg" alt="YouRH" height="28" />
+  </a>
+  <span class="diag-badge">Autodiagnóstico de Maturidade 2025</span>
+</header>
+
+<main class="diag-wrapper">
+
+  <!-- =======================================
+       TELA 1: BOAS-VINDAS
+       ======================================= -->
+  <section id="intro-screen" class="screen-container active">
+    <div class="intro-content reveal-up" style="max-width: 680px; margin: 0 auto; text-align: center; padding-top: 40px;">
+      <span class="eyebrow eyebrow--light">Ferramenta Gratuita</span>
+      <h1 class="display-md">Descubra o nível real do seu <br><span class="hl-block hl-block--green">setor de RH agora!</span></h1>
+      <p class="lead" style="max-width: 520px; margin: 0 auto 40px;">Responda 25 perguntas rápidas e descubra o nível de maturidade do seu RH nas 5 dimensões estratégicas. No final, receba seu resultado completo e um plano de ação de 90 dias.</p>
+
+      <div class="intro-stats-row">
+        <div class="intro-stat">
+          <span class="intro-stat-num">25</span>
+          <span class="intro-stat-label">Perguntas</span>
+        </div>
+        <div class="intro-stat-divider"></div>
+        <div class="intro-stat">
+          <span class="intro-stat-num">~10</span>
+          <span class="intro-stat-label">Minutos</span>
+        </div>
+        <div class="intro-stat-divider"></div>
+        <div class="intro-stat">
+          <span class="intro-stat-num">5</span>
+          <span class="intro-stat-label">Dimensões</span>
+        </div>
+      </div>
+
+      <button id="btn-start-quiz" class="btn btn--green btn--lg" style="margin-top: 40px; min-width: 260px;">
+        Iniciar Diagnóstico →
+      </button>
+      <p class="small-lock" style="margin-top: 16px;">🔒 Gratuito. Seus dados estão seguros sob a LGPD.</p>
+    </div>
+    <div class="intro-floating" aria-hidden="true">
+      <div class="floating-item item-1">📊 People Analytics</div>
+      <div class="floating-item item-2">🎯 Plano de 90 dias</div>
+    </div>
+  </section>
+
+  <!-- =======================================
+       TELA 2: O QUIZ
+       ======================================= -->
+  <section id="quiz-screen" class="screen-container" style="display: none;">
+    <div class="quiz-progress-container">
+      <div class="progress-header">
+        <span id="current-dim-title" class="dim-title">Dimensão 1: Digitalização & Tecnologia</span>
+        <span id="progress-text" class="progress-text">Questão 1 de 25</span>
+      </div>
+      <div class="progress-bar-track">
+        <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div id="quiz-content" class="quiz-main">
+      <!-- JS injetado -->
+    </div>
+  </section>
+
+  <!-- =======================================
+       TELA 3: GATE FORM (DESBLOQUEAR RESULTADO)
+       ======================================= -->
+  <section id="gate-screen" class="screen-container flex-center" style="display: none;">
+    <div class="gate-box reveal-up">
+      <div class="gate-header">
+        <div class="gate-lock-icon">🎯</div>
+        <span class="eyebrow eyebrow--light">Diagnóstico Concluído!</span>
+        <h2>Seu resultado está pronto.</h2>
+        <p>Preencha os dados abaixo para receber seu resultado completo e o plano de ação personalizado para o seu RH.</p>
+      </div>
+
+      <form id="lp_diagnostico-email_conv" class="gate-form" method="post" target="rd_submit_iframe" novalidate>
+
+        <div class="field">
+          <label for="gate-nome">Seu nome completo *</label>
+          <input id="gate-nome" name="name" type="text" autocomplete="name" data-field="nome" required placeholder="Como podemos te chamar?" />
+          <span class="field__error" id="gate-error-nome"></span>
+        </div>
+
+        <div class="field">
+          <label for="gate-empresa">Nome da empresa *</label>
+          <input id="gate-empresa" name="company" type="text" autocomplete="organization" data-field="empresa" required placeholder="Nome da empresa" />
+          <span class="field__error" id="gate-error-empresa"></span>
+        </div>
+
+        <div class="field">
+          <label for="gate-whatsapp">WhatsApp (DDD + número) *</label>
+          <input id="gate-whatsapp" name="phone" type="tel" autocomplete="tel" data-field="telefone" required placeholder="(11) 99999-9999" />
+          <span class="field__error" id="gate-error-telefone"></span>
+        </div>
+
+        <div class="field">
+          <label for="gate-email">Seu e-mail *</label>
+          <input id="gate-email" name="email" type="email" autocomplete="email" data-field="email" required placeholder="voce@empresa.com" />
+          <span class="field__error" id="gate-error-email"></span>
+        </div>
+
+        <input type="hidden" name="utm_source"           id="gate_utm_source">
+        <input type="hidden" name="utm_medium"           id="gate_utm_medium">
+        <input type="hidden" name="utm_campaign"         id="gate_utm_campaign">
+        <input type="hidden" name="utm_content"          id="gate_utm_content">
+        <input type="hidden" name="utm_term"             id="gate_utm_term">
+        <input type="hidden" name="utm_marketing_tactic" id="gate_utm_marketing_tactic">
+
+        <label class="check-line">
+          <input type="checkbox" id="gate-lgpd" data-field="lgpd" required />
+          <span>Ao informar meus dados, concordo com a <a href="https://yourh.com.br/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a> e aceito receber conteúdos da YouRH.</span>
+        </label>
+        <span class="field__error field--full" id="gate-error-lgpd"></span>
+
+        <button type="submit" class="btn btn--green btn--block btn--lg">Ver meu Resultado →</button>
+        <p class="small-lock" style="text-align: center; margin-top: 12px;">🔒 Seus dados estão seguros e não serão compartilhados.</p>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- =======================================
+       TELA 4: PROCESSAMENTO
+       ======================================= -->
+  <section id="processing-screen" class="screen-container flex-center" style="display: none;">
+    <div class="loader-box">
+      <div class="spinner-circle"></div>
+      <h2 class="loading-title">Calculando seu score...</h2>
+      <p id="processing-status" class="loading-subtitle">Cruzando dados estratégicos</p>
+      <div class="processing-track">
+        <div id="processing-bar" class="processing-fill" style="width: 0%"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================
+       TELA 5: DASHBOARD DE RESULTADOS
+       ======================================= -->
+  <section id="dashboard-screen" class="screen-container" style="display: none;">
+    <div class="dash-header reveal-up">
+      <span class="eyebrow eyebrow--light">Relatório Gerado com Sucesso</span>
+      <h2>Resultado de <span id="res-user-company" class="text-green">Sua Empresa</span></h2>
+    </div>
+
+    <div class="dash-grid">
+
+      <div class="dash-card card-main reveal-up">
+        <div class="score-circle-wrap">
+          <div class="score-ring">
+            <div class="score-inner">
+              <span class="score-label">Pontuação</span>
+              <span id="res-total-score" class="score-number">--</span>
+              <span class="score-max">/ 100</span>
+            </div>
+          </div>
+        </div>
+        <div class="level-box">
+          <span class="level-pre">Seu Nível de Maturidade:</span>
+          <h3 id="res-level-name" class="level-title">Nível X</h3>
+          <p id="res-level-desc" class="level-desc">Descrição do nível...</p>
+        </div>
+      </div>
+
+      <div class="dash-card reveal-up" style="animation-delay: 0.1s;">
+        <h3>Score por Dimensão</h3>
+        <div id="res-dim-list" class="dim-breakdown-list">
+          <!-- JS injected -->
+        </div>
+      </div>
+
+    </div>
+
+    <div class="dash-section reveal-up" style="animation-delay: 0.2s;">
+      <header class="dash-sec-head">
+        <h3>📋 Plano de Ação Estratégico — 90 Dias</h3>
+        <p>O que seu RH precisa priorizar nos próximos 3 meses para evoluir de nível:</p>
+      </header>
+      <div id="res-plan-content" class="plan-grid">
+        <!-- JS injected -->
+      </div>
+    </div>
+
+    <div class="dash-section reveal-up" style="animation-delay: 0.3s;">
+      <header class="dash-sec-head">
+        <h3>💡 Recomendações de Especialistas</h3>
+      </header>
+      <div id="res-rec-list" class="rec-grid">
+        <!-- JS injected -->
+      </div>
+    </div>
+
+    <div class="dash-cta-box reveal-up" style="animation-delay: 0.4s;">
+      <div class="cta-box-content">
+        <h3>Quer ajuda para implementar este plano?</h3>
+        <p>Nossos especialistas estão prontos para mostrar como a YouRH automatiza todas essas etapas e eleva sua maturidade em tempo recorde.</p>
+        <a href="index.html#form" class="btn btn--green btn--lg">Falar com Especialista Agora →</a>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="diag-footer">
+  <p>&copy; 2025 YouRH. Todos os direitos reservados.</p>
+</footer>
+
+<script src="diagnostico.js"></script>
+<script src="diagnostico-email.js"></script>
+
+</body>
+</html>

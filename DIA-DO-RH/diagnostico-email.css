@@ -1,0 +1,156 @@
+/* Estilos específicos para a versão de email do diagnóstico */
+
+/* ====================================================
+   TELA 1: BOAS-VINDAS
+   ==================================================== */
+#intro-screen {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 20px 30px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.intro-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.intro-stat-num {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+}
+
+.intro-stat-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.intro-stat-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+
+/* ====================================================
+   TELA 3: GATE FORM
+   ==================================================== */
+#gate-screen {
+  min-height: 80vh;
+}
+
+.gate-box {
+  width: min(520px, 100%);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 28px;
+  padding: 48px 40px;
+  box-shadow: 0 40px 100px -20px rgba(0,0,0,0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.gate-box::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--green));
+}
+
+.gate-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.gate-lock-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.gate-header h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: #fff;
+  margin: 8px 0 12px;
+}
+
+.gate-header p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.gate-form label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #cfc9dc;
+}
+
+.gate-form input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 13px 16px;
+  border-radius: 12px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.gate-form input:focus {
+  outline: none;
+  border-color: var(--green);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(97,221,117,0.15);
+}
+
+.gate-form input.is-error {
+  border-color: #ff4d4d;
+  background: rgba(255,77,77,0.05);
+}
+
+@media (max-width: 600px) {
+  .gate-box {
+    padding: 32px 24px;
+    border-radius: 20px;
+  }
+
+  .intro-stats-row {
+    padding: 16px 20px;
+  }
+
+  .intro-stat-num {
+    font-size: 1.6rem;
+  }
+}
