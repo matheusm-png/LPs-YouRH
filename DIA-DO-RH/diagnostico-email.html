@@ -29,8 +29,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC7RBWD"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- Iframe oculto para submissão silenciosa do formulário para o RD Station -->
-<iframe name="rd_submit_iframe" id="rd_submit_iframe" style="display:none;"></iframe>
 
 <header class="diag-header">
   <a href="index.html" class="diag-logo">
@@ -98,65 +96,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- =======================================
-       TELA 3: GATE FORM (DESBLOQUEAR RESULTADO)
-       ======================================= -->
-  <section id="gate-screen" class="screen-container flex-center" style="display: none;">
-    <div class="gate-box reveal-up">
-      <div class="gate-header">
-        <div class="gate-lock-icon">🎯</div>
-        <span class="eyebrow eyebrow--light">Diagnóstico Concluído!</span>
-        <h2>Seu resultado está pronto.</h2>
-        <p>Preencha os dados abaixo para receber seu resultado completo e o plano de ação personalizado para o seu RH.</p>
-      </div>
-
-      <form id="lp_diagnostico-email_conv" class="gate-form" method="post" target="rd_submit_iframe" novalidate>
-
-        <div class="field">
-          <label for="gate-nome">Seu nome completo *</label>
-          <input id="gate-nome" name="name" type="text" autocomplete="name" data-field="nome" required placeholder="Como podemos te chamar?" />
-          <span class="field__error" id="gate-error-nome"></span>
-        </div>
-
-        <div class="field">
-          <label for="gate-empresa">Nome da empresa *</label>
-          <input id="gate-empresa" name="company" type="text" autocomplete="organization" data-field="empresa" required placeholder="Nome da empresa" />
-          <span class="field__error" id="gate-error-empresa"></span>
-        </div>
-
-        <div class="field">
-          <label for="gate-whatsapp">WhatsApp (DDD + número) *</label>
-          <input id="gate-whatsapp" name="phone" type="tel" autocomplete="tel" data-field="telefone" required placeholder="(11) 99999-9999" />
-          <span class="field__error" id="gate-error-telefone"></span>
-        </div>
-
-        <div class="field">
-          <label for="gate-email">Seu e-mail *</label>
-          <input id="gate-email" name="email" type="email" autocomplete="email" data-field="email" required placeholder="voce@empresa.com" />
-          <span class="field__error" id="gate-error-email"></span>
-        </div>
-
-        <input type="hidden" name="utm_source"           id="gate_utm_source">
-        <input type="hidden" name="utm_medium"           id="gate_utm_medium">
-        <input type="hidden" name="utm_campaign"         id="gate_utm_campaign">
-        <input type="hidden" name="utm_content"          id="gate_utm_content">
-        <input type="hidden" name="utm_term"             id="gate_utm_term">
-        <input type="hidden" name="utm_marketing_tactic" id="gate_utm_marketing_tactic">
-
-        <label class="check-line">
-          <input type="checkbox" id="gate-lgpd" data-field="lgpd" required />
-          <span>Ao informar meus dados, concordo com a <a href="https://yourh.com.br/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a> e aceito receber conteúdos da YouRH.</span>
-        </label>
-        <span class="field__error field--full" id="gate-error-lgpd"></span>
-
-        <button type="submit" class="btn btn--green btn--block btn--lg">Ver meu Resultado →</button>
-        <p class="small-lock" style="text-align: center; margin-top: 12px;">🔒 Seus dados estão seguros e não serão compartilhados.</p>
-
-      </form>
-    </div>
-  </section>
-
-  <!-- =======================================
-       TELA 4: PROCESSAMENTO
+       TELA 3: PROCESSAMENTO
        ======================================= -->
   <section id="processing-screen" class="screen-container flex-center" style="display: none;">
     <div class="loader-box">
