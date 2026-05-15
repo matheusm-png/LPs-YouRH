@@ -2306,9 +2306,59 @@ updateNav();
     scrollBottom();
   }
 
+  /* ── Envia dados ao RD Station usando o formulário da página ── */
+  function submitToRD(data){
+    try{
+      var form = document.querySelector('form[name=\'"solicite-demonstracao"\']');
+      if(!form) return;
+
+      var set = function(name, val){
+        var el = form.querySelector('[name="'+name+'"]');
+        if(!el) return;
+        el.value = val || '';
+      };
+
+      /* Mapeamento employees: chip → valor do <select> */
+      var empMap = {
+        '20–30':'20 - 30','31–70':'31 - 70','71–100':'71 - 100',
+        '101–200':'101 - 200','201–300':'201 - 300','301–500':'301 - 500','501+':'501+'
+      };
+      /* Mapeamento role: chip → valor do <select> */
+      var roleMap = {
+        'Analista':'Analista','Assistente/Aux.':'Assistente / Auxiliar',
+        'CEO':'CEO','Consultor':'Consultor','Diretor':'Diretor',
+        'Gerente/Head':'Gerente / Head','Supervisor/Coord.':'Supervisor / Coordenador',
+        'Outros':'Outros'
+      };
+
+      set('name',      data.name);
+      set('email',     data.email);
+      set('phone',     data.phone);
+      set('company',   data.company);
+      set('employees', empMap[data.employees] || data.employees);
+      set('role',      roleMap[data.role]      || data.role);
+      set('site',      data.site);
+
+      /* Marca política de privacidade */
+      var policy = form.querySelector('[name="policy"]');
+      if(policy) policy.checked = true;
+
+      /* Repassa UTMs da URL atual */
+      var p = new URLSearchParams(window.location.search);
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){
+        if(p.get(k)) set(k, p.get(k));
+      });
+
+      /* Dispara submit — o RD Station loader intercepta e envia */
+      var btn = form.querySelector('[type="submit"]');
+      if(btn) btn.click();
+    }catch(e){ console.warn('RD submitToRD error:', e); }
+  }
+
   /* ── Finish flow (new lead) ── */
   function finishFlow(){
     try{ localStorage.setItem(LS_KEY, JSON.stringify(answers)); }catch(e){}
+    submitToRD(answers);
     botSay('Perfeito! ✅ Aqui está um resumo das suas informações:', 600).then(function(){
       addSummaryCard(answers);
       botSay('Clique abaixo e um especialista da YouRH vai entrar em contato com você rapidinho! 🚀', 700).then(function(){
@@ -2320,6 +2370,7 @@ updateNav();
   /* ── Confirmation flow (form already filled) ── */
   function confirmationFlow(data){
     answers = data;
+    submitToRD(data);
     botSay('Olá, **' + data.name + '**! 👋\n\nVi que você já preencheu o formulário de demonstração. Confirme seus dados:', 900).then(function(){
       addSummaryCard(data);
       botSay('Tudo certo? Clique abaixo que um especialista já vai te atender! 🚀', 700).then(function(){
