@@ -1296,6 +1296,8 @@ section{padding:clamp(80px,11vw,150px) 0; position:relative; isolation:isolate}
   .hero__glow{animation:none}
   .bar>span{transition:none}
 }
+/* Oculta o badge flutuante do reCAPTCHA v3 */
+.grecaptcha-badge { visibility: hidden !important; }
 </style>
 </head>
 <body>
@@ -2060,12 +2062,18 @@ const updateNav = () => {
 window.addEventListener('scroll', updateNav, {passive:true});
 updateNav();
 
-/* ── UTM → hidden inputs ── */
+/* ── UTM → hidden inputs + localStorage ── */
 (function(){
   const p = new URLSearchParams(window.location.search);
+  const utms = {};
   ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_marketing_tactic'].forEach(k => {
-    document.querySelectorAll('[name='+k+']').forEach(el => { if(p.get(k)) el.value = p.get(k); });
+    const v = p.get(k);
+    document.querySelectorAll('[name='+k+']').forEach(el => { if(v) el.value = v; });
+    if(v) utms[k] = v;
   });
+  if(Object.keys(utms).length){
+    try{ localStorage.setItem('yourh_utms', JSON.stringify(utms)); }catch(e){}
+  }
 })();
 </script>
 
@@ -2141,7 +2149,13 @@ updateNav();
   document.addEventListener('keydown', e => { if(e.key==='Escape' && isOpen) close(); });
 
   /* ── Scroll to bottom ── */
-  function scrollBottom(){ messagesEl.scrollTop = messagesEl.scrollHeight; }
+  function scrollBottom(){
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      });
+    });
+  }
 
   /* ── Render **bold** mini-markdown ── */
   function render(text){
@@ -2306,63 +2320,50 @@ updateNav();
     scrollBottom();
   }
 
-  /* ── Envia dados ao RD Station usando o formulário da página ── */
-  function submitToRD(data){
-    try{
-      var form = document.querySelector('form[name=\'"solicite-demonstracao"\']');
-      if(!form) return;
+  /* ── Envia conversão via RdIntegration (fallback: API direta) ── */
+  function submitToRD(data, callback){
+    callback = callback || function(){};
+    var p = new URLSearchParams(window.location.search);
+    var savedUtms = {};
+    try{ var raw = localStorage.getItem('yourh_utms'); if(raw) savedUtms = JSON.parse(raw); }catch(e){}
 
-      var set = function(name, val){
-        var el = form.querySelector('[name="'+name+'"]');
-        if(!el) return;
-        el.value = val || '';
-      };
+    var payload = {
+      name:                    data.name     || '',
+      email:                   data.email    || '',
+      mobile_phone:            data.phone    || '',
+      company_name:            data.company  || '',
+      job_title:               data.role     || '',
+      fields_qtd_funcionarios: data.employees || ''
+    };
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){
+      var v = p.get(k) || savedUtms[k]; if(v) payload[k] = v;
+    });
 
-      /* Mapeamento employees: chip → valor do <select> */
-      var empMap = {
-        '20–30':'20 - 30','31–70':'31 - 70','71–100':'71 - 100',
-        '101–200':'101 - 200','201–300':'201 - 300','301–500':'301 - 500','501+':'501+'
-      };
-      /* Mapeamento role: chip → valor do <select> */
-      var roleMap = {
-        'Analista':'Analista','Assistente/Aux.':'Assistente / Auxiliar',
-        'CEO':'CEO','Consultor':'Consultor','Diretor':'Diretor',
-        'Gerente/Head':'Gerente / Head','Supervisor/Coord.':'Supervisor / Coordenador',
-        'Outros':'Outros'
-      };
-
-      set('name',      data.name);
-      set('email',     data.email);
-      set('phone',     data.phone);
-      set('company',   data.company);
-      set('employees', empMap[data.employees] || data.employees);
-      set('role',      roleMap[data.role]      || data.role);
-      set('site',      data.site);
-
-      /* Marca política de privacidade */
-      var policy = form.querySelector('[name="policy"]');
-      if(policy) policy.checked = true;
-
-      /* Repassa UTMs da URL atual */
-      var p = new URLSearchParams(window.location.search);
-      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){
-        if(p.get(k)) set(k, p.get(k));
-      });
-
-      /* Dispara submit — o RD Station loader intercepta e envia */
-      var btn = form.querySelector('[type="submit"]');
-      if(btn) btn.click();
-    }catch(e){ console.warn('RD submitToRD error:', e); }
+    if(typeof RdIntegration !== 'undefined' && typeof RdIntegration.post === 'function'){
+      try{ RdIntegration.post('solicite-demonstracao', payload); }catch(e){ console.warn('RdIntegration error:', e); }
+      setTimeout(callback, 900);
+    } else {
+      fetch('https://api.rd.services/platform/conversions?api_key=a81f367c-46ec-4dea-a2c2-4367f6781b13', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ event_type:'CONVERSION', event_family:'CDP', payload: Object.assign({ conversion_identifier: 'solicite-demonstracao' }, payload) })
+      }).then(function(){ callback(); }).catch(function(e){ console.warn('RD API error:', e); callback(); });
+    }
   }
 
   /* ── Finish flow (new lead) ── */
   function finishFlow(){
     try{ localStorage.setItem(LS_KEY, JSON.stringify(answers)); }catch(e){}
-    submitToRD(answers);
+    var waUrl = buildWAUrl(answers, false);
     botSay('Perfeito! ✅ Aqui está um resumo das suas informações:', 600).then(function(){
       addSummaryCard(answers);
-      botSay('Clique abaixo e um especialista da YouRH vai entrar em contato com você rapidinho! 🚀', 700).then(function(){
-        addWAButton(buildWAUrl(answers, false), 'Falar com especialista agora');
+      botSay('Registrando seus dados... ⏳', 300).then(function(){
+        submitToRD(answers, function(){
+          addWAButton(waUrl, 'Falar com especialista agora');
+          botSay('Pronto! Redirecionando para o WhatsApp... 🚀', 200).then(function(){
+            setTimeout(function(){ window.location.href = waUrl; }, 1000);
+          });
+        });
       });
     });
   }
@@ -2370,11 +2371,14 @@ updateNav();
   /* ── Confirmation flow (form already filled) ── */
   function confirmationFlow(data){
     answers = data;
-    submitToRD(data);
+    var waUrl = buildWAUrl(data, true);
     botSay('Olá, **' + data.name + '**! 👋\n\nVi que você já preencheu o formulário de demonstração. Confirme seus dados:', 900).then(function(){
       addSummaryCard(data);
-      botSay('Tudo certo? Clique abaixo que um especialista já vai te atender! 🚀', 700).then(function(){
-        addWAButton(buildWAUrl(data, true), 'Confirmar e falar agora');
+      botSay('Tudo certo? Registrando e redirecionando... ⏳', 400).then(function(){
+        submitToRD(data, function(){
+          addWAButton(waUrl, 'Confirmar e falar agora');
+          setTimeout(function(){ window.location.href = waUrl; }, 1000);
+        });
       });
     });
   }
