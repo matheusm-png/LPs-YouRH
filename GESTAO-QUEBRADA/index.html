@@ -1605,42 +1605,43 @@
                   <div class="form-group">
                     <input type="text" id="field-nome" name="name" class="form-input" data-field="nome"
                       placeholder="Seu nome completo *" autocomplete="name"
-                      aria-required="true" aria-describedby="error-nome" />
+                      required aria-required="true" aria-describedby="error-nome" />
                     <span class="form-error" id="error-nome" role="alert"></span>
                   </div>
 
                   <div class="form-group">
                     <input type="email" id="field-email" name="email" class="form-input" data-field="email"
                       placeholder="Seu e-mail corporativo *" autocomplete="email"
-                      aria-required="true" aria-describedby="error-email" />
+                      required aria-required="true" aria-describedby="error-email" />
                     <span class="form-error" id="error-email" role="alert"></span>
                   </div>
 
                   <div class="form-group">
                     <input type="tel" id="field-telefone" name="personal_phone" class="form-input" data-field="telefone"
-                      placeholder="DDD + Telefone *" autocomplete="tel" inputmode="numeric"
-                      aria-required="true" aria-describedby="error-telefone" />
+                      placeholder="DDD + Telefone *" autocomplete="tel-national" inputmode="tel"
+                      pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}"
+                      required aria-required="true" aria-describedby="error-telefone" />
                     <span class="form-error" id="error-telefone" role="alert"></span>
                   </div>
 
                   <div class="form-group">
                     <input type="text" id="field-empresa" name="company_name" class="form-input" data-field="empresa"
                       placeholder="Nome da Empresa *" autocomplete="organization"
-                      aria-required="true" aria-describedby="error-empresa" />
+                      required aria-required="true" aria-describedby="error-empresa" />
                     <span class="form-error" id="error-empresa" role="alert"></span>
                   </div>
 
                   <div class="form-group">
                     <input type="text" id="field-site" name="site" class="form-input" data-field="site"
                       placeholder="Site ou rede social da empresa *" autocomplete="url"
-                      aria-required="true" aria-describedby="error-site" />
+                      required aria-required="true" aria-describedby="error-site" />
                     <span class="form-error" id="error-site" role="alert"></span>
                   </div>
 
                   <div class="form-group">
                     <label for="field-funcionarios" class="sr-only">Número de funcionários</label>
                     <select id="field-funcionarios" name="employees" class="form-input form-select" data-field="funcionarios"
-                      aria-required="true" aria-describedby="error-funcionarios">
+                      required aria-required="true" aria-describedby="error-funcionarios">
                       <option value="" disabled selected>Número de funcionários *</option>
                       <option value="20 - 30">20 - 30</option>
                       <option value="31 - 70">31 - 70</option>
@@ -1655,8 +1656,8 @@
 
                   <div class="form-group">
                     <label for="field-cargo" class="sr-only">Cargo na empresa</label>
-                    <select id="field-cargo" name="role" class="form-input form-select" data-field="cargo"
-                      aria-required="true" aria-describedby="error-cargo">
+                    <select id="field-cargo" name="job_title" class="form-input form-select" data-field="cargo"
+                      required aria-required="true" aria-describedby="error-cargo">
                       <option value="" disabled selected>Seu cargo na empresa *</option>
                       <option value="Analista">Analista</option>
                       <option value="Assistente / Auxiliar">Assistente / Auxiliar</option>
@@ -1672,6 +1673,8 @@
                     <span class="form-error" id="error-cargo" role="alert"></span>
                   </div>
 
+                  <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none;" aria-hidden="true">
+                  <input type="hidden" name="conversion_identifier" value="lp-gestao-quebrada">
                   <input type="hidden" name="utm_source"           id="utm_source">
                   <input type="hidden" name="utm_medium"           id="utm_medium">
                   <input type="hidden" name="utm_campaign"         id="utm_campaign">
@@ -1681,8 +1684,8 @@
 
                   <div class="form-group form-group--checkbox">
                     <label class="form-checkbox-label" id="label-lgpd">
-                      <input type="checkbox" id="field-lgpd" data-field="lgpd"
-                        aria-required="true" aria-describedby="error-lgpd" />
+                      <input type="checkbox" id="field-lgpd" name="lgpd_consent" value="on" data-field="lgpd"
+                        required aria-required="true" aria-describedby="error-lgpd" />
                       <span class="form-checkbox-box" aria-hidden="true">
                         <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5 3.5-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                       </span>

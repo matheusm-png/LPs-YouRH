@@ -64,6 +64,10 @@
       var el = form.querySelector('#' + k);
       if (el && _utms[k]) el.value = _utms[k];
     });
+    var src = form.querySelector('#utm_source');
+    var med = form.querySelector('#utm_medium');
+    if (src && !src.value) src.value = 'direto';
+    if (med && !med.value) med.value = '(none)';
   }
 
   var validators = {
@@ -238,10 +242,16 @@
 
       populateHiddenUtmFields(form);
 
+      var phoneInput = form.querySelector('[data-field="telefone"]');
+      phoneInput.value = phoneInput.value.replace(/\D/g, '');
+
+      var honeypot = form.querySelector('[name="website"]');
+      if (honeypot && honeypot.value) return;
+
       var data = {
         nome:         form.querySelector('[data-field="nome"]').value.trim(),
         email:        form.querySelector('[data-field="email"]').value.trim(),
-        telefone:     form.querySelector('[data-field="telefone"]').value.trim(),
+        telefone:     phoneInput.value,
         empresa:      form.querySelector('[data-field="empresa"]').value.trim(),
         funcionarios: form.querySelector('[data-field="funcionarios"]').value,
         cargo:        form.querySelector('[data-field="cargo"]').value,
