@@ -19,19 +19,6 @@
   <!-- Estilos — NÃO ALTERAR -->
   <link rel="stylesheet" href="css/main.css" />
 
-  <!-- Consent Mode v2 — padrão negado; consentimento já foi dado no formulário -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      ad_storage:         'denied',
-      analytics_storage:  'denied',
-      ad_user_data:       'denied',
-      ad_personalization: 'denied',
-      wait_for_update:    500
-    });
-  </script>
-
   <!-- Google Tag Manager — server-side YouRH -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -171,14 +158,6 @@
       try { leadData = JSON.parse(sessionStorage.getItem('yourh_lead_data') || 'null'); } catch (e) {}
 
       if (!eventId) return;
-
-      // Usuário já aceitou LGPD no formulário — atualiza consent antes de disparar
-      gtag('consent', 'update', {
-        ad_storage:         'granted',
-        analytics_storage:  'granted',
-        ad_user_data:       'granted',
-        ad_personalization: 'granted'
-      });
 
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({

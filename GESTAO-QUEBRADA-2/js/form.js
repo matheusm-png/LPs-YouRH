@@ -215,14 +215,6 @@
     if (lgpdInput) {
       lgpdInput.addEventListener('change', function () {
         validateField('lgpd', lgpdInput);
-        if (lgpdInput.checked && typeof gtag === 'function') {
-          gtag('consent', 'update', {
-            ad_storage:         'granted',
-            analytics_storage:  'granted',
-            ad_user_data:       'granted',
-            ad_personalization: 'granted'
-          });
-        }
       });
     }
 
