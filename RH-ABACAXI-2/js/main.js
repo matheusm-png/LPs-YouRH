@@ -7,10 +7,6 @@
 (function () {
   'use strict';
 
-  // PIXEL META: pageview disparado aqui via dataLayer
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: 'pageview' });
-
   // ── INTERSECTION OBSERVER — Animações de scroll ───────────────
 
   function initScrollAnimations() {

@@ -1,8 +1,9 @@
 /**
  * form.js
- * Validação em tempo real, máscara telefone BR.
- * O envio ao RD Station é feito pelo script loader oficial (não por API manual).
+ * Validação em tempo real, máscara telefone BR e submit com preparação de Lead.
+ * O envio ao RD Station é feito pelo script loader oficial (corpo da página).
  * Os UTMs são persistidos em localStorage e injetados nos campos hidden antes do submit.
+ * O Lead oficial dispara em obrigado.html — aqui apenas lead_pending via GTMEvents.prepareLead().
  */
 
 (function () {
@@ -15,14 +16,11 @@
   // ── UTM PERSISTENCE ──────────────────────────────────────────────
   function readUtmsFromUrl() {
     var params = new URLSearchParams(window.location.search);
-    var utms = {};
+    var utms   = {};
     var hasAny = false;
     UTM_KEYS.forEach(function (k) {
       var val = params.get(k);
-      if (val && val.trim()) {
-        utms[k] = val.trim().toLowerCase();
-        hasAny = true;
-      }
+      if (val && val.trim()) { utms[k] = val.trim().toLowerCase(); hasAny = true; }
     });
     return hasAny ? utms : null;
   }
@@ -31,7 +29,7 @@
     try {
       localStorage.setItem(UTM_STORAGE_KEY, JSON.stringify({
         data:    utms,
-        expires: Date.now() + UTM_EXPIRY_MS,
+        expires: Date.now() + UTM_EXPIRY_MS
       }));
     } catch (e) {}
   }
@@ -53,14 +51,10 @@
 
   var _utms = (function () {
     var fromUrl = readUtmsFromUrl();
-    if (fromUrl) {
-      saveUtms(fromUrl);
-      return fromUrl;
-    }
+    if (fromUrl) { saveUtms(fromUrl); return fromUrl; }
     return loadUtms() || {};
   })();
 
-  // Injeta UTMs do localStorage nos campos hidden do formulário.
   function populateHiddenUtmFields(form) {
     UTM_KEYS.forEach(function (k) {
       var el = form.querySelector('#' + k);
@@ -68,39 +62,18 @@
     });
   }
 
-  // ── VALIDADORES ─────────────────────────────────────────────────
+  // ── VALIDADORES ──────────────────────────────────────────────────
   var validators = {
-    nome: function (v) {
-      return v.trim().length >= 3 && v.trim().split(' ').length >= 2 && v.trim().split(' ')[1].length >= 1;
-    },
-    email: function (v) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
-    },
-    telefone: function (v) {
-      var d = v.replace(/\D/g, '');
-      return d.length >= 10 && d.length <= 11;
-    },
-    empresa: function (v) {
-      return v.trim().length >= 2;
-    },
-    funcionarios: function (v) {
-      return v !== '' && v !== null;
-    },
-    cargo: function (v) {
-      return v !== '' && v !== null;
-    },
-    site: function (v) {
-      return v.trim().length >= 2;
-    },
-    pessoas_rh: function (v) {
-      return v !== '' && v !== null;
-    },
-    desafio: function (v) {
-      return v !== '' && v !== null;
-    },
-    lgpd: function (v, el) {
-      return el ? el.checked : false;
-    },
+    nome:         function (v) { return v.trim().length >= 3 && v.trim().split(' ').length >= 2 && v.trim().split(' ')[1].length >= 1; },
+    email:        function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
+    telefone:     function (v) { var d = v.replace(/\D/g, ''); return d.length >= 10 && d.length <= 11; },
+    empresa:      function (v) { return v.trim().length >= 2; },
+    funcionarios: function (v) { return v !== '' && v !== null; },
+    cargo:        function (v) { return v !== '' && v !== null; },
+    site:         function (v) { return v.trim().length >= 2; },
+    pessoas_rh:   function (v) { return v !== '' && v !== null; },
+    desafio:      function (v) { return v !== '' && v !== null; },
+    lgpd:         function (v, el) { return el ? el.checked : false; }
   };
 
   var errorMessages = {
@@ -113,13 +86,13 @@
     site:         'Informe seu site ou rede social.',
     pessoas_rh:   'Selecione quantas pessoas tem no RH.',
     desafio:      'Selecione seu maior desafio.',
-    lgpd:         'Você precisa aceitar a Política de Privacidade.',
+    lgpd:         'Você precisa aceitar a Política de Privacidade.'
   };
 
-  // ── MÁSCARA DE TELEFONE BR ───────────────────────────────────────
+  // ── MÁSCARA TELEFONE BR ──────────────────────────────────────────
   function maskPhone(value) {
     var d = value.replace(/\D/g, '').slice(0, 11);
-    if (!d.length) return '';
+    if (!d.length)  return '';
     if (d.length <= 2)  return '(' + d;
     if (d.length <= 6)  return '(' + d.slice(0, 2) + ') ' + d.slice(2);
     if (d.length <= 10) return '(' + d.slice(0, 2) + ') ' + d.slice(2, 6) + '-' + d.slice(6);
@@ -130,7 +103,6 @@
   function setError(groupEl, inputEl, msg) {
     groupEl.classList.add('has-error');
     inputEl.classList.remove('is-valid');
-    inputEl.classList.add('is-error');
     var errorEl = groupEl.querySelector('.form-error');
     if (errorEl) errorEl.textContent = msg;
     inputEl.classList.remove('is-error');
@@ -152,37 +124,22 @@
   function validateField(name, inputEl) {
     var groupEl = inputEl.closest('.form-group');
     if (!groupEl) return true;
+    var value   = inputEl.value;
+    var isValid = (name === 'lgpd')
+      ? inputEl.checked
+      : (value.trim() !== '' && validators[name] && validators[name](value, inputEl));
 
-    var value = inputEl.value;
-    var isValid;
-
-    if (name === 'lgpd') {
-      isValid = inputEl.checked;
-    } else {
-      isValid = value.trim() !== '' && validators[name] && validators[name](value, inputEl);
-    }
-
-    if (!isValid) {
-      setError(groupEl, inputEl, errorMessages[name] || 'Campo obrigatório.');
-      return false;
-    }
-
+    if (!isValid) { setError(groupEl, inputEl, errorMessages[name] || 'Campo obrigatório.'); return false; }
     setValid(groupEl, inputEl);
     return true;
   }
 
   // ── LOADING ──────────────────────────────────────────────────────
   function showLoading(btn) {
-    btn.disabled = true;
+    if (!btn) return;
+    btn.disabled      = true;
     btn.dataset.original = btn.innerHTML;
-    btn.innerHTML = '<span class="spinner"></span> Enviando...';
-  }
-
-  // ── GTM ──────────────────────────────────────────────────────────
-  function fireGtmEvent(form) {
-    if (window.GTMEvents && window.GTMEvents.fireLeadFormSubmit) {
-      window.GTMEvents.fireLeadFormSubmit(form);
-    }
+    btn.innerHTML     = '<span class="spinner"></span> Enviando...';
   }
 
   // ── INIT ─────────────────────────────────────────────────────────
@@ -190,7 +147,6 @@
     var form = document.getElementById('lp_rh-abacaxi_conv');
     if (!form) return;
 
-    // Preenche hidden UTMs assim que o DOM carrega (cobre quem chegou com UTMs na URL)
     populateHiddenUtmFields(form);
 
     // Máscara de telefone
@@ -201,69 +157,70 @@
       });
     }
 
-    // Validação no blur
+    // Validação no blur / change
     var fields = form.querySelectorAll('[data-field]');
     fields.forEach(function (input) {
       var name = input.dataset.field;
       if (name === 'lgpd') return;
 
-      input.addEventListener('blur', function () {
-        validateField(name, input);
-      });
+      input.addEventListener('blur', function () { validateField(name, input); });
       input.addEventListener('input', function () {
         var groupEl = input.closest('.form-group');
-        if (groupEl && groupEl.classList.contains('has-error')) {
-          clearState(groupEl, input);
-        }
+        if (groupEl && groupEl.classList.contains('has-error')) clearState(groupEl, input);
       });
       if (input.tagName === 'SELECT') {
-        input.addEventListener('change', function () {
-          validateField(name, input);
-        });
+        input.addEventListener('change', function () { validateField(name, input); });
       }
     });
 
     // Checkbox LGPD
     var lgpdInput = form.querySelector('[data-field="lgpd"]');
     if (lgpdInput) {
-      lgpdInput.addEventListener('change', function () {
-        validateField('lgpd', lgpdInput);
-      });
+      lgpdInput.addEventListener('change', function () { validateField('lgpd', lgpdInput); });
     }
 
-    // Submit
+    // ── SUBMIT ──────────────────────────────────────────────────────
     form.addEventListener('submit', function (e) {
-      // Valida todos os campos — só bloqueia se inválido
-      var allValid = true;
+      e.preventDefault();
+
+      // Valida todos os campos
+      var allValid    = true;
       var firstInvalid = null;
       fields.forEach(function (input) {
-        var name = input.dataset.field;
+        var name  = input.dataset.field;
         var valid = validateField(name, input);
-        if (!valid) {
-          allValid = false;
-          if (!firstInvalid) firstInvalid = input;
-        }
+        if (!valid) { allValid = false; if (!firstInvalid) firstInvalid = input; }
       });
 
       if (!allValid) {
-        e.preventDefault(); // Bloqueia apenas quando há erro de validação
         if (firstInvalid) firstInvalid.focus();
         return;
       }
 
-      // Validação OK: injeta UTMs, dispara GTM e deixa o evento fluir.
-      // O RD Station loader captura o submit nativo e o form navega para action.
       populateHiddenUtmFields(form);
-
-      fireGtmEvent(form);
       showLoading(form.querySelector('.form-submit-btn'));
 
-      // RD Station listener já capturou o evento antes deste handler.
-      // Bloqueamos a navegação POST nativa (Netlify rejeita POST em arquivos estáticos)
-      // e redirecionamos via GET após GTM processar (500ms).
-      e.preventDefault();
       var destination = form.getAttribute('action') || 'obrigado.html';
-      setTimeout(function() { window.location.href = destination; }, 2000);
+
+      // Timeout de segurança — garante o redirect mesmo se prepareLead falhar
+      var safetyTimer = setTimeout(function () {
+        window.location.href = destination;
+      }, 3000);
+
+      // prepareLead gera o event_id, salva no sessionStorage e dispara lead_pending
+      var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
+        ? window.GTMEvents.prepareLead(form)
+        : Promise.resolve();
+
+      leadPromise
+        .then(function () {
+          clearTimeout(safetyTimer);
+          window.location.href = destination;
+        })
+        .catch(function () {
+          clearTimeout(safetyTimer);
+          window.location.href = destination;
+        });
     });
   }
 
