@@ -22,7 +22,9 @@
   }
 
   function fireLead() {
-    var leadEventId = sessionStorage.getItem(SESSION_KEY);
+    // URL param tem prioridade — GTM Server lê da URL; sessionStorage é fallback browser
+    var urlParams    = new URLSearchParams(window.location.search);
+    var leadEventId  = urlParams.get('event_id') || sessionStorage.getItem(SESSION_KEY);
     if (!leadEventId) return; // sem event_id = acesso direto à página, não dispara
 
     var hashes = {};

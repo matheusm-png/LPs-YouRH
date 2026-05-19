@@ -213,9 +213,13 @@
         : Promise.resolve();
 
       leadPromise
-        .then(function () {
+        .then(function (leadEventId) {
           clearTimeout(safetyTimer);
-          window.location.href = destination;
+          var dest = destination;
+          if (leadEventId) {
+            dest += (dest.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
+          }
+          window.location.href = dest;
         })
         .catch(function () {
           clearTimeout(safetyTimer);
