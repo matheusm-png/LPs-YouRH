@@ -204,7 +204,7 @@
     }
 
     form.addEventListener('submit', function (e) {
-      // 1. Valida todos os campos
+      // 1. Valida todos os campos — único motivo para bloquear o submit
       var allValid = true;
       var firstInvalid = null;
       fields.forEach(function (input) {
@@ -229,24 +229,17 @@
         return;
       }
 
-      // 3. Bloqueia POST nativo — o servidor estático não aceita POST em .html
-      //    O loader do RD Station captura os dados via listener próprio (AJAX)
-      //    independente do preventDefault. O redirect é feito por nós via GET.
-      e.preventDefault();
-
-      // 4. Preenche UTMs e limpa máscara do telefone
+      // 3. Preenche UTMs e limpa máscara do telefone antes do envio
       populateHiddenUtmFields(form);
       var phoneInput = form.querySelector('[data-field="telefone"]');
       if (phoneInput) phoneInput.value = phoneInput.value.replace(/\D/g, '');
 
-      // 5. Feedback visual
+      // 4. Feedback visual
       showLoading(form.querySelector('.form-submit-btn'));
 
-      // 6. Redireciona após 2s — tempo suficiente para o RD concluir o AJAX
-      var destination = form.getAttribute('action') || 'obrigado.html';
-      setTimeout(function () {
-        window.location.href = destination;
-      }, 2000);
+      // Submit segue sem preventDefault — o loader do RD Station
+      // intercepta o evento com listener próprio, envia via AJAX
+      // e controla o redirect para obrigado.html
     });
   }
 
