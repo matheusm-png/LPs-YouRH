@@ -19,11 +19,24 @@
   <!-- Estilos — NÃO ALTERAR -->
   <link rel="stylesheet" href="css/main.css" />
 
-  <!-- Google Tag Manager — server-side YouRH -->
+  <!-- Consent Mode v2 — defaults NEGADOS antes do GTM (obrigatório para conformidade LGPD) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      ad_storage:          'denied',
+      analytics_storage:   'denied',
+      ad_user_data:        'denied',
+      ad_personalization:  'denied',
+      wait_for_update:     500
+    });
+  </script>
+
+  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://metrics.lp.yourh.com.br/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-TRVZBWCH');</script>
 
   <style>
@@ -146,36 +159,10 @@
 </head>
 <body class="obrigado-page">
 
-  <!-- Google Tag Manager (noscript) — server-side YouRH -->
-  <noscript><iframe src="https://metrics.lp.yourh.com.br/ns.html?id=GTM-TRVZBWCH"
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRVZBWCH"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- Consent + generate_lead: lê dados salvos no submit, atualiza consentimento e dispara o evento uma única vez -->
-  <script>
-    (function () {
-      var eventId, leadData;
-      try { eventId  = sessionStorage.getItem('yourh_lead_event_id'); } catch (e) {}
-      try { leadData = JSON.parse(sessionStorage.getItem('yourh_lead_data') || 'null'); } catch (e) {}
-
-      if (!eventId) return;
-
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event:                'generate_lead',
-        event_id:             eventId,
-        cargo:                leadData && leadData.cargo        || undefined,
-        empresa:              leadData && leadData.empresa      || undefined,
-        numero_funcionarios:  leadData && leadData.funcionarios || undefined,
-        utm_source:           leadData && leadData.utm_source   || undefined,
-        utm_medium:           leadData && leadData.utm_medium   || undefined,
-        utm_campaign:         leadData && leadData.utm_campaign || undefined,
-        utm_marketing_tactic: leadData && leadData.utm_marketing_tactic || undefined,
-      });
-
-      try { sessionStorage.removeItem('yourh_lead_event_id'); } catch (e) {}
-      try { sessionStorage.removeItem('yourh_lead_data');     } catch (e) {}
-    })();
-  </script>
 
   <!-- HEADER — NÃO ALTERAR -->
   <header class="site-header" role="banner" style="position: relative; top: 0; box-shadow: 0 1px 0 rgba(0,0,0,0.08);">
@@ -308,6 +295,10 @@
 
     </div>
   </footer>
+
+  <script src="js/gtm-events.js" defer></script>
+  <script src="js/obrigado.js"   defer></script>
+  <script src="js/consent.js"    defer></script>
 
 </body>
 </html>

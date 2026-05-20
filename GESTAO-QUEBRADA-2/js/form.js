@@ -162,21 +162,6 @@
     btn.innerHTML = '<span class="spinner"></span> Enviando...';
   }
 
-  function saveLeadToSession(data) {
-    var id = 'lead_' + Date.now();
-    try { sessionStorage.setItem('yourh_lead_event_id', id); } catch (e) {}
-    try {
-      sessionStorage.setItem('yourh_lead_data', JSON.stringify({
-        cargo:                data.cargo,
-        empresa:              data.empresa,
-        funcionarios:         data.funcionarios,
-        utm_source:           _utms.utm_source            || undefined,
-        utm_medium:           _utms.utm_medium            || undefined,
-        utm_campaign:         _utms.utm_campaign          || undefined,
-        utm_marketing_tactic: _utms.utm_marketing_tactic  || undefined,
-      }));
-    } catch (e) {}
-  }
 
   function init() {
     var form = document.getElementById('lp_gestao-quebrada_conv');
@@ -246,22 +231,31 @@
       var honeypot = form.querySelector('[name="website"]');
       if (honeypot && honeypot.value) return;
 
-      var data = {
-        nome:         form.querySelector('[data-field="nome"]').value.trim(),
-        email:        form.querySelector('[data-field="email"]').value.trim(),
-        telefone:     phoneInput.value,
-        empresa:      form.querySelector('[data-field="empresa"]').value.trim(),
-        funcionarios: form.querySelector('[data-field="funcionarios"]').value,
-        cargo:        form.querySelector('[data-field="cargo"]').value,
-      };
-
-      saveLeadToSession(data);
       showLoading(form.querySelector('.form-submit-btn'));
 
-      // Aguarda o RD Station capturar os dados antes de redirecionar
-      setTimeout(function () {
-        window.location.href = form.getAttribute('action');
-      }, 1500);
+      var destination = form.getAttribute('action') || 'obrigado.html';
+
+      var safetyTimer = setTimeout(function () {
+        window.location.href = destination;
+      }, 3000);
+
+      var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
+        ? window.GTMEvents.prepareLead(form)
+        : Promise.resolve();
+
+      leadPromise
+        .then(function (leadEventId) {
+          clearTimeout(safetyTimer);
+          var dest = destination;
+          if (leadEventId) {
+            dest += (dest.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
+          }
+          window.location.href = dest;
+        })
+        .catch(function () {
+          clearTimeout(safetyTimer);
+          window.location.href = destination;
+        });
     });
   }
 
