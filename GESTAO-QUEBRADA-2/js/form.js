@@ -169,6 +169,14 @@
 
     populateHiddenUtmFields(form);
 
+    // Intercepta form.submit() nativo — converte POST para GET redirect.
+    // O loader do RD chama form.submit() após o AJAX e o servidor estático
+    // retorna 404 para POST em .html mesmo o arquivo existindo.
+    var destination = form.getAttribute('action') || 'obrigado.html';
+    form.submit = function () {
+      window.location.href = destination;
+    };
+
     var phoneInput = form.querySelector('[data-field="telefone"]');
     if (phoneInput) {
       phoneInput.addEventListener('input', function () {
@@ -237,9 +245,8 @@
       // 4. Feedback visual
       showLoading(form.querySelector('.form-submit-btn'));
 
-      // Submit segue sem preventDefault — o loader do RD Station
-      // intercepta o evento com listener próprio, envia via AJAX
-      // e controla o redirect para obrigado.html
+      // Submit segue — RD faz AJAX e chama form.submit() ao concluir.
+      // O form.submit() foi sobrescrito acima para redirecionar via GET.
     });
   }
 
