@@ -7,10 +7,6 @@
 (function () {
   'use strict';
 
-  // PIXEL META: pageview disparado aqui via dataLayer
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: 'pageview' });
-
   // ── INTERSECTION OBSERVER — Animações de scroll ───────────────
 
   function initScrollAnimations() {
@@ -72,7 +68,7 @@
     var siteHeader = document.querySelector('.site-header');
     if (!urgencyBar && !siteHeader) return;
 
-    var lastScrollY   = window.pageYOffset;
+    var lastScrollY   = -1;
     var ticking       = false;
     var SCROLL_DELTA  = 8;   // Sensibilidade mínima (px)
     var SCROLL_OFFSET = 120; // Começa a esconder após X px de scroll

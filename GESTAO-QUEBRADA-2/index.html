@@ -35,7 +35,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
 
-  <!-- Estilos base — NÃO ALTERAR -->
+  <!-- Preload do LCP (logo visível no primeiro frame) -->
+  <link rel="preload" as="image" href="assets/logo-dark.svg" />
+
+  <!-- Estilos base — ordem importa, não alterar -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/animations.css" />
   <link rel="stylesheet" href="css/main.css" />
 
   <!-- Estilos específicos desta LP -->
@@ -784,11 +790,6 @@
        INTEGRAÇÕES DE RASTREAMENTO — ver GUIA_IA.md para detalhes
        ═══════════════════════════════════════════════════════════════ -->
 
-  <!-- RD Station Tracking Script — NÃO ALTERAR após configurar
-       Token encontrado em: RD Station > Configurações > Código de Rastreamento
-       ⚠️ Este script deve ficar ANTES do GTM para garantir cookie de sessão correto. -->
-  <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/2b4d5177951b2aaefe0b7f838559c2d9-rdstation.js"></script>
-  <!-- Fim RD Station Tracking Script -->
 
   <!-- Consent Mode v2 — defaults NEGADOS antes do GTM (obrigatório para conformidade LGPD) -->
   <script>
@@ -824,7 +825,7 @@
     <div class="container">
       <div class="header__inner">
         <a href="#hero" class="logo" aria-label="YouRH - página inicial">
-          <img src="assets/logo-dark.svg" alt="YouRH" width="187" height="32" />
+          <img src="assets/logo-dark.svg" alt="YouRH" width="187" height="32" fetchpriority="high" />
         </a>
         <nav class="nav" aria-label="Navegação principal">
           <a href="#problema"   class="nav__link">O problema</a>
