@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var FORM_ID        = 'lp_gestao-quebrada_conv';
+  var FORM_ID        = 'lp-gestao-quebrada-2';
   var PAGE_NAME      = 'Gestão Quebrada | YouRH';
   var PAGE_CATEGORY  = 'Landing Page - RH';
   var SESSION_KEY    = 'lead_event_id';
@@ -147,7 +147,7 @@
       sessionStorage.setItem(SESSION_KEY, leadEventId);
 
       var emailHash = await sha256((form.elements['email'] || {}).value || '');
-      var phoneHash = await sha256((form.elements['phone'] || {}).value || '');
+      var phoneHash = await sha256((form.elements['personal_phone'] || {}).value || '');
 
       sessionStorage.setItem(SESSION_HASHES, JSON.stringify({
         email: emailHash,

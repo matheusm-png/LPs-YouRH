@@ -164,7 +164,7 @@
 
 
   function init() {
-    var form = document.getElementById('lp_gestao-quebrada_conv');
+    var form = document.getElementById('lp-gestao-quebrada-2');
     if (!form) return;
 
     populateHiddenUtmFields(form);
@@ -251,9 +251,31 @@
       // 5. Feedback visual
       showLoading(form.querySelector('.form-submit-btn'));
 
-      // 6. O RD captura via listener próprio e dispara o AJAX (~300ms-1s).
-      //    Aguardamos 2.5s — folga suficiente — e redirecionamos via GET.
-      setTimeout(goToThankYou, 2500);
+      // Timeout de segurança absoluta (fallback)
+      var safetyTimer = setTimeout(goToThankYou, 4000);
+
+      // Dispara a Promise do GTM CAPI (gera event_id, salva no sessionStorage e dispara lead_pending)
+      var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
+        ? window.GTMEvents.prepareLead(form)
+        : Promise.resolve();
+
+      // Aguarda o processamento do CAPI e garante 2s de delay para o AJAX do RD Station Loader rodar
+      Promise.all([
+        leadPromise,
+        new Promise(function (resolve) { setTimeout(resolve, 2000); })
+      ])
+      .then(function (results) {
+        clearTimeout(safetyTimer);
+        var leadEventId = results[0];
+        if (leadEventId) {
+          destination += (destination.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
+        }
+        goToThankYou();
+      })
+      .catch(function () {
+        clearTimeout(safetyTimer);
+        goToThankYou();
+      });
     });
   }
 

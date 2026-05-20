@@ -29,7 +29,7 @@
       event:        'Lead',
       event_id:     leadEventId,
       event_name:   'Lead',
-      content_name: 'lp_gestao-quebrada_conv',
+      content_name: 'lp-gestao-quebrada-2',
       page_url:     window.location.href,
       timestamp:    Math.floor(Date.now() / 1000),
       user_data: {
