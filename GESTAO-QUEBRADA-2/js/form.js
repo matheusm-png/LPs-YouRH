@@ -169,22 +169,16 @@
 
     populateHiddenUtmFields(form);
 
-    // Intercepta form.submit() nativo — converte POST para GET redirect.
-    // O loader do RD chama form.submit() após o AJAX e o servidor estático
-    // retorna 404 para POST em .html mesmo o arquivo existindo.
     var destination = form.getAttribute('action') || 'https://lp.yourh.com.br/gestao-quebrada-2/obrigado.html';
+    var redirected  = false;
 
-    // Netlify retorna 404 para POST em arquivo estático mesmo o arquivo existindo.
-    // O loader do RD chama form.submit() após o AJAX — interceptamos no prototype
-    // para garantir que o redirect seja sempre GET (window.location.href).
-    var _nativeSubmit = HTMLFormElement.prototype.submit;
-    HTMLFormElement.prototype.submit = function () {
-      if (this === form) {
-        window.location.href = destination;
-      } else {
-        _nativeSubmit.call(this);
-      }
-    };
+    // Netlify retorna 404 para POST em .html estático. Por isso bloqueamos o
+    // POST nativo e fazemos o redirect por conta própria via GET.
+    function goToThankYou() {
+      if (redirected) return;
+      redirected = true;
+      window.location.href = destination;
+    }
 
     var phoneInput = form.querySelector('[data-field="telefone"]');
     if (phoneInput) {
@@ -246,7 +240,7 @@
         return;
       }
 
-      // 3. Bloqueia o POST nativo do browser — sem isso o browser posta antes do RD
+      // 3. Bloqueia o POST nativo — Netlify retorna 404 para POST em .html
       e.preventDefault();
 
       // 4. Preenche UTMs e limpa máscara do telefone
@@ -257,9 +251,9 @@
       // 5. Feedback visual
       showLoading(form.querySelector('.form-submit-btn'));
 
-      // RD dispara AJAX via listener próprio (não depende do submit nativo).
-      // Ao concluir, chama form.submit() — interceptado no prototype acima
-      // e convertido para window.location.href (GET) → Netlify serve normalmente.
+      // 6. O RD captura via listener próprio e dispara o AJAX (~300ms-1s).
+      //    Aguardamos 2.5s — folga suficiente — e redirecionamos via GET.
+      setTimeout(goToThankYou, 2500);
     });
   }
 
