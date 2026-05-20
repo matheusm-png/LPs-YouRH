@@ -204,6 +204,7 @@
     }
 
     form.addEventListener('submit', function (e) {
+      // 1. Valida todos os campos — bloqueia apenas se inválido
       var allValid = true;
       var firstInvalid = null;
       fields.forEach(function (input) {
@@ -221,41 +222,22 @@
         return;
       }
 
-      e.preventDefault();
-
-      populateHiddenUtmFields(form);
-
-      var phoneInput = form.querySelector('[data-field="telefone"]');
-      phoneInput.value = phoneInput.value.replace(/\D/g, '');
-
+      // 2. Honeypot anti-spam
       var honeypot = form.querySelector('[name="website"]');
-      if (honeypot && honeypot.value) return;
+      if (honeypot && honeypot.value) {
+        e.preventDefault();
+        return;
+      }
 
+      // 3. Preenche UTMs e limpa máscara do telefone antes do envio nativo
+      populateHiddenUtmFields(form);
+      var phoneInput = form.querySelector('[data-field="telefone"]');
+      if (phoneInput) phoneInput.value = phoneInput.value.replace(/\D/g, '');
+
+      // 4. Feedback visual — o RD faz o submit e redireciona
       showLoading(form.querySelector('.form-submit-btn'));
 
-      var destination = form.getAttribute('action') || 'obrigado.html';
-
-      var safetyTimer = setTimeout(function () {
-        window.location.href = destination;
-      }, 3000);
-
-      var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
-        ? window.GTMEvents.prepareLead(form)
-        : Promise.resolve();
-
-      leadPromise
-        .then(function (leadEventId) {
-          clearTimeout(safetyTimer);
-          var dest = destination;
-          if (leadEventId) {
-            dest += (dest.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
-          }
-          window.location.href = dest;
-        })
-        .catch(function () {
-          clearTimeout(safetyTimer);
-          window.location.href = destination;
-        });
+      // Submit segue naturalmente para o loader do RD Station
     });
   }
 
