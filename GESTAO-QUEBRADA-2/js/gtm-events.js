@@ -146,9 +146,8 @@
 
       sessionStorage.setItem(SESSION_KEY, leadEventId);
 
-      // Campo de telefone usa name="personal_phone" nesta LP
-      var emailHash = await sha256((form.elements['email']         || {}).value || '');
-      var phoneHash = await sha256((form.elements['personal_phone'] || {}).value || '');
+      var emailHash = await sha256((form.elements['cf_email_corporativo'] || {}).value || '');
+      var phoneHash = await sha256((form.elements['cf_phone']             || {}).value || '');
 
       sessionStorage.setItem(SESSION_HASHES, JSON.stringify({
         email: emailHash,
