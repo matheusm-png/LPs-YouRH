@@ -172,9 +172,18 @@
     // Intercepta form.submit() nativo — converte POST para GET redirect.
     // O loader do RD chama form.submit() após o AJAX e o servidor estático
     // retorna 404 para POST em .html mesmo o arquivo existindo.
-    var destination = form.getAttribute('action') || 'obrigado.html';
-    form.submit = function () {
-      window.location.href = destination;
+    var destination = form.getAttribute('action') || 'https://lp.yourh.com.br/gestao-quebrada-2/obrigado.html';
+
+    // Netlify retorna 404 para POST em arquivo estático mesmo o arquivo existindo.
+    // O loader do RD chama form.submit() após o AJAX — interceptamos no prototype
+    // para garantir que o redirect seja sempre GET (window.location.href).
+    var _nativeSubmit = HTMLFormElement.prototype.submit;
+    HTMLFormElement.prototype.submit = function () {
+      if (this === form) {
+        window.location.href = destination;
+      } else {
+        _nativeSubmit.call(this);
+      }
     };
 
     var phoneInput = form.querySelector('[data-field="telefone"]');
@@ -237,16 +246,20 @@
         return;
       }
 
-      // 3. Preenche UTMs e limpa máscara do telefone antes do envio
+      // 3. Bloqueia o POST nativo do browser — sem isso o browser posta antes do RD
+      e.preventDefault();
+
+      // 4. Preenche UTMs e limpa máscara do telefone
       populateHiddenUtmFields(form);
       var phoneInput = form.querySelector('[data-field="telefone"]');
       if (phoneInput) phoneInput.value = phoneInput.value.replace(/\D/g, '');
 
-      // 4. Feedback visual
+      // 5. Feedback visual
       showLoading(form.querySelector('.form-submit-btn'));
 
-      // Submit segue — RD faz AJAX e chama form.submit() ao concluir.
-      // O form.submit() foi sobrescrito acima para redirecionar via GET.
+      // RD dispara AJAX via listener próprio (não depende do submit nativo).
+      // Ao concluir, chama form.submit() — interceptado no prototype acima
+      // e convertido para window.location.href (GET) → Netlify serve normalmente.
     });
   }
 
