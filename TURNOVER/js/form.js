@@ -12,7 +12,6 @@
   var UTM_EXPIRY_MS   = 30 * 24 * 60 * 60 * 1000; // 30 dias
   var UTM_KEYS        = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_marketing_tactic'];
 
-  // ── UTM PERSISTENCE ──────────────────────────────────────────────
   function readUtmsFromUrl() {
     var params = new URLSearchParams(window.location.search);
     var utms = {};
@@ -60,15 +59,17 @@
     return loadUtms() || {};
   })();
 
-  // Injeta UTMs do localStorage nos campos hidden do formulário.
   function populateHiddenUtmFields(form) {
     UTM_KEYS.forEach(function (k) {
       var el = form.querySelector('#' + k);
       if (el && _utms[k]) el.value = _utms[k];
     });
+    var src = form.querySelector('#utm_source');
+    var med = form.querySelector('#utm_medium');
+    if (src && !src.value) src.value = 'direto';
+    if (med && !med.value) med.value = '(none)';
   }
 
-  // ── VALIDADORES ─────────────────────────────────────────────────
   var validators = {
     nome: function (v) {
       return v.trim().length >= 3 && v.trim().split(' ').length >= 2 && v.trim().split(' ')[1].length >= 1;
@@ -108,7 +109,6 @@
     lgpd:         'Você precisa aceitar a Política de Privacidade.',
   };
 
-  // ── MÁSCARA DE TELEFONE BR ───────────────────────────────────────
   function maskPhone(value) {
     var d = value.replace(/\D/g, '').slice(0, 11);
     if (!d.length) return '';
@@ -118,16 +118,13 @@
     return '(' + d.slice(0, 2) + ') ' + d.slice(2, 7) + '-' + d.slice(7);
   }
 
-  // ── HELPERS DE ESTADO ────────────────────────────────────────────
   function setError(groupEl, inputEl, msg) {
     groupEl.classList.add('has-error');
-    inputEl.classList.remove('is-valid');
+    inputEl.classList.remove('is-valid', 'is-error');
+    void inputEl.offsetWidth;
     inputEl.classList.add('is-error');
     var errorEl = groupEl.querySelector('.form-error');
     if (errorEl) errorEl.textContent = msg;
-    inputEl.classList.remove('is-error');
-    void inputEl.offsetWidth;
-    inputEl.classList.add('is-error');
   }
 
   function setValid(groupEl, inputEl) {
@@ -144,60 +141,45 @@
   function validateField(name, inputEl) {
     var groupEl = inputEl.closest('.form-group');
     if (!groupEl) return true;
-
     var value = inputEl.value;
     var isValid;
-
     if (name === 'lgpd') {
       isValid = inputEl.checked;
     } else {
       isValid = value.trim() !== '' && validators[name] && validators[name](value, inputEl);
     }
-
     if (!isValid) {
       setError(groupEl, inputEl, errorMessages[name] || 'Campo obrigatório.');
       return false;
     }
-
     setValid(groupEl, inputEl);
     return true;
   }
 
-  // ── LOADING ──────────────────────────────────────────────────────
   function showLoading(btn) {
     btn.disabled = true;
     btn.dataset.original = btn.innerHTML;
     btn.innerHTML = '<span class="spinner"></span> Enviando...';
   }
 
-  // ── GTM ──────────────────────────────────────────────────────────
-  function fireGtmEvent(data) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event:               'lead_form_submit',
-      cargo:               data.cargo,
-      empresa:             data.empresa,
-      numero_funcionarios: data.funcionarios,
-      utm_source:          _utms.utm_source   || undefined,
-      utm_medium:          _utms.utm_medium   || undefined,
-      utm_campaign:        _utms.utm_campaign || undefined,
-      utm_marketing_tactic:_utms.utm_marketing_tactic || undefined,
-    });
-    window.dispatchEvent(new CustomEvent('lead_form_submit', {
-      bubbles: true,
-      detail:  { email: data.email, cargo: data.cargo, empresa: data.empresa },
-    }));
-  }
 
-  // ── INIT ─────────────────────────────────────────────────────────
   function init() {
     var form = document.getElementById('lp-turnover');
     if (!form) return;
 
-    // Preenche hidden UTMs assim que o DOM carrega (cobre quem chegou com UTMs na URL)
     populateHiddenUtmFields(form);
 
-    // Máscara de telefone
+    var destination = form.getAttribute('action') || 'https://lp.yourh.com.br/turnover/obrigado.html';
+    var redirected  = false;
+
+    // Netlify retorna 404 para POST em .html estático. Por isso bloqueamos o
+    // POST nativo e fazemos o redirect por conta própria via GET.
+    function goToThankYou() {
+      if (redirected) return;
+      redirected = true;
+      window.location.href = destination;
+    }
+
     var phoneInput = form.querySelector('[data-field="telefone"]');
     if (phoneInput) {
       phoneInput.addEventListener('input', function () {
@@ -205,12 +187,10 @@
       });
     }
 
-    // Validação no blur
     var fields = form.querySelectorAll('[data-field]');
     fields.forEach(function (input) {
       var name = input.dataset.field;
       if (name === 'lgpd') return;
-
       input.addEventListener('blur', function () {
         validateField(name, input);
       });
@@ -227,7 +207,6 @@
       }
     });
 
-    // Checkbox LGPD
     var lgpdInput = form.querySelector('[data-field="lgpd"]');
     if (lgpdInput) {
       lgpdInput.addEventListener('change', function () {
@@ -235,9 +214,8 @@
       });
     }
 
-    // Submit
     form.addEventListener('submit', function (e) {
-      // Valida todos os campos — só bloqueia se inválido
+      // 1. Valida todos os campos — único motivo para bloquear o submit
       var allValid = true;
       var firstInvalid = null;
       fields.forEach(function (input) {
@@ -250,67 +228,54 @@
       });
 
       if (!allValid) {
-        e.preventDefault(); // Bloqueia apenas quando há erro de validação
+        e.preventDefault();
         if (firstInvalid) firstInvalid.focus();
         return;
       }
 
-      // Validação OK: injeta UTMs, dispara GTM e deixa o evento fluir.
+      // 2. Honeypot anti-spam
+      var honeypot = form.querySelector('[name="website"]');
+      if (honeypot && honeypot.value) {
+        e.preventDefault();
+        return;
+      }
+
+      // 3. Bloqueia o POST nativo — servidor estático retorna 404 para POST em .html
+      e.preventDefault();
+
+      // 4. Preenche UTMs e limpa máscara do telefone
       populateHiddenUtmFields(form);
+      var phoneEl = form.querySelector('[data-field="telefone"]');
+      if (phoneEl) phoneEl.value = phoneEl.value.replace(/\D/g, '');
 
-      var data = {
-        nome:         form.querySelector('[data-field="nome"]').value.trim(),
-        email:        form.querySelector('[data-field="email"]').value.trim(),
-        telefone:     form.querySelector('[data-field="telefone"]').value.trim(),
-        empresa:      form.querySelector('[data-field="empresa"]').value.trim(),
-        funcionarios: form.querySelector('[data-field="funcionarios"]').value,
-        cargo:        form.querySelector('[data-field="cargo"]').value,
-      };
-
-      fireGtmEvent(data);
+      // 5. Feedback visual
       showLoading(form.querySelector('.form-submit-btn'));
 
-      var destination = form.getAttribute('action') || 'obrigado.html';
-      var redirected  = false;
+      // Timeout de segurança absoluta (fallback)
+      var safetyTimer = setTimeout(goToThankYou, 4000);
 
-      // 1. Cronômetro de segurança absoluto de 4 segundos (fallback)
-      var safetyTimer = setTimeout(function () {
-        if (!redirected) {
-          redirected = true;
-          window.location.href = destination;
-        }
-      }, 4000);
-
-      // 2. Dispara a preparação de CAPI / GTM (retorna uma Promise)
+      // Dispara a Promise do GTM CAPI (gera event_id, salva no sessionStorage e dispara lead_pending)
       var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
         ? window.GTMEvents.prepareLead(form)
         : Promise.resolve();
 
-      // 3. Delay artificial de 2 segundos para dar tempo ao AJAX nativo do RD Station Loader completar
-      var delayPromise = new Promise(function (resolve) {
-        setTimeout(resolve, 2000);
+      // Aguarda o processamento do CAPI e garante 2s de delay para o AJAX do RD Station Loader rodar
+      Promise.all([
+        leadPromise,
+        new Promise(function (resolve) { setTimeout(resolve, 2000); })
+      ])
+      .then(function (results) {
+        clearTimeout(safetyTimer);
+        var leadEventId = results[0];
+        if (leadEventId) {
+          destination += (destination.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
+        }
+        goToThankYou();
+      })
+      .catch(function () {
+        clearTimeout(safetyTimer);
+        goToThankYou();
       });
-
-      // 4. Aguarda ambas as Promises terminarem
-      Promise.all([leadPromise, delayPromise])
-        .then(function (results) {
-          if (redirected) return;
-          redirected = true;
-          clearTimeout(safetyTimer);
-          
-          var leadEventId = results[0];
-          var dest = destination;
-          if (leadEventId) {
-            dest += (dest.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
-          }
-          window.location.href = dest;
-        })
-        .catch(function () {
-          if (redirected) return;
-          redirected = true;
-          clearTimeout(safetyTimer);
-          window.location.href = destination;
-        });
     });
   }
 
@@ -320,4 +285,3 @@
     init();
   }
 })();
-

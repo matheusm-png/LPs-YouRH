@@ -115,6 +115,26 @@
     push(base);
   }
 
+  function initScrollTracking() {
+    var milestones = { 25: false, 50: false, 75: false, 100: false };
+    var ticking    = false;
+    function checkScroll() {
+      var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      var pct = (window.scrollY / scrollable) * 100;
+      [25, 50, 75, 100].forEach(function (mark) {
+        if (!milestones[mark] && pct >= mark) {
+          milestones[mark] = true;
+          fireScrollDepth(mark);
+        }
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(checkScroll); }
+    }, { passive: true });
+  }
+
   function initTimeTracking() {
     var elapsed  = 0;
     var interval = setInterval(function () {
@@ -157,6 +177,7 @@
   function boot() {
     firePageview();
     initFormStarted();
+    initScrollTracking();
     initTimeTracking();
   }
 
