@@ -162,29 +162,23 @@
     btn.innerHTML = '<span class="spinner"></span> Enviando...';
   }
 
-  function fireGtmEvent(data) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event:               'lead_form_submit',
-      cargo:               data.cargo,
-      empresa:             data.empresa,
-      numero_funcionarios: data.funcionarios,
-      utm_source:          _utms.utm_source   || undefined,
-      utm_medium:          _utms.utm_medium   || undefined,
-      utm_campaign:        _utms.utm_campaign || undefined,
-      utm_marketing_tactic:_utms.utm_marketing_tactic || undefined,
-    });
-    window.dispatchEvent(new CustomEvent('lead_form_submit', {
-      bubbles: true,
-      detail:  { email: data.email, cargo: data.cargo, empresa: data.empresa },
-    }));
-  }
 
   function init() {
     var form = document.getElementById('lp-gestao-quebrada');
     if (!form) return;
 
     populateHiddenUtmFields(form);
+
+    var destination = form.getAttribute('action') || 'https://lp.yourh.com.br/gestao-quebrada/obrigado.html';
+    var redirected  = false;
+
+    // Servidor estático retorna 404 para POST em .html. Por isso bloqueamos o
+    // POST nativo e fazemos o redirect por conta própria via GET.
+    function goToThankYou() {
+      if (redirected) return;
+      redirected = true;
+      window.location.href = destination;
+    }
 
     var phoneInput = form.querySelector('[data-field="telefone"]');
     if (phoneInput) {
@@ -221,6 +215,7 @@
     }
 
     form.addEventListener('submit', function (e) {
+      // 1. Valida todos os campos — único motivo para bloquear o submit
       var allValid = true;
       var firstInvalid = null;
       fields.forEach(function (input) {
@@ -238,57 +233,49 @@
         return;
       }
 
+      // 2. Honeypot anti-spam
+      var honeypot = form.querySelector('[name="website"]');
+      if (honeypot && honeypot.value) {
+        e.preventDefault();
+        return;
+      }
+
+      // 3. Bloqueia o POST nativo — servidor estático retorna 404 para POST em .html
       e.preventDefault();
 
+      // 4. Preenche UTMs e limpa máscara do telefone
       populateHiddenUtmFields(form);
+      var phoneEl = form.querySelector('[data-field="telefone"]');
+      if (phoneEl) phoneEl.value = phoneEl.value.replace(/\D/g, '');
 
-      var phoneInput = form.querySelector('[data-field="telefone"]');
-      phoneInput.value = phoneInput.value.replace(/\D/g, '');
-
-      var honeypot = form.querySelector('[name="website"]');
-      if (honeypot && honeypot.value) return;
-
-      var data = {
-        nome:         form.querySelector('[data-field="nome"]').value.trim(),
-        email:        form.querySelector('[data-field="email"]').value.trim(),
-        telefone:     phoneInput.value,
-        empresa:      form.querySelector('[data-field="empresa"]').value.trim(),
-        funcionarios: form.querySelector('[data-field="funcionarios"]').value,
-        cargo:        form.querySelector('[data-field="cargo"]').value,
-      };
-
-      fireGtmEvent(data);
+      // 5. Feedback visual
       showLoading(form.querySelector('.form-submit-btn'));
 
-      var destination = form.getAttribute('action') || 'obrigado.html';
-      var redirected  = false;
+      // Timeout de segurança absoluta (fallback)
+      var safetyTimer = setTimeout(goToThankYou, 4000);
 
-      var safetyTimer = setTimeout(function () {
-        if (!redirected) { redirected = true; window.location.href = destination; }
-      }, 4000);
-
+      // Dispara a Promise do GTM CAPI (gera event_id, salva no sessionStorage e dispara lead_pending)
       var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
         ? window.GTMEvents.prepareLead(form)
         : Promise.resolve();
 
-      var delayPromise = new Promise(function (resolve) { setTimeout(resolve, 2000); });
-
-      Promise.all([leadPromise, delayPromise])
-        .then(function (results) {
-          if (redirected) return;
-          redirected = true;
-          clearTimeout(safetyTimer);
-          var leadEventId = results[0];
-          var dest = destination;
-          if (leadEventId) dest += (dest.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
-          window.location.href = dest;
-        })
-        .catch(function () {
-          if (redirected) return;
-          redirected = true;
-          clearTimeout(safetyTimer);
-          window.location.href = destination;
-        });
+      // Aguarda o processamento do CAPI e garante 2s de delay para o AJAX do RD Station Loader rodar
+      Promise.all([
+        leadPromise,
+        new Promise(function (resolve) { setTimeout(resolve, 2000); })
+      ])
+      .then(function (results) {
+        clearTimeout(safetyTimer);
+        var leadEventId = results[0];
+        if (leadEventId) {
+          destination += (destination.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
+        }
+        goToThankYou();
+      })
+      .catch(function () {
+        clearTimeout(safetyTimer);
+        goToThankYou();
+      });
     });
   }
 
