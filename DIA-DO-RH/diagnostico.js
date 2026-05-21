@@ -539,9 +539,9 @@ document.addEventListener('DOMContentLoaded', () => {
         window.dataLayer.push({
           event:                 'lead_form_submit',
           conversion_identifier: 'lp-dia-do-rh',
-          lead_email:            leadForm.querySelector('[name="email"]').value.trim(),
+          lead_email:            form.querySelector('[name="email"]').value.trim(),
           lead_empresa:          userData.empresa.trim(),
-          lead_cargo:            leadForm.querySelector('[name="cargo"]').value.trim(),
+          lead_cargo:            form.querySelector('[name="cargo"]').value.trim(),
           utm_source:            utms.utm_source   || undefined,
           utm_medium:            utms.utm_medium   || undefined,
           utm_campaign:          utms.utm_campaign || undefined,
@@ -549,7 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
-        ? window.GTMEvents.prepareLead(leadForm)
+        ? window.GTMEvents.prepareLead(form)
         : Promise.resolve();
 
       // Prevent visual redirect, submission occurs via native form to silent iframe
