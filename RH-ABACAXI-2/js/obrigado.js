@@ -37,7 +37,7 @@
       event:        'Lead',
       event_id:     leadEventId,
       event_name:   'Lead',
-      content_name: 'lp_rh-abacaxi_conv',
+      content_name: 'lp-rh-abacaxi-2',
       page_url:     window.location.href,
       timestamp:    Math.floor(Date.now() / 1000),
       user_data:    {

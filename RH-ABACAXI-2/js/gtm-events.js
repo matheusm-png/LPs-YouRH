@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var FORM_ID        = 'lp_rh-abacaxi_conv';
+  var FORM_ID        = 'lp-rh-abacaxi-2';
   var PAGE_NAME      = 'Chega de RH Abacaxi | YouRH';
   var PAGE_CATEGORY  = 'Landing Page - RH';
   var SESSION_KEY    = 'lead_event_id';
@@ -158,7 +158,7 @@
 
       // Hash de PII — NUNCA expor plain text no dataLayer
       var emailHash = await sha256((form.elements['email'] || {}).value || '');
-      var phoneHash = await sha256((form.elements['phone'] || {}).value || '');
+      var phoneHash = await sha256((form.elements['personal_phone'] || {}).value || '');
 
       // Salva hashes para o Lead oficial em obrigado.html
       sessionStorage.setItem(SESSION_HASHES, JSON.stringify({

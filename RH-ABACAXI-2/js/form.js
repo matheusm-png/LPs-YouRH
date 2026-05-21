@@ -144,7 +144,7 @@
 
   // ── INIT ─────────────────────────────────────────────────────────
   function init() {
-    var form = document.getElementById('lp_rh-abacaxi_conv');
+    var form = document.getElementById('lp-rh-abacaxi-2');
     if (!form) return;
 
     populateHiddenUtmFields(form);
@@ -201,20 +201,34 @@
       showLoading(form.querySelector('.form-submit-btn'));
 
       var destination = form.getAttribute('action') || 'obrigado.html';
+      var redirected  = false;
 
-      // Timeout de segurança — garante o redirect mesmo se prepareLead falhar
+      // 1. Cronômetro de segurança absoluto de 4 segundos (fallback)
       var safetyTimer = setTimeout(function () {
-        window.location.href = destination;
-      }, 3000);
+        if (!redirected) {
+          redirected = true;
+          window.location.href = destination;
+        }
+      }, 4000);
 
-      // prepareLead gera o event_id, salva no sessionStorage e dispara lead_pending
+      // 2. Dispara a preparação de CAPI / GTM (retorna uma Promise)
       var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
         ? window.GTMEvents.prepareLead(form)
         : Promise.resolve();
 
-      leadPromise
-        .then(function (leadEventId) {
+      // 3. Delay artificial de 2 segundos para dar tempo ao AJAX nativo do RD Station Loader completar
+      var delayPromise = new Promise(function (resolve) {
+        setTimeout(resolve, 2000);
+      });
+
+      // 4. Aguarda ambas as Promises terminarem
+      Promise.all([leadPromise, delayPromise])
+        .then(function (results) {
+          if (redirected) return;
+          redirected = true;
           clearTimeout(safetyTimer);
+          
+          var leadEventId = results[0];
           var dest = destination;
           if (leadEventId) {
             dest += (dest.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
@@ -222,6 +236,8 @@
           window.location.href = dest;
         })
         .catch(function () {
+          if (redirected) return;
+          redirected = true;
           clearTimeout(safetyTimer);
           window.location.href = destination;
         });
