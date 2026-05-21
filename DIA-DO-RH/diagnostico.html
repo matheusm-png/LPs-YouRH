@@ -51,7 +51,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="lead">Em aproximadamente 10 minutos, avalie a maturidade do seu time nas 5 dimensões estratégicas e receba um plano de ação de 90 dias.</p>
       
       <div class="intro-box glass glass--strong" style="max-width: 600px; margin: 0 auto; text-align: left;">
-        <form id="lp_dia-do-rh_conv" class="intro-form" method="post" target="rd_submit_iframe" novalidate>
+        <form id="lp-dia-do-rh" class="intro-form" method="post" target="rd_submit_iframe" novalidate>
           <div class="field-group">
             <div class="field">
               <label for="field-nome">Seu nome completo *</label>
@@ -68,12 +68,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="field-group">
             <div class="field">
               <label for="field-whatsapp">WhatsApp (DDD + número) *</label>
-              <input id="field-whatsapp" name="phone" type="tel" autocomplete="tel" data-field="telefone" required placeholder="(11) 99999-9999" />
+              <input id="field-whatsapp" name="personal_phone" type="tel" autocomplete="tel" data-field="telefone" required placeholder="(11) 99999-9999" />
               <span class="field__error" id="error-telefone"></span>
             </div>
             <div class="field">
               <label for="field-empresa">Nome da empresa *</label>
-              <input id="field-empresa" name="company" type="text" autocomplete="organization" data-field="empresa" required placeholder="Nome da empresa" />
+              <input id="field-empresa" name="company_name" type="text" autocomplete="organization" data-field="empresa" required placeholder="Nome da empresa" />
               <span class="field__error" id="error-empresa"></span>
             </div>
           </div>
@@ -87,7 +87,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="field-group">
             <div class="field">
               <label for="field-cargo">Seu cargo na empresa *</label>
-              <select id="field-cargo" name="role" data-field="cargo" required>
+              <select id="field-cargo" name="cargo" data-field="cargo" required>
                 <option value="" disabled selected>Seu cargo na empresa *</option>
                 <option value="Analista">Analista</option>
                 <option value="Assistente / Auxiliar">Assistente / Auxiliar</option>
@@ -103,7 +103,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="field">
               <label for="field-colab">Número de colaboradores *</label>
-              <select id="field-colab" name="employees" data-field="funcionarios" required>
+              <select id="field-colab" name="form_fields_qtd_funcionarios" data-field="funcionarios" required>
                 <option value="" disabled selected>Número de colaboradores *</option>
                 <option value="20 - 30">20 - 30</option>
                 <option value="31 - 70">31 - 70</option>
@@ -151,9 +151,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input type="hidden" name="utm_content"          id="utm_content">
           <input type="hidden" name="utm_term"             id="utm_term">
           <input type="hidden" name="utm_marketing_tactic" id="utm_marketing_tactic">
+          <input type="hidden" name="conversion_identifier" value="lp-dia-do-rh">
 
           <label class="check-line">
-            <input type="checkbox" id="field-lgpd" data-field="lgpd" required />
+            <input type="checkbox" id="field-lgpd" name="policy" value="on" data-field="lgpd" required />
             <span>Ao informar meus dados, eu concordo com a <a href="https://yourh.com.br/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
           </label>
           <span class="field__error field--full" id="error-lgpd"></span>
@@ -277,6 +278,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p>&copy; 2025 YouRH. Todos os direitos reservados.</p>
 </footer>
 
+<script src="js/gtm-events.js"></script>
 <script src="diagnostico.js"></script>
 
 </body>

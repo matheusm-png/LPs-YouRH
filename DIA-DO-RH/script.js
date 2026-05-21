@@ -316,7 +316,7 @@ document.querySelectorAll('[data-field]').forEach((input) => {
 });
 
 /* =========== Form submission ============ */
-const leadForm = document.getElementById('lp_dia-do-rh_conv');
+const leadForm = document.getElementById('lp-dia-do-rh');
 if (leadForm) {
   /* Popula hidden fields no carregamento inicial (garante que a RD leia com antecedência) */
   populateUtmFields(leadForm);

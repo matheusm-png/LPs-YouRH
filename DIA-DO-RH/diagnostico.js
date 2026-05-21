@@ -484,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderLeadForm() {
-    const form = document.getElementById('lp_dia-do-rh_conv');
+    const form = document.getElementById('lp-dia-do-rh');
     if (!form) return;
 
     populateUtmFields(form);
@@ -538,24 +538,30 @@ document.addEventListener('DOMContentLoaded', () => {
       if (window.dataLayer) {
         window.dataLayer.push({
           event:                 'lead_form_submit',
-          conversion_identifier: 'autodiagnostico-maturidade-yourh',
-          lead_email:            document.getElementById('field-email').value.trim(),
+          conversion_identifier: 'lp-dia-do-rh',
+          lead_email:            leadForm.querySelector('[name="email"]').value.trim(),
           lead_empresa:          userData.empresa.trim(),
-          lead_cargo:            document.getElementById('field-cargo').value.trim(),
+          lead_cargo:            leadForm.querySelector('[name="cargo"]').value.trim(),
           utm_source:            utms.utm_source   || undefined,
           utm_medium:            utms.utm_medium   || undefined,
           utm_campaign:          utms.utm_campaign || undefined,
         });
       }
 
+      var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
+        ? window.GTMEvents.prepareLead(leadForm)
+        : Promise.resolve();
+
       // Prevent visual redirect, submission occurs via native form to silent iframe
       // We delay visual step change slightly to give browser time to fire events
-      setTimeout(() => {
-        document.getElementById('intro-screen').style.display = 'none';
-        document.getElementById('quiz-screen').style.display = 'block';
-        currentStep = 1;
-        renderStep();
-      }, 200);
+      leadPromise.then(function() {
+        setTimeout(() => {
+          document.getElementById('intro-screen').style.display = 'none';
+          document.getElementById('quiz-screen').style.display = 'block';
+          currentStep = 1;
+          renderStep();
+        }, 500); // delay ligeiramente maior para o RD Station loader ter mais chance de pegar o form silenciosamente
+      });
     });
   }
 
@@ -718,6 +724,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Auto trigger RD or analytics if defined
     if (typeof rdSubmitDiagnostic === 'function') {
       rdSubmitDiagnostic(userData, totalScore, level.name, dimScores);
+    }
+    
+    // Dispara evento CAPI oficial de Lead com o novo gtm-events.js
+    if (window.GTMEvents && window.GTMEvents.fireLeadNow) {
+      window.GTMEvents.fireLeadNow();
     }
   }
 
