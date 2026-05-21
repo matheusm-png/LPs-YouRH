@@ -371,7 +371,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const quizContainer = document.getElementById('quiz-content');
   const progressBar = document.getElementById('progress-bar-fill');
   const progressText = document.getElementById('progress-text');
-  
+
+  /* =========== Envio das respostas para o Google Sheets ============ */
+  // URL do app da Web do Apps Script (google-apps-script.js)
+  const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx_ip9PCLAUHzvmoqtsEa9HoTO_sZYOWnTzbZA5aRc0wAvDwk0R6kafY1YqzFMSXrhH7w/exec';
+
+  function sendToSheet(payload) {
+    if (!SHEET_WEBHOOK_URL) return;
+    try {
+      fetch(SHEET_WEBHOOK_URL, {
+        method:  'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body:    JSON.stringify(payload),
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
   function renderStep() {
     if (currentStep === 0) {
       renderLeadForm();
@@ -528,10 +543,16 @@ document.addEventListener('DOMContentLoaded', () => {
       // Form is valid, update UTMS
       populateUtmFields(form);
 
-      // Save core user data for UI/dashboard
-      userData.nome = document.getElementById('field-nome').value;
-      userData.empresa = document.getElementById('field-empresa').value;
-      userData.colab = document.getElementById('field-colab').value;
+      // Save user data for UI/dashboard and Google Sheets
+      userData.nome       = document.getElementById('field-nome').value.trim();
+      userData.email      = document.getElementById('field-email').value.trim();
+      userData.telefone   = document.getElementById('field-whatsapp').value.trim();
+      userData.empresa    = document.getElementById('field-empresa').value.trim();
+      userData.site       = document.getElementById('field-site').value.trim();
+      userData.cargo      = document.getElementById('field-cargo').value;
+      userData.colab      = document.getElementById('field-colab').value;
+      userData.pessoas_rh = document.getElementById('field-pessoas-rh').value;
+      userData.desafio    = document.getElementById('field-desafio').value;
 
       // GTM Push
       const utms = window.__yourhUtms || {};
@@ -730,6 +751,31 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.GTMEvents && window.GTMEvents.fireLeadNow) {
       window.GTMEvents.fireLeadNow();
     }
+
+    // Envia o lead + as 25 respostas + a pontuação para a planilha Google Sheets
+    var utms = window.__yourhUtms || {};
+    sendToSheet({
+      nome:            userData.nome       || '',
+      email:           userData.email      || '',
+      telefone:        userData.telefone   || '',
+      empresa:         userData.empresa    || '',
+      site:            userData.site       || '',
+      cargo:           userData.cargo      || '',
+      colaboradores:   userData.colab      || '',
+      pessoas_rh:      userData.pessoas_rh || '',
+      desafio:         userData.desafio    || '',
+      pontuacao_total: totalScore,
+      nivel:           level.name,
+      dimensoes:       dimScores.map(function (d) {
+        return { titulo: d.title, score: d.score };
+      }),
+      respostas:       allQuestions.map(function (q) {
+        return { id: q.id, score: answers[q.id] != null ? answers[q.id] : '' };
+      }),
+      utm_source:      utms.utm_source   || '',
+      utm_medium:      utms.utm_medium   || '',
+      utm_campaign:    utms.utm_campaign || '',
+    });
   }
 
   // Init
