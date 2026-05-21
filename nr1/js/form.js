@@ -1,8 +1,9 @@
 /**
  * form.js
- * Validação em tempo real, máscara telefone BR.
- * O envio ao RD Station é feito pelo script loader oficial (não por API manual).
+ * Validação em tempo real, máscara telefone BR e submit com preparação de Lead.
+ * O envio ao RD Station é feito pelo script loader oficial (corpo da página).
  * Os UTMs são persistidos em localStorage e injetados nos campos hidden antes do submit.
+ * O Lead oficial dispara em obrigado.html — aqui apenas lead_pending via GTMEvents.prepareLead().
  */
 
 (function () {
@@ -12,16 +13,14 @@
   var UTM_EXPIRY_MS   = 30 * 24 * 60 * 60 * 1000; // 30 dias
   var UTM_KEYS        = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_marketing_tactic'];
 
+  // ── UTM PERSISTENCE ──────────────────────────────────────────────
   function readUtmsFromUrl() {
     var params = new URLSearchParams(window.location.search);
-    var utms = {};
+    var utms   = {};
     var hasAny = false;
     UTM_KEYS.forEach(function (k) {
       var val = params.get(k);
-      if (val && val.trim()) {
-        utms[k] = val.trim().toLowerCase();
-        hasAny = true;
-      }
+      if (val && val.trim()) { utms[k] = val.trim().toLowerCase(); hasAny = true; }
     });
     return hasAny ? utms : null;
   }
@@ -30,7 +29,7 @@
     try {
       localStorage.setItem(UTM_STORAGE_KEY, JSON.stringify({
         data:    utms,
-        expires: Date.now() + UTM_EXPIRY_MS,
+        expires: Date.now() + UTM_EXPIRY_MS
       }));
     } catch (e) {}
   }
@@ -52,10 +51,7 @@
 
   var _utms = (function () {
     var fromUrl = readUtmsFromUrl();
-    if (fromUrl) {
-      saveUtms(fromUrl);
-      return fromUrl;
-    }
+    if (fromUrl) { saveUtms(fromUrl); return fromUrl; }
     return loadUtms() || {};
   })();
 
@@ -66,32 +62,16 @@
     });
   }
 
+  // ── VALIDADORES ──────────────────────────────────────────────────
   var validators = {
-    nome: function (v) {
-      return v.trim().length >= 3 && v.trim().split(' ').length >= 2 && v.trim().split(' ')[1].length >= 1;
-    },
-    email: function (v) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
-    },
-    telefone: function (v) {
-      var d = v.replace(/\D/g, '');
-      return d.length >= 10 && d.length <= 11;
-    },
-    empresa: function (v) {
-      return v.trim().length >= 2;
-    },
-    funcionarios: function (v) {
-      return v !== '' && v !== null;
-    },
-    cargo: function (v) {
-      return v !== '' && v !== null;
-    },
-    site: function (v) {
-      return v.trim().length >= 2;
-    },
-    lgpd: function (v, el) {
-      return el ? el.checked : false;
-    },
+    nome:         function (v) { return v.trim().length >= 3 && v.trim().split(' ').length >= 2 && v.trim().split(' ')[1].length >= 1; },
+    email:        function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
+    telefone:     function (v) { var d = v.replace(/\D/g, ''); return d.length >= 10 && d.length <= 11; },
+    empresa:      function (v) { return v.trim().length >= 2; },
+    funcionarios: function (v) { return v !== '' && v !== null; },
+    cargo:        function (v) { return v !== '' && v !== null; },
+    site:         function (v) { return v.trim().length >= 2; },
+    lgpd:         function (v, el) { return el ? el.checked : false; }
   };
 
   var errorMessages = {
@@ -102,22 +82,23 @@
     funcionarios: 'Selecione o número de funcionários.',
     cargo:        'Selecione seu cargo.',
     site:         'Informe seu site ou rede social.',
-    lgpd:         'Você precisa aceitar a Política de Privacidade.',
+    lgpd:         'Você precisa aceitar a Política de Privacidade.'
   };
 
+  // ── MÁSCARA TELEFONE BR ──────────────────────────────────────────
   function maskPhone(value) {
     var d = value.replace(/\D/g, '').slice(0, 11);
-    if (!d.length) return '';
+    if (!d.length)  return '';
     if (d.length <= 2)  return '(' + d;
     if (d.length <= 6)  return '(' + d.slice(0, 2) + ') ' + d.slice(2);
     if (d.length <= 10) return '(' + d.slice(0, 2) + ') ' + d.slice(2, 6) + '-' + d.slice(6);
     return '(' + d.slice(0, 2) + ') ' + d.slice(2, 7) + '-' + d.slice(7);
   }
 
+  // ── HELPERS DE ESTADO ────────────────────────────────────────────
   function setError(groupEl, inputEl, msg) {
     groupEl.classList.add('has-error');
     inputEl.classList.remove('is-valid');
-    inputEl.classList.add('is-error');
     var errorEl = groupEl.querySelector('.form-error');
     if (errorEl) errorEl.textContent = msg;
     inputEl.classList.remove('is-error');
@@ -139,51 +120,32 @@
   function validateField(name, inputEl) {
     var groupEl = inputEl.closest('.form-group');
     if (!groupEl) return true;
-    var value = inputEl.value;
-    var isValid;
-    if (name === 'lgpd') {
-      isValid = inputEl.checked;
-    } else {
-      isValid = value.trim() !== '' && validators[name] && validators[name](value, inputEl);
-    }
-    if (!isValid) {
-      setError(groupEl, inputEl, errorMessages[name] || 'Campo obrigatório.');
-      return false;
-    }
+    var value   = inputEl.value;
+    var isValid = (name === 'lgpd')
+      ? inputEl.checked
+      : (value.trim() !== '' && validators[name] && validators[name](value, inputEl));
+
+    if (!isValid) { setError(groupEl, inputEl, errorMessages[name] || 'Campo obrigatório.'); return false; }
     setValid(groupEl, inputEl);
     return true;
   }
 
+  // ── LOADING ──────────────────────────────────────────────────────
   function showLoading(btn) {
-    btn.disabled = true;
+    if (!btn) return;
+    btn.disabled      = true;
     btn.dataset.original = btn.innerHTML;
-    btn.innerHTML = '<span class="spinner"></span> Enviando...';
+    btn.innerHTML     = '<span class="spinner"></span> Enviando...';
   }
 
-  function fireGtmEvent(data) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event:               'lead_form_submit',
-      cargo:               data.cargo,
-      empresa:             data.empresa,
-      numero_funcionarios: data.funcionarios,
-      utm_source:          _utms.utm_source   || undefined,
-      utm_medium:          _utms.utm_medium   || undefined,
-      utm_campaign:        _utms.utm_campaign || undefined,
-      utm_marketing_tactic:_utms.utm_marketing_tactic || undefined,
-    });
-    window.dispatchEvent(new CustomEvent('lead_form_submit', {
-      bubbles: true,
-      detail:  { email: data.email, cargo: data.cargo, empresa: data.empresa },
-    }));
-  }
-
+  // ── INIT ─────────────────────────────────────────────────────────
   function init() {
     var form = document.getElementById('lp-nr1');
     if (!form) return;
 
     populateHiddenUtmFields(form);
 
+    // Máscara de telefone
     var phoneInput = form.querySelector('[data-field="telefone"]');
     if (phoneInput) {
       phoneInput.addEventListener('input', function () {
@@ -191,86 +153,82 @@
       });
     }
 
+    // Validação no blur / change
     var fields = form.querySelectorAll('[data-field]');
     fields.forEach(function (input) {
       var name = input.dataset.field;
       if (name === 'lgpd') return;
-      input.addEventListener('blur', function () {
-        validateField(name, input);
-      });
+
+      input.addEventListener('blur', function () { validateField(name, input); });
       input.addEventListener('input', function () {
         var groupEl = input.closest('.form-group');
-        if (groupEl && groupEl.classList.contains('has-error')) {
-          clearState(groupEl, input);
-        }
+        if (groupEl && groupEl.classList.contains('has-error')) clearState(groupEl, input);
       });
       if (input.tagName === 'SELECT') {
-        input.addEventListener('change', function () {
-          validateField(name, input);
-        });
+        input.addEventListener('change', function () { validateField(name, input); });
       }
     });
 
+    // Checkbox LGPD
     var lgpdInput = form.querySelector('[data-field="lgpd"]');
     if (lgpdInput) {
-      lgpdInput.addEventListener('change', function () {
-        validateField('lgpd', lgpdInput);
-      });
+      lgpdInput.addEventListener('change', function () { validateField('lgpd', lgpdInput); });
     }
 
+    // ── SUBMIT ──────────────────────────────────────────────────────
     form.addEventListener('submit', function (e) {
-      var allValid = true;
+      e.preventDefault();
+
+      // Valida todos os campos
+      var allValid    = true;
       var firstInvalid = null;
       fields.forEach(function (input) {
-        var name = input.dataset.field;
+        var name  = input.dataset.field;
         var valid = validateField(name, input);
-        if (!valid) {
-          allValid = false;
-          if (!firstInvalid) firstInvalid = input;
-        }
+        if (!valid) { allValid = false; if (!firstInvalid) firstInvalid = input; }
       });
 
       if (!allValid) {
-        e.preventDefault();
         if (firstInvalid) firstInvalid.focus();
         return;
       }
 
       populateHiddenUtmFields(form);
-
-      var data = {
-        nome:         form.querySelector('[data-field="nome"]').value.trim(),
-        email:        form.querySelector('[data-field="email"]').value.trim(),
-        telefone:     form.querySelector('[data-field="telefone"]').value.trim(),
-        empresa:      form.querySelector('[data-field="empresa"]').value.trim(),
-        funcionarios: form.querySelector('[data-field="funcionarios"]').value,
-        cargo:        form.querySelector('[data-field="cargo"]').value,
-      };
-
-      fireGtmEvent(data);
       showLoading(form.querySelector('.form-submit-btn'));
 
       var destination = form.getAttribute('action') || 'obrigado.html';
       var redirected  = false;
 
+      // 1. Cronômetro de segurança absoluto de 4 segundos (fallback)
       var safetyTimer = setTimeout(function () {
-        if (!redirected) { redirected = true; window.location.href = destination; }
+        if (!redirected) {
+          redirected = true;
+          window.location.href = destination;
+        }
       }, 4000);
 
+      // 2. Dispara a preparação de CAPI / GTM (retorna uma Promise)
       var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
         ? window.GTMEvents.prepareLead(form)
         : Promise.resolve();
 
-      var delayPromise = new Promise(function (resolve) { setTimeout(resolve, 2000); });
+      // 3. Delay artificial de 2 segundos para dar tempo ao AJAX nativo do RD Station Loader completar
+      var delayPromise = new Promise(function (resolve) {
+        setTimeout(resolve, 2000);
+      });
 
+      // 4. Aguarda ambas as Promises terminarem
       Promise.all([leadPromise, delayPromise])
         .then(function (results) {
           if (redirected) return;
           redirected = true;
           clearTimeout(safetyTimer);
+
           var leadEventId = results[0];
           var dest = destination;
-          if (leadEventId) dest += (dest.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
+          if (leadEventId) {
+            dest += (dest.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
+          }
           window.location.href = dest;
         })
         .catch(function () {
