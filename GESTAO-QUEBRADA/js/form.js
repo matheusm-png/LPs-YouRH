@@ -181,7 +181,7 @@
   }
 
   function init() {
-    var form = document.getElementById('lp_gestao-quebrada_conv');
+    var form = document.getElementById('lp-gestao-quebrada');
     if (!form) return;
 
     populateHiddenUtmFields(form);
@@ -260,10 +260,35 @@
       fireGtmEvent(data);
       showLoading(form.querySelector('.form-submit-btn'));
 
-      // Aguarda o RD Station capturar os dados antes de redirecionar
-      setTimeout(function () {
-        window.location.href = form.getAttribute('action');
-      }, 1500);
+      var destination = form.getAttribute('action') || 'obrigado.html';
+      var redirected  = false;
+
+      var safetyTimer = setTimeout(function () {
+        if (!redirected) { redirected = true; window.location.href = destination; }
+      }, 4000);
+
+      var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
+        ? window.GTMEvents.prepareLead(form)
+        : Promise.resolve();
+
+      var delayPromise = new Promise(function (resolve) { setTimeout(resolve, 2000); });
+
+      Promise.all([leadPromise, delayPromise])
+        .then(function (results) {
+          if (redirected) return;
+          redirected = true;
+          clearTimeout(safetyTimer);
+          var leadEventId = results[0];
+          var dest = destination;
+          if (leadEventId) dest += (dest.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
+          window.location.href = dest;
+        })
+        .catch(function () {
+          if (redirected) return;
+          redirected = true;
+          clearTimeout(safetyTimer);
+          window.location.href = destination;
+        });
     });
   }
 

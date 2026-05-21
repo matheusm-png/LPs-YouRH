@@ -771,7 +771,7 @@
           <div class="animate-on-scroll from-right delay-200">
             <div class="conversion-form" id="conversion-form-wrapper">
 
-              <form id="lp_turnover_conv" method="post" action="https://lp.yourh.com.br/turnover/obrigado.html" novalidate aria-label="Formulário de contato: Redução de Turnover YouRH">
+              <form id="lp-turnover" method="post" action="obrigado.html" novalidate aria-label="Formulário de contato: Redução de Turnover YouRH">
                 <div class="form-fields">
 
                   <div class="form-group">
@@ -790,14 +790,14 @@
 
                   <div class="form-group">
                     <input type="tel" id="field-telefone" class="form-input" data-field="telefone"
-                      name="phone" placeholder="DDD + Telefone *" autocomplete="tel" inputmode="numeric"
+                      name="personal_phone" placeholder="DDD + Telefone *" autocomplete="tel" inputmode="numeric"
                       aria-required="true" aria-describedby="error-telefone" />
                     <span class="form-error" id="error-telefone" role="alert"></span>
                   </div>
 
                   <div class="form-group">
                     <input type="text" id="field-empresa" class="form-input" data-field="empresa"
-                      name="company" placeholder="Nome da Empresa *" autocomplete="organization"
+                      name="company_name" placeholder="Nome da Empresa *" autocomplete="organization"
                       aria-required="true" aria-describedby="error-empresa" />
                     <span class="form-error" id="error-empresa" role="alert"></span>
                   </div>
@@ -805,7 +805,7 @@
                   <div class="form-group">
                     <label for="field-funcionarios" class="sr-only">Número de funcionários</label>
                     <select id="field-funcionarios" class="form-input form-select" data-field="funcionarios"
-                      name="employees" aria-required="true" aria-describedby="error-funcionarios">
+                      name="form_fields_qtd_funcionarios" aria-required="true" aria-describedby="error-funcionarios">
                       <option value="" disabled selected>Número de funcionários *</option>
                       <option value="20 - 30">20 - 30</option>
                       <option value="31 - 70">31 - 70</option>
@@ -821,7 +821,7 @@
                   <div class="form-group">
                     <label for="field-cargo" class="sr-only">Cargo na empresa</label>
                     <select id="field-cargo" class="form-input form-select" data-field="cargo"
-                      name="role" aria-required="true" aria-describedby="error-cargo">
+                      name="cargo" aria-required="true" aria-describedby="error-cargo">
                       <option value="" disabled selected>Seu cargo na empresa *</option>
                       <option value="Analista">Analista</option>
                       <option value="Assistente / Auxiliar">Assistente / Auxiliar</option>
@@ -844,6 +844,7 @@
                     <span class="form-error" id="error-site" role="alert"></span>
                   </div>
 
+                  <input type="hidden" name="conversion_identifier" value="lp-turnover">
                   <input type="hidden" name="utm_source"          id="utm_source">
                   <input type="hidden" name="utm_medium"          id="utm_medium">
                   <input type="hidden" name="utm_campaign"        id="utm_campaign">
@@ -853,7 +854,7 @@
 
                   <div class="form-group form-group--checkbox">
                     <label class="form-checkbox-label" id="label-lgpd">
-                      <input type="checkbox" id="field-lgpd" data-field="lgpd"
+                      <input type="checkbox" id="field-lgpd" name="policy" value="on" data-field="lgpd"
                         aria-required="true" aria-describedby="error-lgpd" />
                       <span class="form-checkbox-box" aria-hidden="true">
                         <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5 3.5-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1066,12 +1067,13 @@
 
   <!-- Scripts — NÃO ALTERAR a ordem -->
   <script src="js/checklist.js" defer></script>
+  <script src="js/gtm-events.js" defer></script>
   <script src="js/form.js?v=2" defer></script>
   <script src="js/money-rain.js" defer></script>
   <script src="js/main.js" defer></script>
 
   <!-- RD Station Loader — captura submissão nativa do formulário. NÃO ALTERAR. -->
-  <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/a81f367c-46ec-4dea-a2c2-4367f6781b13-loader.js"></script>
+  <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/2b4d5177951b2aaefe0b7f838559c2d9-rdstation.js"></script>
 
   <script>
   function getUTM(param) {

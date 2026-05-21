@@ -191,7 +191,7 @@
 
   // ── INIT ─────────────────────────────────────────────────────────
   function init() {
-    var form = document.getElementById('lp_turnover_conv');
+    var form = document.getElementById('lp-turnover');
     if (!form) return;
 
     // Preenche hidden UTMs assim que o DOM carrega (cobre quem chegou com UTMs na URL)
@@ -256,7 +256,6 @@
       }
 
       // Validação OK: injeta UTMs, dispara GTM e deixa o evento fluir.
-      // O RD Station loader captura o submit nativo e o form navega para action.
       populateHiddenUtmFields(form);
 
       var data = {
@@ -271,10 +270,47 @@
       fireGtmEvent(data);
       showLoading(form.querySelector('.form-submit-btn'));
 
-      e.preventDefault();
-      setTimeout(function () {
-        window.location.href = form.getAttribute('action') + '?t=' + Date.now();
-      }, 1500);
+      var destination = form.getAttribute('action') || 'obrigado.html';
+      var redirected  = false;
+
+      // 1. Cronômetro de segurança absoluto de 4 segundos (fallback)
+      var safetyTimer = setTimeout(function () {
+        if (!redirected) {
+          redirected = true;
+          window.location.href = destination;
+        }
+      }, 4000);
+
+      // 2. Dispara a preparação de CAPI / GTM (retorna uma Promise)
+      var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
+        ? window.GTMEvents.prepareLead(form)
+        : Promise.resolve();
+
+      // 3. Delay artificial de 2 segundos para dar tempo ao AJAX nativo do RD Station Loader completar
+      var delayPromise = new Promise(function (resolve) {
+        setTimeout(resolve, 2000);
+      });
+
+      // 4. Aguarda ambas as Promises terminarem
+      Promise.all([leadPromise, delayPromise])
+        .then(function (results) {
+          if (redirected) return;
+          redirected = true;
+          clearTimeout(safetyTimer);
+          
+          var leadEventId = results[0];
+          var dest = destination;
+          if (leadEventId) {
+            dest += (dest.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
+          }
+          window.location.href = dest;
+        })
+        .catch(function () {
+          if (redirected) return;
+          redirected = true;
+          clearTimeout(safetyTimer);
+          window.location.href = destination;
+        });
     });
   }
 

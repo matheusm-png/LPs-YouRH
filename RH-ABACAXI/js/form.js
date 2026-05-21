@@ -199,7 +199,7 @@
 
   // ── INIT ─────────────────────────────────────────────────────────
   function init() {
-    var form = document.getElementById('lp_rh-abacaxi_conv');
+    var form = document.getElementById('lp-rh-abacaxi');
     if (!form) return;
 
     // Preenche hidden UTMs assim que o DOM carrega (cobre quem chegou com UTMs na URL)
@@ -279,12 +279,35 @@
       fireGtmEvent(data);
       showLoading(form.querySelector('.form-submit-btn'));
 
-      // RD Station listener já capturou o evento antes deste handler.
-      // Bloqueamos a navegação POST nativa (Netlify rejeita POST em arquivos estáticos)
-      // e redirecionamos via GET após um tick para o RD processar.
-      e.preventDefault();
       var destination = form.getAttribute('action') || 'obrigado.html';
-      setTimeout(function() { window.location.href = destination; }, 100);
+      var redirected  = false;
+
+      var safetyTimer = setTimeout(function () {
+        if (!redirected) { redirected = true; window.location.href = destination; }
+      }, 4000);
+
+      var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
+        ? window.GTMEvents.prepareLead(form)
+        : Promise.resolve();
+
+      var delayPromise = new Promise(function (resolve) { setTimeout(resolve, 2000); });
+
+      Promise.all([leadPromise, delayPromise])
+        .then(function (results) {
+          if (redirected) return;
+          redirected = true;
+          clearTimeout(safetyTimer);
+          var leadEventId = results[0];
+          var dest = destination;
+          if (leadEventId) dest += (dest.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
+          window.location.href = dest;
+        })
+        .catch(function () {
+          if (redirected) return;
+          redirected = true;
+          clearTimeout(safetyTimer);
+          window.location.href = destination;
+        });
     });
   }
 
