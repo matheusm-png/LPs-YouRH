@@ -998,7 +998,7 @@
             <p class="cin-form__sub">Preencha e receba o Kit gratuito no seu e-mail.</p>
 
             <form
-              id="lp_herois-rh_conv"
+              id="lp-forca-tripla"
               method="post"
               action="obrigado.html"
               novalidate
@@ -1040,7 +1040,7 @@
                 <input
                   type="tel"
                   id="field-telefone"
-                  name="phone"
+                  name="personal_phone"
                   data-field="telefone"
                   placeholder="WhatsApp com DDD *"
                   autocomplete="tel"
@@ -1057,7 +1057,7 @@
                 <input
                   type="text"
                   id="field-empresa"
-                  name="company"
+                  name="company_name"
                   data-field="empresa"
                   placeholder="Nome da empresa (opcional)"
                   autocomplete="organization"
@@ -1070,7 +1070,7 @@
                 <label for="field-funcionarios" class="sr-only">Número de colaboradores (opcional)</label>
                 <select
                   id="field-funcionarios"
-                  name="employees"
+                  name="form_fields_qtd_funcionarios"
                   data-field="funcionarios"
                   aria-describedby="error-funcionarios"
                 >
@@ -1089,7 +1089,7 @@
                 <label for="field-cargo" class="sr-only">Cargo na empresa</label>
                 <select
                   id="field-cargo"
-                  name="role"
+                  name="cargo"
                   data-field="cargo"
                   aria-required="true"
                   aria-describedby="error-cargo"
@@ -1129,11 +1129,14 @@
               <input type="hidden" name="utm_content"           id="utm_content" />
               <input type="hidden" name="utm_term"              id="utm_term" />
               <input type="hidden" name="utm_marketing_tactic"  id="utm_marketing_tactic" />
+              <input type="hidden" name="conversion_identifier" value="lp-forca-tripla" />
 
               <label class="form-lgpd" id="label-lgpd">
                 <input
                   type="checkbox"
                   id="field-lgpd"
+                  name="policy"
+                  value="on"
                   data-field="lgpd"
                   aria-required="true"
                   aria-describedby="error-lgpd"
@@ -1353,6 +1356,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="js/gtm-events.js" defer></script>
   <script src="js/form.js" defer></script>
   <script src="js/cinematic-main.js" defer></script>
 

@@ -69,9 +69,6 @@
   }
 
   // ── VALIDADORES ─────────────────────────────────────────────────
-  // CRO #5: 'empresa' e 'funcionarios' são opcionais — validam só se preenchidos
-  var optionalFields = ['empresa', 'funcionarios'];
-
   var validators = {
     nome: function (v) {
       return v.trim().length >= 3 && v.trim().split(' ').length >= 2 && v.trim().split(' ')[1].length >= 1;
@@ -84,11 +81,10 @@
       return d.length >= 10 && d.length <= 11;
     },
     empresa: function (v) {
-      if (!v || !v.trim()) return true; // opcional: vazio é ok
       return v.trim().length >= 2;
     },
     funcionarios: function (v) {
-      return true; // opcional: qualquer valor é ok
+      return v !== '' && v !== null;
     },
     cargo: function (v) {
       return v !== '' && v !== null;
@@ -152,17 +148,6 @@
     var value = inputEl.value;
     var isValid;
 
-    // CRO #5: campos opcionais passam se vazios
-    if (optionalFields.indexOf(name) !== -1) {
-      var isEmpty = (inputEl.tagName === 'SELECT')
-        ? (value === '' || value === null)
-        : (!value || !value.trim());
-      if (isEmpty) {
-        clearState(groupEl, inputEl);
-        return true;
-      }
-    }
-
     if (name === 'lgpd') {
       isValid = inputEl.checked;
     } else {
@@ -190,7 +175,7 @@
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event:               'lead_form_submit',
-      conversion_identifier: 'lp-forca-tripla',
+      conversion_identifier: 'lp-patinho-feio',
       lead_email:          data.email,
       cargo:               data.cargo,
       empresa:             data.empresa,
@@ -209,7 +194,7 @@
   // ── INIT ─────────────────────────────────────────────────────────
   function init() {
     // ⚠️ TODO: altere para o ID usado no seu form do index.html
-    var form = document.getElementById('lp-forca-tripla');
+    var form = document.getElementById('lp-patinho-feio');
     if (!form) return;
 
     // Preenche hidden UTMs assim que o DOM carrega (cobre quem chegou com UTMs na URL)
