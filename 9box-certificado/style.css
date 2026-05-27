@@ -71,24 +71,10 @@ body::before {
   gap: 8px;
 }
 
-.logo-icon {
-  width: 28px;
+.logo-img {
   height: 28px;
-  background: var(--accent);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 900;
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo-text {
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--text);
+  width: auto;
+  display: block;
 }
 
 .header-badge {
@@ -529,10 +515,13 @@ button[type="submit"]:disabled {
 }
 
 .ty-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
+  display: flex;
+  justify-content: center;
   margin-bottom: 20px;
+}
+
+.ty-logo .logo-img {
+  height: 24px;
 }
 
 .ty-title {
