@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demonstração 9Box – yourh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <span class="logo-icon">y</span>
+        <span class="logo-text">yourh</span>
+      </div>
+      <div class="header-badge">Vagas limitadas</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div class="hero-left">
+          <div class="pill">
+            <span class="pill-dot"></span>
+            Demonstração ao vivo · Gratuita
+          </div>
+
+          <h1 class="hero-title">
+            Veja na prática como fazer<br />
+            <span class="gradient-text">avaliação de desempenho</span><br />
+            com o 9Box
+          </h1>
+
+          <p class="hero-desc">
+            Participe da demonstração exclusiva da yourh e descubra como aplicar a matriz 9Box para mapear talentos, identificar potenciais e tomar decisões de RH com mais clareza e menos achismo.
+          </p>
+
+          <ul class="benefits">
+            <li>
+              <span class="benefit-icon">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm3.5 5.5l-4.5 4.5-2-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div>
+                <strong>Metodologia 9Box na prática</strong>
+                <p>Aprenda a aplicar a ferramenta do zero, com exemplos reais do seu time.</p>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4v12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+              <div>
+                <strong>Decisões de RH baseadas em dados</strong>
+                <p>Chega de planilha manual. Veja como o software centraliza tudo automaticamente.</p>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">
+                <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div>
+                <strong>Certificado de 3 horas incluso</strong>
+                <p>Ao participar, você recebe certificado de conclusão direto no seu e-mail.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="social-proof">
+            <div class="avatars">
+              <img src="https://api.dicebear.com/9.x/notionists/svg?seed=Ana&backgroundColor=b6e3f4" alt="Ana" />
+              <img src="https://api.dicebear.com/9.x/notionists/svg?seed=Carlos&backgroundColor=c0aede" alt="Carlos" />
+              <img src="https://api.dicebear.com/9.x/notionists/svg?seed=Paula&backgroundColor=ffd5dc" alt="Paula" />
+              <img src="https://api.dicebear.com/9.x/notionists/svg?seed=Lucas&backgroundColor=d1f4e0" alt="Lucas" />
+            </div>
+            <p><strong>+200 profissionais de RH</strong> já confirmaram presença</p>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="form-card">
+            <div class="form-card-header">
+              <p class="form-eyebrow">Garanta sua vaga gratuita</p>
+              <h2>Preencha e receba o link de acesso</h2>
+            </div>
+
+            <form id="registrationForm" novalidate>
+              <div class="field">
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required />
+              </div>
+
+              <div class="field">
+                <label for="empresa">Nome da empresa</label>
+                <input type="text" id="empresa" name="empresa" placeholder="Onde você trabalha" required />
+              </div>
+
+              <div class="field">
+                <label for="email">E-mail corporativo</label>
+                <input type="email" id="email" name="email" placeholder="seu@empresa.com" required />
+              </div>
+
+              <div class="field">
+                <label for="cargo">Cargo</label>
+                <input type="text" id="cargo" name="cargo" placeholder="Ex: Analista de RH, HRBP..." required />
+              </div>
+
+              <button type="submit" id="submitBtn">
+                <span id="btnText">Quero participar gratuitamente</span>
+                <span id="btnLoader" class="loader hidden"></span>
+              </button>
+
+              <p class="form-privacy">
+                <svg viewBox="0 0 16 16" fill="none"><path d="M8 1L3 3.5v4C3 10.5 5.5 13.5 8 15c2.5-1.5 5-4.5 5-7.5v-4L8 1z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+                Seus dados estão seguros. Sem spam.
+              </p>
+            </form>
+
+            <div id="successMessage" class="success-message hidden">
+              <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <h3>Vaga confirmada!</h3>
+              <p>Enviamos o link de acesso e seu certificado para <strong id="confirmedEmail"></strong>. Confira sua caixa de entrada.</p>
+            </div>
+
+            <div id="errorMessage" class="error-message hidden">
+              <p>Ocorreu um erro. Por favor, tente novamente.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- OBRIGADO OVERLAY -->
+  <div id="thankyouOverlay" class="ty-overlay hidden" aria-modal="true" role="dialog">
+    <div class="ty-card">
+      <div class="ty-glow"></div>
+
+      <div class="ty-check">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="11" stroke="url(#checkGrad)" stroke-width="1.5"/>
+          <path class="ty-checkmark" d="M7 12.5l3.5 3.5 6.5-7" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="checkGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#4ade80"/>
+              <stop offset="100%" stop-color="#22d3ee"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="ty-logo">
+        <span class="logo-icon">y</span>
+        <span class="logo-text">yourh</span>
+      </div>
+
+      <h2 class="ty-title">Vaga confirmada! 🎉</h2>
+      <p class="ty-subtitle">
+        Enviamos o link de acesso para<br />
+        <strong id="tyEmail"></strong>
+      </p>
+
+      <div class="ty-steps">
+        <div class="ty-step">
+          <span class="ty-step-num">1</span>
+          <div>
+            <strong>Verifique seu e-mail</strong>
+            <p>O link de acesso chegará em breve na sua caixa de entrada.</p>
+          </div>
+        </div>
+        <div class="ty-step">
+          <span class="ty-step-num">2</span>
+          <div>
+            <strong>Participe ao vivo</strong>
+            <p>Assista à demonstração completa do 9Box com nossa equipe.</p>
+          </div>
+        </div>
+        <div class="ty-step">
+          <span class="ty-step-num">3</span>
+          <div>
+            <strong>Receba seu certificado</strong>
+            <p>3 horas de curso reconhecidas, direto no seu e-mail após o evento.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="ty-spam">Não encontrou? Verifique a pasta de spam.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
