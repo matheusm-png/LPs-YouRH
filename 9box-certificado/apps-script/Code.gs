@@ -1,7 +1,7 @@
 // Google Apps Script – cola isso no editor em script.google.com
 // Depois: Implantar > Nova implantação > Web App > Executar como: EU > Acesso: Qualquer pessoa
 
-const SHEET_ID = 'COLE_AQUI_O_ID_DA_PLANILHA'; // ID da URL da planilha
+const SHEET_ID = '1qpqNctvQx4LdmZGwqZZvCc4wHUMLXxF6ZJSIZjV3SOQ'; // ID da URL da planilha
 const SHEET_NAME = 'Inscrições';
 
 function doPost(e) {

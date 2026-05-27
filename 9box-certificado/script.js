@@ -42,11 +42,14 @@ form.addEventListener('submit', async (e) => {
   };
 
   try {
-    await fetch(APPS_SCRIPT_URL, {
+    const res = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(payload),
+      redirect: 'follow',
     });
+
+    if (!res.ok) throw new Error('HTTP ' + res.status);
 
     tyEmail.textContent = payload.email;
     thankyouOverlay.classList.remove('hidden');
