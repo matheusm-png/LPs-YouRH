@@ -483,8 +483,8 @@ body{
   font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
 }
 .triple-card h3{
-  font-family: var(--ff-display); font-weight: 800;
-  font-size: 26px; margin-top: 14px; letter-spacing: -0.02em;
+  font-family: var(--ff-display); font-weight: 400;
+  font-size: 26px; margin-top: 14px; letter-spacing: 0.22em;
 }
 .triple-card p{
   color: var(--clr-muted); margin-top: 8px; font-size: 14.5px; line-height: 1.55;
@@ -994,6 +994,92 @@ body{
   display:grid; grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 22px; margin-top: 48px;
 }
+
+/* ── VÍDEO ── */
+.testi__video{ margin-top: 48px; }
+.testi__video-wrap{
+  position: relative; width: 100%; padding-bottom: 56.25%; /* 16:9 */
+  border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+}
+.testi__video-wrap iframe{
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+
+/* ── QUOTE CARDS ── */
+.testi__quotes{
+  display: grid; grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 28px; margin-top: 36px;
+}
+.quote-card{
+  position: relative;
+  background: var(--c-cream);
+  color: var(--c-paper-text);
+  border: var(--hq-border);
+  border-radius: 0;
+  padding: 28px 24px 24px;
+  display: flex; flex-direction: column; gap: 14px;
+  overflow: hidden;
+  box-shadow: var(--hq-shadow);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.quote-card:nth-child(1){ transform: rotate(-0.4deg); }
+.quote-card:nth-child(2){ transform: rotate(0.4deg); }
+.quote-card:hover{
+  transform: rotate(0deg) translate(-4px,-4px);
+  box-shadow: 10px 10px 0 var(--c-ink);
+}
+/* halftone pattern igual aos outros cards */
+.quote-card::after{
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1.4px);
+  background-size: 6px 6px;
+  opacity: 0.5;
+}
+/* canto decorativo HQ */
+.quote-card::before{
+  content: "";
+  position: absolute; right: -3px; top: -3px;
+  width: 50px; height: 50px;
+  background: var(--c-bordeaux);
+  border: var(--hq-border-thin);
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+.quote-card__icon{
+  font-family: var(--ff-impact); font-size: 48px; line-height: 1;
+  color: var(--c-bordeaux); display: block; margin-bottom: -6px;
+  position: relative; z-index: 1;
+}
+.quote-card:nth-child(2) .quote-card__icon{ color: var(--c-turquoise); }
+.quote-card:nth-child(2)::before{ background: var(--c-turquoise); }
+.quote-card__title{
+  position: relative; z-index: 1;
+  display: inline-block; font-family: var(--ff-impact);
+  font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 4px 10px 2px;
+  border: var(--hq-border-thin);
+  box-shadow: 3px 3px 0 var(--c-ink);
+}
+.quote-card__title--purple{ background: var(--c-bordeaux); color: var(--c-cream); }
+.quote-card__title--green{  background: var(--c-turquoise); color: var(--c-ink); }
+.quote-card__text{
+  position: relative; z-index: 1;
+  font-size: 15px; line-height: 1.6; color: var(--c-paper-text); flex: 1;
+}
+.quote-card__author{
+  position: relative; z-index: 1;
+  display: flex; align-items: center; gap: 12px;
+  padding-top: 14px; border-top: var(--hq-border-thin);
+}
+.quote-card__avatar{
+  width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+  object-fit: cover;
+  border: var(--hq-border-thin);
+  box-shadow: 3px 3px 0 var(--c-ink);
+}
+.quote-card__author-info b{ display: block; font-size: 14px; font-weight: 700; color: var(--c-paper-text); }
+.quote-card__author-info span{ display: block; font-size: 12px; color: var(--c-paper-text); opacity: 0.65; }
 .testi-card{
   background: var(--c-card);
   border: 1px solid var(--c-line-strong);
@@ -1189,6 +1275,7 @@ body{
   .results-c__metrics{ grid-template-columns: repeat(2, minmax(0,1fr)); }
   .results-c__split{ grid-template-columns: 1fr; }
   .testi__grid{ grid-template-columns: 1fr; }
+  .testi__quotes{ grid-template-columns: 1fr; }
   .cta-form__layout{ grid-template-columns: 1fr; }
   .pain__grid{ grid-template-columns: 1fr; }
   .proof-strip__row{ grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -1570,9 +1657,9 @@ body{
 .triple-card--uc .triple-card__tag{ color: var(--c-ink); }
 .triple-card h3{
   font-family: var(--ff-display);
-  font-weight: 500;
+  font-weight: 400;
   font-size: clamp(22px, 2.1vw, 30px);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--col);
   margin-top: 16px;
@@ -2335,7 +2422,9 @@ body{
   .hero-cine{ min-height: 480px; }
 }
 @media (max-width: 720px){
-  .kit__grid{ grid-template-columns: 1fr; }
+  .kit__grid{ grid-template-columns: 1fr !important; }
+  .kit-tile--cta{ grid-column: span 1; }
+  .triple-card h3{ letter-spacing: 0.10em; font-size: clamp(18px, 5vw, 24px); }
   .hero-cine{ height: 100svh; min-height: 420px; }
   .hero-cine__mission{ left: 12px; font-size: 10px; padding: 6px 10px; }
   .pitch__check{ padding: 22px 18px; }

@@ -60,12 +60,44 @@
     return loadUtms() || {};
   })();
 
-  // Injeta UTMs do localStorage nos campos hidden do formulário.
   function populateHiddenUtmFields(form) {
     UTM_KEYS.forEach(function (k) {
       var el = form.querySelector('#' + k);
       if (el && _utms[k]) el.value = _utms[k];
     });
+    var src = form.querySelector('#utm_source');
+    var med = form.querySelector('#utm_medium');
+    if (src && !src.value) src.value = 'direto';
+    if (med && !med.value) med.value = '(none)';
+  }
+
+  function getCookieLocal(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+
+  function readCookie(name) {
+    return (window.GTMEvents && window.GTMEvents.getCookie)
+      ? window.GTMEvents.getCookie(name)
+      : getCookieLocal(name);
+  }
+
+  function populateHiddenMetaFields(form) {
+    var fbclid = new URLSearchParams(window.location.search).get('fbclid') || null;
+    var fbc    = readCookie('_fbc');
+    var fbp    = readCookie('_fbp');
+
+    if (!fbc && fbclid) {
+      fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+    }
+
+    var elFbclid = form.querySelector('#fbclid');
+    var elFbc    = form.querySelector('#fbc');
+    var elFbp    = form.querySelector('#fbp');
+
+    if (elFbclid && fbclid) elFbclid.value = fbclid;
+    if (elFbc    && fbc)    elFbc.value    = fbc;
+    if (elFbp    && fbp)    elFbp.value    = fbp;
   }
 
   // ── VALIDADORES ─────────────────────────────────────────────────
@@ -89,9 +121,6 @@
     cargo: function (v) {
       return v !== '' && v !== null;
     },
-    site: function (v) {
-      return v.trim().length >= 2;
-    },
     lgpd: function (v, el) {
       return el ? el.checked : false;
     },
@@ -104,7 +133,6 @@
     empresa:      'Informe o nome da empresa.',
     funcionarios: 'Selecione o número de funcionários.',
     cargo:        'Selecione seu cargo.',
-    site:         'Informe seu site ou rede social.',
     lgpd:         'Você precisa aceitar a Política de Privacidade.',
   };
 
@@ -121,13 +149,11 @@
   // ── HELPERS DE ESTADO ────────────────────────────────────────────
   function setError(groupEl, inputEl, msg) {
     groupEl.classList.add('has-error');
-    inputEl.classList.remove('is-valid');
+    inputEl.classList.remove('is-valid', 'is-error');
+    void inputEl.offsetWidth;
     inputEl.classList.add('is-error');
     var errorEl = groupEl.querySelector('.form-error');
     if (errorEl) errorEl.textContent = msg;
-    inputEl.classList.remove('is-error');
-    void inputEl.offsetWidth;
-    inputEl.classList.add('is-error');
   }
 
   function setValid(groupEl, inputEl) {
@@ -170,35 +196,25 @@
     btn.innerHTML = '<span class="spinner"></span> Enviando...';
   }
 
-  // ── GTM ──────────────────────────────────────────────────────────
-  function fireGtmEvent(data) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event:               'lead_form_submit',
-      cargo:               data.cargo,
-      empresa:             data.empresa,
-      numero_funcionarios: data.funcionarios,
-      utm_source:          _utms.utm_source   || undefined,
-      utm_medium:          _utms.utm_medium   || undefined,
-      utm_campaign:        _utms.utm_campaign || undefined,
-      utm_marketing_tactic:_utms.utm_marketing_tactic || undefined,
-    });
-    window.dispatchEvent(new CustomEvent('lead_form_submit', {
-      bubbles: true,
-      detail:  { email: data.email, cargo: data.cargo, empresa: data.empresa },
-    }));
-  }
-
   // ── INIT ─────────────────────────────────────────────────────────
   function init() {
-    // ⚠️ TODO: altere para o ID usado no seu form do index.html
-    var form = document.getElementById('lp_herois-rh_conv');
+    var form = document.getElementById('lp-forca-tripla-2');
     if (!form) return;
 
-    // Preenche hidden UTMs assim que o DOM carrega (cobre quem chegou com UTMs na URL)
     populateHiddenUtmFields(form);
+    populateHiddenMetaFields(form);
 
-    // Máscara de telefone
+    var destination = form.getAttribute('action') || 'https://lp.yourh.com.br/forca-tripla-2/obrigado.html';
+    var redirected  = false;
+
+    // Netlify retorna 404 para POST em .html estático — bloqueamos o POST
+    // nativo e fazemos o redirect por conta própria via GET.
+    function goToThankYou() {
+      if (redirected) return;
+      redirected = true;
+      window.location.href = destination;
+    }
+
     var phoneInput = form.querySelector('[data-field="telefone"]');
     if (phoneInput) {
       phoneInput.addEventListener('input', function () {
@@ -206,7 +222,6 @@
       });
     }
 
-    // Validação no blur
     var fields = form.querySelectorAll('[data-field]');
     fields.forEach(function (input) {
       var name = input.dataset.field;
@@ -228,7 +243,6 @@
       }
     });
 
-    // Checkbox LGPD
     var lgpdInput = form.querySelector('[data-field="lgpd"]');
     if (lgpdInput) {
       lgpdInput.addEventListener('change', function () {
@@ -236,9 +250,8 @@
       });
     }
 
-    // Submit
     form.addEventListener('submit', function (e) {
-      // Valida todos os campos — só bloqueia se inválido
+      // 1. Valida todos os campos — único motivo para bloquear o submit
       var allValid = true;
       var firstInvalid = null;
       fields.forEach(function (input) {
@@ -251,27 +264,55 @@
       });
 
       if (!allValid) {
-        e.preventDefault(); // Bloqueia apenas quando há erro de validação
+        e.preventDefault();
         if (firstInvalid) firstInvalid.focus();
         return;
       }
 
-      // Validação OK: injeta UTMs, dispara GTM e deixa o evento fluir.
-      // O RD Station loader captura o submit nativo e o form navega para action.
+      // 2. Honeypot anti-spam
+      var honeypot = form.querySelector('[name="website"]');
+      if (honeypot && honeypot.value) {
+        e.preventDefault();
+        return;
+      }
+
+      // 3. Bloqueia o POST nativo — Netlify retorna 404 para POST em .html
+      e.preventDefault();
+
+      // 4. Preenche UTMs, dados Meta e limpa máscara do telefone
       populateHiddenUtmFields(form);
+      populateHiddenMetaFields(form);
+      var tel = form.querySelector('[data-field="telefone"]');
+      if (tel) tel.value = tel.value.replace(/\D/g, '');
 
-      var data = {
-        nome:         form.querySelector('[data-field="nome"]').value.trim(),
-        email:        form.querySelector('[data-field="email"]').value.trim(),
-        telefone:     form.querySelector('[data-field="telefone"]').value.trim(),
-        empresa:      form.querySelector('[data-field="empresa"]').value.trim(),
-        funcionarios: form.querySelector('[data-field="funcionarios"]').value,
-        cargo:        form.querySelector('[data-field="cargo"]').value,
-      };
-
-      fireGtmEvent(data);
+      // 5. Feedback visual
       showLoading(form.querySelector('.form-submit-btn'));
-      // Sem preventDefault aqui: form submete nativamente → RD Station captura → redireciona para action
+
+      // Timeout de segurança absoluta (fallback)
+      var safetyTimer = setTimeout(goToThankYou, 4000);
+
+      // Dispara a Promise do GTM CAPI (gera event_id, salva no sessionStorage e dispara lead_pending)
+      var leadPromise = (window.GTMEvents && window.GTMEvents.prepareLead)
+        ? window.GTMEvents.prepareLead(form)
+        : Promise.resolve();
+
+      // Aguarda o processamento do CAPI e garante 2s de delay para o AJAX do RD Station Loader rodar
+      Promise.all([
+        leadPromise,
+        new Promise(function (resolve) { setTimeout(resolve, 2000); })
+      ])
+      .then(function (results) {
+        clearTimeout(safetyTimer);
+        var leadEventId = results[0];
+        if (leadEventId) {
+          destination += (destination.indexOf('?') >= 0 ? '&' : '?') + 'event_id=' + leadEventId;
+        }
+        goToThankYou();
+      })
+      .catch(function () {
+        clearTimeout(safetyTimer);
+        goToThankYou();
+      });
     });
   }
 
