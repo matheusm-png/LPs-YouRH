@@ -1,9 +1,3 @@
-/**
- * consent.js
- * Consent Mode v2 — atualiza consentimento após interação com o banner LGPD.
- * Os defaults (denied) são declarados inline no <head> ANTES do GTM.
- */
-
 (function () {
   'use strict';
 
@@ -16,10 +10,10 @@
 
   function grantConsent() {
     gtag('consent', 'update', {
-      ad_storage:          'granted',
-      analytics_storage:   'granted',
-      ad_user_data:        'granted',
-      ad_personalization:  'granted'
+      ad_storage:         'granted',
+      analytics_storage:  'granted',
+      ad_user_data:       'granted',
+      ad_personalization: 'granted'
     });
     try { localStorage.setItem(CONSENT_KEY, 'granted'); } catch (e) {}
     hideBanner();
@@ -27,10 +21,10 @@
 
   function denyConsent() {
     gtag('consent', 'update', {
-      ad_storage:          'denied',
-      analytics_storage:   'denied',
-      ad_user_data:        'denied',
-      ad_personalization:  'denied'
+      ad_storage:         'denied',
+      analytics_storage:  'denied',
+      ad_user_data:       'denied',
+      ad_personalization: 'denied'
     });
     try { localStorage.setItem(CONSENT_KEY, 'denied'); } catch (e) {}
     hideBanner();
@@ -53,7 +47,6 @@
       banner.style.transform = 'translateY(0)';
       banner.style.opacity   = '1';
     }, 800);
-
     var btnAccept = document.getElementById('cookie-accept');
     var btnDeny   = document.getElementById('cookie-deny');
     if (btnAccept) btnAccept.addEventListener('click', grantConsent);
@@ -64,15 +57,10 @@
     var stored;
     try { stored = localStorage.getItem(CONSENT_KEY); } catch (e) {}
 
-    if (stored === 'granted') {
-      grantConsent();
-      return;
-    }
-    if (stored === 'denied') {
-      return; // mantém o estado denied já definido no <head>
-    }
+    if (stored === 'granted') { grantConsent(); return; }
+    if (stored === 'denied')  { return; }
 
-    showBanner(); // primeira visita — sem decisão prévia
+    showBanner();
   }
 
   if (document.readyState === 'loading') {

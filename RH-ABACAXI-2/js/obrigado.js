@@ -1,10 +1,3 @@
-/**
- * obrigado.js
- * Fonte de verdade do evento Lead.
- * Recupera o event_id e os hashes gerados no index.html (via sessionStorage)
- * e dispara o Lead oficial no dataLayer para GTM → Meta Pixel + GA4.
- */
-
 (function () {
   'use strict';
 
@@ -22,10 +15,9 @@
   }
 
   function fireLead() {
-    // URL param tem prioridade — GTM Server lê da URL; sessionStorage é fallback browser
-    var urlParams    = new URLSearchParams(window.location.search);
-    var leadEventId  = urlParams.get('event_id') || sessionStorage.getItem(SESSION_KEY);
-    if (!leadEventId) return; // sem event_id = acesso direto à página, não dispara
+    var urlParams   = new URLSearchParams(window.location.search);
+    var leadEventId = urlParams.get('event_id') || sessionStorage.getItem(SESSION_KEY);
+    if (!leadEventId) return;
 
     var hashes = {};
     try {
@@ -40,9 +32,9 @@
       content_name: 'lp-rh-abacaxi-2',
       page_url:     window.location.href,
       timestamp:    Math.floor(Date.now() / 1000),
-      user_data:    {
-        email:        hashes.email  || null,
-        phone_number: hashes.phone  || null
+      user_data: {
+        email:        hashes.email || null,
+        phone_number: hashes.phone || null
       }
     };
 
@@ -53,18 +45,13 @@
 
     push(payload);
 
-    // Limpa sessionStorage após uso — evita redisparo em reload
     sessionStorage.removeItem(SESSION_KEY);
     sessionStorage.removeItem(SESSION_HASHES);
   }
 
-  function boot() {
-    fireLead();
-  }
-
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
+    document.addEventListener('DOMContentLoaded', fireLead);
   } else {
-    boot();
+    fireLead();
   }
 })();

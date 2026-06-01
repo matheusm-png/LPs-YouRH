@@ -12,37 +12,33 @@
     if (typeof crypto !== 'undefined' && crypto.randomUUID) {
       return crypto.randomUUID();
     }
-    // Fallback para ambientes sem crypto.randomUUID
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
       var r = (Math.random() * 16) | 0;
       return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
     });
   }
 
-  // ── SHA-256 via Web Crypto API ─────────────────────────────────────
+  // ── SHA-256 (PII nunca em plain text no dataLayer) ─────────────────
   async function sha256(value) {
-    var str = (value || '').trim().toLowerCase();
-    var buf = new TextEncoder().encode(str);
+    var str     = (value || '').trim().toLowerCase();
+    var buf     = new TextEncoder().encode(str);
     var hashBuf = await crypto.subtle.digest('SHA-256', buf);
     return Array.from(new Uint8Array(hashBuf))
       .map(function (b) { return b.toString(16).padStart(2, '0'); })
       .join('');
   }
 
-  // ── COOKIES (fbp / fbc para Meta CAPI) ───────────────────────────
+  // ── COOKIES META (_fbp / _fbc) ────────────────────────────────────
   function getCookie(name) {
     var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     return match ? decodeURIComponent(match[2]) : null;
   }
 
   function trackingCookies() {
-    return {
-      fbp: getCookie('_fbp') || null,
-      fbc: getCookie('_fbc') || null
-    };
+    return { fbp: getCookie('_fbp') || null, fbc: getCookie('_fbc') || null };
   }
 
-  // ── BASE PAYLOAD — campos obrigatórios em todos os eventos ────────
+  // ── BASE PAYLOAD ──────────────────────────────────────────────────
   function basePayload(eventName, eventId) {
     var cookies = trackingCookies();
     var payload = {
@@ -56,7 +52,6 @@
     return payload;
   }
 
-  // ── PUSH ──────────────────────────────────────────────────────────
   function push(payload) {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(payload);
@@ -72,7 +67,7 @@
     push(base);
   }
 
-  // ── FORM STARTED ──────────────────────────────────────────────────
+  // ── FORM STARTED (dispara uma vez no primeiro foco) ───────────────
   function fireFormStarted() {
     var id   = generateEventId();
     var base = basePayload('form_started', id);
@@ -81,6 +76,7 @@
     push(base);
   }
 
+  // ── VALIDADORES ───────────────────────────────────────────────────
   function initFormStarted() {
     var form = document.getElementById(FORM_ID);
     if (!form) return;
@@ -93,7 +89,7 @@
     });
   }
 
-  // ── SCROLL DEPTH ──────────────────────────────────────────────────
+  // ── SCROLL DEPTH (25 / 50 / 75 / 100%) ───────────────────────────
   function fireScrollDepth(percentage) {
     var id   = generateEventId();
     var base = basePayload('ViewContent', id);
@@ -109,7 +105,6 @@
   function initScrollTracking() {
     var milestones = { 25: false, 50: false, 75: false, 100: false };
     var ticking    = false;
-
     function checkScroll() {
       var scrollable = document.documentElement.scrollHeight - window.innerHeight;
       if (scrollable <= 0) return;
@@ -122,13 +117,12 @@
       });
       ticking = false;
     }
-
     window.addEventListener('scroll', function () {
       if (!ticking) { ticking = true; requestAnimationFrame(checkScroll); }
     }, { passive: true });
   }
 
-  // ── TIME ON PAGE ──────────────────────────────────────────────────
+  // ── TIME ON PAGE (a cada 30s) ─────────────────────────────────────
   function fireTimeOnPage(seconds) {
     var id   = generateEventId();
     var base = basePayload('time_on_page', id);
@@ -137,6 +131,7 @@
     push(base);
   }
 
+  // ── TIME TRACKING ─────────────────────────────────────────────────
   function initTimeTracking() {
     var elapsed  = 0;
     var interval = setInterval(function () {
@@ -146,27 +141,22 @@
     window.addEventListener('beforeunload', function () { clearInterval(interval); });
   }
 
-  // ── API PÚBLICA ───────────────────────────────────────────────────
-  // Chamada pelo form.js. Gera o lead_event_id, salva no sessionStorage
-  // e dispara lead_pending. O Lead oficial dispara em obrigado.html via obrigado.js.
+  // ── PREPARE LEAD (chamado pelo form.js no submit) ─────────────────
   window.GTMEvents = {
+    getCookie: getCookie,
     prepareLead: async function (form) {
       var leadEventId = generateEventId();
 
-      // Salva event_id para ser lido em obrigado.html
       sessionStorage.setItem(SESSION_KEY, leadEventId);
 
-      // Hash de PII — NUNCA expor plain text no dataLayer
       var emailHash = await sha256((form.elements['email'] || {}).value || '');
-      var phoneHash = await sha256((form.elements['personal_phone'] || {}).value || '');
+      var phoneHash = await sha256((form.elements['phone'] || {}).value || '');
 
-      // Salva hashes para o Lead oficial em obrigado.html
       sessionStorage.setItem(SESSION_HASHES, JSON.stringify({
         email: emailHash,
         phone: phoneHash
       }));
 
-      // Sinaliza o submit ao GTM — não é o Lead oficial
       var base = basePayload('lead_pending', leadEventId);
       base.event        = 'lead_pending';
       base.content_name = FORM_ID;
