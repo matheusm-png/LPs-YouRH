@@ -141,6 +141,7 @@
 
   // ── PREPARE LEAD (chamado pelo form.js no submit) ─────────────────
   window.GTMEvents = {
+    getCookie: getCookie,
     prepareLead: async function (form) {
       var leadEventId = generateEventId();
 
