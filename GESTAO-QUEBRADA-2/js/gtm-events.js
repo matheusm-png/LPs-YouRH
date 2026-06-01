@@ -141,14 +141,13 @@
 
   // ── PREPARE LEAD (chamado pelo form.js no submit) ─────────────────
   window.GTMEvents = {
-    getCookie: getCookie,
     prepareLead: async function (form) {
       var leadEventId = generateEventId();
 
       sessionStorage.setItem(SESSION_KEY, leadEventId);
 
       var emailHash = await sha256((form.elements['email'] || {}).value || '');
-      var phoneHash = await sha256((form.elements['phone'] || {}).value || '');
+      var phoneHash = await sha256((form.elements['personal_phone'] || {}).value || '');
 
       sessionStorage.setItem(SESSION_HASHES, JSON.stringify({
         email: emailHash,
