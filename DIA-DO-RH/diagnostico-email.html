@@ -15,14 +15,28 @@
 <link rel="stylesheet" href="diagnostico.css" />
 <link rel="stylesheet" href="diagnostico-email.css" />
 
+<!-- Consent Mode v2 — defaults NEGADOS antes do GTM (obrigatório para conformidade LGPD) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('consent', 'default', {
+    ad_storage:          'denied',
+    analytics_storage:   'denied',
+    ad_user_data:        'denied',
+    ad_personalization:  'denied',
+    wait_for_update:     500
+  });
+</script>
+
 <!-- Tracking YouRH -->
 <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/2b4d5177951b2aaefe0b7f838559c2d9-rdstation.js"></script>
+
+<!-- Google Tag Manager — ID legada YouRH, NÃO ALTERAR -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-NC7RBWD');</script>
-
 </head>
 <body class="body-diag">
 
@@ -181,9 +195,82 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p>&copy; 2025 YouRH. Todos os direitos reservados.</p>
 </footer>
 
-<script src="js/gtm-events.js"></script>
-<script src="diagnostico.js"></script>
-<script src="diagnostico-email.js"></script>
+  <!-- Banner LGPD / Consent Mode v2 -->
+  <div id="cookie-banner" role="dialog" aria-modal="false" aria-label="Aviso de cookies e privacidade" aria-live="polite">
+    <div class="ck-inner">
+      <p class="ck-text">
+        Usamos <strong>cookies</strong> para melhorar sua experiência, exibir anúncios relevantes e analisar o tráfego.
+        Ao aceitar, você concorda com nossa
+        <a href="https://yourh.com.br/politica-de-privacidade" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>.
+      </p>
+      <div class="ck-actions">
+        <button id="cookie-deny"   class="ck-btn ck-btn--deny"   type="button">Rejeitar</button>
+        <button id="cookie-accept" class="ck-btn ck-btn--accept" type="button">Aceitar tudo</button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 99999;
+      background: #1a0052;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      padding: 14px 20px;
+      transform: translateY(100%);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
+    }
+    .ck-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .ck-text {
+      font-family: inherit;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+      flex: 1;
+      min-width: 200px;
+      margin: 0;
+    }
+    .ck-text strong { color: #fff; }
+    .ck-text a { color: #61de75; text-decoration: underline; }
+    .ck-actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .ck-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+      transition: transform 0.15s, opacity 0.15s;
+      line-height: 1;
+    }
+    .ck-btn:hover { transform: translateY(-1px); opacity: 0.88; }
+    .ck-btn--accept { background: #00c853; color: #fff; }
+    .ck-btn--deny   { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.18); }
+    @media (max-width: 600px) {
+      .ck-inner  { flex-direction: column; align-items: flex-start; }
+      .ck-actions { width: 100%; }
+      .ck-btn    { flex: 1; text-align: center; }
+    }
+  </style>
+
+<script src="js/consent.js" defer></script>
+<script src="js/gtm-events.js" defer></script>
+<script src="diagnostico.js" defer></script>
+<script src="diagnostico-email.js" defer></script>
 
 </body>
 </html>
