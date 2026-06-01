@@ -808,14 +808,14 @@
 
                   <div class="form-group">
                     <input type="tel" id="field-telefone" class="form-input" data-field="telefone"
-                      name="personal_phone" placeholder="DDD + Telefone *" autocomplete="tel" inputmode="numeric"
+                      name="phone" placeholder="DDD + Telefone *" autocomplete="tel" inputmode="numeric"
                       aria-required="true" aria-describedby="error-telefone" />
                     <span class="form-error" id="error-telefone" role="alert"></span>
                   </div>
 
                   <div class="form-group">
                     <input type="text" id="field-empresa" class="form-input" data-field="empresa"
-                      name="company_name" placeholder="Nome da Empresa *" autocomplete="organization"
+                      name="company" placeholder="Nome da Empresa *" autocomplete="organization"
                       aria-required="true" aria-describedby="error-empresa" />
                     <span class="form-error" id="error-empresa" role="alert"></span>
                   </div>
@@ -870,6 +870,9 @@
                   <input type="hidden" name="utm_content"         id="utm_content">
                   <input type="hidden" name="utm_term"            id="utm_term">
                   <input type="hidden" name="utm_marketing_tactic" id="utm_marketing_tactic">
+                  <input type="hidden" name="fbclid"               id="fbclid">
+                  <input type="hidden" name="fbc"                  id="fbc">
+                  <input type="hidden" name="fbp"                  id="fbp">
 
                   <div class="form-group form-group--checkbox">
                     <label class="form-checkbox-label" id="label-lgpd">
@@ -1158,12 +1161,12 @@
   </style>
 
   <!-- Scripts — NÃO ALTERAR a ordem -->
+  <script src="js/consent.js"    defer></script>
   <script src="js/checklist.js"  defer></script>
   <script src="js/gtm-events.js" defer></script>
   <script src="js/form.js"       defer></script>
   <script src="js/money-rain.js" defer></script>
   <script src="js/main.js"       defer></script>
-  <script src="js/consent.js"    defer></script>
 
 </body>
 </html>

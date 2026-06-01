@@ -70,6 +70,35 @@
     if (med && !med.value) med.value = '(none)';
   }
 
+  function getCookieLocal(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+
+  function readCookie(name) {
+    return (window.GTMEvents && window.GTMEvents.getCookie)
+      ? window.GTMEvents.getCookie(name)
+      : getCookieLocal(name);
+  }
+
+  function populateHiddenMetaFields(form) {
+    var fbclid = new URLSearchParams(window.location.search).get('fbclid') || null;
+    var fbc    = readCookie('_fbc');
+    var fbp    = readCookie('_fbp');
+
+    if (!fbc && fbclid) {
+      fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+    }
+
+    var elFbclid = form.querySelector('#fbclid');
+    var elFbc    = form.querySelector('#fbc');
+    var elFbp    = form.querySelector('#fbp');
+
+    if (elFbclid && fbclid) elFbclid.value = fbclid;
+    if (elFbc    && fbc)    elFbc.value    = fbc;
+    if (elFbp    && fbp)    elFbp.value    = fbp;
+  }
+
   var validators = {
     nome: function (v) {
       return v.trim().length >= 3 && v.trim().split(' ').length >= 2 && v.trim().split(' ')[1].length >= 1;
@@ -127,6 +156,7 @@
     if (errorEl) errorEl.textContent = msg;
   }
 
+  // Define valid states
   function setValid(groupEl, inputEl) {
     groupEl.classList.remove('has-error');
     inputEl.classList.remove('is-error');
@@ -168,6 +198,7 @@
     if (!form) return;
 
     populateHiddenUtmFields(form);
+    populateHiddenMetaFields(form);
 
     var destination = form.getAttribute('action') || 'https://lp.yourh.com.br/gestao-quebrada/obrigado.html';
     var redirected  = false;
@@ -243,8 +274,9 @@
       // 3. Bloqueia o POST nativo — servidor estático retorna 404 para POST em .html
       e.preventDefault();
 
-      // 4. Preenche UTMs e limpa máscara do telefone
+      // 4. Preenche UTMs, dados Meta e limpa máscara do telefone
       populateHiddenUtmFields(form);
+      populateHiddenMetaFields(form);
       var phoneEl = form.querySelector('[data-field="telefone"]');
       if (phoneEl) phoneEl.value = phoneEl.value.replace(/\D/g, '');
 
