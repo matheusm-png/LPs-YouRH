@@ -148,7 +148,7 @@
       sessionStorage.setItem(SESSION_KEY, leadEventId);
 
       var emailHash = await sha256((form.elements['email'] || {}).value || '');
-      var phoneHash = await sha256((form.elements['personal_phone'] || {}).value || '');
+      var phoneHash = await sha256((form.elements['phone'] || {}).value || '');
 
       sessionStorage.setItem(SESSION_HASHES, JSON.stringify({
         email: emailHash,
