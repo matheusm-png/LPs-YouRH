@@ -1203,7 +1203,7 @@
                     <input
                       type="tel"
                       id="field-telefone"
-                      name="personal_phone"
+                      name="phone"
                       class="form-input"
                       data-field="telefone"
                       placeholder="DDD + Telefone *"
@@ -1220,7 +1220,7 @@
                     <input
                       type="text"
                       id="field-empresa"
-                      name="company_name"
+                      name="company"
                       class="form-input"
                       data-field="empresa"
                       placeholder="Nome da Empresa *"
@@ -1296,13 +1296,23 @@
                     <span class="form-error" id="error-cargo" role="alert"></span>
                   </div>
 
+                  <!-- Campos ocultos de UTM e Rastreamento Meta/CAPI -->
                   <input type="hidden" name="utm_source"           id="utm_source">
                   <input type="hidden" name="utm_medium"           id="utm_medium">
                   <input type="hidden" name="utm_campaign"         id="utm_campaign">
                   <input type="hidden" name="utm_content"          id="utm_content">
                   <input type="hidden" name="utm_term"             id="utm_term">
                   <input type="hidden" name="utm_marketing_tactic" id="utm_marketing_tactic">
+                  <input type="hidden" name="fbclid"               id="fbclid">
+                  <input type="hidden" name="fbc"                  id="fbc">
+                  <input type="hidden" name="fbp"                  id="fbp">
                   <input type="hidden" name="conversion_identifier" value="lp-nr1">
+
+                  <!-- Honeypot anti-spam (invisível) -->
+                  <div style="display:none !important;">
+                    <label for="website">Deixe este campo em branco</label>
+                    <input type="text" id="website" name="website" autocomplete="off" tabIndex="-1" />
+                  </div>
 
                   <!-- 7. Checkbox LGPD -->
                   <div class="form-group form-group--checkbox">
@@ -1747,13 +1757,13 @@
 
   <!-- Scripts -->
   <script src="js/webinar.js" defer></script>
+  <script src="js/consent.js" defer></script>
   <script src="js/popup.js" defer></script>
   <script src="js/countdown.js" defer></script>
   <script src="js/checklist.js" defer></script>
   <script src="js/gtm-events.js" defer></script>
   <script src="js/form.js" defer></script>
   <script src="js/main.js" defer></script>
-  <script src="js/consent.js" defer></script>
 
   <!-- RD Station Loader — captura submissão nativa do formulário. NÃO ALTERAR. -->
   <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/a81f367c-46ec-4dea-a2c2-4367f6781b13-loader.js"></script>
