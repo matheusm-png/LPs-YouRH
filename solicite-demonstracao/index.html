@@ -2,8 +2,27 @@
 
 <html lang="pt-BR" xml:lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<!-- Consent Mode v2 — defaults NEGADOS antes do GTM (obrigatório para conformidade LGPD) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('consent', 'default', {
+    ad_storage:          'denied',
+    analytics_storage:   'denied',
+    ad_user_data:        'denied',
+    ad_personalization:  'denied',
+    wait_for_update:     500
+  });
+</script>
+<!-- RD Station Tracking Script — NÃO ALTERAR após configurar.
+     Deve ficar ANTES do GTM para garantir cookie de sessão correto. -->
+<script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/2b4d5177951b2aaefe0b7f838559c2d9-rdstation.js"></script>
 <!-- Google Tag Manager -->
-
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TRVZBWCH');</script>
 <!-- End Google Tag Manager -->
 <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
 <meta content="pt-BR" http-equiv="content-language"/>
@@ -65,10 +84,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 </noscript>
 <title>Solicite Demonstração</title>
+<!-- Estados de validação do formulário (padrão YouRH) — classes injetadas por js/form.js -->
+<style>
+  .form-group .form-error { display: none; margin-top: 6px; font-size: 12px; line-height: 1.3; color: #d32f2f; }
+  .form-group.has-error .form-error { display: block; }
+  .form-group input.is-error,
+  .form-group select.is-error { border-color: #d32f2f !important; box-shadow: 0 0 0 3px rgba(211,47,47,.12) !important; animation: yrhShake .45s ease; }
+  .form-group input.is-valid,
+  .form-group select.is-valid { border-color: #00c853 !important; }
+  .form-submit-btn .spinner { display: inline-block; width: 16px; height: 16px; margin-right: 6px; vertical-align: -3px; border: 2px solid rgba(255,255,255,.45); border-top-color: #fff; border-radius: 50%; animation: yrhSpin .7s linear infinite; }
+  .form-submit-btn:disabled { opacity: .75; cursor: progress; }
+  @keyframes yrhSpin  { to { transform: rotate(360deg); } }
+  @keyframes yrhShake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-5px)} 40%,80%{transform:translateX(5px)} }
+</style>
 </link></meta></meta></meta></meta></meta></head>
 <body>
 <!-- Google Tag Manager (noscript) -->
-
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRVZBWCH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <!-- Linkedin -->
 <script data-cookiecategory="marketing" type="text/plain"> 
@@ -282,9 +314,12 @@
 </div>
 </div>
 <div class="col-12 col-md-7 col-lg-6 offset-xl-1 col-xl-5">
-<form action="https://yourh.com.br/form/send" class="form content-box wow fadeInRight" data-lang="pt-BR" data-recaptcha-action="demo" data-recaptcha-key="6LdyGcQkAAAAACQk2LGJupjrk6832k-KRjSGaAdJ" data-wow-delay=".3s" method="post" name='"solicite-demonstracao"'>
-<input name="_token" type="hidden" value="RxMWTtdWZaHfYL64YGH0B3u8Ggx3GJBzlQ8Hvc3M"/>
-<input name="form" type="hidden" value="eyJpdiI6InhjSGprWXVUNzVUZVRzVlVsUkxEZVE9PSIsInZhbHVlIjoicFdXOFlmOS9uMjM1YXB6QzI0L2h2dz09IiwibWFjIjoiYTNmMjZmNGJiNjhjNGU3OWNlMTJjMmI5YmU1ZDYwOTg5NWYwMjkwZTg4YjIwYWRhNzg0YzM4NjM3ODhmNGFlNSJ9"/>
+<form action="obrigado.html" class="content-box wow fadeInRight" data-wow-delay=".3s" id="lp-solicite-demonstracao" method="post" novalidate>
+<input autocomplete="off" name="website" style="display:none" tabindex="-1" type="text"/>
+<input name="conversion_identifier" type="hidden" value="lp-solicite-demonstracao"/>
+<input id="fbclid" name="fbclid" type="hidden"/>
+<input id="fbc" name="fbc" type="hidden"/>
+<input id="fbp" name="fbp" type="hidden"/>
 <input id="utm_source" name="utm_source" type="hidden"/>
 <input id="utm_medium" name="utm_medium" type="hidden"/>
 <input id="utm_campaign" name="utm_campaign" type="hidden"/>
@@ -296,31 +331,35 @@
 <div class="placeholder">
                                         Seu nome completo *
                                     </div>
-<input aria-label="Seu nome completo" class="" maxlength="49" name="name" required="" type="text"/>
+<input aria-label="Seu nome completo" class="" data-field="nome" maxlength="49" name="name" required="" type="text"/>
+<span class="form-error"></span>
 </div>
 <div class="col-12 form-group">
 <div class="placeholder">
                                         Seu e-mail corporativo *
                                     </div>
-<input aria-label="Seu e-mail corporativo" class="" maxlength="128" name="email" required="" type="text"/>
+<input aria-label="Seu e-mail corporativo" class="" data-field="email" maxlength="128" name="email" required="" type="email"/>
+<span class="form-error"></span>
 </div>
 <div class="col-12 form-group">
 <div class="placeholder">
                                         DDD + Telefone *
                                     </div>
-<input aria-label="DDD + Telefone" autocomplete='"tel-national"' class="phone-mask" maxlength="16" name="phone" required="" type="text"/>
+<input aria-label="DDD + Telefone" autocomplete="tel-national" class="" data-field="telefone" inputmode="tel" maxlength="16" name="phone" required="" type="tel"/>
+<span class="form-error"></span>
 </div>
 <div class="col-12 form-group">
 <div class="placeholder">
                                         Nome da Empresa *
                                     </div>
-<input aria-label="Nome da Empresa" class="" maxlength="49" name="company" required="" type="text"/>
+<input aria-label="Nome da Empresa" class="" data-field="empresa" maxlength="49" name="company" required="" type="text"/>
+<span class="form-error"></span>
 </div>
 <div class="col-12 form-group">
 <div class="placeholder">
                                         Número de funcionários *
                                     </div>
-<select aria-label="Número de funcionários" name="employees" required="">
+<select aria-label="Número de funcionários" data-field="funcionarios" name="employees" required="">
 <option disabled="" selected=""> </option>
 <option value="20 - 30">20 - 30</option>
 <option value="31 - 70">31 - 70</option>
@@ -330,12 +369,13 @@
 <option value="301 - 500">301 - 500</option>
 <option value="501+">501+</option>
 </select>
+<span class="form-error"></span>
 </div>
 <div class="col-12 form-group">
 <div class="placeholder">
                                         Seu cargo na empresa *
                                     </div>
-<select aria-label="Seu cargo na empresa" name="role" required="">
+<select aria-label="Seu cargo na empresa" data-field="cargo" name="role" required="">
 <option disabled="" selected=""> </option>
 <option value="Analista">Analista</option>
 <option value="Assistente / Auxiliar">Assistente / Auxiliar</option>
@@ -348,18 +388,21 @@
 <option value="Procurando emprego">Procurando emprego</option>
 <option value="Outros">Outros</option>
 </select>
+<span class="form-error"></span>
 </div>
 <div class="col-12 form-group">
 <div class="placeholder">
                                         Seu site ou rede social *
                                     </div>
-<input aria-label="Seu site ou rede social" class="" maxlength="255" name="site" required="" type="text"/>
+<input aria-label="Seu site ou rede social" class="" data-field="site" maxlength="255" name="site" required="" type="text"/>
+<span class="form-error"></span>
 </div>
 <div class="col-12 form-group">
 <label class="checkbox">
-                                    Ao informar meus dados, eu concordo com a <a href="https://yourh.com.br/politica-de-privacidade">Política de Privacidade.</a> <input aria-label="Política de Privacidade" name="policy" required="" type="checkbox"/>
+                                    Ao informar meus dados, eu concordo com a <a href="https://yourh.com.br/politica-de-privacidade">Política de Privacidade.</a> <input aria-label="Política de Privacidade" data-field="lgpd" name="policy" required="" type="checkbox"/>
 <span class="checkmark"></span>
 </label>
+<span class="form-error"></span>
 </div>
 </div>
 <div class="row">
@@ -372,7 +415,7 @@
 </div>
 <div class="row form-hide">
 <div class="col-12 text-center">
-<button class="btn green-2 full" type="submit">
+<button class="btn green-2 full form-submit-btn" type="submit">
                                 quero otimizar meu RH agora!
                             </button>
 </div>
@@ -960,7 +1003,7 @@
 </div>
 </div>
 <!-- RD Station -->
-<script async="" src="assets/d335luupugsy2.cloudfront.net/js/loader-scripts/a81f367c-46ec-4dea-a2c2-4367f6781b13-loader.js"></script>
+<script async="" src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/a81f367c-46ec-4dea-a2c2-4367f6781b13-loader.js"></script>
 <script>
 	function getUTM(t){let e=new URLSearchParams(window.location.search);return e.get(t)}document.addEventListener("DOMContentLoaded",function(){["utm_source","utm_marketing_tactic","utm_medium","utm_campaign","utm_content","utm_term"].forEach(function(t){let e=getUTM(t);if(e){let n=document.getElementById(t);n&&(n.value=e)}})});
 	
@@ -1018,5 +1061,36 @@
             }]
         }
 </script>
+<!-- Banner LGPD / Consent Mode v2 -->
+<div aria-label="Aviso de cookies e privacidade" aria-live="polite" aria-modal="false" id="cookie-banner" role="dialog">
+<div class="ck-inner">
+<p class="ck-text">
+        Usamos <strong>cookies</strong> para melhorar sua experiência, exibir anúncios relevantes e analisar o tráfego.
+        Ao aceitar, você concorda com nossa
+        <a href="https://yourh.com.br/politica-de-privacidade" rel="noopener noreferrer" target="_blank">Política de Privacidade</a>.
+      </p>
+<div class="ck-actions">
+<button class="ck-btn ck-btn--deny" id="cookie-deny" type="button">Rejeitar</button>
+<button class="ck-btn ck-btn--accept" id="cookie-accept" type="button">Aceitar tudo</button>
+</div>
+</div>
+</div>
+<style>
+  #cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 99999; background: #1a0052; border-top: 1px solid rgba(255,255,255,0.14); padding: 14px 20px; transform: translateY(100%); opacity: 0; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease; }
+  .ck-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .ck-text { font-family: inherit; font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.5; flex: 1; min-width: 200px; margin: 0; }
+  .ck-text strong { color: #fff; }
+  .ck-text a { color: #61de75; text-decoration: underline; }
+  .ck-actions { display: flex; gap: 8px; flex-shrink: 0; }
+  .ck-btn { border: none; border-radius: 999px; padding: 9px 20px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; white-space: nowrap; transition: transform 0.15s, opacity 0.15s; line-height: 1; }
+  .ck-btn:hover { transform: translateY(-1px); opacity: 0.88; }
+  .ck-btn--accept { background: #00c853; color: #fff; }
+  .ck-btn--deny   { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.18); }
+  @media (max-width: 600px) { .ck-inner { flex-direction: column; align-items: flex-start; } .ck-actions { width: 100%; } .ck-btn { flex: 1; text-align: center; } }
+</style>
+<!-- Tracking padrão YouRH — dataLayer/CAPI -->
+<script src="js/gtm-events.js" defer></script>
+<script src="js/form.js" defer></script>
+<script src="js/consent.js" defer></script>
 </body>
 </html>
