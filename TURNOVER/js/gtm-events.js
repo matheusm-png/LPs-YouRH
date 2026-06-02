@@ -154,7 +154,7 @@
 
       // Hash de PII — NUNCA expor plain text no dataLayer
       var emailHash = await sha256((form.elements['email'] || {}).value || '');
-      var phoneHash = await sha256((form.elements['phone'] || {}).value || '');
+      var phoneHash = await sha256((form.elements['telefone'] || {}).value || '');
 
       // Salva hashes para o Lead oficial em obrigado.html
       sessionStorage.setItem(SESSION_HASHES, JSON.stringify({
