@@ -105,7 +105,7 @@
       var leadEventId = generateEventId();
       sessionStorage.setItem(SESSION_KEY, leadEventId);
       var emailHash = await sha256((form.elements['email'] || {}).value || '');
-      var phoneHash = await sha256((form.elements['phone'] || {}).value || '');
+      var phoneHash = await sha256((form.elements['telefone'] || {}).value || '');
       sessionStorage.setItem(SESSION_HASHES, JSON.stringify({ email: emailHash, phone: phoneHash }));
       var base = basePayload('lead_pending', leadEventId);
       base.event = 'lead_pending'; base.content_name = FORM_ID;
