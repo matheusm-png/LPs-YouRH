@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="500" height="500"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <clipPath id="SvgjsClipPath1009">
+      <rect width="500" height="500"></rect>
+    </clipPath>
+  </defs>
+  <g id="SvgjsG1008" clip-path="url(#clip-favicon)">
+    <path id="SvgjsPath1007" data-name="Caminho 5876" d="M359.181,36.394V83.686L419.919,80.4c-111.966,120.83-157.662,172-207.245,172-39.571,0-58.063-25.38-66.153-53.037,108.872-3.79,146.112-70.4,146.112-112.146C292.634,46.022,268.421,0,201.845,0,129.859,0,94.52,71.4,89.753,140.377,65.029,128.02,51.49,106.167,51.49,77.571c0-22.247,4.763-37.5,9.847-50.794C49.32,22.043,12.8,9.686,12.8,9.686S0,44.232,0,80.285C0,116.714,20.486,177.034,92.555,194.6c13.028,69.719,62.334,106.556,120.119,106.556,74.822,0,125.967-63.278,243.843-188.593l-3.809,64.659H500V36.394H359.181ZM200.945,52.687c26.567,0,38.136,17.626,38.136,37.523,0,28.907-33.9,61.546-93.455,61.546-1.6,0-3.167-.029-4.724-.068,1.192-56.52,23.181-99,60.043-99" transform="translate(0 99)" fill="#61de75"></path>
+  </g>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>

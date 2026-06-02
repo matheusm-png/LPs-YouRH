@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="560" height="560" viewBox="0 0 560 560">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Retângulo_9" data-name="Retângulo 9" width="560" height="560"/>
+    </clipPath>
+  </defs>
+  <g id="you-doc" clip-path="url(#clip-path)">
+    <g id="Grupo_1622" data-name="Grupo 1622" transform="translate(47 69)">
+      <path id="Caminho_5925" data-name="Caminho 5925" d="M1858.63,87.193V436.134h-335.5l-84.44-75.514.145-346.248,338.316-.007,81.478,72.828Z" transform="translate(-1438.687 -14.365)"/>
+      <path id="Caminho_5926" data-name="Caminho 5926" d="M1778.57,17.656l56.447,50.4V412.541h-331.25l-61.8-55.282V17.656h336.6Z" transform="translate(-1418.205 6.166)" fill="#f0e3cc"/>
+      <path id="Caminho_5927" data-name="Caminho 5927" d="M1840.77,418.275H1505.25l-63.7-56.983V17.23h340.856l58.359,52.1Zm-333.155-6.167H1834.6V72.092l-54.543-48.7H1447.72V358.541Z" transform="translate(-1420.825 3.509)"/>
+    </g>
+    <g id="Grupo_21" data-name="Grupo 21" transform="translate(-3549.501 -3916.778)">
+      <path id="Caminho_3" data-name="Caminho 3" d="M31.407,0H263.818a31.407,31.407,0,0,1,31.407,31.407V186.233L205.762,295.224H31.407A31.407,31.407,0,0,1,0,263.818V31.407A31.407,31.407,0,0,1,31.407,0Z" transform="translate(3668 4055)" fill="#61dd75"/>
+      <path id="Caminho_3_-_Contorno" data-name="Caminho 3 - Contorno" d="M31.407,6A25.436,25.436,0,0,0,6,31.407V263.818a25.436,25.436,0,0,0,25.407,25.407H202.925l86.3-105.138V31.407A25.436,25.436,0,0,0,263.818,6H31.407m0-6H263.818a31.407,31.407,0,0,1,31.407,31.407V186.233L205.762,295.224H31.407A31.407,31.407,0,0,1,0,263.818V31.407A31.407,31.407,0,0,1,31.407,0Z" transform="translate(3668 4055)"/>
+      <g id="Grupo_21-2" data-name="Grupo 21" transform="translate(3697.804 4096.947)">
+        <rect id="Retângulo_12" data-name="Retângulo 12" width="235.123" height="34.22" rx="17.11" transform="translate(0 0)" fill="#f0e3cc"/>
+        <rect id="Retângulo_13" data-name="Retângulo 13" width="235.123" height="34.22" rx="17.11" transform="translate(0 80.582)" fill="#f0e3cc"/>
+        <rect id="Retângulo_14" data-name="Retângulo 14" width="141.294" height="33.116" rx="16.558" transform="translate(0 164.475)" fill="#f0e3cc"/>
+      </g>
+      <path id="Caminho_4" data-name="Caminho 4" d="M3433.093,4459.641v-110.4h90.938Z" transform="translate(437.854 -109.416)"/>
+    </g>
+  </g>
+</svg>
