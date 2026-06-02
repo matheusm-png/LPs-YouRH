@@ -119,6 +119,12 @@
     cargo: function (v) {
       return v !== '' && v !== null;
     },
+    pessoas_rh: function (v) {
+      return v !== '' && v !== null;
+    },
+    desafio: function (v) {
+      return v !== '' && v !== null;
+    },
     site: function (v) {
       return v.trim().length >= 2;
     },
@@ -134,6 +140,8 @@
     empresa:      'Informe o nome da empresa.',
     funcionarios: 'Selecione o número de funcionários.',
     cargo:        'Selecione seu cargo.',
+    pessoas_rh:   'Selecione quantas pessoas há no RH.',
+    desafio:      'Selecione seu maior desafio hoje.',
     site:         'Informe seu site ou rede social.',
     lgpd:         'Você precisa aceitar a Política de Privacidade.',
   };
