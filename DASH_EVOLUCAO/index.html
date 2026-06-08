@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolução Dashboard | Intelligence 2026</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon_yourh.svg">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="premium-dark">
+
+    <div id="loading" class="overlay">
+        <div class="loader-box">
+            <div class="glow-spinner"></div>
+            <p>Renderizando Inteligência de Dados...</p>
+        </div>
+    </div>
+
+    <!-- TOPBAR FIXA -->
+    <header class="topbar">
+        <div class="topbar-brand">
+            <img src="assets/logo.svg" alt="YOURH" class="main-logo">
+            <span class="brand-name">Evolução</span>
+        </div>
+        <div class="topbar-kpis">
+            <div class="tkpi"><span class="tk-label">Investimento</span><span class="tk-value" id="top-inv">—</span></div>
+            <div class="tkpi"><span class="tk-label">Leads</span><span class="tk-value" id="top-leads">—</span></div>
+            <div class="tkpi success"><span class="tk-label">Agendamentos</span><span class="tk-value" id="top-ag">—</span></div>
+            <div class="tkpi success"><span class="tk-label">AGQ</span><span class="tk-value" id="top-agq">—</span></div>
+            <div class="tkpi success"><span class="tk-label">Vendas</span><span class="tk-value" id="top-vendas">—</span></div>
+            <div class="tkpi success"><span class="tk-label">Receita</span><span class="tk-value" id="top-receita">—</span></div>
+            <div class="tkpi danger"><span class="tk-label">CPL</span><span class="tk-value" id="top-cpl">—</span></div>
+            <div class="tkpi danger"><span class="tk-label">CPLAg</span><span class="tk-value" id="top-cplag">—</span></div>
+            <div class="tkpi info"><span class="tk-label">ROAS</span><span class="tk-value" id="top-roas">—</span></div>
+            <div class="tkpi info"><span class="tk-label">ROAS LTV</span><span class="tk-value" id="top-roas-ltv">—</span></div>
+        </div>
+        <div class="topbar-actions">
+            <select id="month-selector" class="glass-select">
+                <option value="1">Janeiro 2026</option>
+                <option value="2">Fevereiro 2026</option>
+                <option value="3">Março 2026</option>
+                <option value="4">Abril 2026</option>
+                <option value="5">Maio 2026</option>
+                <option value="6" selected>Junho 2026</option>
+                <option value="all">Ano Todo (2026)</option>
+            </select>
+            <span class="update-label">Sync: <span id="update-time">--:--</span></span>
+            <button id="refresh-btn" class="glow-btn"><i data-lucide="refresh-cw"></i></button>
+        </div>
+    </header>
+
+    <!-- PÁGINA INTEIRA SCROLLÁVEL -->
+    <main class="page">
+
+        <!-- SEÇÃO 1: FUNIL + SAÚDE -->
+        <section class="page-section">
+            <h2 class="section-heading"><i data-lucide="filter"></i> Funil & Saúde</h2>
+            <div class="row-3">
+                <!-- Funnel -->
+                <div class="panel glass col-2">
+                    <div class="panel-header"><h3>Funil de Conversão</h3></div>
+                    <div class="funnel-container">
+                        <div class="funnel-stage" id="stage-leads">
+                            <div class="stage-info"><h4>Leads</h4><p>0</p></div>
+                            <div class="stage-bar"><div class="fill"></div></div>
+                        </div>
+                        <div class="funnel-stage" id="stage-ag">
+                            <div class="stage-info"><h4>Agendamentos</h4><p>0</p></div>
+                            <div class="stage-bar"><div class="fill fill-green"></div></div>
+                            <span class="conversion-tag">Conv: 0%</span>
+                        </div>
+                        <div class="funnel-stage" id="stage-agq">
+                            <div class="stage-info"><h4>Qualificados (AGQ)</h4><p>0</p></div>
+                            <div class="stage-bar"><div class="fill fill-amber"></div></div>
+                            <span class="conversion-tag">Quali: 0%</span>
+                        </div>
+                        <div class="funnel-stage" id="stage-vendas">
+                            <div class="stage-info"><h4>Vendas Fechadas</h4><p>0</p></div>
+                            <div class="stage-bar"><div class="fill fill-indigo"></div></div>
+                            <span class="conversion-tag" id="vendas-taxa">Taxa: 0%</span>
+                        </div>
+                        <div class="funnel-stage" id="stage-tent">
+                            <div class="stage-info"><h4>Em Tentativa</h4><p>0</p></div>
+                            <div class="stage-bar"><div class="fill fill-yellow"></div></div>
+                            <span class="conversion-tag" id="tent-taxa">Taxa: 0%</span>
+                        </div>
+                        <div class="funnel-stage" id="stage-desc">
+                            <div class="stage-info"><h4>Descartados</h4><p>0</p></div>
+                            <div class="stage-bar"><div class="fill fill-red"></div></div>
+                            <span class="conversion-tag" id="desc-taxa">Taxa: 0%</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pace até o fim do mês -->
+                <div class="panel glass col-1">
+                    <div class="panel-header"><h3><i data-lucide="rocket"></i> Pace até o Fim do Mês</h3></div>
+                    
+                    <div id="pace-content">
+                        <div class="pace-dias-info" id="pace-dias-info">
+                            <span class="pdi pdi-corrido"><i data-lucide="calendar-days"></i> — dias corridos</span>
+                            <span class="pdi pdi-util"><i data-lucide="briefcase"></i> — dias úteis</span>
+                        </div>
+
+                        <!-- Leads (todo dia) -->
+                        <div class="pace-row">
+                            <div class="pr-header">
+                                <span class="pr-label">Leads <em>· todo dia</em></span>
+                                <span class="pr-count" id="pr-leads-count">—</span>
+                            </div>
+                            <div class="pr-track"><div class="pr-fill pr-fill-indigo" id="pr-leads-bar"></div></div>
+                            <div class="pr-footer">
+                                <span class="pr-faltam" id="pr-leads-faltam">Faltam —</span>
+                            </div>
+                            <div class="pr-media-row">
+                                <span class="pr-media-atual" id="pr-leads-media">Atual —/dia</span>
+                                <span class="pr-pace" id="pr-leads-pace">Precisa —/dia</span>
+                            </div>
+                        </div>
+
+                        <!-- Agendamentos (dia útil) -->
+                        <div class="pace-row">
+                            <div class="pr-header">
+                                <span class="pr-label">Agendamentos <em>· dia útil</em></span>
+                                <span class="pr-count" id="pr-ag-count">—</span>
+                            </div>
+                            <div class="pr-track"><div class="pr-fill pr-fill-green" id="pr-ag-bar"></div></div>
+                            <div class="pr-footer">
+                                <span class="pr-faltam" id="pr-ag-faltam">Faltam —</span>
+                            </div>
+                            <div class="pr-media-row">
+                                <span class="pr-media-atual" id="pr-ag-media">Atual —/dia</span>
+                                <span class="pr-pace" id="pr-ag-pace">Precisa —/dia</span>
+                            </div>
+                        </div>
+
+                        <!-- AGQ (dia útil) -->
+                        <div class="pace-row">
+                            <div class="pr-header">
+                                <span class="pr-label">AGQ <em>· dia útil</em></span>
+                                <span class="pr-count" id="pr-agq-count">—</span>
+                            </div>
+                            <div class="pr-track"><div class="pr-fill pr-fill-amber" id="pr-agq-bar"></div></div>
+                            <div class="pr-footer">
+                                <span class="pr-faltam" id="pr-agq-faltam">Faltam —</span>
+                            </div>
+                            <div class="pr-media-row">
+                                <span class="pr-media-atual" id="pr-agq-media">Atual —/dia</span>
+                                <span class="pr-pace" id="pr-agq-pace">Precisa —/dia</span>
+                            </div>
+                        </div>
+
+                        <div class="pace-feriados-note" id="pace-feriados-note"></div>
+                    </div>
+                    
+                    <div id="pace-empty" style="display:none; text-align:center; padding: 4rem 0; color: var(--text-muted); font-size: 0.85rem; line-height: 1.5;">
+                        <i data-lucide="bar-chart-2" style="width:32px;height:32px;margin-bottom:0.8rem;opacity:0.5;"></i><br>
+                        Métricas de Pace não disponíveis<br>na visão consolidada do ano.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: EVOLUÇÃO DIÁRIA -->
+        <section class="page-section">
+            <h2 class="section-heading"><i data-lucide="line-chart"></i> Evolução Diária</h2>
+            <div class="panel glass">
+                <div class="chart-box-large"><canvas id="evolutionChart"></canvas></div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: PROJEÇÃO DO MÊS -->
+        <section class="page-section">
+            <h2 class="section-heading"><i data-lucide="trending-up"></i> Projeção do Mês</h2>
+            <div class="proj-cards" id="proj-cards"></div>
+            <div class="panel glass" style="margin-top:1.25rem;">
+                <div class="panel-header"><h3>Atual × Projeção × Meta</h3></div>
+                <div class="chart-box-large"><canvas id="projChart"></canvas></div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 3: META ADS -->
+        <section class="page-section">
+            <h2 class="section-heading"><i data-lucide="facebook"></i> Meta Ads</h2>
+            <!-- KPI Strip -->
+            <div class="channel-kpi-strip" id="meta-kpi-strip"></div>
+            <div class="row-2" style="margin-top:1.25rem">
+                <div class="panel glass">
+                    <div class="panel-header"><h3>Por Objetivo (Conjunto de Anúncios)</h3></div>
+                    <div class="chart-box"><canvas id="objDonutChart"></canvas></div>
+                </div>
+                <div class="panel glass">
+                    <div class="panel-header"><h3>Por Criativo — Leads, Ag, AGQ</h3></div>
+                    <div class="chart-box"><canvas id="criBarChart"></canvas></div>
+                </div>
+            </div>
+            <div class="panel glass">
+                <div class="panel-header"><h3>Detalhamento por Objetivo</h3></div>
+                <div class="table-wrap">
+                    <table class="dash-table" id="table-meta-obj">
+                        <thead><tr>
+                            <th>Objetivo</th>
+                            <th>Investimento</th>
+                            <th>Leads</th>
+                            <th>Agendamentos</th>
+                            <th>AGQ</th>
+                            <th>Em Tentativa</th>
+                            <th>Descartados</th>
+                            <th>CPL</th>
+                        </tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 4: GOOGLE ADS -->
+        <section class="page-section">
+            <h2 class="section-heading"><i data-lucide="search"></i> Google Ads</h2>
+            <!-- KPI Strip -->
+            <div class="channel-kpi-strip" id="google-kpi-strip"></div>
+            <div class="row-2" style="margin-top:1.25rem">
+                <div class="panel glass">
+                    <div class="panel-header"><h3>Investimento por Produto</h3></div>
+                    <div class="chart-box"><canvas id="googleDonutChart"></canvas></div>
+                </div>
+                <div class="panel glass">
+                    <div class="panel-header"><h3>Leads por Produto</h3></div>
+                    <div class="chart-box"><canvas id="googleLeadsChart"></canvas></div>
+                </div>
+            </div>
+            <div class="panel glass">
+                <div class="panel-header"><h3>Detalhamento por Produto</h3></div>
+                <div class="table-wrap">
+                    <table class="dash-table" id="table-google">
+                        <thead><tr>
+                            <th>Produto</th>
+                            <th>Investimento</th>
+                            <th>Leads</th>
+                            <th>Agendamentos</th>
+                            <th>AGQ</th>
+                            <th>Em Tentativa</th>
+                            <th>Descartados</th>
+                            <th>CPL</th>
+                        </tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 4B: ORGÂNICO -->
+        <section class="page-section">
+            <h2 class="section-heading"><i data-lucide="leaf"></i> Orgânico</h2>
+            <!-- KPI Strip -->
+            <div class="channel-kpi-strip channel-kpi-strip--organic" id="organic-kpi-strip"></div>
+            <div class="panel glass" style="margin-top:1.25rem">
+                <div class="panel-header"><h3>Detalhamento por Origem</h3></div>
+                <div class="table-wrap">
+                    <table class="dash-table" id="table-organico">
+                        <thead><tr>
+                            <th>Origem</th>
+                            <th>Leads</th>
+                            <th>Agendamentos</th>
+                            <th>AGQ</th>
+                            <th>Em Tentativa</th>
+                            <th>Descartados</th>
+                            <th>Taxa AG</th>
+                            <th>Taxa AGQ</th>
+                        </tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 5: SEMANAL -->
+        <section class="page-section">
+            <h2 class="section-heading"><i data-lucide="calendar"></i> Desempenho Semanal</h2>
+            <div class="panel glass">
+                <div class="weekly-heatmap" id="weekly-heatmap-container"></div>
+            </div>
+            <div class="panel glass" style="margin-top:1.25rem">
+                <div class="section-sub-heading">
+                    <i data-lucide="layers"></i> Por Canal
+                </div>
+                <div id="weekly-channels-container"></div>
+            </div>
+        </section>
+
+        <!-- REVENUECHART canvas mantido oculto para não quebrar referências JS -->
+        <canvas id="revenueChart" style="display:none"></canvas>
+
+    </main>
+
+    <script src="app.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
